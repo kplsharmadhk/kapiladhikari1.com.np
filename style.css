@@ -1501,3 +1501,131 @@ a {
     }
 
 }
+/* =========================================
+   PREMIUM SCROLL REVEAL
+========================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   MOBILE POLISH
+========================================= */
+
+@media (max-width: 600px) {
+
+    .hero-section {
+        min-height: 650px;
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: min(100%, 320px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions .btn {
+        justify-content: center;
+    }
+
+    .hero-location-bar {
+        font-size: 0.72rem;
+        gap: 7px;
+        padding: 7px 12px;
+    }
+
+    .section-padding {
+        padding: 70px 0;
+    }
+
+    .about-grid {
+        gap: 45px;
+    }
+
+    .portrait-image {
+        height: 430px;
+    }
+
+    .frame-accent {
+        inset: 12px -12px -12px 12px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .journey-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .gallery-card {
+        height: 190px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-col,
+    .contact-form-col {
+        padding: 30px 22px;
+    }
+
+    .timeline-item {
+        padding-left: 70px;
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
