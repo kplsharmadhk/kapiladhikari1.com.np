@@ -1,708 +1,574 @@
+/* =========================================================
+   KAPIL ADHIKARI
+   PREMIUM TRAVEL PORTFOLIO
+   JAVASCRIPT
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ===============================
-       KAPIL ADHIKARI
-       PREMIUM TRAVEL WEBSITE JS
-    =============================== */
+    /* =====================================================
+       FEATHER ICONS
+    ===================================================== */
 
-    // Feather Icons
-    if (window.feather) {
+    if (typeof feather !== "undefined") {
         feather.replace();
     }
 
 
-    /* ===============================
+    /* =====================================================
        HEADER SCROLL EFFECT
-    =============================== */
+    ===================================================== */
 
-    const header = document.getElementById("site-header");
+    const header = document.getElementById("header");
 
-    const handleHeader = () => {
-        if (!header) return;
-
-        if (window.scrollY > 40) {
+    function handleHeader() {
+        if (window.scrollY > 50) {
             header.classList.add("scrolled");
         } else {
             header.classList.remove("scrolled");
         }
-    };
+    }
 
-    window.addEventListener("scroll", handleHeader, {
-        passive: true
-    });
-
+    window.addEventListener("scroll", handleHeader);
     handleHeader();
 
 
-    /* ===============================
+    /* =====================================================
        MOBILE MENU
-    =============================== */
+    ===================================================== */
 
-    const mobileToggle =
-        document.getElementById("mobile-toggle");
+    const menuButton = document.getElementById("menuButton");
+    const menuClose = document.getElementById("menuClose");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    const mobileDrawer =
-        document.getElementById("mobile-drawer");
-
-    const mobileLinks =
-        document.querySelectorAll(".mobile-link");
-
-
-    const closeMobileMenu = () => {
-        if (!mobileToggle || !mobileDrawer) return;
-
-        mobileToggle.classList.remove("active");
-        mobileDrawer.classList.remove("open");
-        document.body.style.overflow = "";
-    };
-
-
-    const toggleMobileMenu = () => {
-        if (!mobileToggle || !mobileDrawer) return;
-
-        const isOpen =
-            mobileDrawer.classList.toggle("open");
-
-        mobileToggle.classList.toggle("active", isOpen);
-
-        document.body.style.overflow =
-            isOpen ? "hidden" : "";
-    };
-
-
-    if (mobileToggle) {
-        mobileToggle.addEventListener(
-            "click",
-            toggleMobileMenu
-        );
+    function openMenu() {
+        mobileMenu.classList.add("open");
+        document.body.classList.add("menu-open");
     }
 
+    function closeMenu() {
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+    }
 
-    mobileLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            closeMobileMenu();
-        });
+    if (menuButton) {
+        menuButton.addEventListener("click", openMenu);
+    }
+
+    if (menuClose) {
+        menuClose.addEventListener("click", closeMenu);
+    }
+
+    document.querySelectorAll(".mobile-menu-inner a").forEach(link => {
+        link.addEventListener("click", closeMenu);
     });
 
 
-    /* ===============================
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Escape") {
+            closeMenu();
+            closeLightbox();
+        }
+
+    });
+
+
+    /* =====================================================
        ACTIVE NAVIGATION
-    =============================== */
+    ===================================================== */
 
-    const sections =
-        document.querySelectorAll("section[id]");
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-    const navLinks =
-        document.querySelectorAll(".nav-link");
+    function updateActiveNav() {
 
-
-    const updateActiveNav = () => {
-
-        let currentSection = "";
+        let currentSection = "home";
 
         sections.forEach(section => {
 
-            const sectionTop =
-                section.offsetTop - 160;
+            const sectionTop = section.offsetTop - 160;
 
-            const sectionBottom =
-                sectionTop + section.offsetHeight;
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY < sectionBottom
-            ) {
-                currentSection =
-                    section.getAttribute("id");
+            if (window.scrollY >= sectionTop) {
+                currentSection = section.id;
             }
 
         });
-
 
         navLinks.forEach(link => {
 
             link.classList.remove("active");
 
-            if (
-                link.getAttribute("href") ===
-                `#${currentSection}`
-            ) {
+            const href = link.getAttribute("href");
+
+            if (href === "#" + currentSection) {
                 link.classList.add("active");
             }
 
         });
 
-    };
+    }
 
-
-    window.addEventListener(
-        "scroll",
-        updateActiveNav,
-        { passive: true }
-    );
-
+    window.addEventListener("scroll", updateActiveNav);
     updateActiveNav();
 
 
-    /* ===============================
-       SMOOTH ANCHOR SCROLL
-    =============================== */
+    /* =====================================================
+       SMOOTH SCROLL
+    ===================================================== */
 
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-            link.addEventListener("click", function(e) {
+        link.addEventListener("click", function(event) {
 
-                const targetId =
-                    this.getAttribute("href");
+            const targetId = this.getAttribute("href");
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) return;
+            if (!targetId || targetId === "#") {
+                return;
+            }
 
-                const target =
-                    document.querySelector(targetId);
+            const target = document.querySelector(targetId);
 
-                if (!target) return;
+            if (!target) {
+                return;
+            }
 
-                e.preventDefault();
+            event.preventDefault();
 
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
 
         });
 
-
-    /* ===============================
-       IMAGE FALLBACK
-       Prevent broken images
-    =============================== */
-
-    const fallbackSVG = (
-        title,
-        background = "1B3B2B",
-        text = "FBF9F5"
-    ) => {
-
-        return `
-        data:image/svg+xml;charset=UTF-8,
-        <svg xmlns="http://www.w3.org/2000/svg"
-        width="1200"
-        height="800"
-        viewBox="0 0 1200 800">
-
-        <rect width="1200"
-        height="800"
-        fill="%23${background}"/>
-
-        <text
-        x="600"
-        y="400"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        font-family="Georgia"
-        font-size="42"
-        fill="%23${text}">
-        ${encodeURIComponent(title)}
-        </text>
-
-        </svg>
-        `;
-    };
-
-
-    document
-        .querySelectorAll("img")
-        .forEach(img => {
-
-            img.addEventListener("error", function() {
-
-                if (this.dataset.fallbackUsed) {
-                    return;
-                }
-
-                this.dataset.fallbackUsed = "true";
-
-                const alt =
-                    this.getAttribute("alt") ||
-                    "Kapil Adhikari Travel";
-
-                if (
-                    this.classList.contains(
-                        "img-fallback-hero"
-                    )
-                ) {
-
-                    this.src = fallbackSVG(
-                        "KAPIL ADHIKARI",
-                        "1B3B2B",
-                        "C89D55"
-                    );
-
-                } else if (
-                    this.classList.contains(
-                        "img-fallback-profile"
-                    )
-                ) {
-
-                    this.src = fallbackSVG(
-                        "KAPIL ADHIKARI",
-                        "2A523D",
-                        "FBF9F5"
-                    );
-
-                } else {
-
-                    this.src = fallbackSVG(
-                        alt,
-                        "3B8A88",
-                        "FBF9F5"
-                    );
-
-                }
-
-            });
-
-        });
-
-
-    /* ===============================
-       SCROLL REVEAL ANIMATION
-    =============================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".section-header, " +
-            ".about-text-column, " +
-            ".about-image-column, " +
-            ".journey-card, " +
-            ".timeline-item, " +
-            ".portfolio-card, " +
-            ".gallery-item, " +
-            ".stat-card"
-        );
-
-
-    revealElements.forEach(element => {
-        element.classList.add("reveal");
     });
 
 
-    if ("IntersectionObserver" in window) {
+    /* =====================================================
+       GALLERY LIGHTBOX
+    ===================================================== */
 
-        const observer =
-            new IntersectionObserver(
-                entries => {
+    const galleryItems = document.querySelectorAll(".gallery-item");
 
-                    entries.forEach(entry => {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxTitle = document.getElementById("lightboxTitle");
 
-                        if (entry.isIntersecting) {
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxPrev = document.getElementById("lightboxPrev");
+    const lightboxNext = document.getElementById("lightboxNext");
 
-                            entry.target.classList.add(
-                                "reveal-visible"
-                            );
+    let currentImageIndex = 0;
 
-                            observer.unobserve(
-                                entry.target
-                            );
+    const galleryData = [];
 
-                        }
+    galleryItems.forEach((item, index) => {
 
-                    });
+        const image = item.getAttribute("data-image");
+        const title = item.getAttribute("data-title");
 
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach(element => {
-            observer.observe(element);
+        galleryData.push({
+            image: image,
+            title: title
         });
 
-    } else {
-
-        revealElements.forEach(element => {
-            element.classList.add(
-                "reveal-visible"
-            );
+        item.addEventListener("click", () => {
+            openLightbox(index);
         });
+
+    });
+
+
+    function openLightbox(index) {
+
+        if (!galleryData.length) {
+            return;
+        }
+
+        currentImageIndex = index;
+
+        const item = galleryData[currentImageIndex];
+
+        lightboxImage.src = item.image;
+        lightboxImage.alt = item.title || "Travel photograph";
+
+        if (lightboxTitle) {
+            lightboxTitle.textContent = item.title || "";
+        }
+
+        lightbox.classList.add("open");
+        document.body.classList.add("lightbox-open");
 
     }
 
 
-    /* ===============================
-       GALLERY LIGHTBOX
-    =============================== */
+    function closeLightbox() {
 
-    const galleryItems =
-        Array.from(
-            document.querySelectorAll(
-                ".gallery-item"
-            )
-        );
-
-
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-    const lightboxImg =
-        document.getElementById(
-            "lightbox-img"
-        );
-
-    const lightboxCaption =
-        document.getElementById(
-            "lightbox-caption"
-        );
-
-    const lightboxClose =
-        document.getElementById(
-            "lightbox-close"
-        );
-
-    const lightboxNext =
-        document.getElementById(
-            "lightbox-next"
-        );
-
-    const lightboxPrev =
-        document.getElementById(
-            "lightbox-prev"
-        );
-
-
-    let currentIndex = 0;
-
-
-    const getVisibleGallery =
-        () => {
-
-            return galleryItems.filter(
-                item =>
-                    item.style.display !==
-                    "none"
-            );
-
-        };
-
-
-    const openLightbox = index => {
-
-        const items =
-            getVisibleGallery();
-
-        if (
-            !items.length ||
-            !lightbox
-        ) return;
-
-
-        currentIndex = index;
-
-        const item =
-            items[currentIndex];
-
-
-        const image =
-            item.querySelector("img");
-
-
-        const source =
-            item.dataset.src ||
-            image?.src;
-
-
-        const caption =
-            item.dataset.caption ||
-            image?.alt ||
-            "Kapil Adhikari";
-
-
-        if (lightboxImg) {
-            lightboxImg.src = source;
+        if (!lightbox) {
+            return;
         }
 
-        if (lightboxCaption) {
-            lightboxCaption.textContent =
-                caption;
+        lightbox.classList.remove("open");
+        document.body.classList.remove("lightbox-open");
+
+    }
+
+
+    function showNextImage() {
+
+        if (!galleryData.length) {
+            return;
         }
 
+        currentImageIndex =
+            (currentImageIndex + 1) % galleryData.length;
 
-        lightbox.classList.add("active");
+        updateLightboxImage();
 
-        lightbox.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.style.overflow =
-            "hidden";
-
-    };
+    }
 
 
-    const closeLightbox = () => {
+    function showPreviousImage() {
 
-        if (!lightbox) return;
+        if (!galleryData.length) {
+            return;
+        }
 
-        lightbox.classList.remove(
-            "active"
-        );
+        currentImageIndex =
+            (currentImageIndex - 1 + galleryData.length)
+            % galleryData.length;
 
-        lightbox.setAttribute(
-            "aria-hidden",
-            "true"
-        );
+        updateLightboxImage();
 
-        document.body.style.overflow =
-            "";
-
-    };
+    }
 
 
-    const nextImage = () => {
+    function updateLightboxImage() {
 
-        const items =
-            getVisibleGallery();
+        const item = galleryData[currentImageIndex];
 
-        if (!items.length) return;
+        lightboxImage.style.opacity = "0";
 
-        currentIndex =
-            (currentIndex + 1) %
-            items.length;
+        setTimeout(() => {
 
-        openLightbox(currentIndex);
+            lightboxImage.src = item.image;
+            lightboxImage.alt = item.title || "Travel photograph";
 
-    };
-
-
-    const previousImage = () => {
-
-        const items =
-            getVisibleGallery();
-
-        if (!items.length) return;
-
-        currentIndex =
-            (currentIndex - 1 +
-            items.length) %
-            items.length;
-
-        openLightbox(currentIndex);
-
-    };
-
-
-    galleryItems.forEach(item => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                const items =
-                    getVisibleGallery();
-
-                const index =
-                    items.indexOf(item);
-
-                if (index !== -1) {
-                    openLightbox(index);
-                }
-
+            if (lightboxTitle) {
+                lightboxTitle.textContent = item.title || "";
             }
-        );
 
-    });
+            lightboxImage.onload = () => {
+                lightboxImage.style.opacity = "1";
+            };
+
+        }, 150);
+
+    }
 
 
     if (lightboxClose) {
-        lightboxClose.addEventListener(
-            "click",
-            closeLightbox
-        );
+        lightboxClose.addEventListener("click", closeLightbox);
     }
-
 
     if (lightboxNext) {
-        lightboxNext.addEventListener(
-            "click",
-            nextImage
-        );
+        lightboxNext.addEventListener("click", showNextImage);
     }
-
 
     if (lightboxPrev) {
-        lightboxPrev.addEventListener(
-            "click",
-            previousImage
-        );
+        lightboxPrev.addEventListener("click", showPreviousImage);
     }
 
 
-    /* ===============================
-       KEYBOARD LIGHTBOX
-    =============================== */
+    /* =====================================================
+       CLICK OUTSIDE LIGHTBOX
+    ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        e => {
+    if (lightbox) {
 
-            if (
-                !lightbox ||
-                !lightbox.classList.contains(
-                    "active"
-                )
-            ) return;
+        lightbox.addEventListener("click", (event) => {
 
-
-            if (e.key === "Escape") {
+            if (event.target === lightbox) {
                 closeLightbox();
             }
 
-            if (e.key === "ArrowRight") {
-                nextImage();
-            }
+        });
 
-            if (e.key === "ArrowLeft") {
-                previousImage();
-            }
+    }
 
+
+    /* =====================================================
+       KEYBOARD GALLERY CONTROL
+    ===================================================== */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (!lightbox.classList.contains("open")) {
+            return;
         }
-    );
+
+        if (event.key === "ArrowRight") {
+            showNextImage();
+        }
+
+        if (event.key === "ArrowLeft") {
+            showPreviousImage();
+        }
+
+    });
 
 
-    /* ===============================
-       MOBILE SWIPE
-    =============================== */
+    /* =====================================================
+       TOUCH / SWIPE SUPPORT
+    ===================================================== */
 
     let touchStartX = 0;
     let touchEndX = 0;
 
-
     if (lightbox) {
 
-        lightbox.addEventListener(
-            "touchstart",
-            e => {
+        lightbox.addEventListener("touchstart", (event) => {
 
-                touchStartX =
-                    e.changedTouches[0]
-                    .screenX;
+            touchStartX = event.changedTouches[0].screenX;
 
-            },
-            { passive: true }
-        );
+        }, { passive: true });
 
 
-        lightbox.addEventListener(
-            "touchend",
-            e => {
+        lightbox.addEventListener("touchend", (event) => {
 
-                touchEndX =
-                    e.changedTouches[0]
-                    .screenX;
+            touchEndX = event.changedTouches[0].screenX;
 
+            handleSwipe();
 
-                const distance =
-                    touchEndX -
-                    touchStartX;
+        }, { passive: true });
+
+    }
 
 
-                if (Math.abs(distance) < 50) {
-                    return;
+    function handleSwipe() {
+
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) < 50) {
+            return;
+        }
+
+        if (swipeDistance < 0) {
+            showNextImage();
+        } else {
+            showPreviousImage();
+        }
+
+    }
+
+
+    /* =====================================================
+       IMAGE ERROR HANDLING
+    ===================================================== */
+
+    document.querySelectorAll("img").forEach(img => {
+
+        img.addEventListener("error", function() {
+
+            this.classList.add("image-error");
+
+            console.warn(
+                "Image not found:",
+                this.getAttribute("src")
+            );
+
+        });
+
+    });
+
+
+    /* =====================================================
+       HERO PARALLAX
+    ===================================================== */
+
+    const heroImage = document.querySelector(".hero-image img");
+
+    window.addEventListener("scroll", () => {
+
+        if (!heroImage) {
+            return;
+        }
+
+        if (window.scrollY < window.innerHeight) {
+
+            const movement = window.scrollY * 0.12;
+
+            heroImage.style.transform =
+                `scale(1.03) translateY(${movement}px)`;
+
+        }
+
+    });
+
+
+    /* =====================================================
+       REVEAL ANIMATION
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+        ".section-intro, " +
+        ".section-heading, " +
+        ".about-photo, " +
+        ".about-text, " +
+        ".stat, " +
+        ".destination-card, " +
+        ".gallery-item, " +
+        ".portfolio-item, " +
+        ".contact-box"
+    );
+
+
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("reveal-visible");
+
+                    observer.unobserve(entry.target);
+
                 }
 
+            });
 
-                if (distance < 0) {
-                    nextImage();
-                } else {
-                    previousImage();
-                }
-
-            },
-            { passive: true }
-        );
-
-    }
-
-
-    /* ===============================
-       CONTACT FORM
-    =============================== */
-
-    const contactForm =
-        document.getElementById(
-            "contact-form"
-        );
-
-
-    if (contactForm) {
-
-        contactForm.addEventListener(
-            "submit",
-            e => {
-
-                e.preventDefault();
-
-                alert(
-                    "Thank you for your message. Kapil will get back to you soon."
-                );
-
-                contactForm.reset();
-
-            }
-        );
-
-    }
-
-
-    /* ===============================
-       CURRENT YEAR
-    =============================== */
-
-    const year =
-        document.getElementById(
-            "copyright-year"
-        );
-
-    if (year) {
-        year.textContent =
-            new Date().getFullYear();
-    }
-
-
-    /* ===============================
-       ESCAPE MOBILE MENU
-    =============================== */
-
-    document.addEventListener(
-        "keydown",
-        e => {
-
-            if (e.key === "Escape") {
-                closeMobileMenu();
-            }
-
+        },
+        {
+            threshold: 0.12
         }
     );
 
 
-    /* ===============================
-       PAGE READY
-    =============================== */
+    revealElements.forEach(element => {
 
-    document.body.classList.add(
-        "page-ready"
+        element.classList.add("reveal");
+
+        revealObserver.observe(element);
+
+    });
+
+
+    /* =====================================================
+       STAGGER CARD ANIMATION
+    ===================================================== */
+
+    document.querySelectorAll(
+        ".journey-grid .destination-card"
+    ).forEach((card, index) => {
+
+        card.style.setProperty(
+            "--delay",
+            `${index * 80}ms`
+        );
+
+    });
+
+
+    document.querySelectorAll(
+        ".gallery-grid .gallery-item"
+    ).forEach((item, index) => {
+
+        item.style.setProperty(
+            "--delay",
+            `${index * 100}ms`
+        );
+
+    });
+
+
+    document.querySelectorAll(
+        ".portfolio-grid .portfolio-item"
+    ).forEach((item, index) => {
+
+        item.style.setProperty(
+            "--delay",
+            `${index * 100}ms`
+        );
+
+    });
+
+
+    /* =====================================================
+       YEAR
+    ===================================================== */
+
+    const yearElement = document.getElementById("year");
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+
+    /* =====================================================
+       PREVENT EMPTY CONTACT LINKS
+    ===================================================== */
+
+    document.querySelectorAll(
+        'a[href^="YOUR_"]'
+    ).forEach(link => {
+
+        link.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            alert(
+                "Social media link will be added soon."
+            );
+
+        });
+
+    });
+
+
+    /* =====================================================
+       IMAGE PRELOADING FOR GALLERY
+    ===================================================== */
+
+    galleryData.forEach(item => {
+
+        const img = new Image();
+
+        img.src = item.image;
+
+    });
+
+
+    /* =====================================================
+       RESIZE HANDLING
+    ===================================================== */
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 900) {
+            closeMenu();
+        }
+
+    });
+
+
+    /* =====================================================
+       CONSOLE BRAND
+    ===================================================== */
+
+    console.log(
+        "%c KAPIL ADHIKARI ",
+        "background:#18382b;color:white;font-size:18px;font-weight:bold;padding:8px 14px;"
+    );
+
+    console.log(
+        "%c Nepali Traveler • Arghakhanchi, Nepal ",
+        "color:#d96b3b;font-size:12px;font-weight:bold;"
     );
 
 });
