@@ -1480,3 +1480,177 @@ footer {
         scroll-behavior: auto !important;
     }
 }
+/* =========================================
+   FINAL LIGHT OVERRIDE
+   KAPIL ADHIKARI TRAVEL PORTFOLIO
+========================================= */
+
+body {
+    background: #faf9f5 !important;
+    color: #18221e !important;
+}
+
+/* LIGHT SECTIONS */
+
+.section,
+.contact {
+    background: #faf9f5 !important;
+}
+
+.portfolio {
+    background: #f0f5f1 !important;
+}
+
+/* HEADER */
+
+.header.scrolled {
+    background: rgba(255,255,255,.96) !important;
+    color: #18221e !important;
+}
+
+/* HERO - ONLY DARK VISUAL AREA */
+
+.hero-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.08)
+        ) !important;
+}
+
+/* ALL MAIN HEADINGS */
+
+.section-heading h2,
+.about-content h2,
+.portfolio-title h2,
+.contact-inner h2,
+.timeline-item h3,
+.destination-info h3 {
+    color: #183f34 !important;
+}
+
+/* DESTINATION CARDS */
+
+.destination-image {
+    background: #ffffff !important;
+    box-shadow: 0 15px 45px rgba(30,55,45,.09) !important;
+}
+
+.destination-info p {
+    color: #66716b !important;
+}
+
+/* STATS - MAKE IT LIGHT */
+
+.stats-section {
+    background: #ffffff !important;
+    color: #183f34 !important;
+    border-top: 1px solid #e1e5e1 !important;
+    border-bottom: 1px solid #e1e5e1 !important;
+}
+
+.stat {
+    background: #ffffff !important;
+    border-right: 1px solid #e1e5e1 !important;
+}
+
+.stat:first-child {
+    border-left: 1px solid #e1e5e1 !important;
+}
+
+.stat strong {
+    color: #183f34 !important;
+}
+
+.stat span {
+    color: #77817b !important;
+}
+
+/* FEATURED STORY - LIGHT CARD STYLE */
+
+.featured-story {
+    min-height: 620px !important;
+    color: #183f34 !important;
+    background: #edf4ef !important;
+}
+
+.featured-story::after {
+    display: none !important;
+}
+
+.featured-image img {
+    filter: brightness(.82) saturate(1.08) !important;
+}
+
+.featured-content {
+    padding: 50px !important;
+}
+
+.featured-content h2 {
+    text-shadow: 0 2px 20px rgba(0,0,0,.35);
+}
+
+.featured-content p {
+    text-shadow: 0 1px 8px rgba(0,0,0,.3);
+}
+
+/* GALLERY */
+
+.gallery-item {
+    background: #ffffff !important;
+    box-shadow: 0 8px 30px rgba(30,50,40,.07);
+}
+
+/* TIMELINE */
+
+.timeline {
+    border-top: 1px solid #dfe4df !important;
+}
+
+.timeline-item {
+    border-bottom: 1px solid #dfe4df !important;
+}
+
+/* PORTFOLIO */
+
+.portfolio-list {
+    border-top: 1px solid #d2dbd4 !important;
+}
+
+.portfolio-row {
+    border-bottom: 1px solid #d2dbd4 !important;
+}
+
+/* CONTACT */
+
+.contact {
+    background: #ffffff !important;
+}
+
+/* FOOTER - ONLY SMALL DARK AREA */
+
+footer {
+    background: #183f34 !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .featured-story {
+        min-height: 560px !important;
+    }
+
+    .featured-content {
+        padding: 25px !important;
+    }
+
+    .stats-section {
+        background: #ffffff !important;
+    }
+
+    .stat {
+        background: #ffffff !important;
+    }
+                                 }
