@@ -1,640 +1,867 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kapil Adhikari — Traveler & Explorer</title>
+    <title>Kapil Adhikari | Nepali Traveler</title>
 
-  <meta name="description"
-        content="Kapil Adhikari — Nepali traveler, explorer and storyteller from Arghakhanchi, Nepal.">
+    <meta name="description"
+        content="Kapil Adhikari — Nepali traveler from Arghakhanchi, Nepal. Exploring mountains, villages, culture and unforgettable journeys.">
 
-  <meta name="author" content="Kapil Adhikari">
-  <meta name="theme-color" content="#090909">
+    <meta name="theme-color" content="#f8f6f0">
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <span>KA</span>
-      <small>EXPLORING</small>
-    </div>
-  </div>
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
+<header class="header" id="header">
 
-  <!-- HEADER -->
-  <header class="header" id="header">
+    <div class="nav">
 
-    <a href="#home" class="logo">
-      <span class="logo-circle">KA</span>
-      <span>Kapil Adhikari</span>
-    </a>
-
-    <nav class="nav">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#journey">Journey</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-      <span></span>
-      <span></span>
-    </button>
-
-  </header>
-
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-
-    <button class="menu-close" id="menuClose">×</button>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#journey">Journey</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-  </div>
-
-
-  <!-- =========================
-       MAIN
-  ========================== -->
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-
-      <div class="hero-bg">
-        <img
-          src="images/hero.jpg"
-          alt="Kapil Adhikari travel photograph"
-        >
-        <div class="hero-overlay"></div>
-      </div>
-
-      <div class="hero-content">
-
-        <div class="hero-label reveal">
-          NEPALI TRAVELER · EXPLORER
-        </div>
-
-        <h1 class="hero-title reveal">
-          KAPIL
-          <em>ADHIKARI</em>
-        </h1>
-
-        <p class="hero-text reveal">
-          Exploring places, experiencing moments,
-          and turning journeys into stories.
-        </p>
-
-        <a href="#journey" class="hero-cta reveal">
-          <span>Explore My Journey</span>
-          <b>↓</b>
+        <a href="#home" class="brand">
+            <span class="brand-name">KAPIL</span>
+            <span class="brand-sub">ADHIKARI</span>
         </a>
 
-      </div>
-
-      <div class="hero-scroll">
-        <span>SCROLL</span>
-        <i></i>
-      </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-    <section class="section about" id="about">
-
-      <div class="section-number">01</div>
-
-      <div class="about-grid">
-
-        <div class="image-wrap reveal">
-          <img
-            src="images/profile.jpg"
-            alt="Kapil Adhikari"
-          >
-        </div>
-
-        <div class="about-content reveal">
-
-          <span class="eyebrow">
-            FROM THE HILLS OF NEPAL
-          </span>
-
-          <h2>
-            Every journey
-            <em>has a story.</em>
-          </h2>
-
-          <p>
-            Born in the hills of Arghakhanchi, Nepal,
-            Kapil Adhikari finds inspiration in roads
-            less travelled, beautiful landscapes and
-            the stories hidden within every journey.
-          </p>
-
-          <p>
-            For Kapil, travelling is more than visiting
-            new places. It is about experiencing different
-            perspectives, meeting people, discovering Nepal
-            and collecting moments worth remembering.
-          </p>
-
-          <div class="about-signature">
-            <strong>ARghakhanchi</strong>
-            <span>NEPAL · BEYOND</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- DESTINATIONS -->
-    <section class="section journey" id="journey">
-
-      <div class="section-heading reveal">
-
-        <div class="section-number">02</div>
-
-        <span class="eyebrow">
-          PLACES · PEOPLE · EXPERIENCES
-        </span>
-
-        <h2>
-          Stories from
-          <em>the road.</em>
-        </h2>
-
-      </div>
-
-
-      <div class="destination-grid">
-
-        <article class="destination destination-wide reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-01.jpg" alt="Arghakhanchi">
-          </div>
-
-          <div class="destination-info">
-            <span>01 · NEPAL</span>
-            <h3>Arghakhanchi</h3>
-            <p>Where the journey begins.</p>
-          </div>
-
-        </article>
-
-
-        <article class="destination reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-02.jpg" alt="Pokhara">
-          </div>
-
-          <div class="destination-info">
-            <span>02 · NEPAL</span>
-            <h3>Pokhara</h3>
-            <p>Where mountains meet the lake.</p>
-          </div>
-
-        </article>
-
-
-        <article class="destination reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-03.jpg" alt="Mustang">
-          </div>
-
-          <div class="destination-info">
-            <span>03 · NEPAL</span>
-            <h3>Mustang</h3>
-            <p>Into the wild.</p>
-          </div>
-
-        </article>
-
-
-        <article class="destination reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-04.jpg" alt="Bandipur">
-          </div>
-
-          <div class="destination-info">
-            <span>04 · NEPAL</span>
-            <h3>Bandipur</h3>
-            <p>A walk through timeless Nepal.</p>
-          </div>
-
-        </article>
-
-
-        <article class="destination reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-05.jpg" alt="Rara">
-          </div>
-
-          <div class="destination-info">
-            <span>05 · NEPAL</span>
-            <h3>Rara</h3>
-            <p>Far from the ordinary.</p>
-          </div>
-
-        </article>
-
-
-        <article class="destination destination-wide reveal">
-
-          <div class="destination-image">
-            <img src="images/travel-06.jpg" alt="Everest Region">
-          </div>
-
-          <div class="destination-info">
-            <span>06 · NEPAL</span>
-            <h3>Everest Region</h3>
-            <p>Beyond the horizon.</p>
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- STATS -->
-    <section class="stats-section">
-
-      <div class="stats">
-
-        <div class="stat reveal">
-          <strong data-count="06">00</strong>
-          <span>DESTINATIONS</span>
-        </div>
-
-        <div class="stat reveal">
-          <strong data-count="24">00</strong>
-          <span>TRAVEL STORIES</span>
-        </div>
-
-        <div class="stat reveal">
-          <strong data-count="100">00</strong>
-          <span>MOMENTS CAPTURED</span>
-        </div>
-
-        <div class="stat reveal">
-          <strong>∞</strong>
-          <span>ENDLESS JOURNEY</span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- FEATURED STORY -->
-    <section class="featured-story">
-
-      <div class="featured-image">
-        <img src="images/travel-03.jpg" alt="Featured travel story">
-      </div>
-
-      <div class="featured-content reveal">
-
-        <span class="eyebrow">
-          FEATURED STORY
-        </span>
-
-        <h2>
-          The road to
-          <em>Mustang.</em>
-        </h2>
-
-        <p>
-          Some roads take you somewhere.
-          Some roads change the way you see everything.
-        </p>
-
-        <span class="story-meta">
-          MUSTANG · NEPAL
-        </span>
-
-      </div>
-
-    </section>
-
-
-    <!-- TIMELINE -->
-    <section class="section timeline-section">
-
-      <div class="section-heading reveal">
-
-        <div class="section-number">03</div>
-
-        <span class="eyebrow">
-          THE JOURNEY
-        </span>
-
-        <h2>
-          One road.
-          <em>Many stories.</em>
-        </h2>
-
-      </div>
-
-
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-          <span>01</span>
-          <div>
-            <small>THE BEGINNING</small>
-            <h3>Arghakhanchi</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>02</span>
-          <div>
-            <small>A NEW PERSPECTIVE</small>
-            <h3>Pokhara</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>03</span>
-          <div>
-            <small>SLOW TRAVEL</small>
-            <h3>Bandipur</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>04</span>
-          <div>
-            <small>INTO THE WILD</small>
-            <h3>Mustang</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>05</span>
-          <div>
-            <small>BEYOND THE ORDINARY</small>
-            <h3>Rara</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span>06</span>
-          <div>
-            <small>BEYOND THE HORIZON</small>
-            <h3>Everest</h3>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- GALLERY -->
-    <section class="section gallery" id="gallery">
-
-      <div class="section-heading reveal">
-
-        <div class="section-number">04</div>
-
-        <span class="eyebrow">
-          MOMENTS IN FRAME
-        </span>
-
-        <h2>
-          Captured
-          <em>moments.</em>
-        </h2>
-
-      </div>
-
-
-      <div class="gallery-grid">
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-01.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-02.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-03.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-04.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-05.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-06.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-07.jpg" alt="Travel moment">
-        </div>
-
-        <div class="gallery-item reveal">
-          <img src="images/gallery-08.jpg" alt="Travel moment">
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- PORTFOLIO -->
-    <section class="section portfolio" id="portfolio">
-
-      <div class="portfolio-grid">
-
-        <div class="portfolio-title reveal">
-
-          <div class="section-number">05</div>
-
-          <span class="eyebrow">
-            BEYOND TRAVEL
-          </span>
-
-          <h2>
-            More than
-            <em>a traveler.</em>
-          </h2>
-
-        </div>
-
-
-        <div class="portfolio-list">
-
-          <div class="portfolio-row reveal">
-            <span>01</span>
-            <strong>Explorer</strong>
-            <p>Always curious about what lies beyond the familiar.</p>
-          </div>
-
-          <div class="portfolio-row reveal">
-            <span>02</span>
-            <strong>Storyteller</strong>
-            <p>Turning experiences into memories and stories.</p>
-          </div>
-
-          <div class="portfolio-row reveal">
-            <span>03</span>
-            <strong>Photography</strong>
-            <p>Capturing places, people and moments.</p>
-          </div>
-
-          <div class="portfolio-row reveal">
-            <span>04</span>
-            <strong>Adventure</strong>
-            <p>Finding something new beyond every horizon.</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-
-      <div class="contact-inner reveal">
-
-        <span class="eyebrow">
-          LET'S CONNECT
-        </span>
-
-        <h2>
-          Say
-          <em>hello.</em>
-        </h2>
-
-        <p>
-          For collaborations, conversations
-          or simply sharing a good travel story.
-        </p>
-
-        <div class="contact-links">
-
-          <!-- DEMO DETAILS — REPLACE BEFORE LIVE -->
-
-          <a href="mailto:hello@example.com">
-            <span>Email</span>
-            <b>→</b>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener">
-            <span>Facebook</span>
-            <b>→</b>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener">
-            <span>Instagram</span>
-            <b>→</b>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener">
-            <span>YouTube</span>
-            <b>→</b>
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <div class="footer-main">
-
-      <div class="footer-name">
-        KAPIL
-        <em>ADHIKARI</em>
-      </div>
-
-      <p>
-        Travel · Explore · Experience
-      </p>
+        <nav class="desktop-menu">
+
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#journey" class="nav-link">Journey</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#contact" class="nav-contact">Let's Talk</a>
+
+        </nav>
+
+        <button class="menu-button" id="menuButton" aria-label="Open menu">
+            <span></span>
+            <span></span>
+        </button>
 
     </div>
 
-    <div class="footer-bottom">
+</header>
 
-      <span>
-        © <span id="year"></span> Kapil Adhikari
-      </span>
 
-      <span>
-        Arghakhanchi · Nepal
-      </span>
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <button class="menu-close" id="menuClose">
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="mobile-menu-inner">
+
+        <span class="mobile-label">NAVIGATION</span>
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+
+        <div class="mobile-location">
+            <i data-feather="map-pin"></i>
+            Arghakhanchi, Nepal
+        </div>
 
     </div>
 
-  </footer>
+</div>
 
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
+<main>
 
-    <button id="lightboxClose" aria-label="Close image">
-      ×
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-image">
+
+        <img src="images/hero.jpg"
+             alt="Kapil Adhikari — Nepali Traveler">
+
+    </div>
+
+    <div class="hero-gradient"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-eyebrow">
+            <span></span>
+            NEPALI TRAVELER
+            <span></span>
+        </div>
+
+        <h1>
+            KAPIL
+            <em>ADHIKARI</em>
+        </h1>
+
+        <p class="hero-description">
+            Exploring Nepal beyond the ordinary.
+            <br>
+            One road, one story, one journey at a time.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#journey" class="primary-button">
+                Explore My Journey
+                <i data-feather="arrow-up-right"></i>
+            </a>
+
+            <a href="#about" class="text-button">
+                My Story
+                <i data-feather="arrow-down"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-bottom">
+
+        <div class="hero-location">
+            <i data-feather="map-pin"></i>
+            <span>Arghakhanchi, Nepal</span>
+        </div>
+
+        <div class="hero-scroll">
+            <span>SCROLL TO EXPLORE</span>
+            <div class="scroll-line"></div>
+        </div>
+
+        <div class="hero-social">
+            <span>FOLLOW THE JOURNEY</span>
+            <div class="social-dot"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO / ABOUT
+===================================================== -->
+
+<section class="about section" id="about">
+
+    <div class="container">
+
+        <div class="section-intro">
+
+            <span class="eyebrow">01 — ABOUT ME</span>
+
+            <h2>
+                Born in the hills.
+                <br>
+                <em>Drawn to the horizon.</em>
+            </h2>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-photo">
+
+                <img src="images/profile.jpg"
+                     alt="Kapil Adhikari">
+
+                <div class="photo-caption">
+                    <span>01</span>
+                    <span>Arghakhanchi, Nepal</span>
+                </div>
+
+            </div>
+
+
+            <div class="about-text">
+
+                <p class="large-text">
+                    I am <strong>Kapil Adhikari</strong>, a Nepali traveler
+                    from the beautiful hills of Arghakhanchi.
+                </p>
+
+                <p>
+                    I travel to discover the places that don't always
+                    appear on a map — quiet mountain trails, small villages,
+                    local cultures, hidden viewpoints and the stories
+                    waiting along the road.
+                </p>
+
+                <p>
+                    For me, traveling is not simply about reaching a
+                    destination. It is about the people I meet, the roads
+                    I take and the memories created along the way.
+                </p>
+
+
+                <div class="signature">
+
+                    <span class="signature-name">
+                        Kapil Adhikari
+                    </span>
+
+                    <span class="signature-line"></span>
+
+                    <span class="signature-role">
+                        Traveler • Storyteller • Explorer
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat">
+                <strong>24<span>+</span></strong>
+                <small>Places Explored</small>
+            </div>
+
+            <div class="stat">
+                <strong>06</strong>
+                <small>Regions Visited</small>
+            </div>
+
+            <div class="stat">
+                <strong>100<span>+</span></strong>
+                <small>Stories & Moments</small>
+            </div>
+
+            <div class="stat">
+                <strong>01</strong>
+                <small>Endless Journey</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY
+===================================================== -->
+
+<section class="journey section" id="journey">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">02 — THE JOURNEY</span>
+
+                <h2>
+                    Places that
+                    <em>stay with me.</em>
+                </h2>
+            </div>
+
+            <p>
+                A collection of destinations, roads and moments
+                from my journey across Nepal.
+            </p>
+
+        </div>
+
+
+        <div class="journey-grid">
+
+
+            <article class="destination-card large">
+
+                <div class="destination-image">
+                    <img src="images/travel-01.jpg"
+                         alt="Arghakhanchi">
+
+                    <span class="destination-number">01</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>WESTERN NEPAL</span>
+
+                    <h3>Arghakhanchi</h3>
+
+                    <p>
+                        Where my journey begins — green hills,
+                        peaceful villages and memories that
+                        always feel like home.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+
+            <article class="destination-card">
+
+                <div class="destination-image">
+                    <img src="images/travel-02.jpg"
+                         alt="Pokhara">
+
+                    <span class="destination-number">02</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>GANDaki</span>
+
+                    <h3>Pokhara</h3>
+
+                    <p>
+                        Lakeside mornings and mountain horizons.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+
+            <article class="destination-card">
+
+                <div class="destination-image">
+                    <img src="images/travel-03.jpg"
+                         alt="Mustang">
+
+                    <span class="destination-number">03</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>TRANS-HIMALAYA</span>
+
+                    <h3>Mustang</h3>
+
+                    <p>
+                        Ancient trails beneath the great Himalayas.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+
+            <article class="destination-card">
+
+                <div class="destination-image">
+                    <img src="images/travel-04.jpg"
+                         alt="Kathmandu Valley">
+
+                    <span class="destination-number">04</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>KATHMANDU VALLEY</span>
+
+                    <h3>Kathmandu</h3>
+
+                    <p>
+                        Heritage, culture and the energy of the city.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+
+            <article class="destination-card">
+
+                <div class="destination-image">
+                    <img src="images/travel-05.jpg"
+                         alt="Manang">
+
+                    <span class="destination-number">05</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>ANNAPURNA</span>
+
+                    <h3>Manang</h3>
+
+                    <p>
+                        High valleys, cold air and endless mountains.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+
+            <article class="destination-card">
+
+                <div class="destination-image">
+                    <img src="images/travel-06.jpg"
+                         alt="Rara Lake">
+
+                    <span class="destination-number">06</span>
+                </div>
+
+                <div class="destination-content">
+
+                    <span>FAR WESTERN NEPAL</span>
+
+                    <h3>Rara Lake</h3>
+
+                    <p>
+                        A blue mirror hidden in Nepal's wilderness.
+                    </p>
+
+                    <i data-feather="arrow-up-right"></i>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED QUOTE
+===================================================== -->
+
+<section class="quote-section">
+
+    <img src="images/hero.jpg"
+         alt=""
+         class="quote-background">
+
+    <div class="quote-overlay"></div>
+
+    <div class="quote-content">
+
+        <span class="eyebrow light">A TRAVEL PHILOSOPHY</span>
+
+        <blockquote>
+            “The best roads are not always the ones
+            that lead somewhere. Sometimes,
+            they lead to a story.”
+        </blockquote>
+
+        <span class="quote-author">
+            — Kapil Adhikari
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="gallery section" id="gallery">
+
+    <div class="container">
+
+        <div class="section-heading gallery-heading">
+
+            <div>
+                <span class="eyebrow">03 — VISUAL DIARY</span>
+
+                <h2>
+                    Moments from
+                    <em>the road.</em>
+                </h2>
+            </div>
+
+            <p>
+                Every photograph holds a place,
+                a feeling and a memory.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid" id="galleryGrid">
+
+
+            <div class="gallery-item gallery-wide"
+                 data-image="images/gallery-01.jpg"
+                 data-title="On the Road">
+
+                <img src="images/gallery-01.jpg"
+                     alt="Travel photograph">
+
+                <div class="gallery-hover">
+                    <span>VIEW STORY</span>
+                    <i data-feather="arrow-up-right"></i>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item"
+                 data-image="images/gallery-02.jpg"
+                 data-title="Mountain Journey">
+
+                <img src="images/gallery-02.jpg"
+                     alt="Mountain journey">
+
+                <div class="gallery-hover">
+                    <span>VIEW</span>
+                    <i data-feather="arrow-up-right"></i>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item"
+                 data-image="images/gallery-03.jpg"
+                 data-title="Nepal">
+
+                <img src="images/gallery-03.jpg"
+                     alt="Nepal travel">
+
+                <div class="gallery-hover">
+                    <span>VIEW</span>
+                    <i data-feather="arrow-up-right"></i>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item gallery-tall"
+                 data-image="images/gallery-04.jpg"
+                 data-title="The Journey">
+
+                <img src="images/gallery-04.jpg"
+                     alt="Travel moment">
+
+                <div class="gallery-hover">
+                    <span>VIEW STORY</span>
+                    <i data-feather="arrow-up-right"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
+
+<section class="portfolio section" id="portfolio">
+
+    <div class="container">
+
+        <span class="eyebrow">04 — WHAT I DO</span>
+
+        <h2 class="portfolio-title">
+            Beyond traveling,
+            <br>
+            <em>I tell stories.</em>
+        </h2>
+
+
+        <div class="portfolio-grid">
+
+            <div class="portfolio-item">
+
+                <span class="portfolio-number">01</span>
+
+                <i data-feather="camera"></i>
+
+                <h3>Travel Photography</h3>
+
+                <p>
+                    Landscapes, people and honest moments
+                    captured along the journey.
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-item">
+
+                <span class="portfolio-number">02</span>
+
+                <i data-feather="book-open"></i>
+
+                <h3>Travel Stories</h3>
+
+                <p>
+                    Personal stories and experiences
+                    from the roads of Nepal.
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-item">
+
+                <span class="portfolio-number">03</span>
+
+                <i data-feather="compass"></i>
+
+                <h3>Exploration</h3>
+
+                <p>
+                    Discovering new roads, villages,
+                    viewpoints and hidden places.
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-item">
+
+                <span class="portfolio-number">04</span>
+
+                <i data-feather="video"></i>
+
+                <h3>Visual Content</h3>
+
+                <p>
+                    Turning journeys into photographs,
+                    videos and visual memories.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="contact section" id="contact">
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <div class="contact-left">
+
+                <span class="eyebrow light">
+                    05 — GET IN TOUCH
+                </span>
+
+                <h2>
+                    Have a story
+                    <br>
+                    <em>to share?</em>
+                </h2>
+
+                <p>
+                    Whether it's a travel idea, collaboration,
+                    photography or simply saying hello —
+                    I'd love to hear from you.
+                </p>
+
+                <!-- ORIGINAL CONTACT DETAILS WILL BE ADDED LATER -->
+
+                <div class="contact-location">
+
+                    <i data-feather="map-pin"></i>
+
+                    <div>
+                        <small>BASED IN</small>
+                        <strong>Arghakhanchi, Nepal</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-right">
+
+                <div class="contact-line">
+
+                    <span>EMAIL</span>
+
+                    <a href="mailto:YOUR_EMAIL_HERE">
+                        YOUR_EMAIL_HERE
+                    </a>
+
+                </div>
+
+
+                <div class="contact-line">
+
+                    <span>PHONE / WHATSAPP</span>
+
+                    <a href="tel:YOUR_PHONE_HERE">
+                        YOUR_PHONE_HERE
+                    </a>
+
+                </div>
+
+
+                <div class="contact-line">
+
+                    <span>SOCIAL</span>
+
+                    <div class="contact-socials">
+
+                        <a href="YOUR_FACEBOOK_URL"
+                           target="_blank"
+                           aria-label="Facebook">
+                            <i data-feather="facebook"></i>
+                        </a>
+
+                        <a href="YOUR_INSTAGRAM_URL"
+                           target="_blank"
+                           aria-label="Instagram">
+                            <i data-feather="instagram"></i>
+                        </a>
+
+                        <a href="YOUR_YOUTUBE_URL"
+                           target="_blank"
+                           aria-label="YouTube">
+                            <i data-feather="youtube"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-inner">
+
+        <div>
+
+            <strong>KAPIL ADHIKARI</strong>
+
+            <span>
+                Nepali Traveler • Arghakhanchi, Nepal
+            </span>
+
+        </div>
+
+        <div class="footer-center">
+            © <span id="year"></span> Kapil Adhikari
+        </div>
+
+        <a href="#home" class="back-top">
+            BACK TO TOP
+            <i data-feather="arrow-up"></i>
+        </a>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close" id="lightboxClose">
+        <i data-feather="x"></i>
     </button>
 
-    <button id="lightboxPrev" aria-label="Previous image">
-      ‹
+    <button class="lightbox-prev" id="lightboxPrev">
+        <i data-feather="chevron-left"></i>
     </button>
 
-    <img id="lightboxImage" src="" alt="Expanded travel photograph">
+    <div class="lightbox-content">
 
-    <button id="lightboxNext" aria-label="Next image">
-      ›
+        <img id="lightboxImage" src="" alt="Travel photograph">
+
+        <div id="lightboxTitle"></div>
+
+    </div>
+
+    <button class="lightbox-next" id="lightboxNext">
+        <i data-feather="chevron-right"></i>
     </button>
 
-  </div>
+</div>
 
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
