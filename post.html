@@ -11,7 +11,6 @@
 <title>समाचार | Kapil Adhikari</title>
 
 <meta name="description"
-      id="metaDescription"
       content="Kapil Adhikari मा प्रकाशित समाचार।">
 
 <meta name="author"
@@ -37,9 +36,6 @@
       type="image/png"
       href="images/favicon.png">
 
-<link rel="apple-touch-icon"
-      href="images/favicon.png">
-
 
 <!-- OPEN GRAPH -->
 
@@ -58,7 +54,7 @@
 
 <meta id="ogDescription"
       property="og:description"
-      content="विस्तृतमा पढ्न यहाँ क्लिक गर्नुहोस्।">
+      content="विस्तृतमा समाचार पढ्नुहोस्।">
 
 <meta id="ogUrl"
       property="og:url"
@@ -68,8 +64,14 @@
       property="og:image"
       content="https://kapiladhikari1.com.np/images/hero.jpg">
 
-<meta property="og:image:alt"
-      content="Kapil Adhikari News">
+<meta property="og:image:width"
+      content="1200">
+
+<meta property="og:image:height"
+      content="630">
+
+<meta property="og:image:type"
+      content="image/jpeg">
 
 
 <!-- TWITTER / X -->
@@ -83,14 +85,14 @@
 
 <meta id="twitterDescription"
       name="twitter:description"
-      content="विस्तृतमा पढ्न यहाँ क्लिक गर्नुहोस्।">
+      content="विस्तृतमा समाचार पढ्नुहोस्।">
 
 <meta id="twitterImage"
       name="twitter:image"
       content="https://kapiladhikari1.com.np/images/hero.jpg">
 
 
-<!-- FONT -->
+<!-- FONTS -->
 
 <link rel="preconnect"
       href="https://fonts.googleapis.com">
@@ -105,40 +107,39 @@
 
 <style>
 
-/* =========================
-   RESET
-========================= */
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#f7f5ef;
-    color:#171717;
 
-    font-family:
-    "Noto Sans Devanagari",
-    "DM Sans",
-    sans-serif;
+background:#f7f5ef;
 
-    line-height:1.8;
+color:#171717;
+
+font-family:
+"Noto Sans Devanagari",
+"DM Sans",
+sans-serif;
+
+line-height:1.8;
+
 }
 
 a{
-    color:inherit;
-    text-decoration:none;
+color:inherit;
+text-decoration:none;
 }
 
 img{
-    display:block;
-    width:100%;
+display:block;
+width:100%;
 }
 
 
@@ -147,73 +148,97 @@ img{
 ========================= */
 
 .header{
-    background:#111;
-    color:#fff;
 
-    position:sticky;
-    top:0;
+background:#111;
 
-    z-index:1000;
+color:#fff;
 
-    border-bottom:
-    1px solid
-    rgba(255,255,255,.1);
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.1);
+
 }
 
 .nav{
-    max-width:1050px;
-    min-height:76px;
 
-    margin:auto;
-    padding:0 22px;
+max-width:1050px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+min-height:76px;
+
+margin:auto;
+
+padding:0 22px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
 }
 
 .brand{
-    display:flex;
-    flex-direction:column;
-    line-height:1;
+
+display:flex;
+
+flex-direction:column;
+
+line-height:1;
+
 }
 
 .brand-name{
-    font-family:"DM Sans",sans-serif;
 
-    font-size:23px;
-    font-weight:800;
+font-family:"DM Sans",sans-serif;
 
-    letter-spacing:2px;
+font-size:23px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
 }
 
 .brand-sub{
-    font-size:10px;
 
-    letter-spacing:4px;
+font-size:10px;
 
-    opacity:.65;
+letter-spacing:4px;
 
-    margin-top:5px;
+opacity:.65;
+
+margin-top:5px;
+
 }
 
 .back-link{
-    border:
-    1px solid
-    rgba(255,255,255,.3);
 
-    border-radius:30px;
+border:
+1px solid
+rgba(255,255,255,.3);
 
-    padding:9px 17px;
+border-radius:30px;
 
-    font-size:13px;
+padding:9px 17px;
 
-    transition:.25s;
+font-size:13px;
+
+transition:.25s;
+
 }
 
 .back-link:hover{
-    background:#fff;
-    color:#111;
+
+background:#fff;
+
+color:#111;
+
 }
 
 
@@ -222,115 +247,133 @@ img{
 ========================= */
 
 .article-wrapper{
-    max-width:900px;
 
-    margin:auto;
+max-width:900px;
 
-    padding:
-    70px 22px
-    100px;
+margin:auto;
+
+padding:
+65px 22px
+100px;
+
 }
 
 .article-category{
-    display:inline-block;
 
-    color:#d02023;
+display:inline-block;
 
-    font-family:"DM Sans",sans-serif;
+color:#d02023;
 
-    font-size:12px;
+font-family:
+"DM Sans",
+sans-serif;
 
-    font-weight:800;
+font-size:12px;
 
-    letter-spacing:1.5px;
+font-weight:800;
 
-    margin-bottom:15px;
+letter-spacing:1.5px;
+
+margin-bottom:14px;
+
 }
 
 .article-title{
-    font-size:
-    clamp(34px,6vw,64px);
 
-    line-height:1.25;
+font-size:
+clamp(34px,6vw,64px);
 
-    font-weight:800;
+line-height:1.25;
 
-    color:#111;
+font-weight:800;
+
+letter-spacing:-1px;
+
 }
 
 .article-meta{
-    display:flex;
 
-    flex-wrap:wrap;
+display:flex;
 
-    gap:18px;
+flex-wrap:wrap;
 
-    margin-top:18px;
+gap:18px;
 
-    padding-bottom:20px;
+margin-top:18px;
 
-    border-bottom:1px solid #e2ded6;
+padding-bottom:25px;
 
-    color:#777;
+color:#777;
 
-    font-size:12px;
+font-size:12px;
+
+border-bottom:
+1px solid #ddd;
+
 }
 
 .article-image{
-    margin-top:30px;
 
-    background:#ddd;
+margin-top:30px;
 
-    overflow:hidden;
+overflow:hidden;
+
+background:#ddd;
+
 }
 
 .article-image img{
-    width:100%;
 
-    max-height:600px;
+width:100%;
 
-    object-fit:cover;
+max-height:600px;
+
+object-fit:cover;
+
 }
 
 .article-content{
-    margin-top:38px;
+
+margin-top:35px;
+
 }
 
 .article-content p{
-    font-size:17px;
 
-    line-height:2;
+font-size:17px;
 
-    margin-bottom:22px;
+line-height:2;
 
-    color:#333;
+margin-bottom:23px;
+
+color:#303030;
+
 }
 
 
 /* =========================
-   READ MORE NOTE
+   READ MESSAGE
 ========================= */
 
-.read-more-note{
-    margin-top:32px;
+.read-message{
 
-    padding:18px 20px;
+margin-top:35px;
 
-    background:#fff;
+margin-bottom:25px;
 
-    border-left:
-    4px solid
-    #d02023;
+padding:18px 20px;
 
-    border-top:1px solid #e5e1d9;
-    border-right:1px solid #e5e1d9;
-    border-bottom:1px solid #e5e1d9;
+background:#fff;
 
-    color:#444;
+border-left:
+4px solid #d02023;
 
-    font-size:14px;
+font-size:15px;
 
-    font-weight:600;
+font-weight:600;
+
+color:#333;
+
 }
 
 
@@ -339,91 +382,62 @@ img{
 ========================= */
 
 .share{
-    margin-top:45px;
 
-    padding-top:25px;
+margin-top:50px;
 
-    border-top:1px solid #ddd;
+padding-top:25px;
+
+border-top:
+1px solid #ddd;
+
 }
 
 .share-title{
-    font-size:14px;
 
-    font-weight:700;
+font-size:14px;
 
-    margin-bottom:14px;
+font-weight:700;
+
+margin-bottom:14px;
+
 }
 
 .share-buttons{
-    display:flex;
 
-    flex-wrap:wrap;
+display:flex;
 
-    gap:10px;
+flex-wrap:wrap;
+
+gap:9px;
+
 }
 
 .share-btn{
-    border:1px solid #d5d1c8;
 
-    background:#fff;
+border:1px solid #ccc;
 
-    color:#222;
+background:#fff;
 
-    padding:9px 16px;
+padding:9px 16px;
 
-    border-radius:30px;
+border-radius:25px;
 
-    cursor:pointer;
+cursor:pointer;
 
-    font-size:12px;
+font-size:12px;
 
-    transition:.25s;
+transition:.25s;
+
 }
 
 .share-btn:hover{
-    background:#111;
 
-    color:#fff;
+background:#111;
 
-    border-color:#111;
-}
+color:#fff;
 
+border-color:#111;
 
-/* =========================
-   ERROR
-========================= */
-
-.error{
-    text-align:center;
-
-    padding:
-    100px 20px;
-}
-
-.error h1{
-    font-size:32px;
-
-    margin-bottom:10px;
-}
-
-.error p{
-    color:#777;
-
-    margin-bottom:25px;
-}
-
-.error a{
-    display:inline-block;
-
-    background:#111;
-
-    color:#fff;
-
-    padding:10px 20px;
-
-    border-radius:30px;
-
-    font-size:13px;
 }
 
 
@@ -432,49 +446,86 @@ img{
 ========================= */
 
 .footer{
-    background:#111;
 
-    color:#fff;
+background:#111;
 
-    padding:35px 22px;
+color:#fff;
+
+padding:35px 22px;
+
 }
 
 .footer-inner{
-    max-width:1050px;
 
-    margin:auto;
+max-width:1050px;
 
-    display:flex;
+margin:auto;
 
-    align-items:center;
+display:flex;
 
-    justify-content:space-between;
+align-items:center;
 
-    gap:20px;
+justify-content:space-between;
+
+gap:20px;
+
 }
 
 .footer-name{
-    display:block;
 
-    font-family:"DM Sans",sans-serif;
+font-family:"DM Sans",sans-serif;
 
-    font-weight:800;
+font-weight:800;
 
-    letter-spacing:2px;
+letter-spacing:2px;
+
 }
 
 .footer-info{
-    color:#888;
 
-    font-size:11px;
+color:#888;
 
-    margin-top:5px;
+font-size:12px;
+
+margin-top:4px;
+
 }
 
 .footer-copy{
-    color:#888;
 
-    font-size:11px;
+color:#888;
+
+font-size:12px;
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error{
+
+text-align:center;
+
+padding:100px 20px;
+
+}
+
+.error h1{
+
+font-size:32px;
+
+margin-bottom:10px;
+
+}
+
+.error p{
+
+color:#777;
+
+margin-bottom:25px;
+
 }
 
 
@@ -484,67 +535,65 @@ img{
 
 @media(max-width:600px){
 
-    .nav{
-        min-height:68px;
+.nav{
 
-        padding:0 16px;
-    }
+min-height:68px;
 
-    .brand-name{
-        font-size:20px;
-    }
+padding:0 16px;
 
-    .back-link{
-        font-size:11px;
+}
 
-        padding:8px 13px;
-    }
+.brand-name{
 
-    .article-wrapper{
-        padding:
-        45px 17px
-        70px;
-    }
+font-size:20px;
 
-    .article-title{
-        font-size:34px;
+}
 
-        line-height:1.35;
-    }
+.back-link{
 
-    .article-meta{
-        font-size:11px;
+font-size:11px;
 
-        gap:12px;
-    }
+padding:8px 13px;
 
-    .article-content{
-        margin-top:28px;
-    }
+}
 
-    .article-content p{
-        font-size:15px;
+.article-wrapper{
 
-        line-height:1.95;
-    }
+padding:
+45px 17px
+75px;
 
-    .article-image{
-        margin-top:24px;
-    }
+}
 
-    .share-buttons{
-        gap:8px;
-    }
+.article-title{
 
-    .share-btn{
-        padding:8px 13px;
-    }
+font-size:34px;
 
-    .footer-inner{
-        align-items:flex-start;
+letter-spacing:-.5px;
 
-        flex-direction:column;
-    }
+}
+
+.article-content p{
+
+font-size:16px;
+
+line-height:1.9;
+
+}
+
+.article-image img{
+
+max-height:450px;
+
+}
+
+.footer-inner{
+
+align-items:flex-start;
+
+flex-direction:column;
+
+}
 
 }
 
@@ -562,34 +611,32 @@ img{
 
 <header class="header">
 
-    <div class="nav">
+<div class="nav">
 
-        <a href="index.html"
-           class="brand"
-           aria-label="Kapil Adhikari Home">
+<a href="index.html"
+   class="brand">
 
-            <span class="brand-name">
-                KAPIL
-            </span>
+<span class="brand-name">
+KAPIL
+</span>
 
-            <span class="brand-sub">
-                ADHIKARI
-            </span>
+<span class="brand-sub">
+ADHIKARI
+</span>
 
-        </a>
+</a>
 
 
-        <a href="news.html"
-           class="back-link">
+<a href="news.html"
+   class="back-link">
 
-            ← समाचार
+← समाचारहरू
 
-        </a>
+</a>
 
-    </div>
+</div>
 
 </header>
-
 
 
 <!-- =========================
@@ -598,25 +645,19 @@ img{
 
 <main>
 
-<section class="article-wrapper"
-         id="articleWrapper">
+<div
+class="article-wrapper"
+id="articleWrapper">
 
+<div style="text-align:center;padding:80px 20px;">
 
-    <div id="articleContent">
+समाचार लोड हुँदैछ...
 
-        <div class="error">
+</div>
 
-            समाचार लोड हुँदैछ...
-
-        </div>
-
-    </div>
-
-
-</section>
+</div>
 
 </main>
-
 
 
 <!-- =========================
@@ -625,33 +666,32 @@ img{
 
 <footer class="footer">
 
-    <div class="footer-inner">
+<div class="footer-inner">
 
-        <div>
+<div>
 
-            <span class="footer-name">
-                KAPIL ADHIKARI
-            </span>
+<div class="footer-name">
+KAPIL ADHIKARI
+</div>
 
-            <div class="footer-info">
-                News • Stories • Nepal
-            </div>
+<div class="footer-info">
+News • Stories • Nepal
+</div>
 
-        </div>
+</div>
 
 
-        <div class="footer-copy">
+<div class="footer-copy">
 
-            ©
-            <span id="year"></span>
-            Kapil Adhikari
+©
+<span id="year"></span>
+Kapil Adhikari
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </footer>
-
 
 
 <script>
@@ -661,16 +701,10 @@ img{
 ========================= */
 
 const NEWS_FILE =
-    "posts/posts.json";
+"posts/posts.json";
 
 const SITE_URL =
-    "https://kapiladhikari1.com.np";
-
-
-const articleContent =
-    document.getElementById(
-        "articleContent"
-    );
+"https://kapiladhikari1.com.np";
 
 
 /* =========================
@@ -679,525 +713,512 @@ const articleContent =
 
 function escapeHTML(value){
 
-    if(
-        value === null ||
-        value === undefined
-    ){
-        return "";
-    }
+if(
+value === null ||
+value === undefined
+){
 
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return "";
+
+}
+
+return String(value)
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
 
 }
 
 
 /* =========================
-   DATE FORMAT
+   DATE
 ========================= */
 
 function formatDate(dateString){
 
-    if(!dateString){
-        return "";
-    }
+if(!dateString)
+return "";
 
-    const date =
-        new Date(dateString);
+const date =
+new Date(dateString);
 
-    if(
-        isNaN(
-            date.getTime()
-        )
-    ){
-        return dateString;
-    }
+if(
+isNaN(date.getTime())
+){
 
-    return date.toLocaleDateString(
-        "ne-NP",
-        {
-            year:"numeric",
-            month:"long",
-            day:"numeric"
-        }
-    );
+return dateString;
+
+}
+
+return date.toLocaleDateString(
+"ne-NP",
+{
+
+year:"numeric",
+
+month:"long",
+
+day:"numeric"
+
+}
+);
 
 }
 
 
 /* =========================
-   GET POST ID
+   GET ID
 ========================= */
 
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+new URLSearchParams(
+window.location.search
+);
 
 const postId =
-    params.get("id");
+params.get("id");
 
 
 /* =========================
-   LOAD POST
+   LOAD NEWS
 ========================= */
 
 async function loadPost(){
 
-    try{
+const wrapper =
+document.getElementById(
+"articleWrapper"
+);
 
-        if(!postId){
 
-            throw new Error(
-                "No post ID."
-            );
+try{
 
-        }
 
+if(!postId){
 
-        const response =
-            await fetch(
-                NEWS_FILE +
-                "?v=" +
-                Date.now()
-            );
+throw new Error(
+"समाचार भेटिएन।"
+);
 
+}
 
-        if(!response.ok){
 
-            throw new Error(
-                "News file could not be loaded."
-            );
+const response =
+await fetch(
+NEWS_FILE +
+"?v=" +
+Date.now()
+);
 
-        }
 
+if(!response.ok){
 
-        const posts =
-            await response.json();
+throw new Error(
+"समाचार फाइल लोड हुन सकेन।"
+);
 
+}
 
-        if(!Array.isArray(posts)){
 
-            throw new Error(
-                "Invalid news data."
-            );
+const posts =
+await response.json();
 
-        }
 
+if(!Array.isArray(posts)){
 
-        const post =
-            posts.find(
-                item =>
-                String(item.id) ===
-                String(postId)
-            );
+throw new Error(
+"समाचार data गलत छ।"
+);
 
+}
 
-        if(!post){
 
-            throw new Error(
-                "News not found."
-            );
+const post =
+posts.find(
+item =>
+String(item.id) ===
+String(postId)
+);
 
-        }
 
+if(!post){
 
-        /* =========================
-           DATA
-        ========================= */
-
-        const title =
-            post.title ||
-            "समाचार";
-
-        const category =
-            post.categoryName ||
-            "समाचार";
-
-        const author =
-            post.author ||
-            "Kapil Adhikari";
-
-        const date =
-            formatDate(
-                post.date
-            );
-
-        const image =
-            post.image ||
-            "images/hero.jpg";
-
-        const seoTitle =
-            post.seoTitle ||
-            title +
-            " | Kapil Adhikari";
-
-        const seoDescription =
-            "विस्तृतमा पढ्न यहाँ क्लिक गर्नुहोस्।";
-
-
-        /* =========================
-           IMAGE URL
-        ========================= */
-
-        const imageURL =
-            new URL(
-                image,
-                SITE_URL + "/"
-            ).href;
-
-
-        /* =========================
-           PAGE URL
-        ========================= */
-
-        const pageURL =
-            SITE_URL +
-            "/post.html?id=" +
-            encodeURIComponent(
-                post.id
-            );
-
-
-        /* =========================
-           BROWSER SEO
-        ========================= */
-
-        document.title =
-            seoTitle;
-
-
-        document
-            .getElementById(
-                "metaDescription"
-            )
-            .setAttribute(
-                "content",
-                seoDescription
-            );
-
-
-        document
-            .getElementById(
-                "canonical"
-            )
-            .setAttribute(
-                "href",
-                pageURL
-            );
-
-
-        /* =========================
-           OPEN GRAPH
-        ========================= */
-
-        document
-            .getElementById(
-                "ogTitle"
-            )
-            .setAttribute(
-                "content",
-                seoTitle
-            );
-
-
-        document
-            .getElementById(
-                "ogDescription"
-            )
-            .setAttribute(
-                "content",
-                seoDescription
-            );
-
-
-        document
-            .getElementById(
-                "ogUrl"
-            )
-            .setAttribute(
-                "content",
-                pageURL
-            );
-
-
-        document
-            .getElementById(
-                "ogImage"
-            )
-            .setAttribute(
-                "content",
-                imageURL
-            );
-
-
-        /* =========================
-           X / TWITTER
-        ========================= */
-
-        document
-            .getElementById(
-                "twitterTitle"
-            )
-            .setAttribute(
-                "content",
-                seoTitle
-            );
-
-
-        document
-            .getElementById(
-                "twitterDescription"
-            )
-            .setAttribute(
-                "content",
-                seoDescription
-            );
-
-
-        document
-            .getElementById(
-                "twitterImage"
-            )
-            .setAttribute(
-                "content",
-                imageURL
-            );
-
-
-        /* =========================
-           ARTICLE PARAGRAPHS
-        ========================= */
-
-        let paragraphs = "";
-
-
-        if(
-            Array.isArray(
-                post.content
-            )
-        ){
-
-            paragraphs =
-                post.content
-                    .map(
-                        paragraph => `
-                            <p>
-                                ${escapeHTML(
-                                    paragraph
-                                )}
-                            </p>
-                        `
-                    )
-                    .join("");
-
-        }
-
-
-        /* =========================
-           ARTICLE HTML
-        ========================= */
-
-        articleContent.innerHTML = `
-
-            <div class="article-category">
-
-                ${escapeHTML(
-                    category
-                )}
-
-            </div>
-
-
-            <h1 class="article-title">
-
-                ${escapeHTML(
-                    title
-                )}
-
-            </h1>
-
-
-            <div class="article-meta">
-
-                <span>
-                    ${escapeHTML(
-                        date
-                    )}
-                </span>
-
-                <span>
-                    ${escapeHTML(
-                        author
-                    )}
-                </span>
-
-            </div>
-
-
-            <div class="article-image">
-
-                <img
-                    src="${escapeHTML(
-                        image
-                    )}"
-                    alt="${escapeHTML(
-                        title
-                    )}"
-                    onerror="
-                        this.src='images/hero.jpg';
-                    "
-                >
-
-            </div>
-
-
-            <div class="article-content">
-
-                ${paragraphs}
-
-            </div>
-
-
-            <div class="read-more-note">
-
-                विस्तृतमा पढ्न यहाँ क्लिक गर्नुहोस्।
-
-            </div>
-
-
-            <div class="share">
-
-                <div class="share-title">
-
-                    यो समाचार share गर्नुहोस्
-
-                </div>
-
-
-                <div class="share-buttons">
-
-                    <button
-                        class="share-btn"
-                        onclick="shareFacebook()">
-
-                        Facebook
-
-                    </button>
-
-
-                    <button
-                        class="share-btn"
-                        onclick="shareX()">
-
-                        X
-
-                    </button>
-
-
-                    <button
-                        class="share-btn"
-                        onclick="copyLink()">
-
-                        Link Copy
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-    catch(error){
-
-        console.error(
-            "News loading error:",
-            error
-        );
-
-
-        articleContent.innerHTML = `
-
-            <div class="error">
-
-                <h1>
-                    समाचार भेटिएन
-                </h1>
-
-                <p>
-                    यो समाचार उपलब्ध छैन
-                    वा link गलत छ।
-                </p>
-
-                <a href="news.html">
-                    ← समाचारमा फर्कनुहोस्
-                </a>
-
-            </div>
-
-        `;
-
-    }
+throw new Error(
+"यो समाचार भेटिएन।"
+);
 
 }
 
 
 /* =========================
-   FACEBOOK SHARE
+   DATA
+========================= */
+
+const title =
+post.title ||
+"समाचार";
+
+const category =
+post.categoryName ||
+"समाचार";
+
+const author =
+post.author ||
+"Kapil Adhikari";
+
+const date =
+formatDate(post.date);
+
+const image =
+post.image ||
+"images/hero.jpg";
+
+const excerpt =
+post.excerpt ||
+"विस्तृतमा समाचार पढ्नुहोस्।";
+
+
+/* =========================
+   IMAGE URL
+========================= */
+
+const absoluteImage =
+new URL(
+image,
+SITE_URL + "/"
+).href;
+
+
+/* =========================
+   PAGE URL
+========================= */
+
+const pageUrl =
+window.location.href;
+
+
+/* =========================
+   SEO
+========================= */
+
+const seoTitle =
+post.seoTitle ||
+title +
+" | Kapil Adhikari";
+
+const seoDescription =
+post.seoDescription ||
+excerpt;
+
+
+/* =========================
+   DOCUMENT TITLE
+========================= */
+
+document.title =
+seoTitle;
+
+
+/* =========================
+   META UPDATE
+========================= */
+
+document
+.getElementById("canonical")
+.setAttribute(
+"href",
+pageUrl
+);
+
+
+document
+.getElementById("ogTitle")
+.setAttribute(
+"content",
+seoTitle
+);
+
+
+document
+.getElementById("ogDescription")
+.setAttribute(
+"content",
+seoDescription
+);
+
+
+document
+.getElementById("ogUrl")
+.setAttribute(
+"content",
+pageUrl
+);
+
+
+document
+.getElementById("ogImage")
+.setAttribute(
+"content",
+absoluteImage
+);
+
+
+document
+.getElementById("twitterTitle")
+.setAttribute(
+"content",
+seoTitle
+);
+
+
+document
+.getElementById("twitterDescription")
+.setAttribute(
+"content",
+seoDescription
+);
+
+
+document
+.getElementById("twitterImage")
+.setAttribute(
+"content",
+absoluteImage
+);
+
+
+/* =========================
+   CONTENT
+========================= */
+
+let paragraphs = "";
+
+
+if(
+Array.isArray(post.content)
+){
+
+paragraphs =
+post.content
+
+.map(
+paragraph => `
+
+<p>
+${escapeHTML(paragraph)}
+</p>
+
+`
+)
+
+.join("");
+
+}
+
+
+/* =========================
+   ARTICLE HTML
+========================= */
+
+wrapper.innerHTML = `
+
+<div class="article-category">
+
+${escapeHTML(category)}
+
+</div>
+
+
+<h1 class="article-title">
+
+${escapeHTML(title)}
+
+</h1>
+
+
+<div class="article-meta">
+
+<span>
+${escapeHTML(date)}
+</span>
+
+<span>
+${escapeHTML(author)}
+</span>
+
+</div>
+
+
+<div class="article-image">
+
+<img
+src="${escapeHTML(absoluteImage)}"
+alt="${escapeHTML(title)}"
+fetchpriority="high"
+onerror="
+this.src='images/hero.jpg'
+">
+
+</div>
+
+
+<div class="read-message">
+
+विस्तृतमा समाचार पढ्नुहोस्।
+
+</div>
+
+
+<div class="article-content">
+
+${paragraphs}
+
+</div>
+
+
+<div class="share">
+
+<div class="share-title">
+
+यो समाचार share गर्नुहोस्
+
+</div>
+
+
+<div class="share-buttons">
+
+
+<button
+class="share-btn"
+onclick="shareFacebook()">
+
+Facebook
+
+</button>
+
+
+<button
+class="share-btn"
+onclick="shareX()">
+
+X
+
+</button>
+
+
+<button
+class="share-btn"
+onclick="copyLink()">
+
+Link Copy
+
+</button>
+
+
+</div>
+
+</div>
+
+`;
+
+
+
+}catch(error){
+
+
+console.error(error);
+
+
+wrapper.innerHTML = `
+
+<div class="error">
+
+<h1>
+समाचार भेटिएन
+</h1>
+
+<p>
+समाचार लोड गर्दा समस्या भयो।
+</p>
+
+<a
+href="news.html"
+class="back-link"
+style="display:inline-block;background:#111;color:#fff;">
+
+← समाचारमा फर्कनुहोस्
+
+</a>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================
+   FACEBOOK
 ========================= */
 
 function shareFacebook(){
 
-    const url =
-        encodeURIComponent(
-            window.location.href
-        );
+const url =
+encodeURIComponent(
+window.location.href
+);
 
-    window.open(
-        "https://www.facebook.com/sharer/sharer.php?u=" +
-        url,
+window.open(
 
-        "_blank",
+"https://www.facebook.com/sharer/sharer.php?u=" +
+url,
 
-        "width=700,height=500"
-    );
+"_blank",
+
+"width=700,height=500"
+
+);
 
 }
 
 
 /* =========================
-   X SHARE
+   X
 ========================= */
 
 function shareX(){
 
-    const url =
-        encodeURIComponent(
-            window.location.href
-        );
+const url =
+encodeURIComponent(
+window.location.href
+);
 
-    const text =
-        encodeURIComponent(
-            document.title
-        );
+const text =
+encodeURIComponent(
+document.title
+);
 
-    window.open(
-        "https://twitter.com/intent/tweet?text=" +
-        text +
-        "&url=" +
-        url,
+window.open(
 
-        "_blank",
+"https://twitter.com/intent/tweet?text=" +
+text +
+"&url=" +
+url,
 
-        "width=700,height=500"
-    );
+"_blank",
+
+"width=700,height=500"
+
+);
 
 }
 
@@ -1208,26 +1229,24 @@ function shareX(){
 
 async function copyLink(){
 
-    try{
+try{
 
-        await navigator.clipboard.writeText(
-            window.location.href
-        );
+await navigator.clipboard.writeText(
+window.location.href
+);
 
-        alert(
-            "समाचारको link copy भयो।"
-        );
+alert(
+"समाचारको link copy भयो।"
+);
 
-    }
+}catch(error){
 
-    catch(error){
+prompt(
+"यो link copy गर्नुहोस्:",
+window.location.href
+);
 
-        prompt(
-            "यो link copy गर्नुहोस्:",
-            window.location.href
-        );
-
-    }
+}
 
 }
 
@@ -1237,9 +1256,9 @@ async function copyLink(){
 ========================= */
 
 document
-    .getElementById("year")
-    .textContent =
-        new Date().getFullYear();
+.getElementById("year")
+.textContent =
+new Date().getFullYear();
 
 
 /* =========================
@@ -1250,6 +1269,6 @@ loadPost();
 
 </script>
 
-
 </body>
+
 </html>
