@@ -363,9 +363,11 @@ font-size:12px;
 }
 
 @media(max-width:900px){
+
 .news-grid{
 grid-template-columns:repeat(2,1fr);
 }
+
 }
 
 @media(max-width:600px){
@@ -447,6 +449,7 @@ class="home-link">
 
 </header>
 
+
 <section class="hero">
 
 <div class="hero-inner">
@@ -466,6 +469,7 @@ KAPIL ADHIKARI • NEWS
 </div>
 
 </section>
+
 
 <div class="categories">
 
@@ -516,6 +520,7 @@ data-category="travel">
 
 </div>
 
+
 <main>
 
 <section class="news-section">
@@ -532,6 +537,7 @@ id="newsCount">
 </span>
 
 </div>
+
 
 <div class="news-grid"
 id="newsGrid">
@@ -552,6 +558,7 @@ id="emptyNews">
 </section>
 
 </main>
+
 
 <footer class="footer">
 
@@ -579,6 +586,8 @@ Kapil Adhikari
 </div>
 
 </footer>
+
+
 <script>
 
 const NEWS_FILE="posts/posts.json";
@@ -586,15 +595,27 @@ const NEWS_FILE="posts/posts.json";
 let allNews=[];
 let currentCategory="all";
 
-const newsGrid=document.getElementById("newsGrid");
-const emptyNews=document.getElementById("emptyNews");
-const newsCount=document.getElementById("newsCount");
+const newsGrid=
+document.getElementById("newsGrid");
+
+const emptyNews=
+document.getElementById("emptyNews");
+
+const newsCount=
+document.getElementById("newsCount");
+
+
+/* =========================
+   DATE FORMAT
+========================= */
 
 function formatDate(dateString){
 
-if(!dateString)return "";
+if(!dateString)
+return "";
 
-const date=new Date(dateString);
+const date=
+new Date(dateString);
 
 if(isNaN(date.getTime()))
 return dateString;
@@ -610,9 +631,17 @@ day:"numeric"
 
 }
 
+
+/* =========================
+   SECURITY
+========================= */
+
 function escapeHTML(value){
 
-if(value===null||value===undefined)
+if(
+value===null ||
+value===undefined
+)
 return "";
 
 return String(value)
@@ -624,52 +653,84 @@ return String(value)
 
 }
 
+
+/* =========================
+   LOAD NEWS
+========================= */
+
 async function loadNews(){
 
 try{
 
-const response=await fetch(
-NEWS_FILE+"?v="+Date.now()
+const response=
+await fetch(
+NEWS_FILE+
+"?v="+
+Date.now()
 );
 
-if(!response.ok)
-throw new Error("News file could not be loaded.");
+if(!response.ok){
 
-const data=await response.json();
+throw new Error(
+"News file could not be loaded."
+);
 
-if(!Array.isArray(data))
-throw new Error("Invalid news data.");
+}
+
+const data=
+await response.json();
+
+if(!Array.isArray(data)){
+
+throw new Error(
+"Invalid news data."
+);
+
+}
 
 allNews=data;
 
 /*
 IMPORTANT:
-JSON को क्रम परिवर्तन गर्दैन।
-माथि भएको News नै
-वेबसाइटमा माथि देखिन्छ।
+
+posts.json मा जुन News
+सबैभन्दा माथि राखिएको छ,
+त्यही News वेबसाइटमा
+सबैभन्दा माथि देखिन्छ।
+
+त्यसैले नयाँ News सधैं
+JSON को सुरुमा राख्नुहोस्।
 */
 
 renderNews();
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
 newsGrid.innerHTML="";
 
-const errorBox=document.createElement("div");
+const errorBox=
+document.createElement("div");
 
 errorBox.className="empty";
+
 errorBox.style.display="block";
 
 errorBox.innerHTML=`
+
 <strong>
 समाचार लोड हुन सकेन।
 </strong>
+
 कृपया केही समयपछि फेरि प्रयास गर्नुहोस्।
+
 `;
 
-newsGrid.appendChild(errorBox);
+newsGrid.appendChild(
+errorBox
+);
 
 newsCount.textContent=
 "समाचार उपलब्ध छैन";
@@ -677,6 +738,11 @@ newsCount.textContent=
 }
 
 }
+
+
+/* =========================
+   FILTER
+========================= */
 
 function getFilteredNews(){
 
@@ -694,6 +760,11 @@ currentCategory;
 
 }
 
+
+/* =========================
+   RENDER NEWS
+========================= */
+
 function renderNews(){
 
 const filteredNews=
@@ -701,38 +772,77 @@ getFilteredNews();
 
 newsGrid.innerHTML="";
 
+
 if(filteredNews.length===0){
 
 newsCount.textContent=
 "कुनै समाचार छैन";
 
-emptyNews.style.display="block";
+emptyNews.style.display=
+"block";
 
-newsGrid.appendChild(emptyNews);
+newsGrid.appendChild(
+emptyNews
+);
 
 return;
 
 }
 
-emptyNews.style.display="none";
+
+emptyNews.style.display=
+"none";
 
 newsCount.textContent=
 filteredNews.length+
 " समाचार";
 
+
 filteredNews.forEach(news=>{
 
 const article=
-document.createElement("article");
+document.createElement(
+"article"
+);
 
-article.className="news-card";
+article.className=
+"news-card";
+
+
+/*
+IMPORTANT:
+
+Generated News Preview Page
+
+news/1/
+news/2/
+news/3/
+
+त्यसैले अब पुरानो
+post.html?id=...
+प्रयोग हुँदैन।
+*/
 
 const postId=
-encodeURIComponent(news.id);
+encodeURIComponent(
+news.id
+);
+
+
+/*
+Image path
+
+यदि JSON मा image छ भने
+त्यही प्रयोग हुन्छ।
+
+उदाहरण:
+../images/news2.jpg
+*/
 
 const image=
 news.image||
 "images/hero.jpg";
+
 
 const title=
 escapeHTML(
@@ -740,11 +850,13 @@ news.title||
 "शीर्षक छैन"
 );
 
+
 const category=
 escapeHTML(
 news.categoryName||
 "समाचार"
 );
+
 
 const excerpt=
 escapeHTML(
@@ -752,19 +864,38 @@ news.excerpt||
 ""
 );
 
+
 const author=
 escapeHTML(
 news.author||
 "Kapil Adhikari"
 );
 
+
 const date=
-formatDate(news.date);
+formatDate(
+news.date
+);
+
+
+/*
+Generated URL
+
+News 1 → news/1/
+News 2 → news/2/
+News 3 → news/3/
+*/
+
+const newsURL=
+"news/"+
+postId+
+"/";
+
 
 article.innerHTML=`
 
 <a
-href="post.html?id=${postId}"
+href="${newsURL}"
 aria-label="${title}"
 >
 
@@ -774,10 +905,13 @@ aria-label="${title}"
 src="${image}"
 alt="${title}"
 loading="lazy"
-onerror="this.src='images/hero.jpg'"
+onerror="
+this.src='images/hero.jpg'
+"
 >
 
 </div>
+
 
 <div class="news-content">
 
@@ -785,19 +919,23 @@ onerror="this.src='images/hero.jpg'"
 ${category}
 </span>
 
+
 <h3 class="news-title">
 ${title}
 </h3>
 
+
 <p class="news-excerpt">
 ${excerpt}
 </p>
+
 
 <div class="news-meta">
 
 <span>
 ${date}
 </span>
+
 
 <span>
 ${author}
@@ -811,11 +949,19 @@ ${author}
 
 `;
 
-newsGrid.appendChild(article);
+
+newsGrid.appendChild(
+article
+);
 
 });
 
 }
+
+
+/* =========================
+   CATEGORY BUTTONS
+========================= */
 
 document
 .querySelectorAll(".category")
@@ -828,10 +974,14 @@ button.addEventListener(
 document
 .querySelectorAll(".category")
 .forEach(btn=>
-btn.classList.remove("active")
+btn.classList.remove(
+"active"
+)
 );
 
-button.classList.add("active");
+button.classList.add(
+"active"
+);
 
 currentCategory=
 button.dataset.category;
@@ -843,10 +993,21 @@ renderNews();
 
 });
 
+
+/* =========================
+   FOOTER YEAR
+========================= */
+
 document
 .getElementById("year")
 .textContent=
-new Date().getFullYear();
+new Date()
+.getFullYear();
+
+
+/* =========================
+   START
+========================= */
 
 loadNews();
 
