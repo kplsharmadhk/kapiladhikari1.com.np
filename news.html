@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>समाचार | Kapil Adhikari</title>
+
+    <meta name="description"
+          content="नेपाल र विश्वका महत्वपूर्ण समाचार, ताजा खबर तथा समसामयिक जानकारी। Kapil Adhikari News.">
+
+    <meta name="author"
+          content="Kapil Adhikari">
+
+    <meta name="robots"
+          content="index, follow, max-image-preview:large">
+
+    <link rel="canonical"
+          href="https://kapiladhikari1.com.np/news.html">
+
+
+    <!-- Open Graph -->
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:site_name"
+          content="Kapil Adhikari">
+
+    <meta property="og:title"
+          content="समाचार | Kapil Adhikari">
+
+    <meta property="og:description"
+          content="ताजा समाचार, महत्वपूर्ण खबर तथा समसामयिक जानकारी।">
+
+    <meta property="og:url"
+          content="https://kapiladhikari1.com.np/news.html">
+
+    <meta property="og:image"
+          content="https://kapiladhikari1.com.np/images/hero.jpg">
+
+
+    <!-- Favicon -->
+
+    <link rel="icon"
+          type="image/png"
+          href="images/favicon.png">
+
+
+    <!-- Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f8f6f0;
+            color: #171717;
+            font-family: "Noto Sans Devanagari", "DM Sans", sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .header {
+            background: #111;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 76px;
+            padding: 0 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .brand-name {
+            font-family: "DM Sans", sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .brand-sub {
+            font-size: 11px;
+            letter-spacing: 4px;
+            opacity: .7;
+            margin-top: 5px;
+        }
+
+        .back-home {
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 30px;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .back-home:hover {
+            background: #fff;
+            color: #111;
+        }
+
+
+        /* HERO */
+
+        .news-hero {
+            background: #171717;
+            color: #fff;
+            padding: 75px 20px 65px;
+        }
+
+        .news-hero-inner {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #aaa;
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .news-hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 1.05;
+            font-weight: 800;
+        }
+
+        .news-hero h1 span {
+            color: #d02023;
+        }
+
+        .news-hero p {
+            max-width: 650px;
+            color: #bbb;
+            margin-top: 20px;
+            font-size: 17px;
+        }
+
+
+        /* CATEGORY */
+
+        .category-wrapper {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            padding: 0 20px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            border: 1px solid #d8d5ce;
+            background: transparent;
+            padding: 9px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .category:hover,
+        .category.active {
+            background: #171717;
+            color: #fff;
+            border-color: #171717;
+        }
+
+
+        /* NEWS */
+
+        .news-section {
+            max-width: 1200px;
+            margin: 45px auto 90px;
+            padding: 0 20px;
+        }
+
+        .section-top {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-top h2 {
+            font-size: 30px;
+        }
+
+        .section-top span {
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .news-card {
+            background: #fff;
+            border: 1px solid #e6e2d9;
+            overflow: hidden;
+            transition: .3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.08);
+        }
+
+        .news-image {
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #ddd;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 22px;
+        }
+
+        .news-category {
+            display: inline-block;
+            color: #d02023;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 9px;
+        }
+
+        .news-title {
+            font-size: 21px;
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+
+        .news-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 12px;
+        }
+
+
+        /* EMPTY */
+
+        .empty-news {
+            display: none;
+            padding: 60px 20px;
+            text-align: center;
+            color: #777;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            background: #111;
+            color: #fff;
+            padding: 35px 20px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer strong {
+            display: block;
+            font-family: "DM Sans", sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .footer small {
+            color: #999;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                min-height: 68px;
+                padding: 0 16px;
+            }
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .back-home {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+
+            .news-hero {
+                padding: 55px 20px;
+            }
+
+            .news-hero p {
+                font-size: 15px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .news-title {
+                font-size: 20px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="nav">
+
+        <a href="index.html"
+           class="brand"
+           aria-label="Kapil Adhikari Home">
+
+            <span class="brand-name">
+                KAPIL
+            </span>
+
+            <span class="brand-sub">
+                ADHIKARI
+            </span>
+
+        </a>
+
+
+        <a href="index.html"
+           class="back-home">
+
+            ← मुख्य वेबसाइट
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- NEWS HERO -->
+
+<section class="news-hero">
+
+    <div class="news-hero-inner">
+
+        <div class="eyebrow">
+            KAPIL ADHIKARI • NEWS
+        </div>
+
+        <h1>
+            आजका <span>समाचार</span>
+        </h1>
+
+        <p>
+            नेपाल तथा विश्वका महत्वपूर्ण घटना,
+            समाचार र समसामयिक विषयहरू।
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- CATEGORY -->
+
+<div class="category-wrapper">
+
+    <div class="categories">
+
+        <button class="category active"
+                data-category="all">
+
+            सबै
+
+        </button>
+
+        <button class="category"
+                data-category="national">
+
+            राष्ट्रिय
+
+        </button>
+
+        <button class="category"
+                data-category="politics">
+
+            राजनीति
+
+        </button>
+
+        <button class="category"
+                data-category="society">
+
+            समाज
+
+        </button>
+
+        <button class="category"
+                data-category="business">
+
+            अर्थतन्त्र
+
+        </button>
+
+        <button class="category"
+                data-category="technology">
+
+            प्रविधि
+
+        </button>
+
+        <button class="category"
+                data-category="sports">
+
+            खेलकुद
+
+        </button>
+
+        <button class="category"
+                data-category="world">
+
+            विश्व
+
+        </button>
+
+        <button class="category"
+                data-category="travel">
+
+            यात्रा
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- NEWS -->
+
+<main>
+
+<section class="news-section">
+
+    <div class="section-top">
+
+        <h2>
+            पछिल्ला समाचार
+        </h2>
+
+        <span id="newsCount">
+            समाचारहरू
+        </span>
+
+    </div>
+
+
+    <div class="news-grid"
+         id="newsGrid">
+
+        <!-- समाचारहरू यहाँ स्वतः आउनेछन् -->
+
+    </div>
+
+
+    <div class="empty-news"
+         id="emptyNews">
+
+        यो category मा अहिले कुनै समाचार छैन।
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div>
+
+            <strong>
+                KAPIL ADHIKARI
+            </strong>
+
+            <small>
+                News • Stories • Nepal
+            </small>
+
+        </div>
+
+
+        <small>
+            © <span id="year"></span> Kapil Adhikari
+        </small>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+    /*
+     * अहिले demo समाचारहरू।
+     *
+     * अर्को Step मा यी हटाएर
+     * posts/posts.json बाट
+     * वास्तविक समाचार automatically
+     * load गराउनेछौं।
+     */
+
+    const demoNews = [
+
+        {
+            category: "national",
+            categoryName: "राष्ट्रिय",
+            title: "नेपालका महत्वपूर्ण पछिल्ला समाचार",
+            excerpt: "देशमा भइरहेका महत्वपूर्ण गतिविधि तथा समसामयिक विषयहरूको जानकारी।",
+            date: "आज",
+            image: "images/hero.jpg",
+            link: "post.html"
+        },
+
+        {
+            category: "society",
+            categoryName: "समाज",
+            title: "समाजसँग जोडिएका महत्वपूर्ण विषय",
+            excerpt: "समाजमा भइरहेका गतिविधि, परिवर्तन र महत्वपूर्ण घटनाहरू।",
+            date: "आज",
+            image: "images/travel-01.jpg",
+            link: "post.html"
+        },
+
+        {
+            category: "travel",
+            categoryName: "यात्रा",
+            title: "नेपालका नयाँ गन्तव्य र यात्रा कथा",
+            excerpt: "नेपालका सुन्दर ठाउँ, यात्रा अनुभव र पर्यटनसँग सम्बन्धित सामग्री।",
+            date: "आज",
+            image: "images/travel-02.jpg",
+            link: "post.html"
+        }
+
+    ];
+
+
+    const newsGrid =
+        document.getElementById("newsGrid");
+
+    const emptyNews =
+        document.getElementById("emptyNews");
+
+    const newsCount =
+        document.getElementById("newsCount");
+
+
+    function renderNews(category = "all") {
+
+        const filteredNews =
+            category === "all"
+                ? demoNews
+                : demoNews.filter(
+                    news => news.category === category
+                );
+
+
+        newsGrid.innerHTML = "";
+
+
+        if (filteredNews.length === 0) {
+
+            emptyNews.style.display = "block";
+
+            newsCount.textContent =
+                "कुनै समाचार छैन";
+
+            return;
+
+        }
+
+
+        emptyNews.style.display = "none";
+
+
+        newsCount.textContent =
+            filteredNews.length + " समाचार";
+
+
+        filteredNews.forEach(news => {
+
+            const article =
+                document.createElement("article");
+
+            article.className = "news-card";
+
+
+            article.innerHTML = `
+
+                <a href="${news.link}">
+
+                    <div class="news-image">
+
+                        <img
+                            src="${news.image}"
+                            alt="${news.title}"
+                            loading="lazy">
+
+                    </div>
+
+
+                    <div class="news-content">
+
+                        <span class="news-category">
+                            ${news.categoryName}
+                        </span>
+
+
+                        <h3 class="news-title">
+                            ${news.title}
+                        </h3>
+
+
+                        <p class="news-excerpt">
+                            ${news.excerpt}
+                        </p>
+
+
+                        <div class="news-meta">
+
+                            <span>
+                                ${news.date}
+                            </span>
+
+                            <span>
+                                पढ्नुहोस् →
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            `;
+
+
+            newsGrid.appendChild(article);
+
+        });
+
+    }
+
+
+    document
+        .querySelectorAll(".category")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                document
+                    .querySelectorAll(".category")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+
+                button.classList.add("active");
+
+
+                renderNews(
+                    button.dataset.category
+                );
+
+            });
+
+        });
+
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+    renderNews();
+
+
+</script>
+
+
+</body>
+</html>
