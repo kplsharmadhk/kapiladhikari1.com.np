@@ -1,6 +1,5 @@
 import json
 import html
-import os
 import re
 from pathlib import Path
 
@@ -16,6 +15,8 @@ POSTS_FILE = Path("posts/posts.json")
 OUTPUT_DIR = Path("news")
 
 DEFAULT_IMAGE = "/images/hero.jpg"
+
+GOOGLE_ANALYTICS_ID = "G-FHMXK9R405"
 
 
 # ==========================================
@@ -212,6 +213,40 @@ for post in posts:
 
 
     # ======================================
+    # GOOGLE ANALYTICS
+    # ======================================
+
+    analytics_code = f"""
+<!-- Google Analytics -->
+<script async
+src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}">
+</script>
+
+<script>
+
+window.dataLayer =
+window.dataLayer || [];
+
+function gtag(){{
+    dataLayer.push(arguments);
+}}
+
+gtag(
+    'js',
+    new Date()
+);
+
+gtag(
+    'config',
+    '{GOOGLE_ANALYTICS_ID}'
+);
+
+</script>
+<!-- End Google Analytics -->
+"""
+
+
+    # ======================================
     # HTML
     # ======================================
 
@@ -225,6 +260,17 @@ for post in posts:
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
+
+<!-- =========================
+     GOOGLE ANALYTICS
+========================= -->
+
+{analytics_code}
+
+
+<!-- =========================
+     BASIC SEO
+========================= -->
 
 <title>
 {safe_text(title)}
@@ -256,7 +302,7 @@ for post in posts:
 
 
 <meta property="og:site_name"
-      content="Kapil Adhikari">
+      content="Kapil Sharma Adhikari">
 
 
 <meta property="og:locale"
@@ -729,6 +775,8 @@ News • Stories • Nepal
 <div class="copy">
 
 © Kapil Adhikari
+
+</div>
 
 </div>
 
