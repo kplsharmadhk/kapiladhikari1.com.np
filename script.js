@@ -1,115 +1,178 @@
 /* =========================================
-   KAPIL ADHIKARI
+   KAPIL SHARMA ADHIKARI
    PERSONAL TRAVEL PORTFOLIO
-   FINAL JAVASCRIPT
+   PREMIUM FINAL JAVASCRIPT
 ========================================= */
+
+"use strict";
 
 
 /* =========================================
-   FEATHER ICONS
+   01 — DOM READY
 ========================================= */
 
-function loadIcons(){
-
-    if(typeof feather !== "undefined"){
-        feather.replace();
-    }
-
-}
-
-loadIcons();
+document.addEventListener("DOMContentLoaded", () => {
 
 
+    /* =====================================
+       ELEMENTS
+    ====================================== */
 
-/* =========================================
-   MOBILE MENU
-========================================= */
+    const body = document.body;
 
-const menuButton =
-    document.getElementById("menuButton");
+    const header =
+        document.getElementById("siteHeader");
 
-const menuClose =
-    document.getElementById("menuClose");
+    const menuButton =
+        document.getElementById("menuButton");
 
-const mobileMenu =
-    document.getElementById("mobileMenu");
+    const menuClose =
+        document.getElementById("menuClose");
 
+    const mobileMenu =
+        document.getElementById("mobileMenu");
 
-function openMenu(){
+    const mobileLinks =
+        document.querySelectorAll(".mobile-link");
 
-    if(!mobileMenu) return;
+    const navLinks =
+        document.querySelectorAll(".nav-link");
 
-    mobileMenu.classList.add("active");
+    const sections =
+        document.querySelectorAll("main section[id]");
 
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "false"
-    );
+    const revealElements =
+        document.querySelectorAll(".reveal");
 
-    if(menuButton){
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            "true"
+    const galleryItems =
+        Array.from(
+            document.querySelectorAll(".gallery-item")
         );
 
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightboxImage");
+
+    const lightboxTitle =
+        document.getElementById("lightboxTitle");
+
+    const lightboxClose =
+        document.getElementById("lightboxClose");
+
+    const lightboxPrev =
+        document.getElementById("lightboxPrev");
+
+    const lightboxNext =
+        document.getElementById("lightboxNext");
+
+    const backTop =
+        document.querySelector(".back-top");
+
+    const yearElement =
+        document.getElementById("year");
+
+    const mobileYearElement =
+        document.getElementById("mobileYear");
+
+
+    /* =====================================
+       02 — FEATHER ICONS
+    ====================================== */
+
+    function loadIcons() {
+
+        if (typeof feather !== "undefined") {
+
+            feather.replace({
+                "stroke-width": 1.6
+            });
+
+        }
+
     }
 
-    document.body.style.overflow = "hidden";
 
-}
+    loadIcons();
 
 
-function closeMenu(){
 
-    if(!mobileMenu) return;
+    /* =====================================
+       03 — MOBILE MENU
+    ====================================== */
 
-    mobileMenu.classList.remove("active");
+    function openMenu() {
 
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "true"
-    );
+        if (!mobileMenu) return;
 
-    if(menuButton){
+        mobileMenu.classList.add("active");
 
-        menuButton.setAttribute(
-            "aria-expanded",
+        mobileMenu.setAttribute(
+            "aria-hidden",
             "false"
         );
 
+        if (menuButton) {
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+        }
+
+        body.classList.add("menu-open");
+
     }
 
-    document.body.style.overflow = "";
 
-}
+    function closeMenu() {
+
+        if (!mobileMenu) return;
+
+        mobileMenu.classList.remove("active");
+
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        if (menuButton) {
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+        body.classList.remove("menu-open");
+
+    }
 
 
-if(menuButton){
+    if (menuButton) {
 
-    menuButton.addEventListener(
-        "click",
-        openMenu
-    );
+        menuButton.addEventListener(
+            "click",
+            openMenu
+        );
 
-}
-
-
-if(menuClose){
-
-    menuClose.addEventListener(
-        "click",
-        closeMenu
-    );
-
-}
+    }
 
 
-/* Close mobile menu after clicking link */
+    if (menuClose) {
 
-document
-    .querySelectorAll(".mobile-link")
-    .forEach(link => {
+        menuClose.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    }
+
+
+    mobileLinks.forEach(link => {
 
         link.addEventListener(
             "click",
@@ -120,505 +183,26 @@ document
 
 
 
-/* =========================================
-   ESC KEY
-========================================= */
+    /* =====================================
+       04 — ESC KEY
+    ====================================== */
 
-document.addEventListener(
-    "keydown",
-    event => {
+    document.addEventListener(
+        "keydown",
+        event => {
 
-        if(event.key === "Escape"){
+            if (event.key !== "Escape") {
+                return;
+            }
+
 
             closeMenu();
 
-            closeLightbox();
 
-        }
-
-    }
-);
-
-
-
-/* =========================================
-   HEADER SCROLL EFFECT
-========================================= */
-
-const header =
-    document.getElementById("siteHeader");
-
-
-function handleHeader(){
-
-    if(!header) return;
-
-    if(window.scrollY > 50){
-
-        header.classList.add("scrolled");
-
-    }else{
-
-        header.classList.remove("scrolled");
-
-    }
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    handleHeader,
-    {passive:true}
-);
-
-handleHeader();
-
-
-
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
-
-const sections =
-    document.querySelectorAll(
-        "main section[id]"
-    );
-
-const navLinks =
-    document.querySelectorAll(
-        ".nav-link"
-    );
-
-
-function updateActiveNav(){
-
-    let current = "home";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 180;
-
-        if(window.scrollY >= sectionTop){
-
-            current =
-                section.getAttribute("id");
-
-        }
-
-    });
-
-
-    navLinks.forEach(link => {
-
-        link.classList.remove(
-            "active"
-        );
-
-
-        const href =
-            link.getAttribute("href");
-
-
-        if(href === "#" + current){
-
-            link.classList.add(
-                "active"
-            );
-
-        }
-
-    });
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    updateActiveNav,
-    {passive:true}
-);
-
-updateActiveNav();
-
-
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
-
-const revealElements =
-    document.querySelectorAll(
-        ".reveal"
-    );
-
-
-if("IntersectionObserver" in window){
-
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if(entry.isIntersecting){
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold:.12,
-                rootMargin:"0px 0px -40px 0px"
-            }
-        );
-
-
-    revealElements.forEach(element => {
-
-        revealObserver.observe(
-            element
-        );
-
-    });
-
-}else{
-
-    revealElements.forEach(element => {
-
-        element.classList.add(
-            "visible"
-        );
-
-    });
-
-}
-
-
-
-/* =========================================
-   GALLERY LIGHTBOX
-========================================= */
-
-const galleryItems =
-    Array.from(
-        document.querySelectorAll(
-            ".gallery-item"
-        )
-    );
-
-
-const lightbox =
-    document.getElementById(
-        "lightbox"
-    );
-
-
-const lightboxImage =
-    document.getElementById(
-        "lightboxImage"
-    );
-
-
-const lightboxTitle =
-    document.getElementById(
-        "lightboxTitle"
-    );
-
-
-const lightboxClose =
-    document.getElementById(
-        "lightboxClose"
-    );
-
-
-const lightboxPrev =
-    document.getElementById(
-        "lightboxPrev"
-    );
-
-
-const lightboxNext =
-    document.getElementById(
-        "lightboxNext"
-    );
-
-
-let currentImageIndex = 0;
-
-
-
-/* Open image */
-
-function openLightbox(index){
-
-    if(
-        !lightbox ||
-        !lightboxImage ||
-        galleryItems.length === 0
-    ){
-
-        return;
-
-    }
-
-
-    currentImageIndex = index;
-
-
-    const item =
-        galleryItems[
-            currentImageIndex
-        ];
-
-
-    const image =
-        item.dataset.image;
-
-
-    const title =
-        item.dataset.title || "";
-
-
-    lightboxImage.src =
-        image;
-
-
-    lightboxImage.alt =
-        title ||
-        "Kapil Adhikari travel photograph";
-
-
-    if(lightboxTitle){
-
-        lightboxTitle.textContent =
-            title;
-
-    }
-
-
-    lightbox.classList.add(
-        "active"
-    );
-
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    loadIcons();
-
-}
-
-
-
-/* Close lightbox */
-
-function closeLightbox(){
-
-    if(!lightbox) return;
-
-
-    lightbox.classList.remove(
-        "active"
-    );
-
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    document.body.style.overflow =
-        "";
-
-
-    if(lightboxImage){
-
-        lightboxImage.src = "";
-
-    }
-
-}
-
-
-
-/* Previous image */
-
-function showPrevious(){
-
-    if(galleryItems.length === 0)
-        return;
-
-
-    currentImageIndex--;
-
-    if(currentImageIndex < 0){
-
-        currentImageIndex =
-            galleryItems.length - 1;
-
-    }
-
-
-    openLightbox(
-        currentImageIndex
-    );
-
-}
-
-
-
-/* Next image */
-
-function showNext(){
-
-    if(galleryItems.length === 0)
-        return;
-
-
-    currentImageIndex++;
-
-    if(
-        currentImageIndex >=
-        galleryItems.length
-    ){
-
-        currentImageIndex = 0;
-
-    }
-
-
-    openLightbox(
-        currentImageIndex
-    );
-
-}
-
-
-
-/* Gallery click */
-
-galleryItems.forEach(
-    (item,index) => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                openLightbox(
-                    index
-                );
-
-            }
-        );
-
-    }
-);
-
-
-
-/* Buttons */
-
-if(lightboxClose){
-
-    lightboxClose.addEventListener(
-        "click",
-        closeLightbox
-    );
-
-}
-
-
-if(lightboxPrev){
-
-    lightboxPrev.addEventListener(
-        "click",
-        showPrevious
-    );
-
-}
-
-
-if(lightboxNext){
-
-    lightboxNext.addEventListener(
-        "click",
-        showNext
-    );
-
-}
-
-
-
-/* =========================================
-   KEYBOARD GALLERY CONTROL
-========================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if(
-            !lightbox ||
-            !lightbox.classList.contains(
-                "active"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        if(event.key === "ArrowLeft"){
-
-            showPrevious();
-
-        }
-
-
-        if(event.key === "ArrowRight"){
-
-            showNext();
-
-        }
-
-    }
-);
-
-
-
-/* =========================================
-   CLICK OUTSIDE IMAGE
-========================================= */
-
-if(lightbox){
-
-    lightbox.addEventListener(
-        "click",
-        event => {
-
-            if(
-                event.target === lightbox
-            ){
+            if (
+                lightbox &&
+                lightbox.classList.contains("active")
+            ) {
 
                 closeLightbox();
 
@@ -627,217 +211,989 @@ if(lightbox){
         }
     );
 
-}
 
 
+    /* =====================================
+       05 — HEADER SCROLL EFFECT
+    ====================================== */
 
-/* =========================================
-   TOUCH / SWIPE SUPPORT
-========================================= */
+    function handleHeader() {
 
-let touchStartX = 0;
-let touchEndX = 0;
-
-
-if(lightbox){
-
-    lightbox.addEventListener(
-        "touchstart",
-        event => {
-
-            touchStartX =
-                event.changedTouches[0].screenX;
-
-        },
-        {passive:true}
-    );
+        if (!header) return;
 
 
-    lightbox.addEventListener(
-        "touchend",
-        event => {
+        if (window.scrollY > 45) {
 
-            touchEndX =
-                event.changedTouches[0].screenX;
+            header.classList.add("scrolled");
 
+        } else {
 
-            const distance =
-                touchEndX -
-                touchStartX;
+            header.classList.remove("scrolled");
 
+        }
 
-            if(Math.abs(distance) < 50)
-                return;
+    }
 
 
-            if(distance > 0){
-
-                showPrevious();
-
-            }else{
-
-                showNext();
-
-            }
-
-        },
-        {passive:true}
-    );
-
-}
-
-
-
-/* =========================================
-   BACK TO TOP
-========================================= */
-
-const backTop =
-    document.querySelector(
-        ".back-top"
-    );
-
-
-if(backTop){
-
-    backTop.addEventListener(
-        "click",
-        event => {
-
-            event.preventDefault();
-
-
-            window.scrollTo({
-
-                top:0,
-
-                behavior:"smooth"
-
-            });
-
+    window.addEventListener(
+        "scroll",
+        handleHeader,
+        {
+            passive: true
         }
     );
 
-}
+
+    handleHeader();
 
 
 
-/* =========================================
-   YEAR
-========================================= */
+    /* =====================================
+       06 — ACTIVE NAVIGATION
+    ====================================== */
 
-const yearElement =
-    document.getElementById(
-        "year"
+    function updateActiveNav() {
+
+        if (!sections.length) {
+            return;
+        }
+
+
+        let currentSection = "home";
+
+        const scrollPosition =
+            window.scrollY + 220;
+
+
+        sections.forEach(section => {
+
+            const sectionTop =
+                section.offsetTop;
+
+            if (
+                scrollPosition >=
+                sectionTop
+            ) {
+
+                currentSection =
+                    section.getAttribute("id");
+
+            }
+
+        });
+
+
+        navLinks.forEach(link => {
+
+            const href =
+                link.getAttribute("href");
+
+
+            link.classList.toggle(
+                "active",
+                href === `#${currentSection}`
+            );
+
+        });
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateActiveNav,
+        {
+            passive: true
+        }
     );
 
 
-if(yearElement){
-
-    yearElement.textContent =
-        new Date().getFullYear();
-
-}
+    updateActiveNav();
 
 
 
-/* =========================================
-   IMAGE ERROR HANDLING
-========================================= */
+    /* =====================================
+       07 — SMOOTH ANCHOR NAVIGATION
+    ====================================== */
 
-document
-    .querySelectorAll("img")
-    .forEach(img => {
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
 
-        img.addEventListener(
-            "error",
-            () => {
+            link.addEventListener(
+                "click",
+                event => {
 
-                img.classList.add(
-                    "image-error"
+                    const targetId =
+                        link.getAttribute("href");
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    let target;
+
+
+                    try {
+
+                        target =
+                            document.querySelector(
+                                targetId
+                            );
+
+                    } catch {
+
+                        return;
+
+                    }
+
+
+                    if (!target) {
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    closeMenu();
+
+
+                    target.scrollIntoView({
+
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "start"
+
+                    });
+
+
+                    /*
+                     * Keep URL hash updated
+                     * without triggering jump.
+                     */
+
+                    if (
+                        history.replaceState
+                    ) {
+
+                        history.replaceState(
+                            null,
+                            "",
+                            targetId
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /* =====================================
+       08 — SCROLL REVEAL
+    ====================================== */
+
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12,
+
+                    rootMargin:
+                        "0px 0px -45px 0px"
+                }
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                revealObserver.observe(
+                    element
                 );
 
             }
         );
 
-    });
+    } else {
+
+        revealElements.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+    }
 
 
 
-/* =========================================
-   PREVENT BROKEN HASH JUMP
-========================================= */
+    /* =====================================
+       09 — LIGHTBOX STATE
+    ====================================== */
 
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(link => {
+    let currentImageIndex = 0;
 
-        link.addEventListener(
+
+
+    /* =====================================
+       10 — UPDATE LIGHTBOX
+    ====================================== */
+
+    function updateLightbox(index) {
+
+        if (
+            !lightbox ||
+            !lightboxImage ||
+            !galleryItems.length
+        ) {
+
+            return;
+
+        }
+
+
+        const safeIndex =
+            (
+                index +
+                galleryItems.length
+            ) %
+            galleryItems.length;
+
+
+        currentImageIndex =
+            safeIndex;
+
+
+        const item =
+            galleryItems[
+                currentImageIndex
+            ];
+
+
+        const image =
+            item.dataset.image;
+
+
+        const title =
+            item.dataset.title || "";
+
+
+        if (!image) {
+            return;
+        }
+
+
+        /*
+         * Fade old image before
+         * loading the new one.
+         */
+
+        lightboxImage.style.opacity =
+            "0";
+
+
+        const preload =
+            new Image();
+
+
+        preload.onload = () => {
+
+            lightboxImage.src =
+                image;
+
+
+            lightboxImage.alt =
+                title ||
+                "Kapil Sharma Adhikari travel photograph";
+
+
+            requestAnimationFrame(() => {
+
+                lightboxImage.style.opacity =
+                    "1";
+
+            });
+
+        };
+
+
+        preload.onerror = () => {
+
+            lightboxImage.src =
+                image;
+
+
+            lightboxImage.alt =
+                "Travel photograph";
+
+            lightboxImage.style.opacity =
+                "1";
+
+        };
+
+
+        preload.src =
+            image;
+
+
+        if (lightboxTitle) {
+
+            lightboxTitle.textContent =
+                title;
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       11 — OPEN LIGHTBOX
+    ====================================== */
+
+    function openLightbox(index) {
+
+        if (
+            !lightbox ||
+            !galleryItems.length
+        ) {
+
+            return;
+
+        }
+
+
+        updateLightbox(index);
+
+
+        lightbox.classList.add(
+            "active"
+        );
+
+
+        lightbox.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        body.classList.add(
+            "lightbox-open"
+        );
+
+
+        loadIcons();
+
+
+        /*
+         * Move keyboard focus to close
+         * button for accessibility.
+         */
+
+        if (lightboxClose) {
+
+            setTimeout(() => {
+
+                lightboxClose.focus();
+
+            }, 50);
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       12 — CLOSE LIGHTBOX
+    ====================================== */
+
+    function closeLightbox() {
+
+        if (!lightbox) {
+            return;
+        }
+
+
+        lightbox.classList.remove(
+            "active"
+        );
+
+
+        lightbox.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        body.classList.remove(
+            "lightbox-open"
+        );
+
+
+        if (lightboxImage) {
+
+            lightboxImage.style.opacity =
+                "0";
+
+            lightboxImage.removeAttribute(
+                "src"
+            );
+
+        }
+
+
+        if (lightboxTitle) {
+
+            lightboxTitle.textContent =
+                "";
+
+        }
+
+    }
+
+
+
+    /* =====================================
+       13 — PREVIOUS IMAGE
+    ====================================== */
+
+    function showPrevious() {
+
+        if (!galleryItems.length) {
+            return;
+        }
+
+
+        updateLightbox(
+            currentImageIndex - 1
+        );
+
+    }
+
+
+
+    /* =====================================
+       14 — NEXT IMAGE
+    ====================================== */
+
+    function showNext() {
+
+        if (!galleryItems.length) {
+            return;
+        }
+
+
+        updateLightbox(
+            currentImageIndex + 1
+        );
+
+    }
+
+
+
+    /* =====================================
+       15 — GALLERY CLICK
+    ====================================== */
+
+    galleryItems.forEach(
+        (item, index) => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    openLightbox(
+                        index
+                    );
+
+                }
+            );
+
+
+            /*
+             * Keyboard support for
+             * gallery buttons.
+             */
+
+            item.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+                        openLightbox(
+                            index
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================
+       16 — LIGHTBOX BUTTONS
+    ====================================== */
+
+    if (lightboxClose) {
+
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+    }
+
+
+    if (lightboxPrev) {
+
+        lightboxPrev.addEventListener(
             "click",
             event => {
 
-                const targetId =
-                    link.getAttribute(
-                        "href"
-                    );
+                event.stopPropagation();
+
+                showPrevious();
+
+            }
+        );
+
+    }
 
 
-                if(
-                    !targetId ||
-                    targetId === "#"
-                ){
+    if (lightboxNext) {
+
+        lightboxNext.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                showNext();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================
+       17 — KEYBOARD GALLERY CONTROL
+    ====================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                !lightbox ||
+                !lightbox.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            switch (event.key) {
+
+                case "ArrowLeft":
+
+                    event.preventDefault();
+
+                    showPrevious();
+
+                    break;
+
+
+                case "ArrowRight":
+
+                    event.preventDefault();
+
+                    showNext();
+
+                    break;
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================
+       18 — CLICK OUTSIDE LIGHTBOX
+    ====================================== */
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================
+       19 — TOUCH / SWIPE
+    ====================================== */
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "touchstart",
+            event => {
+
+                const touch =
+                    event.changedTouches[0];
+
+
+                if (!touch) return;
+
+
+                touchStartX =
+                    touch.screenX;
+
+
+                touchStartY =
+                    touch.screenY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        lightbox.addEventListener(
+            "touchend",
+            event => {
+
+                const touch =
+                    event.changedTouches[0];
+
+
+                if (!touch) return;
+
+
+                const touchEndX =
+                    touch.screenX;
+
+
+                const touchEndY =
+                    touch.screenY;
+
+
+                const distanceX =
+                    touchEndX -
+                    touchStartX;
+
+
+                const distanceY =
+                    touchEndY -
+                    touchStartY;
+
+
+                /*
+                 * Ignore vertical gestures.
+                 */
+
+                if (
+                    Math.abs(distanceX) < 55 ||
+                    Math.abs(distanceX) <
+                    Math.abs(distanceY)
+                ) {
 
                     return;
 
                 }
 
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
+                if (distanceX > 0) {
 
+                    showPrevious();
 
-                if(!target){
+                } else {
 
-                    return;
+                    showNext();
 
                 }
 
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+
+
+
+    /* =====================================
+       20 — BACK TO TOP
+    ====================================== */
+
+    if (backTop) {
+
+        backTop.addEventListener(
+            "click",
+            event => {
 
                 event.preventDefault();
 
 
-                target.scrollIntoView({
+                window.scrollTo({
 
-                    behavior:"smooth",
+                    top: 0,
 
-                    block:"start"
+                    behavior:
+                        "smooth"
 
                 });
 
             }
         );
 
-    });
+    }
 
 
 
-/* =========================================
-   PAGE LOADED
-========================================= */
+    /* =====================================
+       21 — YEAR
+    ====================================== */
 
-window.addEventListener(
-    "load",
-    () => {
+    const currentYear =
+        new Date().getFullYear();
 
-        loadIcons();
 
-        handleHeader();
+    if (yearElement) {
 
-        updateActiveNav();
+        yearElement.textContent =
+            currentYear;
 
     }
-);
+
+
+    if (mobileYearElement) {
+
+        mobileYearElement.textContent =
+            currentYear;
+
+    }
+
+
+
+    /* =====================================
+       22 — IMAGE ERROR HANDLING
+    ====================================== */
+
+    document
+        .querySelectorAll("img")
+        .forEach(img => {
+
+            img.addEventListener(
+                "error",
+                () => {
+
+                    img.classList.add(
+                        "image-error"
+                    );
+
+                    img.setAttribute(
+                        "data-image-error",
+                        "true"
+                    );
+
+                }
+            );
+
+        });
+
+
+
+    /* =====================================
+       23 — IMAGE LOADED STATE
+    ====================================== */
+
+    document
+        .querySelectorAll("img")
+        .forEach(img => {
+
+            if (img.complete) {
+
+                img.classList.add(
+                    "image-loaded"
+                );
+
+            } else {
+
+                img.addEventListener(
+                    "load",
+                    () => {
+
+                        img.classList.add(
+                            "image-loaded"
+                        );
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+            }
+
+        });
+
+
+
+    /* =====================================
+       24 — CLOSE MENU ON RESIZE
+    ====================================== */
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            if (
+                window.innerWidth > 850 &&
+                mobileMenu &&
+                mobileMenu.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeMenu();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+
+    /* =====================================
+       25 — PREVENT LIGHTBOX SCROLL
+    ====================================== */
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "wheel",
+            event => {
+
+                if (
+                    lightbox.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+    }
+
+
+
+    /* =====================================
+       26 — PAGE LOAD
+    ====================================== */
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            loadIcons();
+
+            handleHeader();
+
+            updateActiveNav();
+
+        }
+    );
+
+
+});
