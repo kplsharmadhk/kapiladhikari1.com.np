@@ -1,10 +1,21 @@
-const body = document.body;
+document.addEventListener("DOMContentLoaded", () => {
+    const openButton = document.querySelector(".open-button");
+
+    if (openButton) {
+        openButton.addEventListener("click", openSurprise);
+    }
+});
 
 function openSurprise() {
     createHearts();
     createSparkles();
 
     const card = document.querySelector(".surprise-card");
+
+    if (!card) {
+        showMissingMessage();
+        return;
+    }
 
     card.style.transition = "all 0.8s ease";
     card.style.transform = "scale(0.92)";
@@ -17,6 +28,8 @@ function openSurprise() {
 
 function showMissingMessage() {
     const page = document.querySelector(".surprise-page");
+
+    if (!page) return;
 
     page.innerHTML = `
         <div class="missing-screen">
@@ -50,14 +63,19 @@ function showMissingMessage() {
                     from being missed. ❤️
                 </p>
 
-                <button class="continue-button" onclick="showNextMessage()">
+                <button class="continue-button" id="more-button">
                     There's more... 💌
                 </button>
 
             </div>
-
         </div>
     `;
+
+    const moreButton = document.getElementById("more-button");
+
+    if (moreButton) {
+        moreButton.addEventListener("click", showNextMessage);
+    }
 
     startTyping();
 }
@@ -70,6 +88,8 @@ function startTyping() {
 
     const element = document.getElementById("typing-message");
 
+    if (!element) return;
+
     let index = 0;
 
     function type() {
@@ -77,7 +97,7 @@ function startTyping() {
             element.textContent += message.charAt(index);
             index++;
 
-            setTimeout(type, 45);
+            setTimeout(type, 42);
         }
     }
 
@@ -86,6 +106,8 @@ function startTyping() {
 
 function showNextMessage() {
     const page = document.querySelector(".surprise-page");
+
+    if (!page) return;
 
     page.innerHTML = `
         <div class="missing-screen second-screen">
@@ -117,7 +139,7 @@ function showNextMessage() {
                     ❤️ I just wanted you to know.
                 </p>
 
-                <button class="continue-button" onclick="showMeetQuestion()">
+                <button class="continue-button" id="meet-button">
                     One Last Thing... ✨
                 </button>
 
@@ -125,10 +147,18 @@ function showNextMessage() {
 
         </div>
     `;
+
+    const meetButton = document.getElementById("meet-button");
+
+    if (meetButton) {
+        meetButton.addEventListener("click", showMeetQuestion);
+    }
 }
 
 function showMeetQuestion() {
     const page = document.querySelector(".surprise-page");
+
+    if (!page) return;
 
     page.innerHTML = `
         <div class="missing-screen">
@@ -153,7 +183,7 @@ function showMeetQuestion() {
                     अब भेट्ने एउटा बहाना त चाहिन्छ नि। ❤️
                 </p>
 
-                <button class="continue-button" onclick="showDatePicker()">
+                <button class="continue-button" id="date-button">
                     भेट्ने समय छानौँ 🗓️
                 </button>
 
@@ -161,10 +191,18 @@ function showMeetQuestion() {
 
         </div>
     `;
+
+    const dateButton = document.getElementById("date-button");
+
+    if (dateButton) {
+        dateButton.addEventListener("click", showDatePicker);
+    }
 }
 
 function showDatePicker() {
     const page = document.querySelector(".surprise-page");
+
+    if (!page) return;
 
     page.innerHTML = `
         <div class="missing-screen">
@@ -210,7 +248,7 @@ function showDatePicker() {
 
                 </div>
 
-                <button class="continue-button" onclick="confirmMeeting()">
+                <button class="continue-button" id="confirm-button">
                     यो समय Fix गरौँ ❤️
                 </button>
 
@@ -218,11 +256,22 @@ function showDatePicker() {
 
         </div>
     `;
+
+    const confirmButton = document.getElementById("confirm-button");
+
+    if (confirmButton) {
+        confirmButton.addEventListener("click", confirmMeeting);
+    }
 }
 
 function confirmMeeting() {
-    const date = document.getElementById("meet-date").value;
-    const time = document.getElementById("meet-time").value;
+    const dateInput = document.getElementById("meet-date");
+    const timeInput = document.getElementById("meet-time");
+
+    if (!dateInput || !timeInput) return;
+
+    const date = dateInput.value;
+    const time = timeInput.value;
 
     if (!date || !time) {
         alert("कृपया मिति र समय दुवै छान्नुहोस् ❤️");
@@ -231,12 +280,14 @@ function confirmMeeting() {
 
     const selectedDate = new Date(`${date}T${time}`);
 
-    const formattedDate =
-        selectedDate.toLocaleDateString("en-GB", {
+    const formattedDate = selectedDate.toLocaleDateString(
+        "en-GB",
+        {
             day: "numeric",
             month: "long",
             year: "numeric"
-        });
+        }
+    );
 
     const page = document.querySelector(".surprise-page");
 
@@ -290,16 +341,18 @@ function confirmMeeting() {
 }
 
 function createHearts() {
+    const hearts = ["❤️", "💗", "💖", "💕", "💞"];
+
     for (let i = 0; i < 18; i++) {
         const heart = document.createElement("div");
 
         heart.className = "background-heart";
 
-        const hearts = ["❤️", "💗", "💖", "💕", "💞"];
         heart.textContent =
             hearts[Math.floor(Math.random() * hearts.length)];
 
         heart.style.left = Math.random() * 100 + "%";
+
         heart.style.animationDelay =
             Math.random() * 5 + "s";
 
@@ -321,8 +374,11 @@ function createSparkles() {
         sparkle.className = "sparkle";
         sparkle.textContent = "✦";
 
-        sparkle.style.left = Math.random() * 100 + "%";
-        sparkle.style.top = Math.random() * 100 + "%";
+        sparkle.style.left =
+            Math.random() * 100 + "%";
+
+        sparkle.style.top =
+            Math.random() * 100 + "%";
 
         sparkle.style.animationDelay =
             Math.random() * 3 + "s";
