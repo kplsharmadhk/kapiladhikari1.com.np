@@ -26,6 +26,149 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 700);
     }
 
+
+    /* =====================================================
+       CHARACTER REVEAL ENGINE
+       Each visible character appears naturally.
+    ===================================================== */
+
+    function prepareCharacterAnimation(container) {
+        if (!container) {
+            return;
+        }
+
+        const elements = container.querySelectorAll(
+            ".story-label, .story-title, .story-text, .memory-word, " +
+            ".main-love-title, .miss-you, .quote-card p, .final-title, " +
+            ".final-message p, .final-goodbye, .signature"
+        );
+
+        let globalDelay = 0;
+
+        elements.forEach(function (element) {
+            if (element.dataset.revealed === "true") {
+                return;
+            }
+
+            element.dataset.revealed = "true";
+
+            revealTextNodes(element, globalDelay);
+
+            const characterCount =
+                getTextCharacterCount(element);
+
+            globalDelay += Math.min(
+                characterCount * 18,
+                250
+            );
+        });
+    }
+
+
+    function revealTextNodes(element, baseDelay) {
+        const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT
+        );
+
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach(function (textNode) {
+            const text = textNode.nodeValue;
+
+            if (!text || !text.trim()) {
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            /*
+             * Intl.Segmenter helps Nepali Unicode characters
+             * stay visually correct instead of breaking random
+             * Unicode code points.
+             */
+            let segments;
+
+            if (
+                typeof Intl !== "undefined" &&
+                Intl.Segmenter
+            ) {
+                const segmenter = new Intl.Segmenter(
+                    "ne",
+                    {
+                        granularity: "grapheme"
+                    }
+                );
+
+                segments = Array.from(
+                    segmenter.segment(text),
+                    function (item) {
+                        return item.segment;
+                    }
+                );
+            } else {
+                segments = Array.from(text);
+            }
+
+            let localIndex = 0;
+
+            segments.forEach(function (character) {
+                if (character === "\n") {
+                    fragment.appendChild(
+                        document.createTextNode("\n")
+                    );
+
+                    return;
+                }
+
+                if (character === " ") {
+                    fragment.appendChild(
+                        document.createTextNode(" ")
+                    );
+
+                    return;
+                }
+
+                const span = document.createElement("span");
+
+                span.className = "reveal-char";
+
+                span.textContent = character;
+
+                span.style.animationDelay =
+                    (
+                        baseDelay +
+                        localIndex * 24
+                    ) + "ms";
+
+                fragment.appendChild(span);
+
+                localIndex++;
+            });
+
+            textNode.parentNode.replaceChild(
+                fragment,
+                textNode
+            );
+        });
+    }
+
+
+    function getTextCharacterCount(element) {
+        const text = element.textContent || "";
+
+        return Array.from(text.trim()).length;
+    }
+
+
+    /* =====================================================
+       PAGE 1
+    ===================================================== */
+
     function showFirstMessage() {
         page.innerHTML = `
             <section class="story-screen">
@@ -69,8 +212,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .getElementById("story-next-one")
-            .addEventListener("click", showSecondMessage);
+            .addEventListener(
+                "click",
+                showSecondMessage
+            );
     }
+
+
+    /* =====================================================
+       PAGE 2
+    ===================================================== */
 
     function showSecondMessage() {
         page.innerHTML = `
@@ -119,8 +270,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .getElementById("story-next-two")
-            .addEventListener("click", showThirdMessage);
+            .addEventListener(
+                "click",
+                showThirdMessage
+            );
     }
+
+
+    /* =====================================================
+       PAGE 3
+    ===================================================== */
 
     function showThirdMessage() {
         page.innerHTML = `
@@ -174,8 +333,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .getElementById("story-next-three")
-            .addEventListener("click", showMainMessage);
+            .addEventListener(
+                "click",
+                showMainMessage
+            );
     }
+
+
+    /* =====================================================
+       MAIN EMOTIONAL PAGE
+    ===================================================== */
 
     function showMainMessage() {
         page.innerHTML = `
@@ -232,8 +399,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .getElementById("story-next-four")
-            .addEventListener("click", showReasonMessage);
+            .addEventListener(
+                "click",
+                showReasonMessage
+            );
     }
+
+
+    /* =====================================================
+       WHY THIS PAGE
+    ===================================================== */
 
     function showReasonMessage() {
         page.innerHTML = `
@@ -255,7 +430,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     <div class="quote-card">
 
-                        <span class="quote-mark">“</span>
+                        <span class="quote-mark">
+                            “
+                        </span>
 
                         <p>
                             तिमीलाई केही भन्न मन लाग्यो,
@@ -265,7 +442,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             बस्न मन लागेन।
                         </p>
 
-                        <span class="quote-mark closing">”</span>
+                        <span class="quote-mark closing">
+                            ”
+                        </span>
 
                     </div>
 
@@ -295,8 +474,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .getElementById("story-next-five")
-            .addEventListener("click", showFinalMessage);
+            .addEventListener(
+                "click",
+                showFinalMessage
+            );
     }
+
+
+    /* =====================================================
+       FINAL PAGE
+    ===================================================== */
 
     function showFinalMessage() {
         page.innerHTML = `
@@ -353,7 +540,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     </p>
 
                     <div class="signature">
-                        <span>Made with a little extra love.</span>
+                        <span>
+                            Made with a little extra love.
+                        </span>
                     </div>
 
                 </div>
@@ -366,28 +555,67 @@ document.addEventListener("DOMContentLoaded", function () {
         animateStory();
     }
 
+
+    /* =====================================================
+       STORY ANIMATION
+    ===================================================== */
+
     function animateStory() {
-        const content = document.querySelector(".story-content");
+        const content =
+            document.querySelector(
+                ".story-content"
+            );
 
         if (!content) {
             return;
         }
 
         requestAnimationFrame(function () {
-            content.classList.add("story-visible");
+
+            content.classList.add(
+                "story-visible"
+            );
+
+            /*
+             * Give the screen a moment to appear,
+             * then start character-by-character reveal.
+             */
+            setTimeout(function () {
+                prepareCharacterAnimation(
+                    content
+                );
+            }, 220);
         });
     }
 
+
+    /* =====================================================
+       FLOATING PARTICLES
+    ===================================================== */
+
     function createFloatingParticles() {
-        const symbols = ["·", "✦", "✧", "♡"];
+        const symbols = [
+            "·",
+            "✦",
+            "✧",
+            "♡"
+        ];
 
         for (let i = 0; i < 24; i++) {
-            const particle = document.createElement("span");
 
-            particle.className = "floating-particle";
+            const particle =
+                document.createElement("span");
+
+            particle.className =
+                "floating-particle";
 
             particle.textContent =
-                symbols[Math.floor(Math.random() * symbols.length)];
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
 
             particle.style.left =
                 Math.random() * 100 + "%";
@@ -396,12 +624,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 Math.random() * 3 + "s";
 
             particle.style.animationDuration =
-                5 + Math.random() * 7 + "s";
+                5 +
+                Math.random() * 7 +
+                "s";
 
             particle.style.fontSize =
-                7 + Math.random() * 12 + "px";
+                7 +
+                Math.random() * 12 +
+                "px";
 
-            document.body.appendChild(particle);
+            document.body.appendChild(
+                particle
+            );
 
             setTimeout(function () {
                 particle.remove();
@@ -409,37 +643,75 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
+    /* =====================================================
+       HEART BURST
+    ===================================================== */
+
     function createHeartBurst() {
-        const hearts = ["♡", "♥", "✦"];
+        const hearts = [
+            "♡",
+            "♥",
+            "✦"
+        ];
 
         for (let i = 0; i < 14; i++) {
-            const heart = document.createElement("span");
 
-            heart.className = "heart-particle";
+            const heart =
+                document.createElement("span");
+
+            heart.className =
+                "heart-particle";
 
             heart.textContent =
-                hearts[Math.floor(Math.random() * hearts.length)];
+                hearts[
+                    Math.floor(
+                        Math.random() *
+                        hearts.length
+                    )
+                ];
 
             heart.style.left =
-                50 + (Math.random() * 40 - 20) + "%";
+                50 +
+                (
+                    Math.random() * 40 -
+                    20
+                ) +
+                "%";
 
             heart.style.top =
-                48 + (Math.random() * 25 - 12) + "%";
+                48 +
+                (
+                    Math.random() * 25 -
+                    12
+                ) +
+                "%";
 
             heart.style.setProperty(
                 "--x",
-                (Math.random() * 260 - 130) + "px"
+                (
+                    Math.random() * 260 -
+                    130
+                ) +
+                "px"
             );
 
             heart.style.setProperty(
                 "--y",
-                -(80 + Math.random() * 220) + "px"
+                -(
+                    80 +
+                    Math.random() * 220
+                ) +
+                "px"
             );
 
             heart.style.animationDelay =
-                Math.random() * 0.4 + "s";
+                Math.random() * 0.4 +
+                "s";
 
-            document.body.appendChild(heart);
+            document.body.appendChild(
+                heart
+            );
 
             setTimeout(function () {
                 heart.remove();
@@ -447,26 +719,43 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
+    /* =====================================================
+       FINAL SPARKLES
+    ===================================================== */
+
     function createSparkleField() {
         for (let i = 0; i < 30; i++) {
-            const sparkle = document.createElement("span");
 
-            sparkle.className = "final-sparkle";
-            sparkle.textContent = "✦";
+            const sparkle =
+                document.createElement("span");
+
+            sparkle.className =
+                "final-sparkle";
+
+            sparkle.textContent =
+                "✦";
 
             sparkle.style.left =
-                Math.random() * 100 + "%";
+                Math.random() * 100 +
+                "%";
 
             sparkle.style.top =
-                Math.random() * 100 + "%";
+                Math.random() * 100 +
+                "%";
 
             sparkle.style.animationDelay =
-                Math.random() * 4 + "s";
+                Math.random() * 4 +
+                "s";
 
             sparkle.style.animationDuration =
-                3 + Math.random() * 4 + "s";
+                3 +
+                Math.random() * 4 +
+                "s";
 
-            document.body.appendChild(sparkle);
+            document.body.appendChild(
+                sparkle
+            );
 
             setTimeout(function () {
                 sparkle.remove();
