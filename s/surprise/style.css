@@ -1,1 +1,480 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+    --navy: #0a1b3a;
+    --pink: #ff4f9a;
+    --purple: #8b5cf6;
+    --blue: #38bdf8;
+    --orange: #ff9f43;
+    --white: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 79, 154, 0.45), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(139, 92, 246, 0.45), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.35), transparent 35%),
+        linear-gradient(135deg, #090d24, #24113d 45%, #101d43);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.surprise-page {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.glow-one {
+    top: -100px;
+    left: -100px;
+    background: #ff4f9a;
+}
+
+.glow-two {
+    right: -100px;
+    bottom: -100px;
+    background: #7c3aed;
+}
+
+.surprise-card {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 520px);
+    padding: 48px 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    animation: cardAppear 0.9s ease both;
+}
+
+.heart-icon {
+    font-size: 58px;
+    margin-bottom: 18px;
+    animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.small-text,
+.tiny-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.surprise-card h1 {
+    margin: 18px 0;
+    font-size: clamp(58px, 15vw, 92px);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -4px;
+}
+
+.surprise-card h1 span,
+.message-card h1 span {
+    background: linear-gradient(
+        90deg,
+        #ff78b7,
+        #c084fc,
+        #60a5fa,
+        #ffb454
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 5s linear infinite;
+}
+
+.description {
+    margin: 22px 0 30px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.open-button,
+.continue-button {
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 15px 26px;
+    background: linear-gradient(
+        135deg,
+        #ff4f9a,
+        #8b5cf6
+    );
+    box-shadow:
+        0 12px 30px rgba(255, 79, 154, 0.28);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.open-button {
+    font-size: 16px;
+}
+
+.open-button span {
+    margin-left: 8px;
+}
+
+.open-button:hover,
+.continue-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 16px 38px rgba(139, 92, 246, 0.4);
+}
+
+.open-button:active,
+.continue-button:active {
+    transform: scale(0.97);
+}
+
+.hint {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.missing-screen {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    animation: screenAppear 0.7s ease both;
+}
+
+.message-card {
+    width: min(100%, 580px);
+    padding: 42px 28px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.big-heart {
+    font-size: 58px;
+    margin-bottom: 15px;
+}
+
+.pulse {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.message-card h1 {
+    margin: 18px 0 25px;
+    font-size: clamp(45px, 11vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -3px;
+}
+
+.main-message {
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.bottom-message,
+.love-line {
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.love-line {
+    color: #ff9dcc;
+    font-weight: 600;
+}
+
+.divider {
+    width: 80px;
+    height: 2px;
+    margin: 25px auto;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        #ff4f9a,
+        #8b5cf6,
+        #38bdf8
+    );
+}
+
+.continue-button {
+    margin-top: 28px;
+}
+
+.floating-heart {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: floatAround 7s ease-in-out infinite;
+}
+
+.heart-1 {
+    top: 10%;
+    left: 8%;
+    font-size: 26px;
+}
+
+.heart-2 {
+    top: 20%;
+    right: 9%;
+    font-size: 20px;
+    animation-delay: 1s;
+}
+
+.heart-3 {
+    bottom: 18%;
+    left: 10%;
+    font-size: 30px;
+    animation-delay: 2s;
+}
+
+.heart-4 {
+    bottom: 12%;
+    right: 12%;
+    font-size: 24px;
+    animation-delay: 3s;
+}
+
+.heart-5 {
+    top: 45%;
+    right: 4%;
+    font-size: 18px;
+    animation-delay: 1.5s;
+}
+
+.background-heart {
+    position: fixed;
+    bottom: -50px;
+    z-index: 20;
+    pointer-events: none;
+    font-size: 22px;
+    animation: heartRise linear forwards;
+}
+
+.sparkle {
+    position: fixed;
+    z-index: 30;
+    pointer-events: none;
+    color: #fff;
+    font-size: 14px;
+    animation: sparkleAnimation 2s ease-in-out forwards;
+}
+
+.date-box {
+    margin: 25px auto;
+    width: min(100%, 360px);
+    display: grid;
+    gap: 10px;
+    text-align: left;
+}
+
+.date-box label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.date-box input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    outline: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.date-box input:focus {
+    border-color: rgba(255, 120, 183, 0.8);
+}
+
+.meeting-details {
+    display: grid;
+    gap: 12px;
+    margin: 25px auto;
+    width: min(100%, 360px);
+}
+
+.meeting-details div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.meeting-details span {
+    font-size: 22px;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes screenAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes heartbeat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@keyframes gradientMove {
+    to {
+        background-position: 250% center;
+    }
+}
+
+@keyframes floatAround {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-22px) rotate(8deg);
+    }
+}
+
+@keyframes heartRise {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sparkleAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@media (max-width: 520px) {
+    .surprise-page {
+        padding: 16px;
+    }
+
+    .surprise-card {
+        padding: 38px 22px;
+        border-radius: 26px;
+    }
+
+    .surprise-card h1 {
+        font-size: 64px;
+    }
+
+    .message-card {
+        padding: 36px 21px;
+    }
+
+    .message-card h1 {
+        font-size: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
