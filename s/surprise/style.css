@@ -570,7 +570,7 @@ body {
 
 /* =========================================================
    STORY SCREEN
-   FULL SCREEN — LIKE FIRST PAGE
+   FULL SCREEN
 ========================================================= */
 
 .story-screen {
@@ -586,10 +586,14 @@ body {
 
     overflow: hidden;
 
+    /*
+       Extra bottom space added so the floating
+       navigation can never cover the story text.
+    */
     padding:
         125px
         22px
-        105px;
+        145px;
 
     text-align: center;
 
@@ -1032,18 +1036,20 @@ body {
 
 
 /* =========================================================
-   BOTTOM BUTTON
+   STORY NAVIGATION
+   FLOATING • CENTERED • CLEAR
 ========================================================= */
 
 .story-button {
     position: fixed;
 
     left: 50%;
-    bottom: 22px;
+    bottom: 11px;
 
-    z-index: 50;
+    z-index: 100;
 
-    min-width: 160px;
+    min-width: 154px;
+    min-height: 50px;
 
     transform:
         translateX(-50%);
@@ -1052,40 +1058,54 @@ body {
     align-items: center;
     justify-content: center;
 
-    gap: 13px;
+    gap: 10px;
 
     padding:
         13px
-        20px;
+        22px;
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.12);
+        rgba(255, 255, 255, 0.16);
 
     border-radius: 999px;
 
     background:
-        rgba(14, 11, 20, 0.72);
+        linear-gradient(
+            135deg,
+            rgba(255, 120, 163, 0.18),
+            rgba(132, 105, 255, 0.16)
+        );
 
     color:
-        rgba(255, 242, 247, 0.86);
+        rgba(255, 247, 250, 0.94);
 
     font-family: inherit;
 
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.01em;
 
     cursor: pointer;
 
     box-shadow:
-        0 15px 45px
-        rgba(0, 0, 0, 0.35);
+        0 12px 35px
+        rgba(0, 0, 0, 0.48),
 
-    backdrop-filter: blur(16px);
+        0 0 28px
+        rgba(255, 105, 157, 0.11);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    -webkit-tap-highlight-color: transparent;
 
     transition:
-        transform 0.3s var(--ease),
-        border-color 0.3s ease,
-        background 0.3s ease;
+        transform 0.28s var(--ease),
+        border-color 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
 }
 
 .story-button:hover {
@@ -1094,22 +1114,35 @@ body {
         translateY(-3px);
 
     border-color:
-        rgba(255, 150, 182, 0.30);
+        rgba(255, 157, 188, 0.34);
 
     background:
-        rgba(31, 22, 38, 0.80);
+        linear-gradient(
+            135deg,
+            rgba(255, 120, 163, 0.27),
+            rgba(132, 105, 255, 0.23)
+        );
+
+    box-shadow:
+        0 16px 40px
+        rgba(0, 0, 0, 0.50),
+
+        0 0 34px
+        rgba(255, 105, 157, 0.17);
 }
 
 .story-button:active {
     transform:
         translateX(-50%)
-        scale(0.96);
+        scale(0.95);
 }
 
 .story-button span:last-child {
-    color: var(--pink);
+    color: #ff9fbd;
 
     font-size: 17px;
+
+    line-height: 1;
 }
 
 
@@ -1576,7 +1609,14 @@ body {
         padding:
             70px
             40px
-            90px;
+            125px;
+    }
+
+    .story-button {
+        bottom: 16px;
+
+        min-width: 158px;
+        min-height: 50px;
     }
 }
 
@@ -1595,21 +1635,36 @@ body {
         padding:
             120px
             20px
-            105px;
+            150px;
     }
 
     .story-content {
         width: 100%;
+
         max-height:
-            calc(100svh - 225px);
+            calc(100svh - 270px);
 
         overflow: visible;
 
         justify-content: center;
     }
 
+    /*
+       Navigation sits lower and independently
+       from the story content.
+    */
+
     .story-button {
-        bottom: 21px;
+        bottom: 11px;
+
+        min-width: 154px;
+        min-height: 50px;
+
+        padding:
+            13px
+            22px;
+
+        font-size: 13px;
     }
 }
 
@@ -1643,7 +1698,7 @@ body {
         padding:
             110px
             17px
-            100px;
+            145px;
     }
 
     .story-screen::before {
@@ -1680,9 +1735,11 @@ body {
     }
 
     .story-button {
-        min-width: 150px;
+        min-width: 148px;
 
-        bottom: 17px;
+        min-height: 48px;
+
+        bottom: 10px;
 
         padding:
             12px
