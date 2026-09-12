@@ -7,365 +7,451 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     openButton.addEventListener("click", function () {
-        createHearts();
-        createSparkles();
-
-        const card = document.querySelector(".surprise-card");
-
-        if (card) {
-            card.style.transition = "all 0.7s ease";
-            card.style.transform = "scale(0.9)";
-            card.style.opacity = "0";
-        }
-
-        setTimeout(function () {
-            showMissingMessage();
-        }, 650);
+        openStory();
     });
 
-    function showMissingMessage() {
+    function openStory() {
+        const opening = document.getElementById("opening-screen");
+
+        if (!opening) {
+            return;
+        }
+
+        opening.classList.add("opening-exit");
+
+        createFloatingParticles();
+
+        setTimeout(function () {
+            showFirstMessage();
+        }, 700);
+    }
+
+    function showFirstMessage() {
         page.innerHTML = `
-            <div class="missing-screen">
+            <section class="story-screen">
 
-                <div class="floating-heart heart-1">❤️</div>
-                <div class="floating-heart heart-2">💗</div>
-                <div class="floating-heart heart-3">💖</div>
-                <div class="floating-heart heart-4">💕</div>
-                <div class="floating-heart heart-5">💞</div>
+                <div class="story-glow"></div>
 
-                <div class="message-card">
+                <div class="story-content">
 
-                    <div class="big-heart">
-                        ❤️
-                    </div>
-
-                    <p class="tiny-title">
-                        THERE'S SOMETHING I WANT TO SAY
+                    <p class="story-label">
+                        MUTU…
                     </p>
 
-                    <h1>
-                        I Miss<br>
-                        <span>You</span>
+                    <h1 class="story-title">
+                        आज तिमीलाई<br>
+                        <span>केही भन्न मन लाग्यो।</span>
                     </h1>
 
-                    <p class="main-message" id="typing-message"></p>
+                    <div class="story-line"></div>
 
-                    <div class="divider"></div>
-
-                    <p class="bottom-message">
-                        Distance can keep people apart,
-                        but it can never stop someone
-                        from being missed. ❤️
+                    <p class="story-text">
+                        धेरै ठूलो कुरा होइन।
+                        <br>
+                        तर मनमा राखिराख्न पनि मन लागेन।
                     </p>
 
                     <button
                         type="button"
-                        class="continue-button"
-                        id="more-button">
-                        There's more... 💌
+                        class="story-button"
+                        id="story-next-one"
+                    >
+                        <span>सुन्छौ?</span>
+                        <span>→</span>
                     </button>
 
                 </div>
-            </div>
+
+            </section>
         `;
 
-        startTyping();
+        animateStory();
 
         document
-            .getElementById("more-button")
-            .addEventListener("click", showNextMessage);
+            .getElementById("story-next-one")
+            .addEventListener("click", showSecondMessage);
     }
 
-    function startTyping() {
-        const message =
-            "कहिलेकाहीँ कुनै विशेष कारण चाहिँदैन... " +
-            "बस् अचानक कसैको धेरै याद आउँछ। " +
-            "आज त्यस्तै भयो। ❤️";
-
-        const element = document.getElementById("typing-message");
-
-        if (!element) {
-            return;
-        }
-
-        let index = 0;
-
-        function typeText() {
-            if (index < message.length) {
-                element.textContent += message.charAt(index);
-                index++;
-
-                setTimeout(typeText, 42);
-            }
-        }
-
-        typeText();
-    }
-
-    function showNextMessage() {
+    function showSecondMessage() {
         page.innerHTML = `
-            <div class="missing-screen second-screen">
+            <section class="story-screen">
 
-                <div class="message-card">
+                <div class="story-glow"></div>
 
-                    <div class="big-heart pulse">
-                        💗
-                    </div>
+                <div class="story-content wide">
 
-                    <p class="tiny-title">
-                        JUST ONE MORE THING
+                    <p class="story-label">
+                        JUST SOMETHING I NOTICED
                     </p>
 
-                    <h1>
-                        Missing You<br>
-                        <span>More Than You Know</span>
+                    <h1 class="story-title medium">
+                        दिनभरि आफ्नो काममा
+                        <br>
+                        व्यस्त हुन्छु।
                     </h1>
 
-                    <p class="main-message">
-                        तिमीलाई सम्झिँदा कहिलेकाहीँ मुस्कान आउँछ,
-                        कहिलेकाहीँ मन अलि खाली–खाली लाग्छ।
+                    <p class="story-text large">
+                        हाँस्छु, बोल्छु,
+                        आफ्नै दुनियाँमा हुन्छु।
                         <br><br>
-                        सायद यही नै हो—
-                        <strong>
-                            कसैलाई साँच्चिकै miss गर्नु।
-                        </strong>
+                        तर कहिलेकाहीँ अचानक…
                     </p>
 
-                    <p class="love-line">
-                        ❤️ I just wanted you to know.
-                    </p>
+                    <div class="memory-word">
+                        तिम्रो याद आउँछ।
+                    </div>
 
                     <button
                         type="button"
-                        class="continue-button"
-                        id="meet-button">
-                        One Last Thing... ✨
+                        class="story-button"
+                        id="story-next-two"
+                    >
+                        <span>अनि?</span>
+                        <span>→</span>
                     </button>
 
                 </div>
-            </div>
+
+            </section>
         `;
 
+        animateStory();
+
         document
-            .getElementById("meet-button")
-            .addEventListener("click", showMeetQuestion);
+            .getElementById("story-next-two")
+            .addEventListener("click", showThirdMessage);
     }
 
-    function showMeetQuestion() {
+    function showThirdMessage() {
         page.innerHTML = `
-            <div class="missing-screen">
+            <section class="story-screen">
 
-                <div class="message-card">
+                <div class="story-glow"></div>
 
-                    <div class="big-heart">
-                        🥹❤️
-                    </div>
+                <div class="story-content wide">
 
-                    <p class="tiny-title">
-                        MAYBE WE SHOULD FIX THIS
+                    <p class="story-label">
+                        THERE'S NO PARTICULAR REASON
                     </p>
 
-                    <h1>
-                        भेटौँ न<br>
-                        <span>कुनै दिन?</span>
+                    <h1 class="story-title medium">
+                        कुनै खास कारण हुँदैन।
                     </h1>
 
-                    <p class="main-message">
-                        यति धेरै miss गरिसकेपछि
-                        अब भेट्ने एउटा बहाना त चाहिन्छ नि। ❤️
+                    <p class="story-text large">
+                        कुनै खास समय पनि हुँदैन।
+                        <br><br>
+                        बस्…
+                    </p>
+
+                    <div class="memory-word soft">
+                        मनले तिमीलाई खोज्छ।
+                    </div>
+
+                    <p class="story-text">
+                        अनि त्यतिबेला लाग्छ—
+                        <br><br>
+                        केही मान्छेहरूबाट टाढा भए पनि
+                        <br>
+                        मनबाट चाहिँ टाढा हुन सकिँदैन रहेछ।
                     </p>
 
                     <button
                         type="button"
-                        class="continue-button"
-                        id="date-button">
-                        भेट्ने समय छानौँ 🗓️
+                        class="story-button"
+                        id="story-next-three"
+                    >
+                        <span>एउटा कुरा भनूँ?</span>
+                        <span>→</span>
                     </button>
 
                 </div>
-            </div>
+
+            </section>
         `;
 
+        animateStory();
+
         document
-            .getElementById("date-button")
-            .addEventListener("click", showDatePicker);
+            .getElementById("story-next-three")
+            .addEventListener("click", showMainMessage);
     }
 
-    function showDatePicker() {
+    function showMainMessage() {
         page.innerHTML = `
-            <div class="missing-screen">
+            <section class="story-screen emotional-screen">
 
-                <div class="message-card">
+                <div class="emotional-glow"></div>
 
-                    <div class="big-heart">
-                        🗓️❤️
-                    </div>
+                <div class="story-content">
 
-                    <p class="tiny-title">
-                        YOUR CHOICE
+                    <p class="story-label">
+                        THE ONE THING I WANTED TO SAY
                     </p>
 
-                    <h1>
-                        When Should<br>
-                        <span>We Meet?</span>
+                    <div class="heart-mark">
+                        ♡
+                    </div>
+
+                    <h1 class="main-love-title">
+                        Mutu,
                     </h1>
 
-                    <p class="main-message">
-                        तपाईंलाई मिल्ने मिति र समय छान्नुहोस्। ❤️
+                    <div class="miss-you">
+                        I miss you.
+                    </div>
+
+                    <p class="story-text emotional-text">
+                        बस्।
+                        <br>
+                        यति सरल कुरा हो।
                     </p>
 
-                    <div class="date-box">
-
-                        <label for="meet-date">
-                            मिति
-                        </label>
-
-                        <input
-                            type="date"
-                            id="meet-date"
-                        >
-
-                        <label for="meet-time">
-                            समय
-                        </label>
-
-                        <input
-                            type="time"
-                            id="meet-time"
-                        >
-
-                    </div>
+                    <p class="story-text">
+                        तर कहिलेकाहीँ यस्ता सरल कुराहरू नै
+                        <br>
+                        भन्न सबैभन्दा गाह्रो हुँदो रहेछ।
+                    </p>
 
                     <button
                         type="button"
-                        class="continue-button"
-                        id="confirm-button">
-                        यो समय Fix गरौँ ❤️
+                        class="story-button"
+                        id="story-next-four"
+                    >
+                        <span>त्यसैले यो page...</span>
+                        <span>→</span>
                     </button>
 
                 </div>
-            </div>
+
+            </section>
         `;
 
+        createHeartBurst();
+        animateStory();
+
         document
-            .getElementById("confirm-button")
-            .addEventListener("click", confirmMeeting);
+            .getElementById("story-next-four")
+            .addEventListener("click", showReasonMessage);
     }
 
-    function confirmMeeting() {
-        const dateInput = document.getElementById("meet-date");
-        const timeInput = document.getElementById("meet-time");
+    function showReasonMessage() {
+        page.innerHTML = `
+            <section class="story-screen">
 
-        if (!dateInput || !timeInput) {
+                <div class="story-glow"></div>
+
+                <div class="story-content wide">
+
+                    <p class="story-label">
+                        WHY I MADE THIS
+                    </p>
+
+                    <h1 class="story-title medium">
+                        यो page बनाउनुको
+                        <br>
+                        <span>कारण पनि त्यही हो।</span>
+                    </h1>
+
+                    <div class="quote-card">
+
+                        <span class="quote-mark">“</span>
+
+                        <p>
+                            तिमीलाई केही भन्न मन लाग्यो,
+                            <br>
+                            त्यसैले शब्दहरू मात्र लेखेर
+                            <br>
+                            बस्न मन लागेन।
+                        </p>
+
+                        <span class="quote-mark closing">”</span>
+
+                    </div>
+
+                    <p class="story-text">
+                        सायद तिमीले यो खोलेर
+                        <br>
+                        एकछिन मुस्कुराउनेछौ।
+                        <br><br>
+                        त्यति भए पनि पुग्छ।
+                    </p>
+
+                    <button
+                        type="button"
+                        class="story-button"
+                        id="story-next-five"
+                    >
+                        <span>अन्तिम कुरा…</span>
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </section>
+        `;
+
+        animateStory();
+
+        document
+            .getElementById("story-next-five")
+            .addEventListener("click", showFinalMessage);
+    }
+
+    function showFinalMessage() {
+        page.innerHTML = `
+            <section class="story-screen final-screen">
+
+                <div class="final-glow"></div>
+
+                <div class="story-content final-content">
+
+                    <p class="story-label">
+                        FOR YOU, MUTU
+                    </p>
+
+                    <div class="final-heart">
+                        ♡
+                    </div>
+
+                    <h1 class="final-title">
+                        तिमीलाई थाहा छ?
+                    </h1>
+
+                    <div class="final-message">
+
+                        <p>
+                            तिमीलाई miss गर्नुको
+                            <br>
+                            सबैभन्दा नराम्रो कुरा
+                        </p>
+
+                        <p class="highlight-line">
+                            तिमीलाई miss गरिरहेको छु
+                            <br>
+                            भनेर भन्न मन लाग्नु हो।
+                        </p>
+
+                        <div class="final-divider"></div>
+
+                        <p>
+                            अनि सबैभन्दा राम्रो कुरा…
+                        </p>
+
+                        <p class="highlight-line soft-highlight">
+                            तिमीलाई यो कुरा
+                            <br>
+                            भन्न पाउनु हो।
+                        </p>
+
+                    </div>
+
+                    <p class="final-goodbye">
+                        बस्, आज यति नै।
+                        <br><br>
+                        आफ्नो ख्याल राख्नु, Mutu.
+                    </p>
+
+                    <div class="signature">
+                        <span>Made with a little extra love.</span>
+                    </div>
+
+                </div>
+
+            </section>
+        `;
+
+        createHeartBurst();
+        createSparkleField();
+        animateStory();
+    }
+
+    function animateStory() {
+        const content = document.querySelector(".story-content");
+
+        if (!content) {
             return;
         }
 
-        const date = dateInput.value;
-        const time = timeInput.value;
-
-        if (!date || !time) {
-            alert("कृपया मिति र समय दुवै छान्नुहोस् ❤️");
-            return;
-        }
-
-        const selectedDate = new Date(`${date}T${time}`);
-
-        const formattedDate = selectedDate.toLocaleDateString(
-            "en-GB",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }
-        );
-
-        page.innerHTML = `
-            <div class="missing-screen">
-
-                <div class="message-card">
-
-                    <div class="big-heart pulse">
-                        💖
-                    </div>
-
-                    <p class="tiny-title">
-                        IT'S A DATE
-                    </p>
-
-                    <h1>
-                        See You<br>
-                        <span>Soon ❤️</span>
-                    </h1>
-
-                    <div class="meeting-details">
-
-                        <div>
-                            <span>📅</span>
-                            <strong>${formattedDate}</strong>
-                        </div>
-
-                        <div>
-                            <span>⏰</span>
-                            <strong>${time}</strong>
-                        </div>
-
-                    </div>
-
-                    <p class="main-message">
-                        अब भेट्ने दिनको countdown सुरु भयो। 🥰
-                    </p>
-
-                    <p class="love-line">
-                        Until then... I'll miss you. ❤️
-                    </p>
-
-                </div>
-            </div>
-        `;
-
-        createHearts();
-        createSparkles();
+        requestAnimationFrame(function () {
+            content.classList.add("story-visible");
+        });
     }
 
-    function createHearts() {
-        const hearts = [
-            "❤️",
-            "💗",
-            "💖",
-            "💕",
-            "💞"
-        ];
+    function createFloatingParticles() {
+        const symbols = ["·", "✦", "✧", "♡"];
 
-        for (let i = 0; i < 18; i++) {
-            const heart = document.createElement("div");
+        for (let i = 0; i < 24; i++) {
+            const particle = document.createElement("span");
 
-            heart.className = "background-heart";
+            particle.className = "floating-particle";
+
+            particle.textContent =
+                symbols[Math.floor(Math.random() * symbols.length)];
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            particle.style.animationDuration =
+                5 + Math.random() * 7 + "s";
+
+            particle.style.fontSize =
+                7 + Math.random() * 12 + "px";
+
+            document.body.appendChild(particle);
+
+            setTimeout(function () {
+                particle.remove();
+            }, 13000);
+        }
+    }
+
+    function createHeartBurst() {
+        const hearts = ["♡", "♥", "✦"];
+
+        for (let i = 0; i < 14; i++) {
+            const heart = document.createElement("span");
+
+            heart.className = "heart-particle";
 
             heart.textContent =
                 hearts[Math.floor(Math.random() * hearts.length)];
 
             heart.style.left =
-                Math.random() * 100 + "%";
+                50 + (Math.random() * 40 - 20) + "%";
+
+            heart.style.top =
+                48 + (Math.random() * 25 - 12) + "%";
+
+            heart.style.setProperty(
+                "--x",
+                (Math.random() * 260 - 130) + "px"
+            );
+
+            heart.style.setProperty(
+                "--y",
+                -(80 + Math.random() * 220) + "px"
+            );
 
             heart.style.animationDelay =
-                Math.random() * 5 + "s";
-
-            heart.style.animationDuration =
-                5 + Math.random() * 6 + "s";
+                Math.random() * 0.4 + "s";
 
             document.body.appendChild(heart);
 
             setTimeout(function () {
                 heart.remove();
-            }, 12000);
+            }, 3000);
         }
     }
 
-    function createSparkles() {
-        for (let i = 0; i < 35; i++) {
-            const sparkle = document.createElement("div");
+    function createSparkleField() {
+        for (let i = 0; i < 30; i++) {
+            const sparkle = document.createElement("span");
 
-            sparkle.className = "sparkle";
+            sparkle.className = "final-sparkle";
             sparkle.textContent = "✦";
 
             sparkle.style.left =
@@ -375,13 +461,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 Math.random() * 100 + "%";
 
             sparkle.style.animationDelay =
-                Math.random() * 3 + "s";
+                Math.random() * 4 + "s";
+
+            sparkle.style.animationDuration =
+                3 + Math.random() * 4 + "s";
 
             document.body.appendChild(sparkle);
 
             setTimeout(function () {
                 sparkle.remove();
-            }, 6000);
+            }, 8000);
         }
     }
 });
