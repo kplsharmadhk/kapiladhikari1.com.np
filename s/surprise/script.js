@@ -22,12 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let isTransitioning = false;
 
     let particleTimer = null;
-
     let sparkleTimer = null;
 
 
     /* =====================================================
-       OPEN
+       OPEN SURPRISE
     ===================================================== */
 
     openButton.addEventListener("click", function () {
@@ -47,9 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const opening =
-            document.getElementById(
-                "opening-screen"
-            );
+            document.getElementById("opening-screen");
 
         if (!opening) {
             return;
@@ -57,17 +54,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         isTransitioning = true;
 
-        opening.classList.add(
-            "opening-exit"
-        );
+        opening.classList.add("opening-exit");
 
         createFloatingParticles();
 
         setTimeout(function () {
 
-            showFirstMessage();
-
+            /*
+             * IMPORTANT:
+             * Release transition lock BEFORE creating
+             * the first story page.
+             *
+             * This fixes the bug where only the
+             * background appeared.
+             */
             isTransitioning = false;
+
+            showFirstMessage();
 
         }, 720);
     }
@@ -78,9 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
        Nepali-friendly grapheme animation
     ===================================================== */
 
-    function prepareCharacterAnimation(
-        container
-    ) {
+    function prepareCharacterAnimation(container) {
 
         if (!container) {
             return;
@@ -105,15 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         elements.forEach(function (element) {
 
-            if (
-                element.dataset.revealed ===
-                "true"
-            ) {
+            if (element.dataset.revealed === "true") {
                 return;
             }
 
-            element.dataset.revealed =
-                "true";
+            element.dataset.revealed = "true";
 
             revealTextNodes(
                 element,
@@ -121,17 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             const count =
-                getTextCharacterCount(
-                    element
-                );
+                getTextCharacterCount(element);
 
             /*
-             * Keep each block flowing naturally.
-             * Long paragraphs should not take forever.
+             * Keep the page feeling alive without
+             * making long Nepali sentences too slow.
              */
             globalDelay += Math.min(
-                count * 16,
-                230
+                count * 14,
+                210
             );
         });
     }
@@ -156,17 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
 
-        textNodes.forEach(function (
-            textNode
-        ) {
+        textNodes.forEach(function (textNode) {
 
-            const text =
-                textNode.nodeValue;
+            const text = textNode.nodeValue;
 
-            if (
-                !text ||
-                !text.trim()
-            ) {
+            if (!text || !text.trim()) {
                 return;
             }
 
@@ -178,58 +167,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let visibleIndex = 0;
 
-            segments.forEach(
-                function (character) {
+            segments.forEach(function (character) {
 
-                    /*
-                     * Preserve whitespace exactly.
-                     */
-                    if (
-                        character === " " ||
-                        character === "\n" ||
-                        character === "\t"
-                    ) {
-
-                        fragment.appendChild(
-                            document.createTextNode(
-                                character
-                            )
-                        );
-
-                        return;
-                    }
-
-
-                    const span =
-                        document.createElement(
-                            "span"
-                        );
-
-                    span.className =
-                        "reveal-char";
-
-                    span.textContent =
-                        character;
-
-                    /*
-                     * Slightly varied timing makes
-                     * the text feel less mechanical.
-                     */
-                    const characterDelay =
-                        baseDelay +
-                        visibleIndex * 22;
-
-                    span.style.animationDelay =
-                        characterDelay +
-                        "ms";
+                /*
+                 * Preserve spaces and line breaks.
+                 */
+                if (
+                    character === " " ||
+                    character === "\n" ||
+                    character === "\t"
+                ) {
 
                     fragment.appendChild(
-                        span
+                        document.createTextNode(
+                            character
+                        )
                     );
 
-                    visibleIndex++;
+                    return;
                 }
-            );
+
+                const span =
+                    document.createElement("span");
+
+                span.className = "reveal-char";
+
+                span.textContent = character;
+
+                /*
+                 * Slightly varied timing.
+                 * This feels more natural than
+                 * every character appearing identically.
+                 */
+                const variation =
+                    (visibleIndex % 3) * 4;
+
+                const characterDelay =
+                    baseDelay +
+                    visibleIndex * 20 +
+                    variation;
+
+                span.style.animationDelay =
+                    characterDelay + "ms";
+
+                fragment.appendChild(span);
+
+                visibleIndex++;
+            });
 
             if (textNode.parentNode) {
 
@@ -249,18 +233,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function getGraphemes(text) {
 
         if (
-            typeof Intl !==
-                "undefined" &&
-            typeof Intl.Segmenter ===
-                "function"
+            typeof Intl !== "undefined" &&
+            typeof Intl.Segmenter === "function"
         ) {
 
             const segmenter =
                 new Intl.Segmenter(
                     "ne",
                     {
-                        granularity:
-                            "grapheme"
+                        granularity: "grapheme"
                     }
                 );
 
@@ -272,16 +253,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
 
-        /*
-         * Fallback for older browsers.
-         */
         return Array.from(text);
     }
 
 
-    function getTextCharacterCount(
-        element
-    ) {
+    function getTextCharacterCount(element) {
 
         const text =
             element.textContent || "";
@@ -293,13 +269,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       PAGE TRANSITION HELPER
+       PAGE TRANSITION
     ===================================================== */
 
-    function replacePage(
-        markup,
-        callback
-    ) {
+    function replacePage(markup, callback) {
 
         if (isTransitioning) {
             return;
@@ -308,18 +281,15 @@ document.addEventListener("DOMContentLoaded", function () {
         isTransitioning = true;
 
         const currentScreen =
-            page.querySelector(
-                ".story-screen"
-            );
+            page.querySelector(".story-screen");
 
         if (currentScreen) {
 
             currentScreen.style.transition =
-                "opacity 0.28s ease, " +
-                "transform 0.28s ease";
+                "opacity 0.30s ease, " +
+                "transform 0.30s ease";
 
-            currentScreen.style.opacity =
-                "0";
+            currentScreen.style.opacity = "0";
 
             currentScreen.style.transform =
                 "scale(0.985)";
@@ -331,26 +301,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
             page.innerHTML = markup;
 
-            window.scrollTo(
-                0,
-                0
-            );
+            /*
+             * Ensure the newly-created story page
+             * starts from the top.
+             */
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "instant"
+            });
 
             /*
-             * Let browser paint the new page
-             * before revealing it.
+             * Let browser paint the new DOM first.
              */
-            requestAnimationFrame(
-                function () {
+            requestAnimationFrame(function () {
+
+                requestAnimationFrame(function () {
 
                     if (callback) {
                         callback();
                     }
 
-                    isTransitioning =
-                        false;
-                }
-            );
+                    /*
+                     * Small delay keeps the transition
+                     * visually clean and prevents
+                     * accidental double-clicks.
+                     */
+                    setTimeout(function () {
+                        isTransitioning = false;
+                    }, 120);
+                });
+            });
 
         }, 300);
     }
@@ -774,10 +755,7 @@ document.addEventListener("DOMContentLoaded", function () {
        BUTTON BINDING
     ===================================================== */
 
-    function bindButton(
-        id,
-        action
-    ) {
+    function bindButton(id, action) {
 
         const button =
             document.getElementById(id);
@@ -815,26 +793,91 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        requestAnimationFrame(
-            function () {
-
-                content.classList.add(
-                    "story-visible"
-                );
-
-                setTimeout(
-                    function () {
-
-                        prepareCharacterAnimation(
-                            content
-                        );
-
-                    },
-                    230
-                );
-            }
+        /*
+         * Start with the page hidden,
+         * then reveal it smoothly.
+         */
+        content.classList.remove(
+            "story-visible"
         );
+
+        requestAnimationFrame(function () {
+
+            content.classList.add(
+                "story-visible"
+            );
+
+            setTimeout(function () {
+
+                prepareCharacterAnimation(
+                    content
+                );
+
+                /*
+                 * Keep the navigation button
+                 * visually separated from content.
+                 */
+                adjustStoryNavigation();
+
+            }, 220);
+        });
     }
+
+
+    /* =====================================================
+       NAVIGATION POSITION POLISH
+       Keeps bottom button away from content.
+    ===================================================== */
+
+    function adjustStoryNavigation() {
+
+        const button =
+            document.querySelector(
+                ".story-button"
+            );
+
+        const content =
+            document.querySelector(
+                ".story-content"
+            );
+
+        if (!button || !content) {
+            return;
+        }
+
+        /*
+         * Measure button height and create enough
+         * bottom breathing room inside the content.
+         */
+        const buttonHeight =
+            button.getBoundingClientRect().height;
+
+        const extraSpace =
+            Math.max(
+                buttonHeight + 34,
+                86
+            );
+
+        content.style.paddingBottom =
+            extraSpace + "px";
+    }
+
+
+    /* =====================================================
+       RESPONSIVE NAVIGATION
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (!page.querySelector(".story-screen")) {
+                return;
+            }
+
+            adjustStoryNavigation();
+        }
+    );
 
 
     /* =====================================================
@@ -850,25 +893,14 @@ document.addEventListener("DOMContentLoaded", function () {
             "♡"
         ];
 
-        /*
-         * Prevent repeated particle floods.
-         */
         if (particleTimer) {
-            clearTimeout(
-                particleTimer
-            );
+            clearTimeout(particleTimer);
         }
 
-        for (
-            let i = 0;
-            i < 22;
-            i++
-        ) {
+        for (let i = 0; i < 22; i++) {
 
             const particle =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             particle.className =
                 "floating-particle";
@@ -907,25 +939,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 particle
             );
 
-            setTimeout(
-                function () {
+            setTimeout(function () {
 
-                    if (particle) {
-                        particle.remove();
-                    }
+                if (particle) {
+                    particle.remove();
+                }
 
-                },
-                12500
-            );
+            }, 12500);
         }
 
         particleTimer =
-            setTimeout(
-                function () {
-                    particleTimer = null;
-                },
-                12500
-            );
+            setTimeout(function () {
+                particleTimer = null;
+            }, 12500);
     }
 
 
@@ -941,16 +967,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "✦"
         ];
 
-        for (
-            let i = 0;
-            i < 13;
-            i++
-        ) {
+        for (let i = 0; i < 13; i++) {
 
             const heart =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             heart.className =
                 "heart-particle";
@@ -1006,16 +1026,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 heart
             );
 
-            setTimeout(
-                function () {
+            setTimeout(function () {
 
-                    if (heart) {
-                        heart.remove();
-                    }
+                if (heart) {
+                    heart.remove();
+                }
 
-                },
-                3000
-            );
+            }, 3000);
         }
     }
 
@@ -1026,28 +1043,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createSparkleField() {
 
-        /*
-         * Avoid duplicate sparkle fields
-         * if final screen is somehow revisited.
-         */
         clearSparkles();
 
-        for (
-            let i = 0;
-            i < 24;
-            i++
-        ) {
+        for (let i = 0; i < 24; i++) {
 
             const sparkle =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             sparkle.className =
                 "final-sparkle";
 
-            sparkle.textContent =
-                "✦";
+            sparkle.textContent = "✦";
 
             sparkle.style.left =
                 (
@@ -1074,25 +1080,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 sparkle
             );
 
-            setTimeout(
-                function () {
+            setTimeout(function () {
 
-                    if (sparkle) {
-                        sparkle.remove();
-                    }
+                if (sparkle) {
+                    sparkle.remove();
+                }
 
-                },
-                7500
-            );
+            }, 7500);
         }
 
         sparkleTimer =
-            setTimeout(
-                function () {
-                    sparkleTimer = null;
-                },
-                7500
-            );
+            setTimeout(function () {
+                sparkleTimer = null;
+            }, 7500);
     }
 
 
@@ -1108,11 +1108,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 ".heart-particle, " +
                 ".final-sparkle"
             )
-            .forEach(
-                function (element) {
-                    element.remove();
-                }
-            );
+            .forEach(function (element) {
+                element.remove();
+            });
 
         if (particleTimer) {
 
@@ -1140,11 +1138,24 @@ document.addEventListener("DOMContentLoaded", function () {
             .querySelectorAll(
                 ".final-sparkle"
             )
-            .forEach(
-                function (element) {
-                    element.remove();
-                }
-            );
+            .forEach(function (element) {
+                element.remove();
+            });
     }
+
+
+    /* =====================================================
+       INITIAL RESPONSIVE CHECK
+    ===================================================== */
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            if (page.querySelector(".story-screen")) {
+                adjustStoryNavigation();
+            }
+        }
+    );
 
 });
