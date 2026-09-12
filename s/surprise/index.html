@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="noindex, nofollow">
-    <title>For Mutu</title>
-    
+    <title>For Nimika</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Mukta:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Mukta:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Ambient Cinematic Background Glows -->
-    <div class="ambient-background">
+    <!-- Subtle Film Grain Overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- Ambient Lighting Atmosphere -->
+    <div class="ambient-background" aria-hidden="true">
         <div class="glow-blob blob-1"></div>
         <div class="glow-blob blob-2"></div>
         <div class="glow-blob blob-3"></div>
@@ -26,132 +29,166 @@
     <!-- Particle Container -->
     <div id="particle-container" aria-hidden="true"></div>
 
-    <!-- MAIN INTERACTIVE CONTAINER -->
-    <main class="experience-container">
-        
-        <!-- SECTION 0: OPENING SCREEN -->
-        <section class="story-section active" id="section-0" data-index="0">
+    <!-- MAIN EXPERIENCE CONTAINER -->
+    <main class="experience-container" id="app">
+
+        <!-- FALLBACK NO-SCRIPT / BASE CONTENT FOR SSR / JS-DISABLED SAFETY -->
+        <noscript>
+            <div class="noscript-fallback">
+                <h1>Nimika</h1>
+                <p>आज तिमीलाई केही भन्न मन लाग्यो।</p>
+                <p>I miss you.</p>
+                <p>आफ्नो ख्याल राख्नु, Nimika. ❤️</p>
+            </div>
+        </noscript>
+
+        <!-- SCREEN 0: OPENING -->
+        <section class="story-screen active" id="screen-0" data-index="0" aria-live="polite">
             <div class="content-wrapper centered-hero">
                 <span class="eyebrow glow-text">A LITTLE SOMETHING</span>
-                
-                <!-- Centerpiece Animated Heart & Orbits (Mobile + Desktop Hero) -->
-                <div class="heart-centerpiece-container">
-                    <div class="orbit-ring ring-1"></div>
-                    <div class="orbit-ring ring-2"></div>
-                    <div class="glowing-heart-wrapper">
+
+                <!-- Elegant Heart / Orbit Centerpiece -->
+                <div class="heart-centerpiece-wrapper" aria-hidden="true">
+                    <div class="orbit-ring ring-outer"></div>
+                    <div class="orbit-ring ring-inner"></div>
+                    <div class="glowing-heart-core">
                         <svg class="heart-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGradient)"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heroHeartGradient)"/>
                             <defs>
-                                <linearGradient id="heartGradient" x1="2" y1="3" x2="22" y2="21.35" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="heroHeartGradient" x1="2" y1="3" x2="22" y2="21.35" gradientUnits="userSpaceOnUse">
                                     <stop offset="0%" stop-color="#ff758c"/>
-                                    <stop offset="50%" stop-color="#ff7eb3"/>
+                                    <stop offset="60%" stop-color="#ff7eb3"/>
                                     <stop offset="100%" stop-color="#764ba2"/>
                                 </linearGradient>
                             </defs>
                         </svg>
-                        <div class="heart-pulse-glow"></div>
+                        <div class="heart-pulse-aura"></div>
                     </div>
                 </div>
 
                 <div class="title-group">
                     <span class="title-sub">For</span>
-                    <h1 class="main-title gradient-text">Mutu</h1>
+                    <h1 class="hero-name gradient-text">Nimika</h1>
                 </div>
 
-                <p class="opening-nepali-text anim-text" data-text="आज तिमीलाई केही भन्न मन लाग्यो।">
+                <p class="opening-nepali-subtitle anim-text" data-text="आज तिमीलाई केही भन्न मन लाग्यो।">
                     आज तिमीलाई केही भन्न मन लाग्यो।
                 </p>
 
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn primary-btn" id="start-btn" aria-label="Open surprise">
+                <div class="bottom-action-area">
+                    <button class="cinematic-btn primary-btn" id="start-btn" aria-label="Open message for Nimika">
                         <span>Open this →</span>
                         <div class="btn-glow"></div>
                     </button>
+                    <span class="subtext-hint">take a little moment</span>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 1: PAGE 1 -->
-        <section class="story-section" id="section-1" data-index="1">
+        <!-- SCREEN 1: STORY PAGE 1 -->
+        <section class="story-screen" id="screen-1" data-index="1" aria-live="polite">
             <div class="content-wrapper">
-                <div class="section-label-tag">MUTU…</div>
-                
-                <div class="typography-body">
-                    <h2 class="section-heading anim-text" data-text="आज तिमीलाई केही भन्न मन लाग्यो।">
-                        आज तिमीलाई केही भन्न मन लाग्यो।
+                <div class="section-tag">KAHILEKAHI…</div>
+
+                <div class="story-body">
+                    <h2 class="story-heading anim-text" data-text="कहिलेकाहीँ...">
+                        कहिलेकाहीँ...
                     </h2>
-                    
-                    <div class="text-block">
-                        <p class="anim-text" data-text="धेरै ठूलो कुरा होइन।">धेरै ठूलो कुरा होइन।</p>
-                        <p class="anim-text" data-text="तर मनमा राखिराख्न पनि मन लागेन।">तर मनमा राखिराख्न पनि मन लागेन।</p>
-                    </div>
-                </div>
 
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn next-btn" data-target="2">
-                        <span>सुन्छौ? →</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: PAGE 2 -->
-        <section class="story-section" id="section-2" data-index="2">
-            <div class="content-wrapper">
-                <div class="section-label-tag">JUST SOMETHING I NOTICED</div>
-                
-                <div class="typography-body">
-                    <div class="text-block">
+                    <div class="text-group">
                         <p class="anim-text" data-text="दिनभरि आफ्नो काममा व्यस्त हुन्छु।">दिनभरि आफ्नो काममा व्यस्त हुन्छु।</p>
                         <p class="anim-text" data-text="हाँस्छु, बोल्छु, आफ्नै दुनियाँमा हुन्छु।">हाँस्छु, बोल्छु, आफ्नै दुनियाँमा हुन्छु।</p>
                     </div>
 
-                    <div class="text-block emphasis-block">
+                    <div class="text-group emphasis-group">
                         <p class="subtle-lead anim-text" data-text="तर कहिलेकाहीँ अचानक…">तर कहिलेकाहीँ अचानक…</p>
-                        <h3 class="highlight-phrase anim-text gradient-text" data-text="तिम्रो याद आउँछ।">
+                        <h3 class="hero-phrase anim-text gradient-text" data-text="तिम्रो याद आउँछ।">
                             तिम्रो याद आउँछ।
                         </h3>
                     </div>
                 </div>
 
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn next-btn" data-target="3">
-                        <span>अनि? →</span>
+                <div class="bottom-action-area">
+                    <button class="cinematic-btn next-btn" aria-label="Continue to next page">
+                        <span>Continue →</span>
                         <div class="btn-glow"></div>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: PAGE 3 -->
-        <section class="story-section" id="section-3" data-index="3">
+        <!-- SCREEN 2: STORY PAGE 2 -->
+        <section class="story-screen" id="screen-2" data-index="2" aria-live="polite">
             <div class="content-wrapper">
-                <div class="section-label-tag">THERE'S NO PARTICULAR REASON</div>
-                
-                <div class="typography-body">
-                    <div class="text-block">
+                <div class="section-tag">NO PARTICULAR REASON</div>
+
+                <div class="story-body">
+                    <div class="text-group">
                         <p class="anim-text" data-text="कुनै खास कारण हुँदैन।">कुनै खास कारण हुँदैन।</p>
                         <p class="anim-text" data-text="कुनै खास समय पनि हुँदैन।">कुनै खास समय पनि हुँदैन।</p>
                     </div>
 
-                    <div class="text-block emphasis-block">
-                        <p class="subtle-lead anim-text" data-text="बस्…">बस्…</p>
-                        <h3 class="highlight-phrase anim-text gradient-text" data-text="मनले तिमीलाई खोज्छ।">
-                            मनले तिमीलाई खोज्छ।
+                    <div class="text-group emphasis-group">
+                        <h3 class="hero-phrase anim-text gradient-text" data-text="बस्… मनले तिमीलाई खोज्छ।">
+                            बस्… मनले तिमीलाई खोज्छ।
                         </h3>
                     </div>
 
-                    <div class="text-block subtle-quote-box">
+                    <div class="glass-quote-box">
                         <p class="anim-text" data-text="अनि त्यतिबेला लाग्छ—">अनि त्यतिबेला लाग्छ—</p>
-                        <p class="anim-text" data-text="केही मान्छेहरूबाट टाढा भए पनि मनबाट चाहिँ टाढा हुन सकिँदैन रहेछ।">
-                            केही मान्छेहरूबाट टाढा भए पनि मनबाट चाहिँ टाढा हुन सकिँदैन रहेछ।
-                        </p>
+                        <p class="anim-text" data-text="केही मान्छेहरूबाट टाढा भए पनि">केही मान्छेहरूबाट टाढा भए पनि</p>
+                        <p class="anim-text highlight-line" data-text="मनबाट चाहिँ टाढा हुन सकिँदैन रहेछ।">मनबाट चाहिँ टाढा हुन सकिँदैन रहेछ।</p>
                     </div>
                 </div>
 
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn next-btn" data-target="4">
+                <div class="bottom-action-area">
+                    <button class="cinematic-btn next-btn" aria-label="Continue to next page">
+                        <span>Continue →</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: EMOTIONAL CLIMAX -->
+        <section class="story-screen emotional-screen" id="screen-3" data-index="3" aria-live="polite">
+            <div class="content-wrapper">
+                <div class="section-tag highlight-tag">THE REASON</div>
+
+                <div class="climax-atmosphere" aria-hidden="true">
+                    <div class="climax-glow"></div>
+                </div>
+
+                <div class="story-body climax-body">
+                    <span class="recipient-callout anim-text" data-text="Nimika…">Nimika…</span>
+
+                    <h1 class="emotional-headline anim-text gradient-text-warm" data-text="I miss you. ❤️">
+                        I miss you. ❤️
+                    </h1>
+                </div>
+
+                <div class="bottom-action-area">
+                    <button class="cinematic-btn next-btn emotional-btn" aria-label="Continue to reason page">
+                        <span>Continue →</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: WHY I MADE THIS -->
+        <section class="story-screen" id="screen-4" data-index="4" aria-live="polite">
+            <div class="content-wrapper">
+                <div class="section-tag">WHY I MADE THIS</div>
+
+                <div class="story-body">
+                    <h2 class="story-heading anim-text" data-text="यो page बनाउनुको कारण पनि त्यही हो।">
+                        यो page बनाउनुको कारण पनि त्यही हो।
+                    </h2>
+                </div>
+
+                <div class="bottom-action-area">
+                    <button class="cinematic-btn next-btn custom-question-btn" aria-label="Open final question">
                         <span>एउटा कुरा भनूँ? →</span>
                         <div class="btn-glow"></div>
                     </button>
@@ -159,118 +196,46 @@
             </div>
         </section>
 
-        <!-- SECTION 4: MAIN EMOTIONAL PAGE -->
-        <section class="story-section emotional-section" id="section-4" data-index="4">
+        <!-- SCREEN 5: FINAL MESSAGE -->
+        <section class="story-screen final-screen" id="screen-5" data-index="5" aria-live="polite">
             <div class="content-wrapper">
-                <div class="section-label-tag highlight-tag">THE ONE THING I WANTED TO SAY</div>
-                
-                <!-- Subtle floating heart icon specifically for emotional peak -->
-                <div class="mini-heart-pulsar" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
+                <div class="section-tag">FOR NIMIKA</div>
 
-                <div class="typography-body emotional-body">
-                    <span class="recipient-name">Mutu,</span>
-                    
-                    <h1 class="hero-miss-you anim-text gradient-text" data-text="I miss you.">
-                        I miss you.
-                    </h1>
+                <div class="story-body final-body">
+                    <h2 class="story-heading anim-text" data-text="तिमीलाई थाहा छ?">
+                        तिमीलाई थाहा छ?
+                    </h2>
 
-                    <div class="text-block">
-                        <p class="subtle-lead anim-text" data-text="बस्। यति सरल कुरा हो।">बस्। यति सरल कुरा हो।</p>
-                        <p class="anim-text" data-text="तर कहिलेकाहीँ यस्ता सरल कुराहरू नै भन्न सबैभन्दा गाह्रो हुँदो रहेछ।">
-                            तर कहिलेकाहीँ यस्ता सरल कुराहरू नै भन्न सबैभन्दा गाह्रो हुँदो रहेछ।
-                        </p>
-                    </div>
-                </div>
-
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn next-btn emotional-btn" data-target="5">
-                        <span>त्यसैले यो page... →</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: WHY I MADE THIS -->
-        <section class="story-section" id="section-5" data-index="5">
-            <div class="content-wrapper">
-                <div class="section-label-tag">WHY I MADE THIS</div>
-                
-                <h2 class="section-heading anim-text" data-text="यो page बनाउनुको कारण पनि त्यही हो।">
-                    यो page बनाउनुको कारण पनि त्यही हो।
-                </h2>
-
-                <div class="glass-card quote-card">
-                    <div class="quote-mark">“</div>
-                    <p class="quote-text anim-text" data-text="तिमीलाई केही भन्न मन लाग्यो, त्यसैले शब्दहरू मात्र लेखेर बस्न मन लागेन।">
-                        तिमीलाई केही भन्न मन लाग्यो, त्यसैले शब्दहरू मात्र लेखेर बस्न मन लागेन।
-                    </p>
-                </div>
-
-                <div class="typography-body">
-                    <p class="anim-text" data-text="सायद तिमीले यो खोलेर एकछिन मुस्कुराउनेछौ।">
-                        सायद तिमीले यो खोलेर एकछिन मुस्कुराउनेछौ।
-                    </p>
-                    <p class="anim-text subtle-highlight" data-text="त्यति भए पनि पुग्छ।">
-                        त्यति भए पनि पुग्छ।
-                    </p>
-                </div>
-
-                <div class="nav-bottom-zone">
-                    <button class="cinematic-btn next-btn" data-target="6">
-                        <span>अन्तिम कुरा… →</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6: FINAL PAGE -->
-        <section class="story-section final-section" id="section-6" data-index="6">
-            <div class="content-wrapper">
-                <div class="section-label-tag">FOR YOU, MUTU</div>
-                
-                <div class="mini-heart-pulsar subtle-heart" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-
-                <h2 class="section-heading anim-text" data-text="तिमीलाई थाहा छ?">
-                    तिमीलाई थाहा छ?
-                </h2>
-
-                <div class="typography-body final-body">
-                    <div class="text-block">
+                    <div class="text-group">
                         <p class="anim-text" data-text="तिमीलाई miss गर्नुको सबैभन्दा नराम्रो कुरा">
                             तिमीलाई miss गर्नुको सबैभन्दा नराम्रो कुरा
                         </p>
-                        <p class="highlight-phrase anim-text gradient-text" data-text="तिमीलाई miss गरिरहेको छु भनेर भन्न मन लाग्नु हो।">
+                        <p class="hero-phrase small-phrase anim-text gradient-text" data-text="तिमीलाई miss गरिरहेको छु भनेर भन्न मन लाग्नु हो।">
                             तिमीलाई miss गरिरहेको छु भनेर भन्न मन लाग्नु हो।
                         </p>
                     </div>
 
-                    <div class="glowing-divider"></div>
+                    <div class="glowing-divider" aria-hidden="true"></div>
 
-                    <div class="text-block">
+                    <div class="text-group">
                         <p class="anim-text" data-text="अनि सबैभन्दा राम्रो कुरा…">
                             अनि सबैभन्दा राम्रो कुरा…
                         </p>
-                        <p class="highlight-phrase anim-text gradient-text" data-text="तिमीलाई यो कुरा भन्न पाउनु हो।">
+                        <p class="hero-phrase small-phrase anim-text gradient-text" data-text="तिमीलाई यो कुरा भन्न पाउनु हो।">
                             तिमीलाई यो कुरा भन्न पाउनु हो।
                         </p>
                     </div>
 
-                    <div class="text-block final-farewell">
+                    <div class="text-group final-care-group">
                         <p class="anim-text" data-text="बस्, आज यति नै।">बस्, आज यति नै।</p>
-                        <p class="anim-text strong-care" data-text="आफ्नो ख्याल राख्नु, Mutu.">
-                            आफ्नो ख्याल राख्नु, Mutu.
+                        <p class="anim-text final-care-text" data-text="आफ्नो ख्याल राख्नु, Nimika. ❤️">
+                            आफ्नो ख्याल राख्नु, Nimika. ❤️
                         </p>
                     </div>
                 </div>
 
-                <footer class="signature-block">
-                    <span class="signature-line"></span>
+                <footer class="final-footer">
+                    <div class="signature-line" aria-hidden="true"></div>
                     <p class="signature-text">Made with a little extra love.</p>
                 </footer>
             </div>
@@ -278,10 +243,10 @@
 
     </main>
 
-    <!-- Mobile-Only Persistent Love Animation Element -->
-    <div class="mobile-love-orb-container" id="mobile-love-orb" aria-hidden="true">
-        <div class="mobile-orbit-ring"></div>
-        <div class="mobile-heart-core">
+    <!-- MOBILE-ONLY PERSISTENT ROMANTIC SIGNATURE ANIMATION -->
+    <div class="mobile-love-signature" id="mobile-signature" aria-hidden="true">
+        <div class="mobile-orbit-small"></div>
+        <div class="mobile-heart-tiny">
             <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
