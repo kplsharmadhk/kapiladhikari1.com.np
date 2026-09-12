@@ -1,167 +1,358 @@
+/* =========================================================
+   MUTU — MISSING YOU
+   PREMIUM SURPRISE EXPERIENCE
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
+
     const page = document.querySelector(".surprise-page");
-    const openButton = document.getElementById("open-surprise-button");
+    const openButton = document.getElementById(
+        "open-surprise-button"
+    );
 
     if (!page || !openButton) {
         return;
     }
 
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let isTransitioning = false;
+
+    let particleTimer = null;
+
+    let sparkleTimer = null;
+
+
+    /* =====================================================
+       OPEN
+    ===================================================== */
+
     openButton.addEventListener("click", function () {
+
+        if (isTransitioning) {
+            return;
+        }
+
         openStory();
     });
 
+
     function openStory() {
-        const opening = document.getElementById("opening-screen");
+
+        if (isTransitioning) {
+            return;
+        }
+
+        const opening =
+            document.getElementById(
+                "opening-screen"
+            );
 
         if (!opening) {
             return;
         }
 
-        opening.classList.add("opening-exit");
+        isTransitioning = true;
+
+        opening.classList.add(
+            "opening-exit"
+        );
 
         createFloatingParticles();
 
         setTimeout(function () {
+
             showFirstMessage();
-        }, 700);
+
+            isTransitioning = false;
+
+        }, 720);
     }
 
 
     /* =====================================================
        CHARACTER REVEAL ENGINE
-       Each visible character appears naturally.
+       Nepali-friendly grapheme animation
     ===================================================== */
 
-    function prepareCharacterAnimation(container) {
+    function prepareCharacterAnimation(
+        container
+    ) {
+
         if (!container) {
             return;
         }
 
-        const elements = container.querySelectorAll(
-            ".story-label, .story-title, .story-text, .memory-word, " +
-            ".main-love-title, .miss-you, .quote-card p, .final-title, " +
-            ".final-message p, .final-goodbye, .signature"
-        );
+        const elements =
+            container.querySelectorAll(
+                ".story-label, " +
+                ".story-title, " +
+                ".story-text, " +
+                ".memory-word, " +
+                ".main-love-title, " +
+                ".miss-you, " +
+                ".quote-card p, " +
+                ".final-title, " +
+                ".final-message p, " +
+                ".final-goodbye, " +
+                ".signature"
+            );
 
         let globalDelay = 0;
 
         elements.forEach(function (element) {
-            if (element.dataset.revealed === "true") {
+
+            if (
+                element.dataset.revealed ===
+                "true"
+            ) {
                 return;
             }
 
-            element.dataset.revealed = "true";
+            element.dataset.revealed =
+                "true";
 
-            revealTextNodes(element, globalDelay);
+            revealTextNodes(
+                element,
+                globalDelay
+            );
 
-            const characterCount =
-                getTextCharacterCount(element);
+            const count =
+                getTextCharacterCount(
+                    element
+                );
 
+            /*
+             * Keep each block flowing naturally.
+             * Long paragraphs should not take forever.
+             */
             globalDelay += Math.min(
-                characterCount * 18,
-                250
+                count * 16,
+                230
             );
         });
     }
 
 
-    function revealTextNodes(element, baseDelay) {
-        const walker = document.createTreeWalker(
-            element,
-            NodeFilter.SHOW_TEXT
-        );
+    function revealTextNodes(
+        element,
+        baseDelay
+    ) {
+
+        const walker =
+            document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT
+            );
 
         const textNodes = [];
 
         while (walker.nextNode()) {
-            textNodes.push(walker.currentNode);
+            textNodes.push(
+                walker.currentNode
+            );
         }
 
-        textNodes.forEach(function (textNode) {
-            const text = textNode.nodeValue;
+        textNodes.forEach(function (
+            textNode
+        ) {
 
-            if (!text || !text.trim()) {
+            const text =
+                textNode.nodeValue;
+
+            if (
+                !text ||
+                !text.trim()
+            ) {
                 return;
             }
 
-            const fragment = document.createDocumentFragment();
+            const fragment =
+                document.createDocumentFragment();
 
-            /*
-             * Intl.Segmenter helps Nepali Unicode characters
-             * stay visually correct instead of breaking random
-             * Unicode code points.
-             */
-            let segments;
+            const segments =
+                getGraphemes(text);
 
-            if (
-                typeof Intl !== "undefined" &&
-                Intl.Segmenter
-            ) {
-                const segmenter = new Intl.Segmenter(
-                    "ne",
-                    {
-                        granularity: "grapheme"
+            let visibleIndex = 0;
+
+            segments.forEach(
+                function (character) {
+
+                    /*
+                     * Preserve whitespace exactly.
+                     */
+                    if (
+                        character === " " ||
+                        character === "\n" ||
+                        character === "\t"
+                    ) {
+
+                        fragment.appendChild(
+                            document.createTextNode(
+                                character
+                            )
+                        );
+
+                        return;
                     }
-                );
 
-                segments = Array.from(
-                    segmenter.segment(text),
-                    function (item) {
-                        return item.segment;
-                    }
-                );
-            } else {
-                segments = Array.from(text);
-            }
 
-            let localIndex = 0;
+                    const span =
+                        document.createElement(
+                            "span"
+                        );
 
-            segments.forEach(function (character) {
-                if (character === "\n") {
-                    fragment.appendChild(
-                        document.createTextNode("\n")
-                    );
+                    span.className =
+                        "reveal-char";
 
-                    return;
-                }
+                    span.textContent =
+                        character;
 
-                if (character === " ") {
-                    fragment.appendChild(
-                        document.createTextNode(" ")
-                    );
-
-                    return;
-                }
-
-                const span = document.createElement("span");
-
-                span.className = "reveal-char";
-
-                span.textContent = character;
-
-                span.style.animationDelay =
-                    (
+                    /*
+                     * Slightly varied timing makes
+                     * the text feel less mechanical.
+                     */
+                    const characterDelay =
                         baseDelay +
-                        localIndex * 24
-                    ) + "ms";
+                        visibleIndex * 22;
 
-                fragment.appendChild(span);
+                    span.style.animationDelay =
+                        characterDelay +
+                        "ms";
 
-                localIndex++;
-            });
+                    fragment.appendChild(
+                        span
+                    );
 
-            textNode.parentNode.replaceChild(
-                fragment,
-                textNode
+                    visibleIndex++;
+                }
             );
+
+            if (textNode.parentNode) {
+
+                textNode.parentNode.replaceChild(
+                    fragment,
+                    textNode
+                );
+            }
         });
     }
 
 
-    function getTextCharacterCount(element) {
-        const text = element.textContent || "";
+    /* =====================================================
+       NEPALI GRAPHEME SUPPORT
+    ===================================================== */
 
-        return Array.from(text.trim()).length;
+    function getGraphemes(text) {
+
+        if (
+            typeof Intl !==
+                "undefined" &&
+            typeof Intl.Segmenter ===
+                "function"
+        ) {
+
+            const segmenter =
+                new Intl.Segmenter(
+                    "ne",
+                    {
+                        granularity:
+                            "grapheme"
+                    }
+                );
+
+            return Array.from(
+                segmenter.segment(text),
+                function (item) {
+                    return item.segment;
+                }
+            );
+        }
+
+        /*
+         * Fallback for older browsers.
+         */
+        return Array.from(text);
+    }
+
+
+    function getTextCharacterCount(
+        element
+    ) {
+
+        const text =
+            element.textContent || "";
+
+        return getGraphemes(
+            text.trim()
+        ).length;
+    }
+
+
+    /* =====================================================
+       PAGE TRANSITION HELPER
+    ===================================================== */
+
+    function replacePage(
+        markup,
+        callback
+    ) {
+
+        if (isTransitioning) {
+            return;
+        }
+
+        isTransitioning = true;
+
+        const currentScreen =
+            page.querySelector(
+                ".story-screen"
+            );
+
+        if (currentScreen) {
+
+            currentScreen.style.transition =
+                "opacity 0.28s ease, " +
+                "transform 0.28s ease";
+
+            currentScreen.style.opacity =
+                "0";
+
+            currentScreen.style.transform =
+                "scale(0.985)";
+        }
+
+        setTimeout(function () {
+
+            clearTemporaryEffects();
+
+            page.innerHTML = markup;
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+            /*
+             * Let browser paint the new page
+             * before revealing it.
+             */
+            requestAnimationFrame(
+                function () {
+
+                    if (callback) {
+                        callback();
+                    }
+
+                    isTransitioning =
+                        false;
+                }
+            );
+
+        }, 300);
     }
 
 
@@ -170,7 +361,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showFirstMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen">
 
                 <div class="story-glow"></div>
@@ -206,16 +399,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        animateStory();
+                animateStory();
 
-        document
-            .getElementById("story-next-one")
-            .addEventListener(
-                "click",
-                showSecondMessage
-            );
+                bindButton(
+                    "story-next-one",
+                    showSecondMessage
+                );
+            }
+        );
     }
 
 
@@ -224,7 +418,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showSecondMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen">
 
                 <div class="story-glow"></div>
@@ -264,16 +460,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        animateStory();
+                animateStory();
 
-        document
-            .getElementById("story-next-two")
-            .addEventListener(
-                "click",
-                showThirdMessage
-            );
+                bindButton(
+                    "story-next-two",
+                    showThirdMessage
+                );
+            }
+        );
     }
 
 
@@ -282,7 +479,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showThirdMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen">
 
                 <div class="story-glow"></div>
@@ -327,16 +526,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        animateStory();
+                animateStory();
 
-        document
-            .getElementById("story-next-three")
-            .addEventListener(
-                "click",
-                showMainMessage
-            );
+                bindButton(
+                    "story-next-three",
+                    showMainMessage
+                );
+            }
+        );
     }
 
 
@@ -345,7 +545,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showMainMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen emotional-screen">
 
                 <div class="emotional-glow"></div>
@@ -392,17 +594,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        createHeartBurst();
-        animateStory();
+                createHeartBurst();
 
-        document
-            .getElementById("story-next-four")
-            .addEventListener(
-                "click",
-                showReasonMessage
-            );
+                animateStory();
+
+                bindButton(
+                    "story-next-four",
+                    showReasonMessage
+                );
+            }
+        );
     }
 
 
@@ -411,7 +615,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showReasonMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen">
 
                 <div class="story-glow"></div>
@@ -468,16 +674,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        animateStory();
+                animateStory();
 
-        document
-            .getElementById("story-next-five")
-            .addEventListener(
-                "click",
-                showFinalMessage
-            );
+                bindButton(
+                    "story-next-five",
+                    showFinalMessage
+                );
+            }
+        );
     }
 
 
@@ -486,7 +693,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function showFinalMessage() {
-        page.innerHTML = `
+
+        replacePage(
+            `
             <section class="story-screen final-screen">
 
                 <div class="final-glow"></div>
@@ -548,19 +757,55 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
             </section>
-        `;
+            `,
+            function () {
 
-        createHeartBurst();
-        createSparkleField();
-        animateStory();
+                createHeartBurst();
+
+                createSparkleField();
+
+                animateStory();
+            }
+        );
     }
 
 
     /* =====================================================
-       STORY ANIMATION
+       BUTTON BINDING
+    ===================================================== */
+
+    function bindButton(
+        id,
+        action
+    ) {
+
+        const button =
+            document.getElementById(id);
+
+        if (!button) {
+            return;
+        }
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                if (isTransitioning) {
+                    return;
+                }
+
+                action();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       STORY REVEAL
     ===================================================== */
 
     function animateStory() {
+
         const content =
             document.querySelector(
                 ".story-content"
@@ -570,22 +815,25 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        requestAnimationFrame(function () {
+        requestAnimationFrame(
+            function () {
 
-            content.classList.add(
-                "story-visible"
-            );
-
-            /*
-             * Give the screen a moment to appear,
-             * then start character-by-character reveal.
-             */
-            setTimeout(function () {
-                prepareCharacterAnimation(
-                    content
+                content.classList.add(
+                    "story-visible"
                 );
-            }, 220);
-        });
+
+                setTimeout(
+                    function () {
+
+                        prepareCharacterAnimation(
+                            content
+                        );
+
+                    },
+                    230
+                );
+            }
+        );
     }
 
 
@@ -594,6 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function createFloatingParticles() {
+
         const symbols = [
             "·",
             "✦",
@@ -601,10 +850,25 @@ document.addEventListener("DOMContentLoaded", function () {
             "♡"
         ];
 
-        for (let i = 0; i < 24; i++) {
+        /*
+         * Prevent repeated particle floods.
+         */
+        if (particleTimer) {
+            clearTimeout(
+                particleTimer
+            );
+        }
+
+        for (
+            let i = 0;
+            i < 22;
+            i++
+        ) {
 
             const particle =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
             particle.className =
                 "floating-particle";
@@ -618,29 +882,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 ];
 
             particle.style.left =
-                Math.random() * 100 + "%";
+                (
+                    Math.random() * 100
+                ) + "%";
 
             particle.style.animationDelay =
-                Math.random() * 3 + "s";
+                (
+                    Math.random() * 2.8
+                ) + "s";
 
             particle.style.animationDuration =
-                5 +
-                Math.random() * 7 +
-                "s";
+                (
+                    5 +
+                    Math.random() * 6
+                ) + "s";
 
             particle.style.fontSize =
-                7 +
-                Math.random() * 12 +
-                "px";
+                (
+                    7 +
+                    Math.random() * 11
+                ) + "px";
 
             document.body.appendChild(
                 particle
             );
 
-            setTimeout(function () {
-                particle.remove();
-            }, 13000);
+            setTimeout(
+                function () {
+
+                    if (particle) {
+                        particle.remove();
+                    }
+
+                },
+                12500
+            );
         }
+
+        particleTimer =
+            setTimeout(
+                function () {
+                    particleTimer = null;
+                },
+                12500
+            );
     }
 
 
@@ -649,16 +934,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function createHeartBurst() {
+
         const hearts = [
             "♡",
             "♥",
             "✦"
         ];
 
-        for (let i = 0; i < 14; i++) {
+        for (
+            let i = 0;
+            i < 13;
+            i++
+        ) {
 
             const heart =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
             heart.className =
                 "heart-particle";
@@ -672,50 +964,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 ];
 
             heart.style.left =
-                50 +
                 (
-                    Math.random() * 40 -
-                    20
-                ) +
-                "%";
+                    50 +
+                    (
+                        Math.random() * 36 -
+                        18
+                    )
+                ) + "%";
 
             heart.style.top =
-                48 +
                 (
-                    Math.random() * 25 -
-                    12
-                ) +
-                "%";
+                    48 +
+                    (
+                        Math.random() * 20 -
+                        10
+                    )
+                ) + "%";
 
             heart.style.setProperty(
                 "--x",
                 (
-                    Math.random() * 260 -
-                    130
-                ) +
-                "px"
+                    Math.random() * 250 -
+                    125
+                ) + "px"
             );
 
             heart.style.setProperty(
                 "--y",
                 -(
                     80 +
-                    Math.random() * 220
-                ) +
-                "px"
+                    Math.random() * 210
+                ) + "px"
             );
 
             heart.style.animationDelay =
-                Math.random() * 0.4 +
-                "s";
+                (
+                    Math.random() * 0.35
+                ) + "s";
 
             document.body.appendChild(
                 heart
             );
 
-            setTimeout(function () {
-                heart.remove();
-            }, 3000);
+            setTimeout(
+                function () {
+
+                    if (heart) {
+                        heart.remove();
+                    }
+
+                },
+                3000
+            );
         }
     }
 
@@ -725,10 +1025,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     function createSparkleField() {
-        for (let i = 0; i < 30; i++) {
+
+        /*
+         * Avoid duplicate sparkle fields
+         * if final screen is somehow revisited.
+         */
+        clearSparkles();
+
+        for (
+            let i = 0;
+            i < 24;
+            i++
+        ) {
 
             const sparkle =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
             sparkle.className =
                 "final-sparkle";
@@ -737,29 +1050,101 @@ document.addEventListener("DOMContentLoaded", function () {
                 "✦";
 
             sparkle.style.left =
-                Math.random() * 100 +
-                "%";
+                (
+                    Math.random() * 100
+                ) + "%";
 
             sparkle.style.top =
-                Math.random() * 100 +
-                "%";
+                (
+                    Math.random() * 100
+                ) + "%";
 
             sparkle.style.animationDelay =
-                Math.random() * 4 +
-                "s";
+                (
+                    Math.random() * 3.5
+                ) + "s";
 
             sparkle.style.animationDuration =
-                3 +
-                Math.random() * 4 +
-                "s";
+                (
+                    3 +
+                    Math.random() * 3
+                ) + "s";
 
             document.body.appendChild(
                 sparkle
             );
 
-            setTimeout(function () {
-                sparkle.remove();
-            }, 8000);
+            setTimeout(
+                function () {
+
+                    if (sparkle) {
+                        sparkle.remove();
+                    }
+
+                },
+                7500
+            );
+        }
+
+        sparkleTimer =
+            setTimeout(
+                function () {
+                    sparkleTimer = null;
+                },
+                7500
+            );
+    }
+
+
+    /* =====================================================
+       CLEAN TEMPORARY EFFECTS
+    ===================================================== */
+
+    function clearTemporaryEffects() {
+
+        document
+            .querySelectorAll(
+                ".floating-particle, " +
+                ".heart-particle, " +
+                ".final-sparkle"
+            )
+            .forEach(
+                function (element) {
+                    element.remove();
+                }
+            );
+
+        if (particleTimer) {
+
+            clearTimeout(
+                particleTimer
+            );
+
+            particleTimer = null;
+        }
+
+        if (sparkleTimer) {
+
+            clearTimeout(
+                sparkleTimer
+            );
+
+            sparkleTimer = null;
         }
     }
+
+
+    function clearSparkles() {
+
+        document
+            .querySelectorAll(
+                ".final-sparkle"
+            )
+            .forEach(
+                function (element) {
+                    element.remove();
+                }
+            );
+    }
+
 });
