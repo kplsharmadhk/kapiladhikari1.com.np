@@ -1,1 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+    --bg-dark: #090611;
+    --pink: #ff4f81;
+    --rose: #ff789c;
+    --white: #ffffff;
+    --soft: #d8cbd4;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-dark);
+    color: var(--white);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.surprise-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255, 79, 129, 0.20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(137, 63, 255, 0.14),
+            transparent 35%
+        ),
+        var(--bg-dark);
+}
+
+.surprise-card {
+    width: min(430px, 100%);
+    padding: 48px 28px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 32px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    animation: cardAppear 1.2s ease forwards;
+}
+
+.heart-icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 79, 129, 0.10);
+    border: 1px solid rgba(255, 120, 156, 0.25);
+
+    font-size: 40px;
+
+    box-shadow:
+        0 0 45px rgba(255, 79, 129, 0.22);
+
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.small-text {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--rose);
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(52px, 14vw, 72px);
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+}
+
+h1 span {
+    background: linear-gradient(
+        90deg,
+        #ff4f81,
+        #ff9ab6
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.description {
+    color: var(--soft);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.open-button {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    padding: 16px 24px;
+
+    border-radius: 50px;
+
+    color: white;
+    background: linear-gradient(
+        135deg,
+        #ff4778,
+        #ff789c
+    );
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 35px rgba(255, 71, 120, 0.30);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.open-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 20px 45px rgba(255, 71, 120, 0.40);
+}
+
+.open-button:active {
+    transform: scale(0.97);
+}
+
+.open-button span {
+    margin-left: 7px;
+}
+
+.hint {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.42);
+}
+
+/* Background glow */
+
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(70px);
+}
+
+.glow-one {
+    width: 220px;
+    height: 220px;
+    background: rgba(255, 53, 113, 0.14);
+    top: -80px;
+    right: -70px;
+}
+
+.glow-two {
+    width: 180px;
+    height: 180px;
+    background: rgba(145, 70, 255, 0.12);
+    bottom: -60px;
+    left: -60px;
+}
+
+/* Animations */
+
+@keyframes heartbeat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+    .surprise-card {
+        padding: 42px 22px;
+        border-radius: 28px;
+    }
+
+    h1 {
+        font-size: 58px;
+    }
+
+    .heart-icon {
+        width: 74px;
+        height: 74px;
+        font-size: 35px;
+    }
+}
