@@ -11,11 +11,8 @@ from pathlib import Path
 SITE_URL = "https://kapiladhikari1.com.np"
 
 POSTS_FILE = Path("posts/posts.json")
-
 OUTPUT_DIR = Path("news")
-
 DEFAULT_IMAGE = "/images/hero.jpg"
-
 GOOGLE_ANALYTICS_ID = "G-FHMXK9R405"
 
 
@@ -24,34 +21,26 @@ GOOGLE_ANALYTICS_ID = "G-FHMXK9R405"
 # ==========================================
 
 if not POSTS_FILE.exists():
-    raise FileNotFoundError(
-        "posts/posts.json not found."
-    )
+    print(f"Missing {POSTS_FILE}. Nothing to generate.")
+    raise SystemExit(0)
 
-
-with open(
-    POSTS_FILE,
-    "r",
-    encoding="utf-8"
-) as file:
-
-    posts = json.load(file)
-
+with open(POSTS_FILE, "r", encoding="utf-8") as file:
+    try:
+        posts = json.load(file)
+    except json.JSONDecodeError as exc:
+        print(f"Invalid JSON in {POSTS_FILE}: {exc}")
+        raise SystemExit(1)
 
 if not isinstance(posts, list):
-    raise ValueError(
-        "posts.json must contain an array."
-    )
+    print("posts.json must contain an array. No pages generated.")
+    raise SystemExit(1)
 
 
 # ==========================================
 # CREATE OUTPUT FOLDER
 # ==========================================
 
-OUTPUT_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 # ==========================================
@@ -59,49 +48,26 @@ OUTPUT_DIR.mkdir(
 # ==========================================
 
 def safe_text(value):
-
     if value is None:
         return ""
 
-    return html.escape(
-        str(value),
-        quote=True
-    )
+    return html.escape(str(value), quote=True)
 
 
 def safe_filename(value):
-
     value = str(value)
-
-    value = re.sub(
-        r"[^a-zA-Z0-9_-]",
-        "-",
-        value
-    )
-
-    value = re.sub(
-        r"-+",
-        "-",
-        value
-    )
-
+    value = re.sub(r"[^a-zA-Z0-9_-]", "-", value)
+    value = re.sub(r"-+", "-", value)
     return value.strip("-")
 
 
 def absolute_image_url(image):
-
     if not image:
         return SITE_URL + DEFAULT_IMAGE
 
     image = str(image)
+    image = image.replace("../", "/")
 
-    # ../images/news2.jpg
-    image = image.replace(
-        "../",
-        "/"
-    )
-
-    # images/news2.jpg
     if not image.startswith("/"):
         image = "/" + image
 
@@ -109,13 +75,7 @@ def absolute_image_url(image):
 
 
 def post_url(post_id):
-
-    return (
-        SITE_URL +
-        "/news/" +
-        safe_filename(post_id) +
-        "/"
-    )
+    return SITE_URL + "/news/" + safe_filename(post_id) + "/"
 
 
 # ==========================================
@@ -124,131 +84,69 @@ def post_url(post_id):
 
 generated_files = []
 
-
 for post in posts:
+    if not isinstance(post, dict):
+        continue
 
     post_id = post.get("id")
-
     if post_id is None:
         continue
 
+    title = post.get("title") or "समाचार"
+    description = post.get("seoDescription") or post.get("excerpt") or "विस्तृतमा समाचार पढ्नुहोस्।"
+    image_url = absolute_image_url(post.get("image"))
+    url = post_url(post_id)
+    folder_name = safe_filename(post_id)
 
-    title = (
-        post.get("title")
-        or "समाचार"
-    )
+    output_folder = OUTPUT_DIR / folder_name
+    output_folder.mkdir(parents=True, exist_ok=True)
+    output_file = output_folder / "index.html"
 
-
-    description = (
-        post.get("seoDescription")
-        or post.get("excerpt")
-        or "विस्तृतमा समाचार पढ्नुहोस्।"
-    )
-
-
-    image_url = absolute_image_url(
-        post.get("image")
-    )
-
-
-    url = post_url(
-        post_id
-    )
-
-
-    folder_name = safe_filename(
-        post_id
-    )
-
-
-    output_folder = (
-        OUTPUT_DIR /
-        folder_name
-    )
-
-
-    output_folder.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-
-    output_file = (
-        output_folder /
-        "index.html"
-    )
-
-
-    # ======================================
-    # CONTENT
-    # ======================================
-
-    content = post.get(
-        "content",
-        []
-    )
-
-
+    content = post.get("content", [])
     paragraphs = ""
 
-
     if isinstance(content, list):
-
         for paragraph in content:
-
             paragraphs += f"""
-<p>
-{safe_text(paragraph)}
-</p>
-"""
-
-
+ <p>
+ {safe_text(paragraph)}
+ </p>
+ """
     elif content:
-
         paragraphs = f"""
-<p>
-{safe_text(content)}
-</p>
-"""
-
-
-    # ======================================
-    # GOOGLE ANALYTICS
-    # ======================================
+ <p>
+ {safe_text(content)}
+ </p>
+ """
 
     analytics_code = f"""
-<!-- Google Analytics -->
-<script async
-src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}">
-</script>
+ <!-- Google Analytics -->
+ <script async
+ src="https://www.googletagmanager.com/gtag/js?id={GOOGLE_ANALYTICS_ID}">
+ </script>
 
-<script>
+ <script>
 
-window.dataLayer =
-window.dataLayer || [];
+ window.dataLayer =
+ window.dataLayer || [];
 
-function gtag(){{
-    dataLayer.push(arguments);
-}}
+ function gtag(){{
+     dataLayer.push(arguments);
+ }}
 
-gtag(
-    'js',
-    new Date()
-);
+ gtag(
+     'js',
+     new Date()
+ );
 
-gtag(
-    'config',
-    '{GOOGLE_ANALYTICS_ID}'
-);
+ gtag(
+     'config',
+     '{GOOGLE_ANALYTICS_ID}'
+ );
 
-</script>
-<!-- End Google Analytics -->
-"""
-
-
-    # ======================================
-    # HTML
-    # ======================================
+ </script>
+ <!-- End Google Analytics -->
+ """
 
     page = f"""<!DOCTYPE html>
 <html lang="ne">
@@ -260,13 +158,11 @@ gtag(
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-
 <!-- =========================
      GOOGLE ANALYTICS
 ========================= -->
 
 {analytics_code}
-
 
 <!-- =========================
      BASIC SEO
@@ -276,22 +172,17 @@ gtag(
 {safe_text(title)}
 </title>
 
-
 <meta name="description"
       content="{safe_text(description)}">
 
-
 <meta name="author"
-      content="{safe_text(post.get("author", "Kapil Adhikari"))}">
-
+      content="{safe_text(post.get('author', 'Kapil Adhikari'))}">
 
 <meta name="robots"
       content="index, follow, max-image-preview:large">
 
-
 <link rel="canonical"
       href="{safe_text(url)}">
-
 
 <!-- =========================
      OPEN GRAPH
@@ -300,42 +191,32 @@ gtag(
 <meta property="og:type"
       content="article">
 
-
 <meta property="og:site_name"
       content="Kapil Sharma Adhikari">
-
 
 <meta property="og:locale"
       content="ne_NP">
 
-
 <meta property="og:title"
       content="{safe_text(title)}">
-
 
 <meta property="og:description"
       content="{safe_text(description)}">
 
-
 <meta property="og:url"
       content="{safe_text(url)}">
-
 
 <meta property="og:image"
       content="{safe_text(image_url)}">
 
-
 <meta property="og:image:alt"
       content="{safe_text(title)}">
-
 
 <meta property="og:image:width"
       content="1200">
 
-
 <meta property="og:image:height"
       content="630">
-
 
 <!-- =========================
      X / TWITTER
@@ -344,18 +225,14 @@ gtag(
 <meta name="twitter:card"
       content="summary_large_image">
 
-
 <meta name="twitter:title"
       content="{safe_text(title)}">
-
 
 <meta name="twitter:description"
       content="{safe_text(description)}">
 
-
 <meta name="twitter:image"
       content="{safe_text(image_url)}">
-
 
 <!-- =========================
      FONT
@@ -364,15 +241,12 @@ gtag(
 <link rel="preconnect"
       href="https://fonts.googleapis.com">
 
-
 <link rel="preconnect"
       href="https://fonts.gstatic.com"
       crossorigin>
 
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
-
 
 <style>
 
@@ -623,9 +497,7 @@ h1 {{
 
 </head>
 
-
 <body>
-
 
 <header class="header">
 
@@ -645,7 +517,6 @@ ADHIKARI
 
 </a>
 
-
 <a
 href="/news.html"
 class="back">
@@ -658,18 +529,15 @@ class="back">
 
 </header>
 
-
 <main>
 
 <article class="article">
 
-
 <div class="category">
 
-{safe_text(post.get("categoryName", "समाचार"))}
+{safe_text(post.get('categoryName', 'समाचार'))}
 
 </div>
-
 
 <h1>
 
@@ -677,19 +545,17 @@ class="back">
 
 </h1>
 
-
 <div class="meta">
 
 <span>
-{safe_text(post.get("date", ""))}
+{safe_text(post.get('date', ''))}
 </span>
 
 <span>
-{safe_text(post.get("author", "Kapil Adhikari"))}
+{safe_text(post.get('author', 'Kapil Adhikari'))}
 </span>
 
 </div>
-
 
 <div class="hero-image">
 
@@ -700,20 +566,17 @@ alt="{safe_text(title)}"
 
 </div>
 
-
 <div class="read">
 
 विस्तृतमा समाचार पढ्नुहोस्।
 
 </div>
 
-
 <div class="content">
 
 {paragraphs}
 
 </div>
-
 
 <div class="share">
 
@@ -723,7 +586,6 @@ alt="{safe_text(title)}"
 
 </div>
 
-
 <a
 href="https://www.facebook.com/sharer/sharer.php?u={safe_text(url)}"
 target="_blank"
@@ -732,7 +594,6 @@ rel="noopener">
 Facebook
 
 </a>
-
 
 <a
 href="https://twitter.com/intent/tweet?url={safe_text(url)}&text={safe_text(title)}"
@@ -745,11 +606,9 @@ X
 
 </div>
 
-
 </article>
 
 </main>
-
 
 <footer class="footer">
 
@@ -771,7 +630,6 @@ News • Stories • Nepal
 
 </div>
 
-
 <div class="copy">
 
 © Kapil Adhikari
@@ -784,41 +642,16 @@ News • Stories • Nepal
 
 </footer>
 
-
 </body>
 
 </html>
 """
 
-
-    # ======================================
-    # WRITE FILE
-    # ======================================
-
-    with open(
-        output_file,
-        "w",
-        encoding="utf-8"
-    ) as file:
-
+    with open(output_file, "w", encoding="utf-8") as file:
         file.write(page)
 
+    generated_files.append(str(output_file))
 
-    generated_files.append(
-        str(output_file)
-    )
-
-
-# ==========================================
-# RESULT
-# ==========================================
-
-print(
-    f"Generated {len(generated_files)} news pages."
-)
-
+print(f"Generated {len(generated_files)} news pages.")
 for filename in generated_files:
-
-    print(
-        f"Created: {filename}"
-    )
+    print(f"Created: {filename}")
