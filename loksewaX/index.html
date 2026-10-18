@@ -651,6 +651,49 @@ h1{animation:hero-copy-in .8s .22s both}
       .explorer-orbit-stage .brand-stage-mark{transition:none}
     }
 
+
+    /* Solar-system finish: preserve the existing 48s / 62s / 76s orbit speeds. */
+    .explorer-orbit-stage .brand-stage-ring-one,
+    .explorer-orbit-stage .brand-stage-ring-two,
+    .explorer-orbit-stage .brand-stage-grid:after{
+      scale:1 .78;
+      transform-origin:center;
+    }
+    .explorer-orbit-stage .brand-stage-ring-one{
+      box-shadow:0 0 28px rgba(40,91,164,.09),inset 0 0 25px rgba(58,99,164,.035);
+    }
+    .explorer-orbit-stage .brand-stage-ring-one:before,
+    .explorer-orbit-stage .brand-stage-ring-two:before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:-5px;
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      transform:translateX(-50%);
+      pointer-events:none;
+    }
+    .explorer-orbit-stage .brand-stage-ring-one:before{
+      background:radial-gradient(circle at 32% 28%,#fff 0 10%,#ff9b9f 28%,#D02023 72%);
+      box-shadow:0 0 7px 2px rgba(255,119,123,.45),0 0 17px 4px rgba(208,32,35,.23);
+    }
+    .explorer-orbit-stage .brand-stage-ring-two:before{
+      top:auto;
+      bottom:-4px;
+      width:7px;
+      height:7px;
+      background:radial-gradient(circle at 30% 25%,#fff 0 12%,#b9d6ff 35%,#4c82d7 80%);
+      box-shadow:0 0 8px 2px rgba(111,157,226,.55),0 0 18px 4px rgba(61,111,196,.22);
+    }
+    .explorer-orbit-stage .brand-stage-grid:after{
+      box-shadow:0 0 22px rgba(208,32,35,.055);
+    }
+    @media(max-width:540px){
+      .explorer-orbit-stage .brand-stage-ring-one:before{width:7px;height:7px;top:-4px}
+      .explorer-orbit-stage .brand-stage-ring-two:before{width:6px;height:6px;bottom:-3px}
+    }
+
   </style>
   <script type="application/ld+json">
   {
