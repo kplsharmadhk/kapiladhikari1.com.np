@@ -595,6 +595,36 @@ h1{animation:hero-copy-in .8s .22s both}
       .explorer-orbit-stage .brand-stage-rule,.explorer-orbit-stage .brand-stage-mark p,.orbit-photon{animation:none!important}
     }
 
+  
+    /* Final cinematic orbit tuning: three independently paced rings and softer particles. */
+    .explorer-orbit-stage .brand-stage-ring-one{animation:brand-ring-turn 48s linear infinite}
+    .explorer-orbit-stage .brand-stage-ring-two{animation:brand-ring-turn-reverse 62s linear infinite}
+    .explorer-orbit-stage .brand-stage-grid:after{
+      animation:cinema-third-ring 76s linear infinite;
+      transform-origin:center;
+      will-change:transform;
+    }
+    .explorer-orbit-track:before{
+      background:conic-gradient(from 0deg,transparent 0deg 258deg,rgba(208,32,35,.055) 278deg,rgba(208,32,35,.3) 292deg,#ff8589 299deg,rgba(255,255,255,.72) 302deg,rgba(208,32,35,.12) 306deg,transparent 318deg 360deg);
+      filter:drop-shadow(0 0 5px rgba(208,32,35,.26));
+    }
+    .orbit-photon{
+      width:3px;height:3px;
+      box-shadow:0 0 4px 1px rgba(255,255,255,.34),0 0 9px 2px rgba(208,32,35,.2);
+      animation:photon-twinkle 3.2s ease-in-out var(--photon-delay,0s) infinite alternate;
+    }
+    .orbit-photon:nth-child(3n){
+      width:2px;height:2px;
+      box-shadow:0 0 6px 2px rgba(208,32,35,.23);
+    }
+    @keyframes cinema-third-ring{
+      from{transform:translate(-50%,-50%) rotate(-16deg)}
+      to{transform:translate(-50%,-50%) rotate(344deg)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .explorer-orbit-stage .brand-stage-grid:after{animation:none!important}
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -799,11 +829,11 @@ h1{animation:hero-copy-in .8s .22s both}
         orbitStage.classList.add('cinematic-revealed');
         const orbit = orbitStage.querySelector('.explorer-orbit-track');
         if (orbit && !orbit.querySelector('.orbit-photon')) {
-          for (let i = 0; i < 18; i += 1) {
+          for (let i = 0; i < 14; i += 1) {
             const photon = document.createElement('span');
             photon.className = 'orbit-photon';
             photon.setAttribute('aria-hidden', 'true');
-            photon.style.setProperty('--photon-angle', `${i * 20}deg`);
+            photon.style.setProperty('--photon-angle', `${i * (360 / 14)}deg`);
             photon.style.setProperty('--photon-delay', `${(i % 6) * -0.38}s`);
             orbit.appendChild(photon);
           }
