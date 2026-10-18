@@ -224,18 +224,9 @@ h1{animation:hero-copy-in .8s .22s both}
 @media(prefers-reduced-motion:reduce){.hero-copy,.eyebrow,h1,.hero-copy>p,.actions,.hero-tags,.visual-logo-wrap,.hero-main-logo,.orbit-one,.orbit-two,.visual-aura,.float-chip,.visual-spark{animation:none!important;opacity:1;filter:none;transform:none}}
 
 
-    /* Premium hero polish: cinematic stagger reveal for the existing hero copy. */
+    /* Premium hero polish: keep the official mark crisp and unobstructed. */
     .hero-copy .eyebrow,.hero-copy h1,.hero-copy>p,.hero-copy .actions,.hero-copy .hero-tags{animation:hero-copy-arrive .72s cubic-bezier(.2,.75,.25,1) both}
-    .hero-copy .eyebrow{animation-delay:.02s}
-    .hero-copy h1{animation-delay:.08s}
-    .hero-copy h1 .hero-title-line{display:inline-block;opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(18px);will-change:transform,opacity,clip-path;animation:hero-title-line-reveal .88s cubic-bezier(.16,1,.3,1) forwards}
-    .hero-copy h1 .hero-title-line-one{animation-delay:.2s}
-    .hero-copy h1 .hero-title-line-two{animation-delay:.42s;animation-name:hero-title-line-reveal,hero-red-accent;animation-duration:.88s,1.05s;animation-delay:.42s,1.05s;animation-fill-mode:forwards,forwards}
-    .hero-copy>p{animation-delay:.48s}
-    .hero-copy .actions{animation-delay:.66s}
-    .hero-copy .hero-tags{animation-delay:.82s}
-    @keyframes hero-title-line-reveal{from{opacity:0;transform:translateY(18px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:translateY(0);clip-path:inset(0 0 0 0)}}
-    @keyframes hero-red-accent{0%,100%{text-shadow:0 0 0 rgba(255,119,123,0)}45%{text-shadow:0 0 22px rgba(255,119,123,.42)}}
+    .hero-copy h1{animation-delay:.09s}.hero-copy>p{animation-delay:.17s}.hero-copy .actions{animation-delay:.24s}.hero-copy .hero-tags{animation-delay:.31s}
     .hero-visual{min-height:500px;overflow:visible;padding:30px 8px 38px}
     .hero-visual:before{width:min(78%,390px);background:radial-gradient(circle,rgba(255,255,255,.2),rgba(83,139,236,.14) 48%,transparent 74%);filter:blur(12px);animation:hero-aura 7s ease-in-out infinite}
     .visual-orbit{border-color:rgba(211,228,255,.18)}
@@ -691,7 +682,7 @@ h1{animation:hero-copy-in .8s .22s both}
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">लोकसेवा तयारीका लागि डिजिटल प्लेटफर्म</span>
-          <h1 id="hero-title"><span class="hero-title-line hero-title-line-one">तयारी अब</span><br><em class="hero-title-line hero-title-line-two">अझ व्यवस्थित।</em></h1>
+          <h1 id="hero-title">तयारी अब<br><em>अझ व्यवस्थित।</em></h1>
           <p>LokSewaX लोकसेवा परीक्षाको तयारीमा सहयोग गर्न बनाइएको अध्ययन, अभ्यास र उपयोगी डिजिटल सेवाहरूको प्लेटफर्म हो। आफ्नो तयारीसँग मिल्ने सामग्री अध्ययन गर्नुहोस्, उपलब्ध Mock Test अभ्यास गर्नुहोस् र प्रगति समीक्षा गर्नुहोस्।</p>
           <div class="actions">
             <a class="btn btn-primary" href="https://loksewax-student.vercel.app/" target="_blank" rel="noopener noreferrer">LokSewaX विद्यार्थी एप खोल्नुहोस् <span aria-hidden="true">↗</span></a>
