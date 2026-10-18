@@ -417,6 +417,108 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:720px){.explorer-node{transform:rotate(var(--angle)) translateY(-177px)}.explorer-node-button{width:112px;min-height:38px;gap:6px;padding:6px 7px}.explorer-node-button>span:last-child{font-size:.59rem}}
     @media(max-width:540px){.explorer-node{transform:rotate(var(--angle)) translateY(-151px)}.explorer-node-button{width:101px;min-height:35px;gap:5px;padding:5px 6px;border-radius:8px}.explorer-node-button>span:last-child{font-size:.53rem}}
 
+
+    /* Premium Explorer capsules + unmistakable clock-like orbit. */
+    .explorer-orbit-stage{isolation:isolate}
+    .explorer-orbit-stage .brand-stage-ring-one{
+      border-width:1px;
+      border-color:rgba(185,207,243,.24);
+      border-left-color:#D02023;
+      box-shadow:0 0 34px rgba(40,91,164,.08),inset 0 0 28px rgba(58,99,164,.035);
+    }
+    .explorer-orbit-stage .brand-stage-ring-two{
+      border-style:solid;
+      border-color:rgba(201,218,247,.13);
+      border-top-color:rgba(208,32,35,.72);
+      box-shadow:0 0 22px rgba(208,32,35,.045);
+    }
+    .explorer-orbit-track{
+      animation:explorer-orbit-spin 60s linear infinite!important;
+      will-change:transform;
+    }
+    .explorer-node-button{
+      overflow:hidden;
+      width:146px;
+      min-height:49px;
+      gap:10px;
+      padding:8px 13px 8px 9px;
+      border:1px solid rgba(179,204,243,.32);
+      border-radius:999px;
+      background:linear-gradient(115deg,rgba(17,43,79,.97),rgba(5,17,38,.97) 72%);
+      box-shadow:0 10px 28px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.09),0 0 0 1px rgba(7,20,43,.35);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      animation:explorer-button-counter 60s linear infinite;
+      transition:border-color .25s,background .25s,box-shadow .25s;
+    }
+    .explorer-node-button:before{
+      content:"";
+      position:absolute;
+      inset:1px auto 1px 1px;
+      width:3px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#ff7c80,#D02023 65%,rgba(208,32,35,.12));
+      opacity:.95;
+    }
+    .explorer-node-button:after{
+      content:"";
+      position:absolute;
+      top:-60%;
+      left:-45%;
+      width:35%;
+      height:220%;
+      transform:rotate(24deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.09),transparent);
+      pointer-events:none;
+      transition:left .5s ease;
+    }
+    .explorer-node-button:hover:after,.explorer-node-button:focus-visible:after{left:120%}
+    .explorer-node-icon{
+      position:relative;
+      display:grid;
+      place-items:center;
+      flex:0 0 29px;
+      width:29px;
+      height:29px;
+      border:1px solid rgba(255,115,120,.38);
+      border-radius:50%;
+      background:radial-gradient(circle at 32% 25%,rgba(255,118,124,.3),rgba(208,32,35,.1) 72%);
+      color:#ff9b9f;
+      font-size:.66rem;
+      letter-spacing:-.03em;
+      box-shadow:inset 0 0 12px rgba(208,32,35,.1),0 0 13px rgba(208,32,35,.09);
+    }
+    .explorer-node-button>span:last-child{
+      position:relative;
+      color:#f4f7fd;
+      font-size:.7rem;
+      font-weight:750;
+      letter-spacing:-.015em;
+      text-shadow:0 1px 8px rgba(0,0,0,.22);
+    }
+    .explorer-node-button:hover,.explorer-node-button:focus-visible{
+      border-color:rgba(255,125,130,.9);
+      background:linear-gradient(115deg,rgba(30,59,99,.99),rgba(8,22,47,.99) 72%);
+      box-shadow:0 13px 34px rgba(0,0,0,.34),0 0 0 3px rgba(208,32,35,.13),0 0 24px rgba(208,32,35,.13),inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .explorer-node-button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+    .explorer-orbit-stage .brand-stage-mark{filter:drop-shadow(0 12px 34px rgba(0,0,0,.13))}
+    @media(max-width:960px){
+      .explorer-node-button{width:128px;min-height:43px;gap:7px;padding:6px 9px 6px 7px}
+      .explorer-node-icon{width:25px;height:25px;flex-basis:25px;font-size:.59rem}
+      .explorer-node-button>span:last-child{font-size:.63rem}
+    }
+    @media(max-width:540px){
+      .explorer-node-button{width:105px;min-height:36px;gap:5px;padding:5px 6px 5px 5px}
+      .explorer-node-icon{width:21px;height:21px;flex-basis:21px;font-size:.51rem}
+      .explorer-node-button>span:last-child{font-size:.52rem}
+    }
+    /* The requested orbital motion remains active even when the OS reduces other motion. */
+    @media(prefers-reduced-motion:reduce){
+      .explorer-orbit-track{animation:explorer-orbit-spin 60s linear infinite!important}
+      .explorer-node-button{animation:explorer-button-counter 60s linear infinite!important}
+    }
+
 </style>
   <script type="application/ld+json">
   {
