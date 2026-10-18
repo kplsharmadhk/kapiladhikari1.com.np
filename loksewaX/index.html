@@ -405,6 +405,18 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:540px){.explorer-orbit-stage{min-height:410px;margin-top:4px}.explorer-orbit-stage .brand-stage-ring-one{width:100%}.explorer-orbit-stage .brand-stage-ring-two{width:76%}.explorer-orbit-stage .brand-stage-mark{width:58%;padding:6px 0}.explorer-orbit-stage .brand-stage-kicker{font-size:.34rem;letter-spacing:.035em;margin-bottom:11px;gap:6px}.explorer-orbit-stage .brand-stage-kicker i{width:5px;height:5px}.explorer-orbit-stage .hero-main-logo{max-width:210px}.explorer-orbit-stage .brand-stage-rule{margin:12px auto 8px;width:42px}.explorer-orbit-stage .brand-stage-mark p{font-size:.56rem;white-space:normal;line-height:1.55}.explorer-node{width:101px;min-height:35px;gap:5px;padding:5px 6px;border-radius:8px;transform:rotate(var(--angle)) translateY(-151px)}.explorer-node>span:last-child{font-size:.53rem}.explorer-node-icon{width:20px;height:20px;flex-basis:20px;border-radius:6px;font-size:.53rem}.explorer-orbit-stage .brand-stage-index{font-size:.43rem;right:5%;top:2%}.explorer-orbit-stage .brand-stage-vertical{font-size:.38rem;right:0}.explorer-orbit-stage .brand-stage-bottom{font-size:.38rem;letter-spacing:.06em;gap:6px}.explorer-dialog-inner{padding:23px}}
     @media(prefers-reduced-motion:reduce){.explorer-orbit-track,.explorer-node>span:last-child{animation:none!important}}
 
+
+    /* Keep orbiting labels upright while their anchor points revolve. */
+    .explorer-node{position:absolute;top:50%;left:50%;width:0;height:0;min-height:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:rotate(var(--angle)) translateY(-218px);transform-origin:0 0;animation:none}
+    .explorer-node-button{position:absolute;top:0;left:0;display:flex;align-items:center;gap:8px;width:136px;min-height:43px;padding:8px 10px;transform:translate(-50%,-50%) rotate(calc(var(--angle) * -1));transform-origin:center;border:1px solid rgba(205,221,247,.32);border-radius:10px;background:rgba(6,19,41,.97);box-shadow:0 9px 26px rgba(0,0,0,.2);color:#f1f5fc;text-align:left;cursor:pointer;white-space:nowrap;animation:explorer-button-counter 54s linear infinite;transition:border-color .2s,background .2s,box-shadow .2s}
+    .explorer-node-button>span:last-child{font-size:.69rem;font-weight:700;letter-spacing:-.015em}
+    .explorer-node-button:hover,.explorer-node-button:focus-visible{border-color:#ff777b;background:#10284d;box-shadow:0 0 0 3px rgba(208,32,35,.14),0 12px 30px rgba(0,0,0,.28);outline:none}
+    .explorer-node-button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    @keyframes explorer-button-counter{to{transform:translate(-50%,-50%) rotate(calc(var(--angle) * -1)) rotate(-360deg)}}
+    @media(max-width:960px){.explorer-node{transform:rotate(var(--angle)) translateY(-185px)}.explorer-node-button{width:125px;min-height:40px;padding:7px 8px}.explorer-node-button>span:last-child{font-size:.64rem}}
+    @media(max-width:720px){.explorer-node{transform:rotate(var(--angle)) translateY(-177px)}.explorer-node-button{width:112px;min-height:38px;gap:6px;padding:6px 7px}.explorer-node-button>span:last-child{font-size:.59rem}}
+    @media(max-width:540px){.explorer-node{transform:rotate(var(--angle)) translateY(-151px)}.explorer-node-button{width:101px;min-height:35px;gap:5px;padding:5px 6px;border-radius:8px}.explorer-node-button>span:last-child{font-size:.53rem}}
+
 </style>
   <script type="application/ld+json">
   {
@@ -451,13 +463,13 @@ h1{animation:hero-copy-in .8s .22s both}
           <span class="brand-stage-index" aria-hidden="true">LSX <i> / </i> 2026</span>
           <span class="brand-stage-vertical" aria-hidden="true">SMART STUDY ECOSYSTEM</span>
           <div class="explorer-orbit-track" aria-label="सेवा छान्नुहोस्">
-            <button class="explorer-node" type="button" style="--angle:0deg" data-title="प्रथम पत्र · GK / IQ" data-description="सामान्य ज्ञान र बौद्धिक परीक्षणका प्रश्नहरू अभ्यास गर्नुहोस्। उपलब्ध Model Set बाट आफ्नो तयारीलाई नियमित बनाउनुहोस्।"><span class="explorer-node-icon">GK</span><span>प्रथम पत्र GK/IQ</span></button>
-            <button class="explorer-node" type="button" style="--angle:51.4286deg" data-title="Mock Test" data-description="उपलब्ध Mock Test मा परीक्षाजस्तै अभ्यास गर्नुहोस् र आफ्नो नतिजा तथा प्रयासको समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">✓</span><span>Mock Test</span></button>
-            <button class="explorer-node" type="button" style="--angle:102.8571deg" data-title="लिखित तयारी" data-description="लिखित परीक्षाका लागि प्रकाशित अध्ययन सामग्री र उपलब्ध अभ्यास विकल्पहरू हेर्नुहोस्।"><span class="explorer-node-icon">ले</span><span>लिखित तयारी</span></button>
-            <button class="explorer-node" type="button" style="--angle:154.2857deg" data-title="समसामयिक अभ्यास" data-description="राष्ट्रिय, अन्तर्राष्ट्रिय र अन्य महत्वपूर्ण समसामयिक विषयसँग सम्बन्धित सामग्री तथा उपलब्ध प्रश्न अभ्यास गर्नुहोस्।"><span class="explorer-node-icon">सम</span><span>समसामयिक</span></button>
-            <button class="explorer-node" type="button" style="--angle:205.7143deg" data-title="प्रगति विश्लेषण" data-description="उपलब्ध विवरणअनुसार प्रयास, सही/गलत उत्तर, accuracy र आफ्नो अभ्यासको प्रगति समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">↗</span><span>प्रगति विश्लेषण</span></button>
-            <button class="explorer-node" type="button" style="--angle:257.1429deg" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी प्रकाशित मिति, कार्यक्रम र उपयोगी समयतालिकाका विवरण हेर्नुहोस्।"><span class="explorer-node-icon">प</span><span>लोकसेवा पात्रो</span></button>
-            <button class="explorer-node" type="button" style="--angle:308.5714deg" data-title="मिति परिवर्तन" data-description="समर्थित नेपाली BS र अंग्रेजी AD मिति रूपान्तरण तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।"><span class="explorer-node-icon">⇄</span><span>मिति परिवर्तन</span></button>
+            <div class="explorer-node" style="--angle:0deg"><button class="explorer-node-button" type="button" data-title="प्रथम पत्र · GK / IQ" data-description="सामान्य ज्ञान र बौद्धिक परीक्षणका प्रश्नहरू अभ्यास गर्नुहोस्। उपलब्ध Model Set बाट आफ्नो तयारीलाई नियमित बनाउनुहोस्।"><span class="explorer-node-icon">GK</span><span>प्रथम पत्र GK/IQ</span></button></div>
+            <div class="explorer-node" style="--angle:51.4286deg"><button class="explorer-node-button" type="button" data-title="Mock Test" data-description="उपलब्ध Mock Test मा परीक्षाजस्तै अभ्यास गर्नुहोस् र आफ्नो नतिजा तथा प्रयासको समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">✓</span><span>Mock Test</span></button></div>
+            <div class="explorer-node" style="--angle:102.8571deg"><button class="explorer-node-button" type="button" data-title="लिखित तयारी" data-description="लिखित परीक्षाका लागि प्रकाशित अध्ययन सामग्री र उपलब्ध अभ्यास विकल्पहरू हेर्नुहोस्।"><span class="explorer-node-icon">ले</span><span>लिखित तयारी</span></button></div>
+            <div class="explorer-node" style="--angle:154.2857deg"><button class="explorer-node-button" type="button" data-title="समसामयिक अभ्यास" data-description="राष्ट्रिय, अन्तर्राष्ट्रिय र अन्य महत्वपूर्ण समसामयिक विषयसँग सम्बन्धित सामग्री तथा उपलब्ध प्रश्न अभ्यास गर्नुहोस्।"><span class="explorer-node-icon">सम</span><span>समसामयिक</span></button></div>
+            <div class="explorer-node" style="--angle:205.7143deg"><button class="explorer-node-button" type="button" data-title="प्रगति विश्लेषण" data-description="उपलब्ध विवरणअनुसार प्रयास, सही/गलत उत्तर, accuracy र आफ्नो अभ्यासको प्रगति समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">↗</span><span>प्रगति विश्लेषण</span></button></div>
+            <div class="explorer-node" style="--angle:257.1429deg"><button class="explorer-node-button" type="button" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी प्रकाशित मिति, कार्यक्रम र उपयोगी समयतालिकाका विवरण हेर्नुहोस्।"><span class="explorer-node-icon">प</span><span>लोकसेवा पात्रो</span></button></div>
+            <div class="explorer-node" style="--angle:308.5714deg"><button class="explorer-node-button" type="button" data-title="मिति परिवर्तन" data-description="समर्थित नेपाली BS र अंग्रेजी AD मिति रूपान्तरण तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।"><span class="explorer-node-icon">⇄</span><span>मिति परिवर्तन</span></button></div>
           </div>
           <div class="brand-stage-mark">
             <span class="brand-stage-kicker"><i></i> अब तयारी होइन, स्मार्ट तयारी</span>
@@ -604,7 +616,7 @@ h1{animation:hero-copy-in .8s .22s both}
       const title = document.getElementById('explorerDialogTitle');
       const description = document.getElementById('explorerDialogDescription');
       const close = document.getElementById('explorerDialogClose');
-      document.querySelectorAll('.explorer-node').forEach((node) => {
+      document.querySelectorAll('.explorer-node-button').forEach((node) => {
         node.addEventListener('click', () => {
           title.textContent = node.dataset.title || 'LokSewaX सेवा';
           description.textContent = node.dataset.description || '';
