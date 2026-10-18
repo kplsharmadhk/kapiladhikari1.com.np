@@ -1,40 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 800 190"
-     preserveAspectRatio="xMidYMid meet">
-
-  <text
-    x="65"
-    y="135"
-    fill="#0A1B3A"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="110"
-    font-weight="800"
-    letter-spacing="-2">LokSewa</text>
-
-  <g
-    fill="#D02023"
-    transform="translate(505 22) scale(0.11)">
-
-    <path d="
-      M 1200 0
-      L 952 0
-      L 627 536
-      L 612 602
-      L 368 252
-      L 43 253
-      L 393 762
-      L 105 1185
-      L 264 1090
-      L 470 1008
-      L 150 1246
-      L 0 1422
-      L 255 1422
-      L 549 1004
-      L 771 1328
-      L 1091 1327
-      L 716 765
-      L 1200 57
-      Z" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 190" role="img" aria-labelledby="loksewax-title">
+  <title id="loksewax-title">LokSewaX</title>
+  <text x="65" y="135" fill="#0A1B3A" font-family="Arial, Helvetica, sans-serif" font-size="110" font-weight="800" letter-spacing="-2">LokSewa</text>
+  <g fill="#D02023" transform="translate(575 22) scale(0.11)">
+    <path d="M 1200 0 L 952 0 L 627 536 L 612 602 L 368 252 L 43 253 L 393 762 L 105 1185 L 264 1090 L 470 1008 L 150 1246 L 0 1422 L 255 1422 L 549 1004 L 771 1328 L 1091 1327 L 716 765 L 1200 57 Z" />
   </g>
-
 </svg>
