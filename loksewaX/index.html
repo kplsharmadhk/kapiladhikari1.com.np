@@ -694,6 +694,32 @@ h1{animation:hero-copy-in .8s .22s both}
       .explorer-orbit-stage .brand-stage-ring-two:before{width:6px;height:6px;bottom:-3px}
     }
 
+
+    /* Slightly larger orbit artwork and a more balanced, compact hero headline. */
+    .explorer-orbit-stage .brand-stage-ring-one{width:min(104%,530px)}
+    .explorer-orbit-stage .brand-stage-ring-two{width:min(82%,410px)}
+    .explorer-orbit-stage .brand-stage-grid:before{width:min(92%,455px)}
+    .explorer-orbit-stage .brand-stage-grid:after{width:min(72%,350px)}
+    .hero-copy h1{font-size:clamp(2.9rem,5.05vw,5.15rem)}
+    .hero-copy>p{font-size:.96rem}
+    @media(max-width:960px){
+      .explorer-orbit-stage .brand-stage-ring-one{width:min(104%,500px)}
+      .explorer-orbit-stage .brand-stage-ring-two{width:min(82%,390px)}
+      .hero-copy h1{font-size:clamp(2.55rem,4.8vw,3.75rem)}
+    }
+    @media(max-width:720px){
+      .hero-copy h1{font-size:clamp(2.55rem,9.2vw,3.95rem)}
+      .hero-copy>p{font-size:.94rem}
+    }
+    @media(max-width:540px){
+      .explorer-orbit-stage .brand-stage-ring-one{width:104%}
+      .explorer-orbit-stage .brand-stage-ring-two{width:80%}
+      .explorer-orbit-stage .brand-stage-grid:before{width:92%}
+      .explorer-orbit-stage .brand-stage-grid:after{width:70%}
+      .hero-copy h1{font-size:clamp(2.3rem,10vw,3.25rem);margin:19px 0 15px}
+      .hero-copy>p{font-size:.91rem;line-height:1.82}
+    }
+
   </style>
   <script type="application/ld+json">
   {
