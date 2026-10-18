@@ -326,6 +326,52 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:540px){.top-inner{min-height:68px}.brand-nav img{width:150px}.navlinks{gap:7px}.nav-cta{padding:10px 11px;font-size:.74rem}.hero{padding:39px 0 43px}h1{font-size:clamp(2.35rem,11vw,3.5rem)}.hero-copy>p{font-size:.94rem;line-height:1.85}.actions{gap:10px}.hero-visual{min-height:320px}.official-logo-plaque{padding:22px 15px 19px;border-radius:23px}.plaque-overline{font-size:.51rem;letter-spacing:.09em;margin-bottom:16px}.hero-main-logo{max-width:100%}.plaque-rule{margin:15px auto 10px}.official-logo-plaque p{font-size:.72rem}.orbit-one{width:280px}.orbit-two{width:215px}.float-chip{gap:6px;padding:8px}.chip-symbol{width:28px;height:28px;flex-basis:28px}.float-chip strong{font-size:.52rem}.float-chip small{font-size:.59rem}.chip-study{left:-1%;top:1%}.chip-practice{right:-1%;top:45%}.chip-progress{left:0;bottom:3%}.visual-caption{font-size:.49rem;letter-spacing:.09em}.caption-line{width:20px}.service-card{padding:18px 16px;min-height:0}.service-icon{width:45px;height:45px;flex-basis:45px}.content{padding:60px 0!important}.section-head{margin-bottom:30px}.service-block{margin-top:34px}.cta{padding-bottom:58px}}
     @media(prefers-reduced-motion:reduce){.hero-art-enter,.visual-logo-wrap,.hero-main-logo,.orbit-one,.orbit-two,.logo-light,.float-chip,.hero-copy .eyebrow,.hero-copy h1,.hero-copy>p,.hero-copy .actions,.hero-copy .hero-tags{animation:none!important;opacity:1;transform:none;filter:none}}
 
+    /* Hero art direction v2: confident editorial brand stage, no logo card or floating widgets. */
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:76px 0 80px;background:#07152d}
+    .hero:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 76% 48%,rgba(36,75,139,.42),transparent 36%),linear-gradient(110deg,#061329 0%,#0A1B3A 57%,#0a1c39 100%)}
+    .hero:after{content:"";position:absolute;z-index:-1;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.23),transparent)}
+    .hero-grid{grid-template-columns:1.02fr .98fr;gap:clamp(34px,5vw,78px);align-items:center}
+    .hero-copy{position:relative;z-index:3}
+    .hero-copy .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:0;background:none;border:0;border-radius:0;color:#d5e2f8;font-size:.76rem;letter-spacing:.045em}
+    .hero-copy .eyebrow:before{content:"";width:25px;height:2px;background:#D02023;display:inline-block}
+    .hero-copy h1{font-size:clamp(3.1rem,5.5vw,5.55rem);line-height:1.15;letter-spacing:-.055em;margin:25px 0 22px;max-width:680px}
+    .hero-copy h1 em{font-style:normal;color:#ff777b}
+    .hero-copy>p{max-width:550px;color:#cbd7e9;font-size:1rem;line-height:1.95}
+    .hero-copy .actions{margin-top:29px;gap:13px}
+    .hero-copy .btn{border-radius:7px;min-height:54px;padding:14px 20px;font-size:.87rem}
+    .hero-copy .btn-primary{background:#D02023;color:#fff;box-shadow:0 12px 28px rgba(208,32,35,.23)}
+    .hero-copy .btn-primary:hover{background:#b91820;transform:translateY(-2px)}
+    .hero-copy .btn-ghost{background:transparent;border:1px solid rgba(223,234,251,.35);color:#edf3ff}
+    .hero-copy .hero-tags{margin-top:31px;gap:0;display:flex;flex-wrap:wrap}
+    .hero-copy .hero-tags span{padding:0 17px;border-radius:0;border:0;border-left:1px solid rgba(255,255,255,.24);background:none;color:#b8c8e0;font-size:.75rem}
+    .hero-copy .hero-tags span:first-child{padding-left:0;border-left:0}
+    .hero-brand-stage{position:relative;min-height:470px;display:grid;place-items:center;isolation:isolate;overflow:visible}
+    .hero-brand-stage:before{content:"";position:absolute;z-index:-2;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(56,100,173,.24),rgba(56,100,173,.06) 48%,transparent 72%);filter:blur(9px)}
+    .hero-brand-stage:after{content:"X";position:absolute;z-index:-2;right:1%;top:50%;transform:translateY(-53%);font:900 clamp(19rem,33vw,31rem)/.8 Arial,sans-serif;letter-spacing:-.13em;color:rgba(255,255,255,.025);pointer-events:none}
+    .brand-stage-grid{position:absolute;z-index:-3;inset:-4% -7%;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px);background-size:43px 43px;mask-image:radial-gradient(ellipse at center,#000,transparent 73%)}
+    .brand-stage-ring{position:absolute;border-radius:50%;pointer-events:none}
+    .brand-stage-ring-one{width:min(94%,440px);aspect-ratio:1;border:1px solid rgba(220,232,255,.23);border-left-color:#D02023;border-bottom-color:transparent;animation:brand-ring-turn 48s linear infinite}
+    .brand-stage-ring-two{width:min(76%,350px);aspect-ratio:1;border:1px dashed rgba(203,220,248,.23);border-top-color:rgba(208,32,35,.85);animation:brand-ring-turn-reverse 62s linear infinite}
+    .brand-stage-mark{position:relative;z-index:2;width:min(100%,500px);padding:18px 0 13px;text-align:left;animation:brand-mark-enter .95s cubic-bezier(.2,.75,.25,1) both}
+    .brand-stage-kicker{display:flex;align-items:center;gap:10px;margin:0 0 27px;color:#b9c8df;font:700 .62rem/1.5 "DM Sans",sans-serif;letter-spacing:.2em}
+    .brand-stage-kicker i{display:block;width:7px;height:7px;background:#D02023;border-radius:50%;box-shadow:0 0 0 5px rgba(208,32,35,.14)}
+    .hero-brand-stage .hero-main-logo{display:block;position:relative;width:100%;max-width:500px;height:auto;max-height:none;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,.1));animation:brand-logo-arrive 1.1s .1s both}
+    .brand-stage-rule{display:block;width:84px;height:3px;margin:29px 0 15px;background:linear-gradient(90deg,#D02023 0 40%,rgba(255,255,255,.5) 40% 100%)}
+    .brand-stage-mark p{margin:0;color:#dce6f6;font-size:.92rem;font-weight:600;letter-spacing:.025em}
+    .brand-stage-index{position:absolute;top:4%;right:2%;color:rgba(218,230,248,.6);font:700 .62rem/1 "DM Sans",sans-serif;letter-spacing:.18em}
+    .brand-stage-index i{font-style:normal;color:#ff7378}
+    .brand-stage-vertical{position:absolute;right:-5%;top:44%;writing-mode:vertical-rl;transform:rotate(180deg);color:rgba(223,234,251,.54);font:700 .55rem/1 "DM Sans",sans-serif;letter-spacing:.22em}
+    .brand-stage-bottom{position:absolute;bottom:1%;left:0;right:0;display:flex;align-items:center;gap:12px;color:rgba(216,229,249,.58);font:700 .55rem/1.4 "DM Sans",sans-serif;letter-spacing:.17em}
+    .brand-stage-bottom-line{height:1px;flex:1;background:linear-gradient(90deg,rgba(208,32,35,.9),rgba(255,255,255,.1))}
+    @keyframes brand-mark-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes brand-logo-arrive{from{opacity:0;filter:blur(7px);transform:scale(.975)}to{opacity:1;filter:drop-shadow(0 12px 24px rgba(0,0,0,.1));transform:scale(1)}}
+    @keyframes brand-ring-turn{to{transform:rotate(360deg)}}
+    @keyframes brand-ring-turn-reverse{to{transform:rotate(-360deg)}}
+    @media(max-width:960px){.hero{padding:58px 0 65px}.hero-grid{grid-template-columns:1fr 1fr;gap:26px}.hero-copy h1{font-size:clamp(2.7rem,5vw,4rem)}.hero-brand-stage{min-height:400px}.brand-stage-mark{width:100%}.brand-stage-vertical{right:-3%}.brand-stage-kicker{font-size:.54rem;letter-spacing:.12em}.brand-stage-ring-one{width:94%}.brand-stage-ring-two{width:75%}}
+    @media(max-width:720px){.hero{padding:49px 0 52px}.hero-grid{grid-template-columns:1fr;gap:25px}.hero-copy h1{font-size:clamp(2.8rem,10vw,4.4rem)}.hero-copy>p{max-width:650px}.hero-brand-stage{min-height:330px;max-width:560px;width:100%;margin:0 auto}.brand-stage-mark{max-width:460px}.brand-stage-index{top:1%;right:5%}.brand-stage-vertical{right:0}.brand-stage-bottom{bottom:0}}
+    @media(max-width:540px){.hero{padding:39px 0 43px}.hero-copy h1{font-size:clamp(2.45rem,11vw,3.6rem);margin:21px 0 17px}.hero-copy>p{font-size:.93rem;line-height:1.85}.hero-copy .actions{flex-direction:column;align-items:stretch}.hero-copy .actions .btn{justify-content:center}.hero-copy .hero-tags{margin-top:23px;gap:9px 0}.hero-copy .hero-tags span{font-size:.66rem;padding:0 10px}.hero-copy .hero-tags span:nth-child(2){padding-right:10px}.hero-brand-stage{min-height:265px;margin-top:5px}.brand-stage-mark{padding:15px 9px}.brand-stage-kicker{font-size:.47rem;letter-spacing:.1em;margin-bottom:21px}.hero-brand-stage .hero-main-logo{max-width:100%}.brand-stage-rule{margin:22px 0 12px}.brand-stage-mark p{font-size:.79rem}.brand-stage-ring-one{width:85%}.brand-stage-ring-two{width:65%}.brand-stage-index{font-size:.5rem;right:2%}.brand-stage-vertical{font-size:.44rem;right:-1%;letter-spacing:.14em}.brand-stage-bottom{font-size:.44rem;letter-spacing:.09em;gap:8px}.hero-brand-stage:after{font-size:18rem;right:0}}
+    @media(prefers-reduced-motion:reduce){.brand-stage-ring-one,.brand-stage-ring-two,.brand-stage-mark,.hero-brand-stage .hero-main-logo{animation:none!important;opacity:1;transform:none;filter:none}}
+
   </style>
   <script type="application/ld+json">
   {
@@ -365,16 +411,20 @@ h1{animation:hero-copy-in .8s .22s both}
           </div>
           <div class="hero-tags"><span>प्रथम पत्र · GK / IQ</span><span>लिखित तयारी</span><span>अभ्यास र प्रगति</span></div>
         </div>
-        <div class="hero-visual" aria-label="LokSewaX अध्ययन, अभ्यास र प्रगतिको दृश्य">
-          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
-          <div class="visual-spark spark-one">✦</div><div class="visual-spark spark-two">✧</div><div class="visual-spark spark-three">✦</div>
-          <div class="visual-logo-wrap"><span class="logo-light logo-light-red"></span><span class="logo-light logo-light-blue"></span><div class="official-logo-plaque"><span class="plaque-overline"><i></i> OFFICIAL BRAND · LOKSEWAX</span><img class="hero-main-logo" src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="190"><span class="plaque-rule" aria-hidden="true"></span><p>लोकसेवा तयारीको डिजिटल साथी</p></div></div>
-          <div class="float-chip chip-study"><span class="chip-symbol">▤</span><span><strong>SMART STUDY</strong><small>लक्षित अध्ययन</small></span></div>
-          <div class="float-chip chip-practice"><span class="chip-symbol">✓</span><span><strong>MOCK TEST</strong><small>अभ्यास र आत्ममूल्याङ्कन</small></span></div>
-          <div class="float-chip chip-progress"><span class="chip-symbol">↗</span><span><strong>YOUR PROGRESS</strong><small>आफ्नो प्रगति बुझ्नुहोस्</small></span></div>
-          <div class="visual-caption"><span class="caption-line"></span><span>STUDY <b>·</b> PRACTICE <b>·</b> PROGRESS</span></div>
-        </div>
-      </div>
+        <div class="hero-visual hero-brand-stage" aria-label="LokSewaX को आधिकारिक लोगो">
+          <div class="brand-stage-grid" aria-hidden="true"></div>
+          <div class="brand-stage-ring brand-stage-ring-one" aria-hidden="true"></div>
+          <div class="brand-stage-ring brand-stage-ring-two" aria-hidden="true"></div>
+          <span class="brand-stage-index" aria-hidden="true">LSX <i> / </i> 2026</span>
+          <span class="brand-stage-vertical" aria-hidden="true">STUDY WITH PURPOSE</span>
+          <div class="brand-stage-mark">
+            <span class="brand-stage-kicker"><i></i> YOUR PREPARATION. YOUR FUTURE.</span>
+            <img class="hero-main-logo" src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="190">
+            <span class="brand-stage-rule" aria-hidden="true"></span>
+            <p>तयारीमा स्पष्टता। प्रगतिमा निरन्तरता।</p>
+          </div>
+          <div class="brand-stage-bottom"><span>NEPAL</span><span class="brand-stage-bottom-line"></span><span>STUDY · PRACTICE · PROGRESS</span></div>
+        </div>    </div>
     </section>
 
     <div class="intro-strip">
