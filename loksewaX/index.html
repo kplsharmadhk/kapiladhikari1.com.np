@@ -148,6 +148,38 @@
     .site-footer{background:radial-gradient(ellipse at 50% 0,rgba(37,99,235,.18),transparent 45%),#07162f}
     @media(max-width:720px){.brand-nav{min-width:0}.brand-nav img{width:140px}.brand-card-kicker{font-size:.57rem;letter-spacing:.09em}.hero-logo-frame{min-height:115px;padding:18px 12px}.hero-logo-frame img{max-height:85px}}
 
+
+    /* Hero art direction: free-floating official logo, not a card or framed image. */
+    .hero-grid{grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px)}
+    .hero-visual{position:relative;isolation:isolate;min-height:470px;display:grid;place-items:center;overflow:visible}
+    .hero-visual:before{content:"";position:absolute;z-index:-2;width:min(34vw,390px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(71,125,230,.34),rgba(71,125,230,.09) 46%,transparent 72%);filter:blur(2px)}
+    .hero-visual:after{content:"";position:absolute;z-index:-3;inset:9% 2%;background:radial-gradient(ellipse at center,rgba(255,255,255,.06),transparent 68%);pointer-events:none}
+    .visual-orbit{position:absolute;z-index:-1;border:1px solid rgba(208,225,255,.22);border-radius:50%;pointer-events:none}
+    .orbit-one{width:420px;height:420px;transform:rotate(-23deg);border-left-color:rgba(255,119,123,.7);border-bottom-color:rgba(255,255,255,.08)}
+    .orbit-two{width:330px;height:330px;transform:rotate(31deg);border-right:1px dashed rgba(255,255,255,.42);border-top-color:rgba(88,151,255,.65)}
+    .visual-logo-wrap{position:relative;width:min(100%,470px);display:grid;place-items:center;padding:28px 0;transform:translateY(-6px);filter:drop-shadow(0 24px 32px rgba(0,0,0,.2))}
+    .hero-main-logo{position:relative;z-index:2;display:block;width:100%;height:auto;max-height:185px;object-fit:contain;filter:drop-shadow(0 2px 0 rgba(255,255,255,.08))}
+    .logo-light{position:absolute;z-index:0;width:140px;height:140px;border-radius:50%;filter:blur(54px);opacity:.44}
+    .logo-light-red{left:14%;top:12%;background:#e62d42}
+    .logo-light-blue{right:10%;bottom:7%;background:#4b91ff}
+    .float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:11px;padding:12px 15px;border:1px solid rgba(255,255,255,.2);border-radius:15px;background:rgba(10,27,58,.54);backdrop-filter:blur(14px);box-shadow:0 15px 35px rgba(0,0,0,.16);animation:chip-float 6s ease-in-out infinite}
+    .float-chip strong{display:block;color:#fff;font:800 .67rem/1.4 "DM Sans",sans-serif;letter-spacing:.09em}
+    .float-chip small{display:block;color:#d4e2fb;font-size:.7rem;margin-top:3px;white-space:nowrap}
+    .chip-symbol{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:11px;background:rgba(255,255,255,.12);color:#fff;font-size:1.1rem;font-weight:900}
+    .chip-study{left:-2%;top:12%}
+    .chip-practice{right:-1%;top:46%;animation-delay:-2s}
+    .chip-progress{left:7%;bottom:13%;animation-delay:-4s}
+    .chip-practice .chip-symbol{background:rgba(208,32,35,.28);color:#ffb6b8}
+    .chip-progress .chip-symbol{background:rgba(71,139,255,.24);color:#a8ccff}
+    .visual-caption{position:absolute;bottom:1%;display:flex;align-items:center;gap:12px;color:rgba(231,239,255,.68);font:800 .62rem/1.4 "DM Sans",sans-serif;letter-spacing:.19em}
+    .visual-caption b{color:#ff777b;padding:0 3px}
+    .caption-line{display:block;width:34px;height:2px;background:linear-gradient(90deg,#d02023,#6ea4ff);border-radius:4px}
+    @keyframes chip-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @media(max-width:960px){.hero-grid{grid-template-columns:1fr 1fr}.hero-visual{min-height:390px}.orbit-one{width:340px;height:340px}.orbit-two{width:270px;height:270px}.chip-study{left:0}.chip-practice{right:0}.float-chip{padding:10px 12px}.hero-main-logo{max-height:145px}}
+    @media(max-width:720px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-visual{min-height:365px;max-width:530px;width:100%;margin:0 auto}.hero-main-logo{max-height:145px}.orbit-one{width:330px;height:330px}.orbit-two{width:255px;height:255px}.chip-study{left:0;top:4%}.chip-practice{right:0;top:44%}.chip-progress{left:4%;bottom:6%}.visual-caption{bottom:-1%}}
+    @media(max-width:540px){.hero-visual{min-height:320px;margin-top:0}.hero-main-logo{max-height:112px}.orbit-one{width:270px;height:270px}.orbit-two{width:215px;height:215px}.float-chip{gap:7px;padding:8px 9px;border-radius:12px}.chip-symbol{width:29px;height:29px;flex-basis:29px;font-size:.95rem;border-radius:9px}.float-chip strong{font-size:.55rem}.float-chip small{font-size:.61rem}.chip-study{left:-2%;top:2%}.chip-practice{right:-2%;top:45%}.chip-progress{left:0;bottom:4%}.visual-caption{font-size:.53rem;letter-spacing:.13em}.caption-line{width:22px}}
+    @media(prefers-reduced-motion:reduce){.float-chip{animation:none}}
+
 </style>
   <script type="application/ld+json">
   {
@@ -187,19 +219,14 @@
           </div>
           <div class="hero-tags"><span>प्रथम पत्र · GK / IQ</span><span>लिखित तयारी</span><span>अभ्यास र प्रगति</span></div>
         </div>
-        <div class="brand-stage">
-          <div class="brand-glow"></div>
-          <div class="brand-card premium-brand-card"><div class="brand-card-kicker"><span class="brand-live-dot"></span> YOUR PREPARATION. ONE PLATFORM.</div>
-            <div class="hero-logo-frame"><img src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="190"></div>
-            <div class="brand-divider"></div>
-            <h2>तपाईंको तयारीको डिजिटल साथी</h2>
-            <p>अध्ययन · अभ्यास · उपयोगी सेवा</p>
-            <div class="mini-metrics">
-              <div class="mini-metric"><strong>Study</strong><span>अध्ययन सामग्री</span></div>
-              <div class="mini-metric"><strong>Practice</strong><span>प्रश्न अभ्यास</span></div>
-              <div class="mini-metric"><strong>Progress</strong><span>प्रगति समीक्षा</span></div>
-            </div>
-          </div>
+        <div class="hero-visual" aria-label="LokSewaX अध्ययन, अभ्यास र प्रगतिको दृश्य">
+          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+          <div class="visual-cross cross-one"></div><div class="visual-cross cross-two"></div>
+          <div class="visual-logo-wrap"><span class="logo-light logo-light-red"></span><span class="logo-light logo-light-blue"></span><img class="hero-main-logo" src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="280"></div>
+          <div class="float-chip chip-study"><span class="chip-symbol">▤</span><span><strong>SMART STUDY</strong><small>लक्षित अध्ययन</small></span></div>
+          <div class="float-chip chip-practice"><span class="chip-symbol">✓</span><span><strong>MOCK TEST</strong><small>अभ्यास र आत्ममूल्याङ्कन</small></span></div>
+          <div class="float-chip chip-progress"><span class="chip-symbol">↗</span><span><strong>YOUR PROGRESS</strong><small>आफ्नो प्रगति बुझ्नुहोस्</small></span></div>
+          <div class="visual-caption"><span class="caption-line"></span><span>STUDY <b>·</b> PRACTICE <b>·</b> PROGRESS</span></div>
         </div>
       </div>
     </section>
