@@ -625,6 +625,32 @@ h1{animation:hero-copy-in .8s .22s both}
       .explorer-orbit-stage .brand-stage-grid:after{animation:none!important}
     }
 
+
+    /* Pointer/touch parallax adds a gentle response without interrupting steady orbit rotation. */
+    .explorer-orbit-stage .explorer-orbit-track{
+      translate:var(--orbit-shift-x,0px) var(--orbit-shift-y,0px);
+      transition:translate .22s ease-out;
+      touch-action:pan-y;
+    }
+    .explorer-orbit-stage .brand-stage-ring-one{
+      translate:var(--ring-one-x,0px) var(--ring-one-y,0px);
+      transition:translate .28s ease-out;
+    }
+    .explorer-orbit-stage .brand-stage-ring-two{
+      translate:var(--ring-two-x,0px) var(--ring-two-y,0px);
+      transition:translate .34s ease-out;
+    }
+    .explorer-orbit-stage .brand-stage-mark{
+      translate:var(--logo-shift-x,0px) var(--logo-shift-y,0px);
+      transition:translate .25s ease-out;
+    }
+    @media(prefers-reduced-motion:reduce){
+      .explorer-orbit-stage .explorer-orbit-track,
+      .explorer-orbit-stage .brand-stage-ring-one,
+      .explorer-orbit-stage .brand-stage-ring-two,
+      .explorer-orbit-stage .brand-stage-mark{transition:none}
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -838,6 +864,36 @@ h1{animation:hero-copy-in .8s .22s both}
             orbit.appendChild(photon);
           }
         }
+
+        /* Mouse and touch movement gently shifts orbit layers; rotation remains constant-speed. */
+        const resetOrbitParallax = () => {
+          orbitStage.style.setProperty('--orbit-shift-x', '0px');
+          orbitStage.style.setProperty('--orbit-shift-y', '0px');
+          orbitStage.style.setProperty('--ring-one-x', '0px');
+          orbitStage.style.setProperty('--ring-one-y', '0px');
+          orbitStage.style.setProperty('--ring-two-x', '0px');
+          orbitStage.style.setProperty('--ring-two-y', '0px');
+          orbitStage.style.setProperty('--logo-shift-x', '0px');
+          orbitStage.style.setProperty('--logo-shift-y', '0px');
+        };
+        orbitStage.addEventListener('pointermove', (event) => {
+          if (event.pointerType === 'touch' && event.buttons === 0) return;
+          const bounds = orbitStage.getBoundingClientRect();
+          if (!bounds.width || !bounds.height) return;
+          const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - .5) * 2));
+          const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - .5) * 2));
+          orbitStage.style.setProperty('--orbit-shift-x', `${x * 5}px`);
+          orbitStage.style.setProperty('--orbit-shift-y', `${y * 5}px`);
+          orbitStage.style.setProperty('--ring-one-x', `${x * -2}px`);
+          orbitStage.style.setProperty('--ring-one-y', `${y * -2}px`);
+          orbitStage.style.setProperty('--ring-two-x', `${x * 3}px`);
+          orbitStage.style.setProperty('--ring-two-y', `${y * 3}px`);
+          orbitStage.style.setProperty('--logo-shift-x', `${x * -2}px`);
+          orbitStage.style.setProperty('--logo-shift-y', `${y * -2}px`);
+        }, { passive: true });
+        orbitStage.addEventListener('pointerleave', resetOrbitParallax, { passive: true });
+        orbitStage.addEventListener('pointerup', resetOrbitParallax, { passive: true });
+        orbitStage.addEventListener('pointercancel', resetOrbitParallax, { passive: true });
       }
       document.querySelectorAll('.explorer-node-button').forEach((node) => {
         node.addEventListener('click', () => {
