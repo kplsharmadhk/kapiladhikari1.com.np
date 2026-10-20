@@ -1437,10 +1437,13 @@ h1{animation:hero-copy-in .8s .22s both}
       if(dialog)dialog.addEventListener('click',(event)=>{if(event.target===dialog)dialog.close();});
       const bodyForButton=['mercury','venus','earth','mars','jupiter','saturn','uranus','neptune'];
       const projected=new THREE.Vector3();
-      let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches,speed=1,elapsed=0,last=performance.now(),frameId=0;
-      if(paused){pauseButton.setAttribute('aria-pressed','true');pauseButton.textContent='▶ सुरु गर्नुहोस्';}
+      let paused=false,speed=12,elapsed=0,last=performance.now(),frameId=0;
+      pauseButton.setAttribute('aria-pressed','false');
+      pauseButton.textContent='Ⅱ रोक्नुहोस्';
+      speedButton.dataset.speed='12';
+      speedButton.textContent='गति ×12';
       pauseButton.addEventListener('click',()=>{paused=!paused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ सुरु गर्नुहोस्':'Ⅱ रोक्नुहोस्';});
-      speedButton.addEventListener('click',()=>{speed=speed===1?4:speed===4?12:1;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
+      speedButton.addEventListener('click',()=>{speed=speed===12?24:12;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
       function resize(){
         const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),aspect=w/h;
         horizontalCompression=Math.min(1,Math.max(.42,aspect/1.04));
