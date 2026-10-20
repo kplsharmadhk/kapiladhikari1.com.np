@@ -1055,19 +1055,20 @@ h1{animation:hero-copy-in .8s .22s both}
     .hero.real-solar-hero .real-solar-stage{position:relative;width:100%;max-width:none;min-height:calc(100svh - 70px);height:calc(100svh - 70px);max-height:1050px;margin:0;overflow:hidden;contain:layout paint;background:radial-gradient(ellipse at 50% 50%,#101e39 0,#050b19 43%,#01030a 100%)}
     #solarSystemCanvas{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:1;outline:none}
     .real-solar-vignette{position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 32%,rgba(1,3,10,.18) 69%,rgba(1,3,10,.78) 100%);box-shadow:inset 0 0 120px rgba(0,0,0,.3)}
-    .real-solar-sun-brand{position:absolute;z-index:4;left:50%;top:50%;width:clamp(100px,13vw,168px);height:clamp(30px,4vw,48px);display:grid;place-items:center;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 0 10px rgba(255,220,148,.6))}
+    .real-solar-sun-brand{position:absolute;z-index:4;left:50%;top:50%;width:clamp(68px,5.5vw,96px);height:auto;display:grid;place-items:center;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 0 10px rgba(255,220,148,.6))}
     .real-solar-sun-brand img{display:block;width:100%;height:auto;max-height:100%;object-fit:contain}
     .real-solar-labels{position:absolute;z-index:5;inset:0;pointer-events:none}
     .real-solar-labels .solar-planet{position:absolute;top:0;left:0;width:auto;height:auto;min-width:0;padding:0;border:0;background:transparent;transform:translate(-50%,-50%);animation:none!important;pointer-events:auto;display:block;color:white;cursor:pointer}
     .real-solar-labels .planet-sphere{display:none!important}
-    .real-solar-labels .planet-label{position:relative;top:auto;left:auto;display:block;width:max-content;max-width:clamp(78px,10vw,150px);padding:5px 8px;opacity:1;visibility:visible;transform:none;border:1px solid rgba(174,205,255,.32);border-radius:7px;background:rgba(3,9,22,.82);box-shadow:0 4px 16px rgba(0,0,0,.4);color:#f5f8ff;font-size:clamp(.53rem,.72vw,.72rem);font-weight:800;line-height:1.25;text-align:center;white-space:normal;backdrop-filter:blur(7px);transition:background .2s,border-color .2s}
-    .real-solar-labels .solar-planet:hover .planet-label,.real-solar-labels .solar-planet:focus-visible .planet-label{background:rgba(13,31,60,.96);border-color:#ffd98c;box-shadow:0 0 22px rgba(255,196,98,.25)}
+    .real-solar-labels .planet-label{position:relative;top:auto;left:auto;display:block;width:max-content;max-width:clamp(92px,9vw,142px);padding:7px 10px;opacity:1;visibility:visible;transform:none;border:1px solid rgba(174,205,255,.28);border-radius:999px;background:rgba(4,13,31,.84);box-shadow:0 7px 20px rgba(0,0,0,.35);color:#f5f8ff;font-size:clamp(.55rem,.7vw,.72rem);font-weight:800;line-height:1.3;text-align:center;white-space:normal;backdrop-filter:blur(9px);transition:background .2s,border-color .2s,box-shadow .2s}
+    .real-solar-labels .solar-planet:hover,.real-solar-labels .solar-planet:focus-visible{z-index:10;filter:brightness(1.12)}
+    .real-solar-labels .solar-planet:hover .planet-label,.real-solar-labels .solar-planet:focus-visible .planet-label{background:rgba(13,31,60,.97);border-color:#ffd98c;box-shadow:0 0 22px rgba(255,196,98,.25)}
     .real-solar-heading{position:absolute;z-index:6;top:clamp(18px,3vh,34px);left:clamp(18px,3vw,44px);display:flex;align-items:center;gap:9px;color:#c8d9f5;font-size:clamp(.58rem,.8vw,.76rem);font-weight:800;letter-spacing:.16em;text-shadow:0 2px 12px #000}
     .real-solar-live-dot{width:7px;height:7px;flex:none;border-radius:50%;background:#f4c56c;box-shadow:0 0 12px #ffbd54;animation:real-solar-pulse 2.4s ease-in-out infinite}
     .real-solar-controls{position:absolute;z-index:6;top:clamp(12px,2vh,22px);right:clamp(12px,2.5vw,36px);display:flex;gap:8px}
     .real-solar-controls button{border:1px solid rgba(190,212,250,.25);border-radius:999px;padding:8px 12px;background:rgba(5,14,31,.72);color:#f1f6ff;font:700 .72rem "DM Sans","Noto Sans Devanagari",sans-serif;backdrop-filter:blur(10px);cursor:pointer}
     .real-solar-controls button:hover{border-color:#f0c777;background:rgba(19,36,65,.9)}
-    .real-solar-footnote{position:absolute;z-index:6;bottom:clamp(12px,2.2vh,24px);left:50%;width:min(92%,850px);transform:translateX(-50%);text-align:center;color:rgba(196,211,238,.64);font-size:clamp(.5rem,.67vw,.65rem);line-height:1.5;letter-spacing:.025em;text-shadow:0 1px 8px #000}
+    .real-solar-footnote{position:absolute;z-index:6;bottom:clamp(12px,2.2vh,24px);left:50%;width:min(92%,850px);transform:translateX(-50%);text-align:center;color:rgba(211,224,247,.72);font-size:clamp(.56rem,.72vw,.72rem);font-weight:600;line-height:1.5;letter-spacing:.015em;text-shadow:0 1px 10px #000;pointer-events:none}
     .real-solar-fallback{position:absolute;z-index:8;left:50%;top:70%;transform:translate(-50%,-50%);padding:12px 18px;border:1px solid #ffffff30;border-radius:12px;background:#071329;color:#fff;font-size:.85rem}
     @keyframes real-solar-pulse{50%{opacity:.45;box-shadow:0 0 4px #ffbd54}}
     @media(max-width:760px){
@@ -1075,9 +1076,9 @@ h1{animation:hero-copy-in .8s .22s both}
       .real-solar-heading{top:14px;left:14px;font-size:.53rem;letter-spacing:.09em}
       .real-solar-controls{top:43px;left:14px;right:auto}
       .real-solar-controls button{padding:6px 9px;font-size:.65rem}
-      .real-solar-labels .planet-label{max-width:78px;padding:4px 5px;font-size:.48rem}
-      .real-solar-footnote{bottom:8px;font-size:.48rem;width:94%}
-      .real-solar-sun-brand{width:94px;height:28px}
+      .real-solar-labels .planet-label{max-width:88px;padding:5px 7px;font-size:.53rem}
+      .real-solar-footnote{bottom:10px;font-size:.55rem;width:94%}
+      .real-solar-sun-brand{width:clamp(54px,16vw,72px);height:auto}
     }
     @media(max-width:380px){.real-solar-labels .planet-label{max-width:66px;font-size:.44rem;padding:3px 4px}.real-solar-heading{font-size:.48rem}}
     @media(prefers-reduced-motion:reduce){.real-solar-live-dot{animation:none}}
@@ -1109,30 +1110,29 @@ h1{animation:hero-copy-in .8s .22s both}
   </header>
 
   <main>
-    <section class="hero solar-universe-hero real-solar-hero" aria-label="NASA/JPL orbital-elements based LokSewaX Solar System">
+    <section class="hero solar-universe-hero real-solar-hero" aria-label="LokSewaX को 3D Solar System Explorer">
       <div class="solar-system-stage real-solar-stage" id="solarSystemStage">
         <canvas id="solarSystemCanvas" aria-label="तीन आयाममा सूर्य र आठ ग्रहको खगोलीय कक्षा"></canvas>
         <div class="real-solar-vignette" aria-hidden="true"></div>
         <div class="real-solar-sun-brand" id="solarSunBrand" aria-label="LokSewaX आधिकारिक लोगो सूर्यमा">
           <img src="../images/loksewax-logo.svg" alt="LokSewaX आधिकारिक लोगो" width="800" height="190">
         </div>
-        <div class="real-solar-labels" id="solarPlanetLabels"><button class="solar-planet planet-patro" type="button" style="--angle:0deg" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी मिति, कार्यक्रम र दैनिक उपयोगी पात्रो हेर्न विद्यार्थी एप खोल्नुहोस्।" aria-label="लोकसेवा पात्रो सेवा खोल्नुहोस्"><span class="planet-sphere">▦</span><span class="planet-label">लोकसेवा पात्रो</span></button>
-<button class="solar-planet planet-news" type="button" style="--angle:72deg" data-title="News & Media" data-description="LokSewaX मा उपलब्ध समाचार तथा मिडियासम्बन्धी सामग्री हेर्नुहोस्।" aria-label="News & Media सेवा खोल्नुहोस्"><span class="planet-sphere">▣</span><span class="planet-label">News & Media</span></button>
-<button class="solar-planet planet-class" type="button" style="--angle:144deg" data-title="Online Class" data-description="विद्यार्थी एपमा प्रकाशित अनलाइन कक्षासम्बन्धी सामग्री वा लिंक हेर्नुहोस्।" aria-label="Online Class सेवा खोल्नुहोस्"><span class="planet-sphere">▶</span><span class="planet-label">Online Class</span></button>
-<button class="solar-planet planet-rashifal" type="button" style="--angle:216deg" data-title="राशिफल" data-description="१२ राशिका लागि उपलब्ध दैनिक, साप्ताहिक र मासिक राशिफल सामग्री हेर्नुहोस्।" aria-label="राशिफल सेवा खोल्नुहोस्"><span class="planet-sphere">✦</span><span class="planet-label">राशिफल</span></button>
-<button class="solar-planet planet-date" type="button" style="--angle:288deg" data-title="मिति परिवर्तन" data-description="विद्यार्थी एपमा BS र AD मिति परिवर्तन तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।" aria-label="मिति परिवर्तन सेवा खोल्नुहोस्"><span class="planet-sphere">⇄</span><span class="planet-label">मिति परिवर्तन</span></button>
-<button class="solar-planet planet-syllabus" type="button" style="--angle:35deg" data-title="पाठ्यक्रम / सामग्री" data-description="पाठ्यक्रम, पुस्तक तथा नोट्स र अन्य प्रकाशित अध्ययन सामग्री हेर्नुहोस्।" aria-label="पाठ्यक्रम / सामग्री सेवा खोल्नुहोस्"><span class="planet-sphere">▤</span><span class="planet-label">पाठ्यक्रम / सामग्री</span></button>
-<button class="solar-planet planet-previous" type="button" style="--angle:155deg" data-title="पुराना प्रश्नपत्र" data-description="लोकसेवा तयारीका लागि उपलब्ध पुराना प्रश्नपत्र र सम्बन्धित सामग्री हेर्नुहोस्।" aria-label="पुराना प्रश्नपत्र सेवा खोल्नुहोस्"><span class="planet-sphere">❖</span><span class="planet-label">पुराना प्रश्नपत्र</span></button>
-<button class="solar-planet planet-progress" type="button" style="--angle:275deg" data-title="प्रगति विश्लेषण" data-description="उपलब्ध अभ्यास प्रयास, सही/गलत उत्तर र प्रगति विवरण विद्यार्थी एपमा समीक्षा गर्नुहोस्।" aria-label="प्रगति विश्लेषण सेवा खोल्नुहोस्"><span class="planet-sphere">↗</span><span class="planet-label">प्रगति विश्लेषण</span></button>
-<button class="solar-planet planet-gkiq" type="button" style="--angle:18deg" data-title="प्रथम पत्र GK / IQ" data-description="सामान्य ज्ञान र बौद्धिक परीक्षणका उपलब्ध प्रश्न तथा Model Set अभ्यास गर्नुहोस्।" aria-label="प्रथम पत्र GK / IQ सेवा खोल्नुहोस्"><span class="planet-sphere">GK</span><span class="planet-label">प्रथम पत्र GK / IQ</span></button>
-<button class="solar-planet planet-mock" type="button" style="--angle:138deg" data-title="Mock Test" data-description="उपलब्ध Mock Test मा परीक्षाजस्तै अभ्यास गर्नुहोस् र आफ्नो नतिजा समीक्षा गर्नुहोस्।" aria-label="Mock Test सेवा खोल्नुहोस्"><span class="planet-sphere">✓</span><span class="planet-label">Mock Test</span></button>
-<button class="solar-planet planet-written" type="button" style="--angle:258deg" data-title="लिखित तयारी" data-description="लिखित परीक्षा र उपलब्ध Written Model अभ्याससम्बन्धी सामग्री हेर्नुहोस्।" aria-label="लिखित तयारी सेवा खोल्नुहोस्"><span class="planet-sphere">ले</span><span class="planet-label">लिखित तयारी</span></button></div>
+        <div class="real-solar-labels" id="solarPlanetLabels">
+          <button class="solar-planet planet-gkiq" type="button" data-title="प्रथम पत्र — GK / IQ" data-description="सामान्य ज्ञान तथा IQ का उपलब्ध अध्ययन सामग्री र प्रश्न अभ्यास विद्यार्थी एपमा खोल्नुहोस्।" aria-label="प्रथम पत्र GK IQ सेवा खोल्नुहोस्"><span class="planet-sphere">GK</span><span class="planet-label">प्रथम पत्र · GK / IQ</span></button>
+          <button class="solar-planet planet-syllabus" type="button" data-title="पाठ्यक्रम तथा सामग्री" data-description="तपाईंको लक्ष्यअनुसार उपलब्ध पाठ्यक्रम, नोट्स र अध्ययन सामग्री विद्यार्थी एपमा हेर्नुहोस्।" aria-label="पाठ्यक्रम तथा सामग्री सेवा खोल्नुहोस्"><span class="planet-sphere">▤</span><span class="planet-label">पाठ्यक्रम / सामग्री</span></button>
+          <button class="solar-planet planet-previous" type="button" data-title="पुराना प्रश्नपत्र" data-description="लोकसेवा तयारीका लागि उपलब्ध पुराना प्रश्नपत्र तथा सम्बन्धित सामग्री हेर्नुहोस्।" aria-label="पुराना प्रश्नपत्र सेवा खोल्नुहोस्"><span class="planet-sphere">❖</span><span class="planet-label">पुराना प्रश्नपत्र</span></button>
+          <button class="solar-planet planet-written" type="button" data-title="लिखित पत्र तयारी" data-description="लिखित परीक्षाका लागि उपलब्ध अध्ययन सामग्री र Written Model विद्यार्थी एपमा खोल्नुहोस्।" aria-label="लिखित पत्र तयारी सेवा खोल्नुहोस्"><span class="planet-sphere">ले</span><span class="planet-label">लिखित तयारी</span></button>
+          <button class="solar-planet planet-mock" type="button" data-title="GK / IQ Mock Test" data-description="उपलब्ध GK/IQ Model Set मा समयसीमासहित अभ्यास गर्नुहोस् र आफ्नो नतिजा समीक्षा गर्नुहोस्।" aria-label="GK IQ Mock Test सेवा खोल्नुहोस्"><span class="planet-sphere">✓</span><span class="planet-label">GK / IQ Mock Test</span></button>
+          <button class="solar-planet planet-written-mock" type="button" data-title="Written Mock Test" data-description="लिखित Model Set मा अभ्यास गर्नुहोस् र उपलब्ध प्रतिक्रिया वा अंक विद्यार्थी एपमा हेर्नुहोस्।" aria-label="Written Mock Test सेवा खोल्नुहोस्"><span class="planet-sphere">✎</span><span class="planet-label">Written Mock Test</span></button>
+          <button class="solar-planet planet-progress" type="button" data-title="प्रगति विश्लेषण" data-description="उपलब्ध अभ्यास प्रयास, सही/गलत उत्तर र प्रगति विवरण समीक्षा गर्नुहोस्।" aria-label="प्रगति विश्लेषण सेवा खोल्नुहोस्"><span class="planet-sphere">↗</span><span class="planet-label">प्रगति विश्लेषण</span></button>
+          <button class="solar-planet planet-date" type="button" data-title="नेपाली मिति परिवर्तन" data-description="विद्यार्थी एपमा BS र AD मिति परिवर्तन तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।" aria-label="नेपाली मिति परिवर्तन सेवा खोल्नुहोस्"><span class="planet-sphere">⇄</span><span class="planet-label">मिति परिवर्तन</span></button>
+        </div>
         <div class="real-solar-heading"><span class="real-solar-live-dot"></span><span>LOKSEWAX · SOLAR SYSTEM EXPLORER</span></div>
         <div class="real-solar-controls">
           <button type="button" id="solarPauseButton" aria-pressed="false">Ⅱ रोक्नुहोस्</button>
           <button type="button" id="solarSpeedButton" data-speed="1">गति ×1</button>
         </div>
-        <div class="real-solar-footnote">NASA/JPL ग्रह नक्सा र Keplerian कक्षा-गणनामा आधारित · दृश्य आकार र दूरी बुझ्न सजिलो बनाउन संकुचित गरिएको</div>
+        <div class="real-solar-footnote">तयारीलाई अगाडि बढाउन आफ्नो सेवामा क्लिक गर्नुहोस्</div>
         <div class="real-solar-fallback" id="solarFallback" hidden>३D दृश्य लोड हुन सकेन। कृपया इन्टरनेट जडान जाँच गर्नुहोस्।</div>
       </div>
     </section>
@@ -1281,8 +1281,8 @@ h1{animation:hero-copy-in .8s .22s both}
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x02050d);
       scene.fog = new THREE.FogExp2(0x02050d, 0.008);
-      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 180);
-      camera.position.set(0, 8, 20);
+      const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 180);
+      camera.position.set(0, 12, 16.5);
       camera.lookAt(0, 0, 0);
       scene.add(new THREE.AmbientLight(0x65799d, 0.32));
 
@@ -1354,48 +1354,56 @@ h1{animation:hero-copy-in .8s .22s both}
       // J2000 approximate mean elements. Kepler's equation solves the orbital position;
       // the visual distance/radius are compressed for a usable website composition.
       const bodies = [
-        {id:'mercury',name:'बुध',a:.387099,e:.20563,i:7.005,Omega:48.331,peri:29.125,L:252.251,period:87.969,r:.12,color:0xb8b2a7},
-        {id:'venus',name:'शुक्र',a:.723332,e:.00677,i:3.394,Omega:76.680,peri:54.884,L:181.979,period:224.701,r:.17,color:0xe5bd84},
-        {id:'earth',name:'पृथ्वी',a:1,e:.01671,i:.00005,Omega:-11.261,peri:102.937,L:100.464,period:365.256,r:.19,color:0x6caaff},
-        {id:'mars',name:'मंगल',a:1.523679,e:.0934,i:1.85,Omega:49.558,peri:286.502,L:355.453,period:686.98,r:.15,color:0xf08b61},
-        {id:'jupiter',name:'बृहस्पति',a:5.2026,e:.04849,i:1.303,Omega:100.464,peri:273.867,L:34.404,period:4332.59,r:.42,color:0xe9c29b},
-        {id:'saturn',name:'शनि',a:9.5549,e:.0555,i:2.489,Omega:113.665,peri:339.392,L:49.944,period:10759.2,r:.35,color:0xe8d2a0},
-        {id:'uranus',name:'अरुण',a:19.2184,e:.0463,i:.773,Omega:74.006,peri:96.998,L:313.232,period:30688.5,r:.27,color:0x8bd9e9},
-        {id:'neptune',name:'वरुण',a:30.11,e:.009,i:1.77,Omega:131.784,peri:273.187,L:304.88,period:60182,color:0x5889ed}
+        {id:'mercury',name:'बुध',a:.387099,e:.20563,i:7.005,Omega:48.331,peri:29.125,period:87.969,angle:22,r:.14,color:0xb8b2a7},
+        {id:'venus',name:'शुक्र',a:.723332,e:.00677,i:3.394,Omega:76.680,peri:54.884,period:224.701,angle:67,r:.18,color:0xe5bd84},
+        {id:'earth',name:'पृथ्वी',a:1,e:.01671,i:.00005,Omega:-11.261,peri:102.937,period:365.256,angle:112,r:.21,color:0x6caaff},
+        {id:'mars',name:'मंगल',a:1.523679,e:.0934,i:1.85,Omega:49.558,peri:286.502,period:686.98,angle:157,r:.17,color:0xf08b61},
+        {id:'jupiter',name:'बृहस्पति',a:5.2026,e:.04849,i:1.303,Omega:100.464,peri:273.867,period:4332.59,angle:202,r:.44,color:0xe9c29b},
+        {id:'saturn',name:'शनि',a:9.5549,e:.0555,i:2.489,Omega:113.665,peri:339.392,period:10759.2,angle:247,r:.39,color:0xe8d2a0},
+        {id:'uranus',name:'अरुण',a:19.2184,e:.0463,i:.773,Omega:74.006,peri:96.998,period:30688.5,angle:292,r:.30,color:0x8bd9e9},
+        {id:'neptune',name:'वरुण',a:30.11,e:.009,i:1.77,Omega:131.784,peri:273.187,period:60182,angle:337,r:.30,color:0x5889ed}
       ];
-      const DEG=Math.PI/180, J2000=Date.UTC(2000,0,1,12), startDays=(Date.now()-J2000)/86400000;
+      const DEG=Math.PI/180;
       const TAU=Math.PI*2;
       const displayDistance=(au)=>1.25+Math.log(1+au)*1.56;
+      let horizontalCompression=1;
+      const orbitLines=[];
       function solveKepler(M,e){let E=M;for(let n=0;n<8;n++)E-=(E-e*Math.sin(E)-M)/(1-e*Math.cos(E));return E;}
       function orbitalPosition(body,days){
         const node=body.Omega*DEG, inc=body.i*DEG, peri=(body.peri-body.Omega)*DEG;
-        const M=((body.L-body.peri)*DEG+(TAU/body.period)*days)%TAU;
+        const M=((TAU/body.period)*days)%TAU;
         const E=solveKepler((M+TAU)%TAU,body.e);
         const xOrb=body.a*(Math.cos(E)-body.e), yOrb=body.a*Math.sqrt(1-body.e*body.e)*Math.sin(E);
         const x1=xOrb*Math.cos(peri)-yOrb*Math.sin(peri), y1=xOrb*Math.sin(peri)+yOrb*Math.cos(peri);
         const x=x1*Math.cos(node)-y1*Math.sin(node)*Math.cos(inc);
         const z=x1*Math.sin(node)+y1*Math.cos(node)*Math.cos(inc);
         const y=y1*Math.sin(inc);
-        const angle=Math.atan2(z,x), radius=Math.sqrt(x*x+y*y+z*z);
+        const offset=(body.angle-body.peri)*DEG;
+        const displayX=x*Math.cos(offset)-z*Math.sin(offset);
+        const displayZ=x*Math.sin(offset)+z*Math.cos(offset);
+        const radius=Math.sqrt(x*x+y*y+z*z);
         const scaled=displayDistance(radius)/Math.max(radius,.0001);
-        return new THREE.Vector3(x*scaled,y*scaled,z*scaled);
+        return new THREE.Vector3(displayX*scaled*horizontalCompression,y*scaled,displayZ*scaled);
       }
       function makeOrbit(body){
-        const points=[];
-        for(let j=0;j<=360;j++)points.push(orbitalPosition({...body,L:body.peri},body.period*j/360));
-        // Draw the conic path from orbital geometry; Kepler timing is applied separately to the moving planet.
         const node=body.Omega*DEG,inc=body.i*DEG,peri=(body.peri-body.Omega)*DEG;
+        const offset=(body.angle-body.peri)*DEG;
         const path=[];
         for(let j=0;j<=240;j++){
           const E=TAU*j/240, xo=body.a*(Math.cos(E)-body.e), yo=body.a*Math.sqrt(1-body.e*body.e)*Math.sin(E);
           const x1=xo*Math.cos(peri)-yo*Math.sin(peri),y1=xo*Math.sin(peri)+yo*Math.cos(peri);
           const x=x1*Math.cos(node)-y1*Math.sin(node)*Math.cos(inc);
           const z=x1*Math.sin(node)+y1*Math.cos(node)*Math.cos(inc);
-          const y=y1*Math.sin(inc), rr=Math.sqrt(x*x+y*y+z*z), sc=displayDistance(rr)/Math.max(rr,.0001);
-          path.push(new THREE.Vector3(x*sc,y*sc,z*sc));
+          const y=y1*Math.sin(inc);
+          const displayX=x*Math.cos(offset)-z*Math.sin(offset);
+          const displayZ=x*Math.sin(offset)+z*Math.cos(offset);
+          const rr=Math.sqrt(displayX*displayX+y*y+displayZ*displayZ), sc=displayDistance(rr)/Math.max(rr,.0001);
+          path.push(new THREE.Vector3(displayX*sc,y*sc,displayZ*sc));
         }
-        const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(path),new THREE.LineBasicMaterial({color:0x7695c9,transparent:true,opacity:body.id==='earth'?.38:.19}));
+        const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(path),new THREE.LineBasicMaterial({color:0x7695c9,transparent:true,opacity:body.id==='earth'?.40:.24}));
+        line.scale.x=horizontalCompression;
         scene.add(line);
+        orbitLines.push(line);
       }
       for(const body of bodies){
         makeOrbit(body);
@@ -1428,21 +1436,22 @@ h1{animation:hero-copy-in .8s .22s both}
       }));
       if(dialogClose&&dialog)dialogClose.addEventListener('click',()=>dialog.close());
       if(dialog)dialog.addEventListener('click',(event)=>{if(event.target===dialog)dialog.close();});
-      const bodyForButton=['earth','jupiter','saturn','mars','venus','mercury','uranus','neptune','earth','jupiter','saturn'];
-      const offsets=[[0,-34],[35,-22],[38,18],[0,32],[-40,18],[-42,-18],[0,-37],[0,35],[-44,34],[44,-34],[48,32]];
+      const bodyForButton=['mercury','venus','earth','mars','jupiter','saturn','uranus','neptune'];
       const projected=new THREE.Vector3();
       let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches,speed=1,elapsed=0,last=performance.now(),frameId=0;
       if(paused){pauseButton.setAttribute('aria-pressed','true');pauseButton.textContent='▶ सुरु गर्नुहोस्';}
       pauseButton.addEventListener('click',()=>{paused=!paused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ सुरु गर्नुहोस्':'Ⅱ रोक्नुहोस्';});
       speedButton.addEventListener('click',()=>{speed=speed===1?4:speed===4?12:1;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
       function resize(){
-        const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);
-        renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.z=w<650?30:20;camera.position.y=w<650?13:8;camera.updateProjectionMatrix();camera.lookAt(0,0,0);
+        const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),aspect=w/h;
+        horizontalCompression=Math.min(1,Math.max(.42,aspect/.9));
+        orbitLines.forEach((line)=>{line.scale.x=horizontalCompression;});
+        renderer.setSize(w,h,false);camera.aspect=aspect;camera.position.set(0,w<760?13.5:12,w<760?18.5:16.5);camera.updateProjectionMatrix();camera.lookAt(0,0,0);
       }
       const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(stage);resize();
       function render(now){
         frameId=requestAnimationFrame(render);
-        const dt=Math.min((now-last)/1000,.05);last=now;if(!paused)elapsed+=dt*speed*3.2;
+        const dt=Math.min((now-last)/1000,.05);last=now;if(!paused)elapsed+=dt*speed*.65;
         const days=startDays+elapsed;
         sun.rotation.y+=dt*.035;
         for(const body of bodies){
@@ -1454,11 +1463,26 @@ h1{animation:hero-copy-in .8s .22s both}
         serviceButtons.forEach((button,index)=>{
           const item=planetMeshes[bodyForButton[index]];
           projected.copy(item.position).project(camera);
-          const x=(projected.x*.5+.5)*w+offsets[index][0];
-          const y=(-projected.y*.5+.5)*h+offsets[index][1];
-          const visible=projected.z>-1&&projected.z<1&&x>-30&&x<w+30&&y>-20&&y<h+20;
-          button.style.display=visible?'block':'none';
-          if(visible){button.style.left=x+'px';button.style.top=y+'px';}
+          const planetX=(projected.x*.5+.5)*w;
+          const planetY=(-projected.y*.5+.5)*h;
+          const dx=planetX-w/2,dy=planetY-h/2,mag=Math.max(1,Math.hypot(dx,dy));
+          const ux=dx/mag,uy=dy/mag;
+          const labelW=button.offsetWidth||(w<760?100:132);
+          const labelH=button.offsetHeight||30;
+          const viewHeight=2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*camera.position.length();
+          const pxPerUnit=h/viewHeight;
+          const planetPixelRadius=Math.max(6,item.body.r*pxPerUnit);
+          const gap=(Math.abs(ux)*labelW+Math.abs(uy)*labelH)/2+planetPixelRadius+10;
+          let x=planetX+ux*gap;
+          let y=planetY+uy*gap;
+          const marginX=Math.min(labelW/2+8,w*.28);
+          const marginTop=Math.max(78,labelH/2+8);
+          const marginBottom=labelH/2+42;
+          x=THREE.MathUtils.clamp(x,marginX,Math.max(marginX,w-marginX));
+          y=THREE.MathUtils.clamp(y,marginTop,Math.max(marginTop,h-marginBottom));
+          button.style.display=projected.z>-1&&projected.z<1?'block':'none';
+          button.style.left=x+'px';
+          button.style.top=y+'px';
         });
       }
       window.addEventListener('pagehide',()=>{cancelAnimationFrame(frameId);resizeObserver.disconnect();renderer.dispose();},{once:true});
