@@ -792,6 +792,57 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:540px){.solar-system-stage{min-height:395px;max-width:440px}.solar-orbit-outer{width:min(100%,375px)}.solar-orbit-middle{width:min(78%,292px)}.solar-orbit-inner{width:min(56%,210px)}.solar-orbit-outer .solar-planet{--orbit-radius:calc(min(100%,375px)/2)}.solar-orbit-middle .solar-planet{--orbit-radius:calc(min(78%,292px)/2)}.solar-orbit-inner .solar-planet{--orbit-radius:calc(min(56%,210px)/2)}.solar-planet{--planet-size:36px}.solar-sun{width:clamp(122px,35%,148px)}.solar-sun-logo{max-height:32px;width:84%}.solar-sun-caption{font-size:.43rem;letter-spacing:.05em;top:calc(100% + 9px)}.solar-system-caption{font-size:.48rem;letter-spacing:.08em;bottom:-2px}.planet-label{max-width:102px;font-size:.53rem;padding:4px 6px}}
     @media(prefers-reduced-motion:reduce){.solar-orbit,.solar-planet,.solar-sun,.solar-corona{animation:none!important}.solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1))}.planet-label{transition:none!important}}
 
+  
+    /* Full-hero Solar Universe: intentionally replaces the split text-and-visual hero. */
+    .hero.solar-universe-hero{padding:0!important;min-height:calc(100svh - 68px);display:grid;place-items:stretch;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,rgba(21,55,105,.45),transparent 52%),radial-gradient(ellipse at 8% 85%,rgba(208,32,35,.09),transparent 34%),linear-gradient(145deg,#030a18 0%,#07152d 43%,#0A1B3A 100%)}
+    .hero.solar-universe-hero .hero-grid{display:block;width:100%;max-width:none;margin:0;padding:0}
+    .hero.solar-universe-hero .hero-copy{display:none!important}
+    .hero.solar-universe-hero .solar-system-stage{width:100%;max-width:none;height:clamp(570px,calc(100svh - 68px),1000px);min-height:570px;margin:0;padding:0;overflow:hidden;contain:layout paint style}
+    .hero.solar-universe-hero .solar-system-stage:before{inset:0;border-radius:0;background:radial-gradient(ellipse at 50% 48%,rgba(37,83,153,.24),transparent 59%)}
+    .hero.solar-universe-hero .solar-system-stage:after{inset:0;background-image:radial-gradient(circle at 9% 16%,rgba(255,255,255,.8) 0 1px,transparent 1.8px),radial-gradient(circle at 87% 18%,rgba(159,194,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 80% 78%,rgba(255,204,142,.75) 0 1px,transparent 2px),radial-gradient(circle at 18% 82%,rgba(255,255,255,.7) 0 1px,transparent 2px),radial-gradient(circle at 35% 9%,rgba(255,255,255,.5) 0 1px,transparent 1.8px),radial-gradient(circle at 68% 91%,rgba(255,255,255,.55) 0 1px,transparent 1.8px);pointer-events:none}
+    .hero.solar-universe-hero .solar-starfield{opacity:.55;background-size:71px 89px,113px 131px}
+    .hero.solar-universe-hero .solar-orbit-outer{width:min(84vmin,900px);border-color:rgba(177,204,248,.25)}
+    .hero.solar-universe-hero .solar-orbit-middle{width:min(64vmin,690px);border-color:rgba(205,219,245,.29)}
+    .hero.solar-universe-hero .solar-orbit-inner{width:min(43vmin,465px);border-color:rgba(255,210,157,.34)}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(42vmin,450px);--orbit-duration:78s}
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(32vmin,345px);--orbit-duration:48s}
+    .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(21.5vmin,232px);--orbit-duration:29s}
+    .hero.solar-universe-hero .solar-sun{width:clamp(165px,20vmin,235px)}
+    .hero.solar-universe-hero .solar-sun-logo{max-height:54px}
+    .hero.solar-universe-hero .solar-system-caption{bottom:22px;font-size:.68rem;letter-spacing:.2em;color:#c1d4f6;text-shadow:0 2px 15px #000}
+    .hero.solar-universe-hero .planet-label{z-index:8}
+    @media(max-width:960px){
+      .hero.solar-universe-hero{min-height:calc(100svh - 64px)}
+      .hero.solar-universe-hero .solar-system-stage{height:clamp(560px,calc(100svh - 64px),850px);min-height:560px}
+      .hero.solar-universe-hero .solar-orbit-outer{width:min(88vmin,720px)}
+      .hero.solar-universe-hero .solar-orbit-middle{width:min(66vmin,550px)}
+      .hero.solar-universe-hero .solar-orbit-inner{width:min(44vmin,365px)}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(44vmin,360px)}
+      .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(33vmin,275px)}
+      .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(22vmin,182px)}
+    }
+    @media(max-width:540px){
+      .hero.solar-universe-hero{min-height:560px}
+      .hero.solar-universe-hero .solar-system-stage{height:560px;min-height:560px}
+      .hero.solar-universe-hero .solar-orbit-outer{width:min(94vw,460px)}
+      .hero.solar-universe-hero .solar-orbit-middle{width:min(70vw,340px)}
+      .hero.solar-universe-hero .solar-orbit-inner{width:min(47vw,228px)}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(47vw,230px);--orbit-duration:78s}
+      .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(35vw,170px);--orbit-duration:48s}
+      .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(23.5vw,114px);--orbit-duration:29s}
+      .hero.solar-universe-hero .solar-sun{width:clamp(125px,34vw,155px)}
+      .hero.solar-universe-hero .solar-sun-logo{max-height:34px;width:84%}
+      .hero.solar-universe-hero .solar-sun-caption{font-size:.42rem;letter-spacing:.045em}
+      .hero.solar-universe-hero .solar-system-caption{bottom:12px;font-size:.48rem;letter-spacing:.08em}
+      .hero.solar-universe-hero .planet-label{max-width:100px;font-size:.52rem;padding:4px 5px}
+      .hero.solar-universe-hero .solar-planet{--planet-size:35px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .hero.solar-universe-hero .solar-orbit,.hero.solar-universe-hero .solar-planet,.hero.solar-universe-hero .solar-sun,.hero.solar-universe-hero .solar-corona{animation:none!important}
+      .hero.solar-universe-hero .solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1))}
+      .hero.solar-universe-hero .solar-planet .planet-label{transition:none!important}
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -819,19 +870,8 @@ h1{animation:hero-copy-in .8s .22s both}
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">लोकसेवा तयारीका लागि डिजिटल प्लेटफर्म</span>
-          <h1 id="hero-title">तयारी अब<br><em>अझ व्यवस्थित।</em></h1>
-          <p>LokSewaX लोकसेवा परीक्षाको तयारीमा सहयोग गर्न बनाइएको अध्ययन, अभ्यास र उपयोगी डिजिटल सेवाहरूको प्लेटफर्म हो। आफ्नो तयारीसँग मिल्ने सामग्री अध्ययन गर्नुहोस्, उपलब्ध Mock Test अभ्यास गर्नुहोस् र प्रगति समीक्षा गर्नुहोस्।</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="https://loksewax-student.vercel.app/" target="_blank" rel="noopener noreferrer">LokSewaX विद्यार्थी एप खोल्नुहोस् <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-ghost" href="#study">सबै सेवाहरू हेर्नुहोस् <span aria-hidden="true">↓</span></a>
-          </div>
-          <div class="hero-tags"><span>प्रथम पत्र · GK / IQ</span><span>लिखित तयारी</span><span>अभ्यास र प्रगति</span></div>
-        </div>
-        <div class="hero-visual solar-system-stage" aria-label="LokSewaX सौरमण्डल: मुख्य सेवाहरू ग्रहका रूपमा सूर्य वरिपरि घुम्छन्">
+    <section class="hero solar-universe-hero" aria-label="LokSewaX Solar Universe">
+      <div class="solar-system-stage" aria-label="LokSewaX सौरमण्डल: मुख्य सेवाहरू ग्रहका रूपमा सूर्य वरिपरि घुम्छन्">
           <div class="solar-starfield" aria-hidden="true"></div>
           <div class="solar-orbit solar-orbit-outer"><button class="solar-planet planet-patro" type="button" style="--angle:0deg" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी मिति, कार्यक्रम र दैनिक उपयोगी पात्रो हेर्न विद्यार्थी एप खोल्नुहोस्।" aria-label="लोकसेवा पात्रो सेवा खोल्नुहोस्"><span class="planet-sphere">▦</span><span class="planet-label">लोकसेवा पात्रो</span></button>
 <button class="solar-planet planet-news" type="button" style="--angle:72deg" data-title="News & Media" data-description="LokSewaX मा उपलब्ध समाचार तथा मिडियासम्बन्धी सामग्री हेर्नुहोस्।" aria-label="News & Media सेवा खोल्नुहोस्"><span class="planet-sphere">▣</span><span class="planet-label">News & Media</span></button>
@@ -850,7 +890,7 @@ h1{animation:hero-copy-in .8s .22s both}
             <span class="solar-sun-caption">STUDY · PRACTICE · PROGRESS</span>
           </div>
           <p class="solar-system-caption">LOKSEWAX SOLAR UNIVERSE <span aria-hidden="true">·</span> सेवाहरूको एउटै केन्द्र</p>
-        </div>    </div>
+        </div>
     </section>
 
 
