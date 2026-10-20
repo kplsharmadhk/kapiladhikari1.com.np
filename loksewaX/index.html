@@ -973,6 +973,82 @@ h1{animation:hero-copy-in .8s .22s both}
       .hero.solar-universe-hero:before,.hero.solar-universe-hero:after{animation:none!important}
     }
 
+  
+    /* Real orbital motion: keep the orbital paths fixed and move each planet independently */
+    .hero.solar-universe-hero .solar-orbit{
+      animation:none!important;transform:translate(-50%,-50%) rotate(-12deg);
+      border-color:rgba(174,199,239,.2);border-style:solid;
+      box-shadow:0 0 22px rgba(80,126,206,.04),inset 0 0 24px rgba(80,126,206,.025);
+    }
+    .hero.solar-universe-hero .solar-orbit:after{display:none}
+    .hero.solar-universe-hero .solar-orbit-outer{width:min(78vw,790px);height:min(78vw,790px);aspect-ratio:auto}
+    .hero.solar-universe-hero .solar-orbit-middle{width:min(59vw,600px);height:min(59vw,600px);aspect-ratio:auto}
+    .hero.solar-universe-hero .solar-orbit-inner{width:min(39vw,400px);height:min(39vw,400px);aspect-ratio:auto}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:calc(min(78vw,790px)/2);--orbit-duration:52s}
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:calc(min(59vw,600px)/2);--orbit-duration:27s}
+    .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:calc(min(39vw,400px)/2);--orbit-duration:13s}
+    .hero.solar-universe-hero .solar-planet{
+      animation:solar-planet-revolution var(--orbit-duration) linear infinite!important;
+      transform-origin:0 0;will-change:transform;
+    }
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet{animation-direction:normal!important}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet:nth-child(2){--orbit-duration:61s}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet:nth-child(3){--orbit-duration:68s}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet:nth-child(4){--orbit-duration:74s}
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet:nth-child(2){--orbit-duration:32s}
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet:nth-child(3){--orbit-duration:38s}
+    .hero.solar-universe-hero .solar-orbit-inner .solar-planet:nth-child(2){--orbit-duration:16s}
+    .hero.solar-universe-hero .solar-orbit-inner .solar-planet:nth-child(3){--orbit-duration:19s}
+    @keyframes solar-planet-revolution{
+      from{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc(var(--angle)*-1))}
+      to{transform:rotate(calc(var(--angle) + 360deg)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc((var(--angle) + 360deg)*-1))}
+    }
+    .hero.solar-universe-hero .planet-sphere{
+      overflow:visible;position:relative;isolation:isolate;
+      background:
+        radial-gradient(ellipse at 27% 23%,rgba(255,255,255,.98) 0,rgba(255,255,255,.55) 5%,transparent 21%),
+        radial-gradient(ellipse at 34% 32%,var(--plight,#b9d8ff) 0,var(--pcolor,#245a9b) 40%,#101a30 78%,#030711 100%);
+      box-shadow:inset -10px -8px 13px rgba(0,0,0,.78),inset 3px 3px 7px rgba(255,255,255,.38),0 0 14px var(--pglow,#5389dd66);
+    }
+    .hero.solar-universe-hero .planet-sphere:before{
+      content:"";position:absolute;inset:9% -3%;border-radius:50%;
+      background:repeating-linear-gradient(168deg,transparent 0 4px,rgba(255,255,255,.13) 5px 7px,transparent 8px 11px);
+      opacity:.65;mix-blend-mode:screen;animation:solar-planet-surface 7s linear infinite;
+      pointer-events:none;
+    }
+    .hero.solar-universe-hero .planet-sphere:after{
+      inset:0;border:0;border-radius:50%;
+      background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.14) 48%,transparent 66%);
+      transform:translateX(-120%);animation:solar-planet-shimmer 6s ease-in-out infinite;
+    }
+    @keyframes solar-planet-surface{to{background-position:0 44px}}
+    @keyframes solar-planet-shimmer{0%,30%{transform:translateX(-120%)}70%,100%{transform:translateX(120%)}}
+    .hero.solar-universe-hero .solar-sun{z-index:3}
+    .hero.solar-universe-hero .solar-sun-core{
+      background:radial-gradient(circle at 34% 28%,#fffbe5 0,#ffe9a1 15%,#ffc044 39%,#ff7a24 67%,#b93619 100%);
+      box-shadow:0 0 0 7px rgba(255,190,87,.09),0 0 0 18px rgba(255,170,66,.045),0 0 35px 14px rgba(255,178,63,.58),0 0 100px 38px rgba(255,115,38,.25),inset -14px -15px 24px rgba(100,30,32,.45),inset 9px 7px 19px rgba(255,255,228,.72);
+    }
+    .hero.solar-universe-hero .solar-corona{opacity:.92;filter:blur(.3px)}
+    .hero.solar-universe-hero .planet-label{opacity:1;visibility:visible;top:calc(100% + 7px);transform:translate(-50%,0);border-color:rgba(180,209,255,.22);background:rgba(3,10,25,.86);box-shadow:0 5px 16px rgba(0,0,0,.28)}
+    .hero.solar-universe-hero .solar-planet:hover .planet-label,.hero.solar-universe-hero .solar-planet:focus-visible .planet-label{border-color:rgba(255,220,160,.65)}
+    @media(max-width:760px){
+      .hero.solar-universe-hero .solar-orbit-outer{width:94vw;height:94vw}
+      .hero.solar-universe-hero .solar-orbit-middle{width:70vw;height:70vw}
+      .hero.solar-universe-hero .solar-orbit-inner{width:47vw;height:47vw}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:calc(94vw/2)}
+      .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:calc(70vw/2)}
+      .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:calc(47vw/2)}
+    }
+    @media(max-width:420px){
+      .hero.solar-universe-hero .solar-orbit-outer{width:96vw;height:96vw}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:calc(96vw/2)}
+      .hero.solar-universe-hero .planet-label{max-width:76px;font-size:.46rem;padding:3px 4px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .hero.solar-universe-hero .solar-planet,.hero.solar-universe-hero .planet-sphere:before,.hero.solar-universe-hero .planet-sphere:after{animation:none!important}
+      .hero.solar-universe-hero .solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc(var(--angle)*-1))!important}
+    }
+
   </style>
   <script type="application/ld+json">
   {
