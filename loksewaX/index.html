@@ -1281,7 +1281,7 @@ h1{animation:hero-copy-in .8s .22s both}
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x02050d);
       scene.fog = new THREE.FogExp2(0x02050d, 0.008);
-      const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 180);
+      const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 180);
       camera.position.set(0, 12, 16.5);
       camera.lookAt(0, 0, 0);
       scene.add(new THREE.AmbientLight(0x65799d, 0.32));
@@ -1351,8 +1351,7 @@ h1{animation:hero-copy-in .8s .22s both}
       const starGeometry=new THREE.BufferGeometry();starGeometry.setAttribute('position',new THREE.BufferAttribute(starPositions,3));
       scene.add(new THREE.Points(starGeometry,new THREE.PointsMaterial({color:0xc9dcff,size:.095,transparent:true,opacity:.78,sizeAttenuation:true})));
 
-      // J2000 approximate mean elements. Kepler's equation solves the orbital position;
-      // the visual distance/radius are compressed for a usable website composition.
+      // Kepler-style planetary motion with balanced starting angles for a clear LokSewaX hero.
       const bodies = [
         {id:'mercury',name:'बुध',a:.387099,e:.20563,i:7.005,Omega:48.331,peri:29.125,period:87.969,angle:22,r:.14,color:0xb8b2a7},
         {id:'venus',name:'शुक्र',a:.723332,e:.00677,i:3.394,Omega:76.680,peri:54.884,period:224.701,angle:67,r:.18,color:0xe5bd84},
@@ -1444,7 +1443,7 @@ h1{animation:hero-copy-in .8s .22s both}
       speedButton.addEventListener('click',()=>{speed=speed===1?4:speed===4?12:1;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
       function resize(){
         const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),aspect=w/h;
-        horizontalCompression=Math.min(1,Math.max(.42,aspect/.9));
+        horizontalCompression=Math.min(1,Math.max(.42,aspect/1.04));
         orbitLines.forEach((line)=>{line.scale.x=horizontalCompression;});
         renderer.setSize(w,h,false);camera.aspect=aspect;camera.position.set(0,w<760?13.5:12,w<760?18.5:16.5);camera.updateProjectionMatrix();camera.lookAt(0,0,0);
       }
@@ -1452,7 +1451,7 @@ h1{animation:hero-copy-in .8s .22s both}
       function render(now){
         frameId=requestAnimationFrame(render);
         const dt=Math.min((now-last)/1000,.05);last=now;if(!paused)elapsed+=dt*speed*.65;
-        const days=startDays+elapsed;
+        const days=elapsed;
         sun.rotation.y+=dt*.035;
         for(const body of bodies){
           const item=planetMeshes[body.id];item.position.copy(orbitalPosition(body,days));item.mesh.position.copy(item.position);
