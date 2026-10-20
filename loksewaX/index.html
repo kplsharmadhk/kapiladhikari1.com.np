@@ -1304,8 +1304,13 @@ h1{animation:hero-copy-in .8s .22s both}
         neptune:'https://maps.jpl.nasa.gov/tmaps/pix/nep0fds1.jpg'
       };
       const textures = {};
+      const planetMeshes = {};
       for (const [key, url] of Object.entries(textureUrls)) {
-        textures[key] = textureLoader.load(url, () => {}, undefined, () => { textures[key] = null; });
+        textures[key] = textureLoader.load(url, () => {}, undefined, () => {
+          textures[key] = null;
+          const failedBody = planetMeshes[key];
+          if (failedBody) { failedBody.mesh.material.map = null; failedBody.mesh.material.needsUpdate = true; }
+        });
         textures[key].colorSpace = THREE.SRGBColorSpace;
       }
 
@@ -1410,6 +1415,18 @@ h1{animation:hero-copy-in .8s .22s both}
       }
 
       const serviceButtons=[...labelLayer.querySelectorAll('.solar-planet')];
+      const dialog=document.getElementById('explorerDialog');
+      const dialogTitle=document.getElementById('explorerDialogTitle');
+      const dialogDescription=document.getElementById('explorerDialogDescription');
+      const dialogClose=document.getElementById('explorerDialogClose');
+      serviceButtons.forEach((button)=>button.addEventListener('click',()=>{
+        if(!dialog||typeof dialog.showModal!=='function')return;
+        dialogTitle.textContent=button.dataset.title||'LokSewaX सेवा';
+        dialogDescription.textContent=button.dataset.description||'';
+        dialog.showModal();
+      }));
+      if(dialogClose&&dialog)dialogClose.addEventListener('click',()=>dialog.close());
+      if(dialog)dialog.addEventListener('click',(event)=>{if(event.target===dialog)dialog.close();});
       const bodyForButton=['earth','jupiter','saturn','mars','venus','mercury','uranus','neptune','earth','jupiter','saturn'];
       const offsets=[[0,-34],[35,-22],[38,18],[0,32],[-40,18],[-42,-18],[0,-37],[0,35],[-44,34],[44,-34],[48,32]];
       const projected=new THREE.Vector3();
