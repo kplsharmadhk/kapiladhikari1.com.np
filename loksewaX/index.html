@@ -1270,7 +1270,9 @@ h1{animation:hero-copy-in .8s .22s both}
       const speedButton = document.getElementById('solarSpeedButton');
       if (!stage || !canvas || !labelLayer) return;
 
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+      let renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' }); }
+      catch (error) { fallback.hidden = false; console.error('WebGL unavailable for LokSewaX solar system', error); return; }
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -1280,7 +1282,7 @@ h1{animation:hero-copy-in .8s .22s both}
       scene.background = new THREE.Color(0x02050d);
       scene.fog = new THREE.FogExp2(0x02050d, 0.008);
       const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 180);
-      camera.position.set(0, 17, 36);
+      camera.position.set(0, 8, 20);
       camera.lookAt(0, 0, 0);
       scene.add(new THREE.AmbientLight(0x65799d, 0.32));
 
@@ -1430,12 +1432,13 @@ h1{animation:hero-copy-in .8s .22s both}
       const bodyForButton=['earth','jupiter','saturn','mars','venus','mercury','uranus','neptune','earth','jupiter','saturn'];
       const offsets=[[0,-34],[35,-22],[38,18],[0,32],[-40,18],[-42,-18],[0,-37],[0,35],[-44,34],[44,-34],[48,32]];
       const projected=new THREE.Vector3();
-      let paused=false,speed=1,elapsed=0,last=performance.now(),frameId=0;
+      let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches,speed=1,elapsed=0,last=performance.now(),frameId=0;
+      if(paused){pauseButton.setAttribute('aria-pressed','true');pauseButton.textContent='▶ सुरु गर्नुहोस्';}
       pauseButton.addEventListener('click',()=>{paused=!paused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ सुरु गर्नुहोस्':'Ⅱ रोक्नुहोस्';});
       speedButton.addEventListener('click',()=>{speed=speed===1?4:speed===4?12:1;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
       function resize(){
         const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);
-        renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.z=w<650?43:36;camera.position.y=w<650?20:17;camera.updateProjectionMatrix();camera.lookAt(0,0,0);
+        renderer.setSize(w,h,false);camera.aspect=w/h;camera.position.z=w<650?30:20;camera.position.y=w<650?13:8;camera.updateProjectionMatrix();camera.lookAt(0,0,0);
       }
       const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(stage);resize();
       function render(now){
