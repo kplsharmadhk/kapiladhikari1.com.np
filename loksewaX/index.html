@@ -843,6 +843,57 @@ h1{animation:hero-copy-in .8s .22s both}
       .hero.solar-universe-hero .solar-planet .planet-label{transition:none!important}
     }
 
+  
+    /* Refined full-screen solar system: no marketing copy over the universe. */
+    .hero.solar-universe-hero{position:relative;isolation:isolate;width:100%;min-height:calc(100svh - 68px);padding:0!important;margin:0;overflow:hidden}
+    .hero.solar-universe-hero .hero-grid{position:relative;width:100%;height:100%;min-height:inherit;max-width:none;padding:0;margin:0}
+    .hero.solar-universe-hero .hero-copy,.hero.solar-universe-hero .solar-system-caption,.hero.solar-universe-hero .solar-sun-caption{display:none!important}
+    .hero.solar-universe-hero .solar-system-stage{position:absolute;inset:0;width:100%;height:100%;min-height:inherit;max-width:none;margin:0;overflow:hidden;contain:layout paint style}
+    .hero.solar-universe-hero .solar-orbit{border-style:solid;box-shadow:0 0 22px #7eaaff0a,inset 0 0 18px #7eaaff05}
+    .hero.solar-universe-hero .solar-orbit:after{border-top:1px solid #ffe6b44d;filter:drop-shadow(0 0 4px #ffcb7655)}
+    .hero.solar-universe-hero .solar-orbit-outer{width:min(88vmin,960px);animation-duration:60s;animation-direction:normal}
+    .hero.solar-universe-hero .solar-orbit-middle{width:min(66vmin,720px);animation-duration:42s;animation-direction:reverse}
+    .hero.solar-universe-hero .solar-orbit-inner{width:min(44vmin,480px);animation-duration:24s;animation-direction:normal}
+    .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(44vmin,480px);--orbit-duration:60s;animation-direction:normal}
+    .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(33vmin,360px);--orbit-duration:42s;animation-direction:reverse}
+    .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(22vmin,240px);--orbit-duration:24s;animation-direction:normal}
+    .hero.solar-universe-hero .solar-planet{z-index:4;will-change:rotate;transform-origin:0 0}
+    .hero.solar-universe-hero .planet-sphere{border-color:#ffffff85;box-shadow:inset -8px -9px 15px #0009,inset 3px 3px 8px #ffffff60,0 0 20px var(--pglow,#5389dd66);text-shadow:0 1px 5px #000c}
+    .hero.solar-universe-hero .planet-label{opacity:1;visibility:visible;transform:translate(-50%,0);top:calc(100% + 7px);max-width:clamp(76px,10vw,145px);font-size:clamp(.52rem,.72vw,.72rem);padding:5px 8px;border-color:#a9c8f44a;background:linear-gradient(135deg,rgba(7,19,43,.97),rgba(12,34,68,.94));box-shadow:0 4px 18px #0006;backdrop-filter:blur(8px)}
+    .hero.solar-universe-hero .solar-planet:hover .planet-label,.hero.solar-universe-hero .solar-planet:focus-visible .planet-label{transform:translate(-50%,-2px)}
+    .hero.solar-universe-hero .solar-sun{width:clamp(170px,22vmin,255px);filter:drop-shadow(0 0 30px #ffb84b42)}
+    .hero.solar-universe-hero .solar-sun-logo{width:82%;max-height:58px}
+    .hero.solar-universe-hero .solar-corona{animation-duration:30s}
+    @media(max-width:960px){
+      .hero.solar-universe-hero{min-height:calc(100svh - 64px)}
+      .hero.solar-universe-hero .solar-system-stage{min-height:inherit}
+      .hero.solar-universe-hero .solar-orbit-outer{width:min(90vmin,760px)}
+      .hero.solar-universe-hero .solar-orbit-middle{width:min(68vmin,570px)}
+      .hero.solar-universe-hero .solar-orbit-inner{width:min(46vmin,390px)}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(45vmin,380px)}
+      .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(34vmin,285px)}
+      .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(23vmin,195px)}
+    }
+    @media(max-width:540px){
+      .hero.solar-universe-hero{min-height:560px}
+      .hero.solar-universe-hero .solar-system-stage{min-height:560px}
+      .hero.solar-universe-hero .solar-orbit-outer{width:min(94vw,460px);animation-duration:60s}
+      .hero.solar-universe-hero .solar-orbit-middle{width:min(70vw,340px);animation-duration:42s}
+      .hero.solar-universe-hero .solar-orbit-inner{width:min(47vw,228px);animation-duration:24s}
+      .hero.solar-universe-hero .solar-orbit-outer .solar-planet{--orbit-radius:min(47vw,230px);--orbit-duration:60s}
+      .hero.solar-universe-hero .solar-orbit-middle .solar-planet{--orbit-radius:min(35vw,170px);--orbit-duration:42s}
+      .hero.solar-universe-hero .solar-orbit-inner .solar-planet{--orbit-radius:min(23.5vw,114px);--orbit-duration:24s}
+      .hero.solar-universe-hero .solar-sun{width:clamp(125px,34vw,155px)}
+      .hero.solar-universe-hero .solar-sun-logo{max-height:34px;width:84%}
+      .hero.solar-universe-hero .solar-planet{--planet-size:35px}
+      .hero.solar-universe-hero .planet-label{max-width:82px;font-size:.49rem;padding:4px 5px;line-height:1.25}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .hero.solar-universe-hero .solar-orbit,.hero.solar-universe-hero .solar-planet,.hero.solar-universe-hero .solar-sun,.hero.solar-universe-hero .solar-corona{animation:none!important}
+      .hero.solar-universe-hero .solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1));rotate:0deg}
+      .hero.solar-universe-hero .planet-label{transition:none!important}
+    }
+
   </style>
   <script type="application/ld+json">
   {
