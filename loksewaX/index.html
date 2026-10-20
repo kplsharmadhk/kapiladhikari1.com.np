@@ -1128,9 +1128,11 @@ h1{animation:hero-copy-in .8s .22s both}
           <button class="solar-planet planet-date" type="button" data-title="नेपाली मिति परिवर्तन" data-description="विद्यार्थी एपमा BS र AD मिति परिवर्तन तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।" aria-label="नेपाली मिति परिवर्तन सेवा खोल्नुहोस्"><span class="planet-sphere">⇄</span><span class="planet-label">मिति परिवर्तन</span></button>
         </div>
         <div class="real-solar-heading"><span class="real-solar-live-dot"></span><span>LOKSEWAX · SOLAR SYSTEM EXPLORER</span></div>
-        <div class="real-solar-controls">
+        <div class="real-solar-controls" aria-label="सोलार सिस्टम नियन्त्रण">
           <button type="button" id="solarPauseButton" aria-pressed="false">Ⅱ रोक्नुहोस्</button>
-          <button type="button" id="solarSpeedButton" data-speed="1">गति ×1</button>
+          <button type="button" id="solarSpeedButton" data-speed="24" aria-label="गति 12X, 24X, 48X परिवर्तन गर्नुहोस्">गति ×24</button>
+          <button type="button" id="solarZoomOutButton" aria-label="सोलार सिस्टम Zoom Out">− Zoom</button>
+          <button type="button" id="solarZoomInButton" aria-label="सोलार सिस्टम Zoom In">＋ Zoom</button>
         </div>
         <div class="real-solar-footnote">तयारीलाई अगाडि बढाउन आफ्नो सेवामा क्लिक गर्नुहोस्</div>
         <div class="real-solar-fallback" id="solarFallback" hidden>३D दृश्य लोड हुन सकेन। कृपया इन्टरनेट जडान जाँच गर्नुहोस्।</div>
@@ -1268,6 +1270,8 @@ h1{animation:hero-copy-in .8s .22s both}
       const fallback = document.getElementById('solarFallback');
       const pauseButton = document.getElementById('solarPauseButton');
       const speedButton = document.getElementById('solarSpeedButton');
+      const zoomInButton = document.getElementById('solarZoomInButton');
+      const zoomOutButton = document.getElementById('solarZoomOutButton');
       if (!stage || !canvas || !labelLayer) return;
 
       let renderer;
@@ -1437,18 +1441,29 @@ h1{animation:hero-copy-in .8s .22s both}
       if(dialog)dialog.addEventListener('click',(event)=>{if(event.target===dialog)dialog.close();});
       const bodyForButton=['mercury','venus','earth','mars','jupiter','saturn','uranus','neptune'];
       const projected=new THREE.Vector3();
-      let paused=false,speed=12,elapsed=0,last=performance.now(),frameId=0;
+      let paused=false,speed=24,zoomLevel=1,elapsed=0,last=performance.now(),frameId=0;
+      const baseCameraDistance=()=>({y:stage.clientWidth<760?13.5:12,z:stage.clientWidth<760?18.5:16.5});
       pauseButton.setAttribute('aria-pressed','false');
       pauseButton.textContent='Ⅱ रोक्नुहोस्';
-      speedButton.dataset.speed='12';
-      speedButton.textContent='गति ×12';
+      speedButton.dataset.speed='24';
+      speedButton.textContent='गति ×24';
       pauseButton.addEventListener('click',()=>{paused=!paused;pauseButton.setAttribute('aria-pressed',String(paused));pauseButton.textContent=paused?'▶ सुरु गर्नुहोस्':'Ⅱ रोक्नुहोस्';});
-      speedButton.addEventListener('click',()=>{speed=speed===12?24:12;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
+      speedButton.addEventListener('click',()=>{speed=speed===12?24:speed===24?48:12;speedButton.dataset.speed=String(speed);speedButton.textContent='गति ×'+speed;});
+      function applyZoom(){
+        const base=baseCameraDistance();
+        camera.position.set(0,base.y/zoomLevel,base.z/zoomLevel);
+        camera.lookAt(0,0,0);
+        camera.updateProjectionMatrix();
+        if(zoomInButton)zoomInButton.disabled=zoomLevel>=2;
+        if(zoomOutButton)zoomOutButton.disabled=zoomLevel<=0.7;
+      }
+      if(zoomInButton)zoomInButton.addEventListener('click',()=>{zoomLevel=Math.min(2,Math.round((zoomLevel+0.15)*100)/100);applyZoom();});
+      if(zoomOutButton)zoomOutButton.addEventListener('click',()=>{zoomLevel=Math.max(0.7,Math.round((zoomLevel-0.15)*100)/100);applyZoom();});
       function resize(){
         const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight),aspect=w/h;
         horizontalCompression=Math.min(1,Math.max(.42,aspect/1.04));
         orbitLines.forEach((line)=>{line.scale.x=horizontalCompression;});
-        renderer.setSize(w,h,false);camera.aspect=aspect;camera.position.set(0,w<760?13.5:12,w<760?18.5:16.5);camera.updateProjectionMatrix();camera.lookAt(0,0,0);
+        renderer.setSize(w,h,false);camera.aspect=aspect;applyZoom();
       }
       const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(stage);resize();
       function render(now){
