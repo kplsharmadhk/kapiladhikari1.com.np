@@ -756,6 +756,42 @@ h1{animation:hero-copy-in .8s .22s both}
       .explorer-orbit-stage .brand-stage-mark:after{display:none}
     }
 
+  
+    /* Hero-only LokSewaX Solar Universe */
+    .solar-system-stage{position:relative;isolation:isolate;width:100%;max-width:590px;min-height:570px;margin:0 auto;display:grid;place-items:center;overflow:visible;contain:layout style}
+    .solar-system-stage:before{content:"";position:absolute;z-index:-2;inset:2%;border-radius:50%;background:radial-gradient(ellipse,rgba(20,54,104,.22),transparent 72%);pointer-events:none}
+    .solar-system-stage:after{content:"";position:absolute;z-index:-3;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 18%,#b9d2ff 0 1px,transparent 2px),radial-gradient(circle at 80% 24%,#fff 0 1px,transparent 2px),radial-gradient(circle at 74% 82%,#ffc77d 0 1px,transparent 2px),radial-gradient(circle at 25% 77%,#fff 0 1px,transparent 2px)}
+    .solar-starfield{position:absolute;z-index:-1;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.7) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(124,170,255,.6) 0 1px,transparent 1.7px);background-size:83px 97px,127px 139px;background-position:8px 19px,47px 65px;opacity:.4;mask-image:radial-gradient(ellipse,black 20%,transparent 76%)}
+    .solar-orbit{position:absolute;top:50%;left:50%;border:1px solid rgba(177,204,248,.2);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .solar-orbit:after{content:"";position:absolute;inset:0;border-radius:inherit;border-top:1px solid rgba(255,226,180,.15);transform:rotate(-16deg)}
+    .solar-orbit-outer{width:min(100%,548px);aspect-ratio:1;border-color:rgba(153,184,235,.19);animation:solar-spin 78s linear infinite}
+    .solar-orbit-middle{width:min(74%,405px);aspect-ratio:1;border-color:rgba(205,219,245,.23);animation:solar-spin 48s linear infinite reverse}
+    .solar-orbit-inner{width:min(49%,270px);aspect-ratio:1;border-color:rgba(255,210,157,.27);animation:solar-spin 29s linear infinite}
+    .solar-planet{--planet-size:46px;position:absolute;top:50%;left:50%;display:grid;place-items:center;width:var(--planet-size);height:var(--planet-size);padding:0;border:0;background:transparent;color:#fff;cursor:pointer;pointer-events:auto;transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius) * -1));transform-origin:0 0;animation:solar-counter var(--orbit-duration) linear infinite}
+    .solar-orbit-outer .solar-planet{--orbit-radius:calc(min(100%,548px) / 2);--orbit-duration:78s}
+    .solar-orbit-middle .solar-planet{--orbit-radius:calc(min(74%,405px) / 2);--orbit-duration:48s;animation-direction:reverse}
+    .solar-orbit-inner .solar-planet{--orbit-radius:calc(min(49%,270px) / 2);--orbit-duration:29s}
+    .solar-planet:focus-visible{outline:2px solid #fff;outline-offset:7px;border-radius:50%}
+    .planet-sphere{position:relative;display:grid;place-items:center;width:var(--planet-size);height:var(--planet-size);border:1px solid rgba(255,255,255,.45);border-radius:50%;font-family:"DM Sans","Noto Sans Devanagari",sans-serif;font-size:.84rem;font-weight:900;color:#fff;text-shadow:0 1px 4px #0008;background:radial-gradient(circle at 28% 22%,#fff 0,rgba(255,255,255,.2) 12%,transparent 25%),radial-gradient(circle at 35% 30%,var(--plight,#a8d0ff),var(--pcolor,#245a9b) 47%,#07152c 100%);box-shadow:inset -7px -8px 13px #0008,inset 3px 3px 7px #ffffff4d,0 0 17px var(--pglow,#5389dd66);transition:transform .25s,box-shadow .25s}
+    .planet-sphere:after{content:"";position:absolute;inset:17% 8%;border-top:1px solid #ffffff40;border-radius:50%;transform:rotate(-32deg);pointer-events:none}
+    .planet-label{position:absolute;top:calc(100% + 8px);left:50%;width:max-content;max-width:150px;padding:5px 8px;border:1px solid #cadffb40;border-radius:8px;background:rgba(5,16,37,.97);box-shadow:0 7px 20px #0006;color:#fff;font-size:.65rem;font-weight:800;line-height:1.4;text-align:center;white-space:normal;opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none}
+    .solar-planet:hover .planet-label,.solar-planet:focus-visible .planet-label{opacity:1;visibility:visible;transform:translate(-50%,0)}
+    .solar-planet:hover .planet-sphere,.solar-planet:focus-visible .planet-sphere{transform:scale(1.12);box-shadow:inset -7px -8px 13px #0007,0 0 24px var(--pglow,#5389dd88)}
+    .planet-patro{--pcolor:#236b82;--plight:#9be7ec;--pglow:#5bd6e266;--planet-size:43px}.planet-news{--pcolor:#5e397f;--plight:#d3a2ff;--pglow:#b171ef66;--planet-size:46px}.planet-class{--pcolor:#2a6698;--plight:#9edbff;--pglow:#52b1ff66;--planet-size:41px}.planet-rashifal{--pcolor:#8a4d26;--plight:#ffcb82;--pglow:#ffa65366;--planet-size:43px}.planet-date{--pcolor:#2b6a50;--plight:#a0efbd;--pglow:#53de9e66;--planet-size:39px}.planet-syllabus{--pcolor:#245a9b;--plight:#a8d0ff;--pglow:#569dff66;--planet-size:48px}.planet-previous{--pcolor:#80414d;--plight:#ffc0c8;--pglow:#ff728966;--planet-size:43px}.planet-progress{--pcolor:#426e38;--plight:#c1f49b;--pglow:#a4ea6b66;--planet-size:46px}.planet-gkiq{--pcolor:#245e9b;--plight:#b4d9ff;--pglow:#5fa6ff77;--planet-size:45px}.planet-mock{--pcolor:#a52b35;--plight:#ffb0a9;--pglow:#ff4b5977;--planet-size:48px}.planet-written{--pcolor:#73552b;--plight:#ffe2a1;--pglow:#ffca6566;--planet-size:43px}
+    .solar-sun{position:relative;z-index:3;display:grid;place-items:center;width:clamp(142px,31%,182px);aspect-ratio:1;border-radius:50%;isolation:isolate;background:radial-gradient(circle at 32% 26%,#fff9d7 0,#ffe7a0 14%,#ffc34e 32%,#ee8b23 56%,#a83e21 78%,#481b27 100%);box-shadow:0 0 0 8px #ffbe5712,0 0 0 18px #ffab420b,0 0 28px 9px #ffb23f6b,0 0 72px 26px #ff852f40,inset -14px -15px 24px #641e2073,inset 9px 7px 19px #ffffe4c7;animation:solar-sun-pulse 6s ease-in-out infinite}
+    .solar-corona{position:absolute;z-index:-1;inset:-15%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 7%,#ffd2824d 8%,transparent 10% 17%,#ffe7aa42 18%,transparent 20% 29%,#ffa94c4d 30%,transparent 32% 43%,#ffdd9740 44%,transparent 46% 58%,#ffb24d4d 59%,transparent 61% 73%,#ffe39e3d 74%,transparent 76% 88%,#ffb9524d 89%,transparent 91%);filter:blur(5px);animation:solar-spin 44s linear infinite;pointer-events:none}
+    .solar-sun-core{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(ellipse at 40% 30%,#ffffef8c,transparent 32%),radial-gradient(ellipse at 60% 72%,#ff712359,transparent 53%);box-shadow:inset 0 0 24px #fffacc6b;pointer-events:none}
+    .solar-sun-logo{position:relative;z-index:2;width:82%;height:auto;max-height:43px;object-fit:contain;filter:drop-shadow(0 1px 1px #ffffff59)}
+    .solar-sun-caption{position:absolute;top:calc(100% + 13px);width:max-content;max-width:220px;color:#ffe4ac;font-size:.53rem;letter-spacing:.11em;font-weight:900;text-shadow:0 1px 9px #000b;text-align:center;white-space:nowrap}
+    .solar-system-caption{position:absolute;left:0;right:0;bottom:0;margin:0;color:#a9c3ef;text-align:center;font-size:.62rem;letter-spacing:.14em;font-weight:800}
+    @keyframes solar-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    @keyframes solar-counter{to{rotate:-360deg}}
+    @keyframes solar-sun-pulse{0%,100%{box-shadow:0 0 0 8px #ffbe5712,0 0 0 18px #ffab420b,0 0 28px 9px #ffb23f6b,0 0 72px 26px #ff852f40,inset -14px -15px 24px #641e2073,inset 9px 7px 19px #ffffe4c7}50%{box-shadow:0 0 0 10px #ffbe5714,0 0 0 22px #ffab420d,0 0 34px 12px #ffb23f7a,0 0 82px 30px #ff852f47,inset -14px -15px 24px #641e2073,inset 9px 7px 19px #ffffe4c7}}
+    @media(max-width:960px){.solar-system-stage{min-height:500px}.solar-orbit-outer{width:min(100%,490px)}.solar-orbit-middle{width:min(75%,365px)}.solar-orbit-inner{width:min(51%,250px)}.solar-orbit-outer .solar-planet{--orbit-radius:calc(min(100%,490px)/2)}.solar-orbit-middle .solar-planet{--orbit-radius:calc(min(75%,365px)/2)}.solar-orbit-inner .solar-planet{--orbit-radius:calc(min(51%,250px)/2)}}
+    @media(max-width:720px){.solar-system-stage{min-height:475px;max-width:520px}.solar-orbit-outer{width:min(100%,455px)}.solar-orbit-middle{width:min(76%,345px)}.solar-orbit-inner{width:min(53%,240px)}.solar-orbit-outer .solar-planet{--orbit-radius:calc(min(100%,455px)/2)}.solar-orbit-middle .solar-planet{--orbit-radius:calc(min(76%,345px)/2)}.solar-orbit-inner .solar-planet{--orbit-radius:calc(min(53%,240px)/2)}.solar-sun{width:clamp(136px,32%,165px)}.planet-label{max-width:124px;font-size:.59rem}}
+    @media(max-width:540px){.solar-system-stage{min-height:395px;max-width:440px}.solar-orbit-outer{width:min(100%,375px)}.solar-orbit-middle{width:min(78%,292px)}.solar-orbit-inner{width:min(56%,210px)}.solar-orbit-outer .solar-planet{--orbit-radius:calc(min(100%,375px)/2)}.solar-orbit-middle .solar-planet{--orbit-radius:calc(min(78%,292px)/2)}.solar-orbit-inner .solar-planet{--orbit-radius:calc(min(56%,210px)/2)}.solar-planet{--planet-size:36px}.solar-sun{width:clamp(122px,35%,148px)}.solar-sun-logo{max-height:32px;width:84%}.solar-sun-caption{font-size:.43rem;letter-spacing:.05em;top:calc(100% + 9px)}.solar-system-caption{font-size:.48rem;letter-spacing:.08em;bottom:-2px}.planet-label{max-width:102px;font-size:.53rem;padding:4px 6px}}
+    @media(prefers-reduced-motion:reduce){.solar-orbit,.solar-planet,.solar-sun,.solar-corona{animation:none!important}.solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1))}.planet-label{transition:none!important}}
+
   </style>
   <script type="application/ld+json">
   {
@@ -795,28 +831,25 @@ h1{animation:hero-copy-in .8s .22s both}
           </div>
           <div class="hero-tags"><span>प्रथम पत्र · GK / IQ</span><span>लिखित तयारी</span><span>अभ्यास र प्रगति</span></div>
         </div>
-        <div class="hero-visual hero-brand-stage explorer-orbit-stage" aria-label="LokSewaX का मुख्य सेवाहरू">
-          <div class="brand-stage-grid" aria-hidden="true"></div>
-          <div class="brand-stage-ring brand-stage-ring-one" aria-hidden="true"></div>
-          <div class="brand-stage-ring brand-stage-ring-two" aria-hidden="true"></div>
-          <span class="brand-stage-index" aria-hidden="true">LSX <i> / </i> 2026</span>
-          <span class="brand-stage-vertical" aria-hidden="true">SMART STUDY ECOSYSTEM</span>
-          <div class="explorer-orbit-track" aria-label="सेवा छान्नुहोस्">
-            <div class="explorer-node" style="--angle:0deg"><button class="explorer-node-button" type="button" data-title="प्रथम पत्र · GK / IQ" data-description="सामान्य ज्ञान र बौद्धिक परीक्षणका प्रश्नहरू अभ्यास गर्नुहोस्। उपलब्ध Model Set बाट आफ्नो तयारीलाई नियमित बनाउनुहोस्।"><span class="explorer-node-icon">GK</span><span>प्रथम पत्र GK/IQ</span></button></div>
-            <div class="explorer-node" style="--angle:51.4286deg"><button class="explorer-node-button" type="button" data-title="Mock Test" data-description="उपलब्ध Mock Test मा परीक्षाजस्तै अभ्यास गर्नुहोस् र आफ्नो नतिजा तथा प्रयासको समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">✓</span><span>Mock Test</span></button></div>
-            <div class="explorer-node" style="--angle:102.8571deg"><button class="explorer-node-button" type="button" data-title="लिखित तयारी" data-description="लिखित परीक्षाका लागि प्रकाशित अध्ययन सामग्री र उपलब्ध अभ्यास विकल्पहरू हेर्नुहोस्।"><span class="explorer-node-icon">ले</span><span>लिखित तयारी</span></button></div>
-            <div class="explorer-node" style="--angle:154.2857deg"><button class="explorer-node-button" type="button" data-title="समसामयिक अभ्यास" data-description="राष्ट्रिय, अन्तर्राष्ट्रिय र अन्य महत्वपूर्ण समसामयिक विषयसँग सम्बन्धित सामग्री तथा उपलब्ध प्रश्न अभ्यास गर्नुहोस्।"><span class="explorer-node-icon">सम</span><span>समसामयिक</span></button></div>
-            <div class="explorer-node" style="--angle:205.7143deg"><button class="explorer-node-button" type="button" data-title="प्रगति विश्लेषण" data-description="उपलब्ध विवरणअनुसार प्रयास, सही/गलत उत्तर, accuracy र आफ्नो अभ्यासको प्रगति समीक्षा गर्नुहोस्।"><span class="explorer-node-icon">↗</span><span>प्रगति विश्लेषण</span></button></div>
-            <div class="explorer-node" style="--angle:257.1429deg"><button class="explorer-node-button" type="button" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी प्रकाशित मिति, कार्यक्रम र उपयोगी समयतालिकाका विवरण हेर्नुहोस्।"><span class="explorer-node-icon">प</span><span>लोकसेवा पात्रो</span></button></div>
-            <div class="explorer-node" style="--angle:308.5714deg"><button class="explorer-node-button" type="button" data-title="मिति परिवर्तन" data-description="समर्थित नेपाली BS र अंग्रेजी AD मिति रूपान्तरण तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।"><span class="explorer-node-icon">⇄</span><span>मिति परिवर्तन</span></button></div>
+        <div class="hero-visual solar-system-stage" aria-label="LokSewaX सौरमण्डल: मुख्य सेवाहरू ग्रहका रूपमा सूर्य वरिपरि घुम्छन्">
+          <div class="solar-starfield" aria-hidden="true"></div>
+          <div class="solar-orbit solar-orbit-outer" aria-hidden="true"><button class="solar-planet planet-patro" type="button" style="--angle:0deg" data-title="लोकसेवा पात्रो" data-description="लोकसेवासम्बन्धी मिति, कार्यक्रम र दैनिक उपयोगी पात्रो हेर्न विद्यार्थी एप खोल्नुहोस्।" aria-label="लोकसेवा पात्रो सेवा खोल्नुहोस्"><span class="planet-sphere">▦</span><span class="planet-label">लोकसेवा पात्रो</span></button>
+<button class="solar-planet planet-news" type="button" style="--angle:72deg" data-title="News & Media" data-description="LokSewaX मा उपलब्ध समाचार तथा मिडियासम्बन्धी सामग्री हेर्नुहोस्।" aria-label="News & Media सेवा खोल्नुहोस्"><span class="planet-sphere">▣</span><span class="planet-label">News & Media</span></button>
+<button class="solar-planet planet-class" type="button" style="--angle:144deg" data-title="Online Class" data-description="विद्यार्थी एपमा प्रकाशित अनलाइन कक्षासम्बन्धी सामग्री वा लिंक हेर्नुहोस्।" aria-label="Online Class सेवा खोल्नुहोस्"><span class="planet-sphere">▶</span><span class="planet-label">Online Class</span></button>
+<button class="solar-planet planet-rashifal" type="button" style="--angle:216deg" data-title="राशिफल" data-description="१२ राशिका लागि उपलब्ध दैनिक, साप्ताहिक र मासिक राशिफल सामग्री हेर्नुहोस्।" aria-label="राशिफल सेवा खोल्नुहोस्"><span class="planet-sphere">✦</span><span class="planet-label">राशिफल</span></button>
+<button class="solar-planet planet-date" type="button" style="--angle:288deg" data-title="मिति परिवर्तन" data-description="विद्यार्थी एपमा BS र AD मिति परिवर्तन तथा उपलब्ध मिति गणना सुविधाहरू प्रयोग गर्नुहोस्।" aria-label="मिति परिवर्तन सेवा खोल्नुहोस्"><span class="planet-sphere">⇄</span><span class="planet-label">मिति परिवर्तन</span></button></div>
+<div class="solar-orbit solar-orbit-middle" aria-hidden="true"><button class="solar-planet planet-syllabus" type="button" style="--angle:35deg" data-title="पाठ्यक्रम / सामग्री" data-description="पाठ्यक्रम, पुस्तक तथा नोट्स र अन्य प्रकाशित अध्ययन सामग्री हेर्नुहोस्।" aria-label="पाठ्यक्रम / सामग्री सेवा खोल्नुहोस्"><span class="planet-sphere">▤</span><span class="planet-label">पाठ्यक्रम / सामग्री</span></button>
+<button class="solar-planet planet-previous" type="button" style="--angle:155deg" data-title="पुराना प्रश्नपत्र" data-description="लोकसेवा तयारीका लागि उपलब्ध पुराना प्रश्नपत्र र सम्बन्धित सामग्री हेर्नुहोस्।" aria-label="पुराना प्रश्नपत्र सेवा खोल्नुहोस्"><span class="planet-sphere">❖</span><span class="planet-label">पुराना प्रश्नपत्र</span></button>
+<button class="solar-planet planet-progress" type="button" style="--angle:275deg" data-title="प्रगति विश्लेषण" data-description="उपलब्ध अभ्यास प्रयास, सही/गलत उत्तर र प्रगति विवरण विद्यार्थी एपमा समीक्षा गर्नुहोस्।" aria-label="प्रगति विश्लेषण सेवा खोल्नुहोस्"><span class="planet-sphere">↗</span><span class="planet-label">प्रगति विश्लेषण</span></button></div>
+<div class="solar-orbit solar-orbit-inner" aria-hidden="true"><button class="solar-planet planet-gkiq" type="button" style="--angle:18deg" data-title="प्रथम पत्र GK / IQ" data-description="सामान्य ज्ञान र बौद्धिक परीक्षणका उपलब्ध प्रश्न तथा Model Set अभ्यास गर्नुहोस्।" aria-label="प्रथम पत्र GK / IQ सेवा खोल्नुहोस्"><span class="planet-sphere">GK</span><span class="planet-label">प्रथम पत्र GK / IQ</span></button>
+<button class="solar-planet planet-mock" type="button" style="--angle:138deg" data-title="Mock Test" data-description="उपलब्ध Mock Test मा परीक्षाजस्तै अभ्यास गर्नुहोस् र आफ्नो नतिजा समीक्षा गर्नुहोस्।" aria-label="Mock Test सेवा खोल्नुहोस्"><span class="planet-sphere">✓</span><span class="planet-label">Mock Test</span></button>
+<button class="solar-planet planet-written" type="button" style="--angle:258deg" data-title="लिखित तयारी" data-description="लिखित परीक्षा र उपलब्ध Written Model अभ्याससम्बन्धी सामग्री हेर्नुहोस्।" aria-label="लिखित तयारी सेवा खोल्नुहोस्"><span class="planet-sphere">ले</span><span class="planet-label">लिखित तयारी</span></button></div>
+          <div class="solar-sun" aria-label="LokSewaX को आधिकारिक लोगो सूर्यको केन्द्रमा">
+            <span class="solar-corona" aria-hidden="true"></span><span class="solar-sun-core" aria-hidden="true"></span>
+            <img class="solar-sun-logo" src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="190">
+            <span class="solar-sun-caption">STUDY · PRACTICE · PROGRESS</span>
           </div>
-          <div class="brand-stage-mark">
-            <span class="brand-stage-kicker"><i></i> LOKSEWAX · SMART PREPARATION</span>
-            <img class="hero-main-logo" src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="800" height="190">
-            <span class="brand-stage-rule" aria-hidden="true"></span>
-            <p>अब तयारी होइन, स्मार्ट तयारी</p>
-          </div>
-          <div class="brand-stage-bottom"><span>NEPAL</span><span class="brand-stage-bottom-line"></span><span>STUDY · PRACTICE · PROGRESS</span></div>
+          <p class="solar-system-caption">LOKSEWAX SOLAR UNIVERSE <span aria-hidden="true">·</span> सेवाहरूको एउटै केन्द्र</p>
         </div>    </div>
     </section>
 
@@ -944,66 +977,19 @@ h1{animation:hero-copy-in .8s .22s both}
   </dialog>
   <script>
     (() => {
-      const dialog = document.getElementById('explorerDialog');
-      const title = document.getElementById('explorerDialogTitle');
-      const description = document.getElementById('explorerDialogDescription');
-      const close = document.getElementById('explorerDialogClose');
-      const orbitStage = document.querySelector('.explorer-orbit-stage');
-      if (orbitStage) {
-        orbitStage.classList.add('cinematic-revealed');
-        const orbit = orbitStage.querySelector('.explorer-orbit-track');
-        if (orbit && !orbit.querySelector('.orbit-photon')) {
-          for (let i = 0; i < 14; i += 1) {
-            const photon = document.createElement('span');
-            photon.className = 'orbit-photon';
-            photon.setAttribute('aria-hidden', 'true');
-            photon.style.setProperty('--photon-angle', `${i * (360 / 14)}deg`);
-            photon.style.setProperty('--photon-delay', `${(i % 6) * -0.38}s`);
-            orbit.appendChild(photon);
-          }
-        }
-
-        /* Mouse and touch movement gently shifts orbit layers; rotation remains constant-speed. */
-        const resetOrbitParallax = () => {
-          orbitStage.style.setProperty('--orbit-shift-x', '0px');
-          orbitStage.style.setProperty('--orbit-shift-y', '0px');
-          orbitStage.style.setProperty('--ring-one-x', '0px');
-          orbitStage.style.setProperty('--ring-one-y', '0px');
-          orbitStage.style.setProperty('--ring-two-x', '0px');
-          orbitStage.style.setProperty('--ring-two-y', '0px');
-          orbitStage.style.setProperty('--logo-shift-x', '0px');
-          orbitStage.style.setProperty('--logo-shift-y', '0px');
-        };
-        orbitStage.addEventListener('pointermove', (event) => {
-          if (event.pointerType === 'touch' && event.buttons === 0) return;
-          const bounds = orbitStage.getBoundingClientRect();
-          if (!bounds.width || !bounds.height) return;
-          const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - .5) * 2));
-          const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - .5) * 2));
-          orbitStage.style.setProperty('--orbit-shift-x', `${x * 5}px`);
-          orbitStage.style.setProperty('--orbit-shift-y', `${y * 5}px`);
-          orbitStage.style.setProperty('--ring-one-x', `${x * -2}px`);
-          orbitStage.style.setProperty('--ring-one-y', `${y * -2}px`);
-          orbitStage.style.setProperty('--ring-two-x', `${x * 3}px`);
-          orbitStage.style.setProperty('--ring-two-y', `${y * 3}px`);
-          orbitStage.style.setProperty('--logo-shift-x', `${x * -2}px`);
-          orbitStage.style.setProperty('--logo-shift-y', `${y * -2}px`);
-        }, { passive: true });
-        orbitStage.addEventListener('pointerleave', resetOrbitParallax, { passive: true });
-        orbitStage.addEventListener('pointerup', resetOrbitParallax, { passive: true });
-        orbitStage.addEventListener('pointercancel', resetOrbitParallax, { passive: true });
-      }
-      document.querySelectorAll('.explorer-node-button').forEach((node) => {
-        node.addEventListener('click', () => {
-          title.textContent = node.dataset.title || 'LokSewaX सेवा';
-          description.textContent = node.dataset.description || '';
-          if (typeof dialog.showModal === 'function') dialog.showModal();
+      const dialog=document.getElementById('explorerDialog');
+      const title=document.getElementById('explorerDialogTitle');
+      const description=document.getElementById('explorerDialogDescription');
+      const close=document.getElementById('explorerDialogClose');
+      document.querySelectorAll('.solar-planet').forEach((planet)=>{
+        planet.addEventListener('click',()=>{
+          title.textContent=planet.dataset.title||'LokSewaX सेवा';
+          description.textContent=planet.dataset.description||'';
+          if(typeof dialog.showModal==='function')dialog.showModal();
         });
       });
-      close.addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', (event) => {
-        if (event.target === dialog) dialog.close();
-      });
+      close.addEventListener('click',()=>dialog.close());
+      dialog.addEventListener('click',(event)=>{if(event.target===dialog)dialog.close();});
     })();
   </script>
 
