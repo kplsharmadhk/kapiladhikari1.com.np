@@ -1171,6 +1171,29 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:540px){#study .section-head h2{font-size:2rem}.service-nav{margin-bottom:30px}.service-card{gap:13px;padding:18px 16px 27px;border-radius:18px}.service-icon{flex-basis:45px;width:45px;height:45px}.service-copy h4{font-size:.94rem}.service-copy p{font-size:.8rem}.service-card:after{right:12px;top:9px;font-size:.6rem}}
     @media(prefers-reduced-motion:reduce){.service-card,.service-icon,.service-arrow,.service-nav a{transition:none!important}}
 
+  
+    /* Premium footer: keep the official navy logo readable on a dedicated light panel. */
+    .site-footer{position:relative;isolation:isolate;overflow:hidden;padding:0;color:#f5f8ff;border-top:1px solid rgba(255,255,255,.12);background:radial-gradient(ellipse at 12% 0,rgba(208,32,35,.16),transparent 34%),radial-gradient(ellipse at 88% 8%,rgba(61,121,230,.23),transparent 38%),linear-gradient(135deg,#061126 0%,#0a1b3a 52%,#0c2348 100%)}
+    .site-footer:before{content:"X";position:absolute;z-index:-1;right:5%;top:-105px;font:900 300px/1 Arial,sans-serif;color:rgba(255,255,255,.025);pointer-events:none}
+    .footer-inner{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.6fr);gap:26px 42px;align-items:center;padding-top:38px;padding-bottom:22px;color:#dce6f8;font-size:.88rem}
+    .footer-brand{display:flex;align-items:center;justify-content:center;min-height:112px;padding:24px 22px;border-radius:22px;background:linear-gradient(145deg,#fff 0%,#f3f6fc 100%);border:1px solid rgba(255,255,255,.8);box-shadow:0 15px 38px rgba(0,0,0,.19),inset 0 1px 0 #fff;transition:transform .22s ease,box-shadow .22s ease}
+    .footer-brand:hover{transform:translateY(-3px);box-shadow:0 20px 42px rgba(0,0,0,.25),inset 0 1px 0 #fff}
+    .footer-brand img{display:block;width:min(100%,235px);max-width:235px;height:auto;max-height:78px;object-fit:contain}
+    .footer-inner nav{display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap}
+    .footer-inner nav a{display:inline-flex;align-items:center;min-height:43px;padding:10px 14px;border:1px solid rgba(220,230,248,.15);border-radius:13px;background:rgba(255,255,255,.055);color:#eaf0fc;text-decoration:none;font-size:.84rem;font-weight:700;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
+    .footer-inner nav a:hover,.footer-inner nav a:focus-visible{transform:translateY(-2px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.32);color:#fff;outline:none}
+    .footer-inner nav a.footer-app-link{background:linear-gradient(135deg,#d02023,#a90f20);border-color:rgba(255,255,255,.2);color:#fff;box-shadow:0 8px 22px rgba(208,32,35,.24)}
+    .footer-inner nav a.footer-app-link:hover{background:linear-gradient(135deg,#e12a2d,#bd1727)}
+    .footer-bottom{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;padding-top:21px;border-top:1px solid rgba(220,230,248,.15)}
+    .developer-credit{margin:0;color:#b9c8e2;font-size:.84rem;font-weight:600}
+    .developer-credit a{color:#fff;text-decoration:none;font-weight:800}
+    .developer-credit a:hover{text-decoration:underline;text-decoration-color:#ef6265;text-underline-offset:4px}
+    .footer-main-link{display:inline-flex;align-items:center;gap:7px;color:#f6f8ff!important;font-size:.83rem;font-weight:800;text-decoration:none}
+    .footer-main-link:hover{text-decoration:underline;text-underline-offset:4px}
+    .footer-copyright{color:#aebdd5;font-size:.78rem}
+    @media(max-width:720px){.footer-inner{grid-template-columns:1fr;gap:22px;padding-top:28px}.footer-brand{min-height:96px;max-width:360px;width:100%;justify-self:center}.footer-inner nav{justify-content:center}.footer-bottom{justify-content:center;text-align:center;flex-direction:column;gap:12px}.site-footer:before{right:-15%;top:0;font-size:220px}}
+    @media(max-width:420px){.footer-inner nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:8px}.footer-inner nav a{justify-content:center;text-align:center;padding:10px 8px;font-size:.78rem}.footer-brand{padding:20px 18px}}
+
   </style>
   <script type="application/ld+json">
   {
@@ -1340,7 +1363,24 @@ h1{animation:hero-copy-in .8s .22s both}
     </section>
   </main>
 
-  <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="#top" aria-label="LokSewaX"><img src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="220" height="52"></a><nav aria-label="Footer navigation"><a href="#study">सेवाहरू</a><a href="#daily">दैनिक उपयोगी सेवा</a><a href="#faq">सामान्य जिज्ञासा</a><a href="https://loksewax-student.vercel.app/" target="_blank" rel="noopener noreferrer">विद्यार्थी एप ↗</a></nav><p class="developer-credit">Developer by <a href="https://kapiladhikari1.com.np/">Kapil Sharma Adhikari</a></p><a class="footer-main-link" href="https://kapiladhikari1.com.np/">kapiladhikari1.com.np ↗</a><small>© 2026 LokSewaX</small></div></footer>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="footer-brand" href="#top" aria-label="LokSewaX को सुरुवातमा जानुहोस्">
+        <img src="../images/loksewax-logo.svg" alt="LokSewaX को आधिकारिक लोगो" width="440" height="104" loading="lazy">
+      </a>
+      <nav aria-label="Footer navigation">
+        <a href="#study">सेवाहरू</a>
+        <a href="#daily">दैनिक उपयोगी सेवा</a>
+        <a href="#faq">सामान्य जिज्ञासा</a>
+        <a class="footer-app-link" href="https://loksewax-student.vercel.app/" target="_blank" rel="noopener noreferrer">विद्यार्थी एप खोल्नुहोस् ↗</a>
+      </nav>
+      <div class="footer-bottom">
+        <p class="developer-credit">Developer by <a href="https://kapiladhikari1.com.np/">Kapil Sharma Adhikari</a></p>
+        <a class="footer-main-link" href="https://kapiladhikari1.com.np/">kapiladhikari1.com.np ↗</a>
+        <small class="footer-copyright">© 2026 LokSewaX. सर्वाधिकार सुरक्षित।</small>
+      </div>
+    </div>
+  </footer>
 
   <dialog class="explorer-dialog" id="explorerDialog" aria-labelledby="explorerDialogTitle">
     <div class="explorer-dialog-inner">
