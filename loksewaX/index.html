@@ -1397,7 +1397,6 @@ h1{animation:hero-copy-in .8s .22s both}
         const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(path),new THREE.LineBasicMaterial({color:0x7695c9,transparent:true,opacity:body.id==='earth'?.38:.19}));
         scene.add(line);
       }
-      const planetMeshes={};
       for(const body of bodies){
         makeOrbit(body);
         const material=new THREE.MeshStandardMaterial({color:body.color,map:textures[body.id]||null,roughness:.94,metalness:0});
