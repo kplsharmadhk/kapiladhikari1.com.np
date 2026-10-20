@@ -1000,8 +1000,8 @@ h1{animation:hero-copy-in .8s .22s both}
     .hero.solar-universe-hero .solar-orbit-inner .solar-planet:nth-child(2){--orbit-duration:16s}
     .hero.solar-universe-hero .solar-orbit-inner .solar-planet:nth-child(3){--orbit-duration:19s}
     @keyframes solar-planet-revolution{
-      from{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc(var(--angle)*-1))}
-      to{transform:rotate(calc(var(--angle) + 360deg)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc((var(--angle) + 360deg)*-1))}
+      from{transform:rotate(var(--angle)) translateY(calc(0px - var(--orbit-radius))) rotate(calc(0deg - var(--angle)))}
+      to{transform:rotate(calc(var(--angle) + 360deg)) translateY(calc(0px - var(--orbit-radius))) rotate(calc(0deg - var(--angle) - 360deg))}
     }
     .hero.solar-universe-hero .planet-sphere{
       overflow:visible;position:relative;isolation:isolate;
@@ -1046,7 +1046,7 @@ h1{animation:hero-copy-in .8s .22s both}
     }
     @media(prefers-reduced-motion:reduce){
       .hero.solar-universe-hero .solar-planet,.hero.solar-universe-hero .planet-sphere:before,.hero.solar-universe-hero .planet-sphere:after{animation:none!important}
-      .hero.solar-universe-hero .solar-planet{transform:rotate(var(--angle)) translateY(calc(var(--orbit-radius)*-1)) rotate(calc(var(--angle)*-1))!important}
+      .hero.solar-universe-hero .solar-planet{transform:rotate(var(--angle)) translateY(calc(0px - var(--orbit-radius))) rotate(calc(0deg - var(--angle)))!important}
     }
 
   </style>
