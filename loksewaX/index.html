@@ -1083,6 +1083,48 @@ h1{animation:hero-copy-in .8s .22s both}
     @media(max-width:380px){.real-solar-labels .planet-label{max-width:66px;font-size:.44rem;padding:3px 4px}.real-solar-heading{font-size:.48rem}}
     @media(prefers-reduced-motion:reduce){.real-solar-live-dot{animation:none}}
 
+  
+    /* Premium service directory: intentionally scoped below the untouched solar hero. */
+    #study.content{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f7f9fd 0%,#fff 44%,#f6f8fc 100%);padding:clamp(58px,7vw,96px) 0}
+    #study.content:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 8% 14%,rgba(208,32,35,.055),transparent 28%),radial-gradient(ellipse at 93% 34%,rgba(37,99,235,.075),transparent 30%);pointer-events:none}
+    #study .section-head{max-width:800px;margin-bottom:30px}
+    #study .section-head .kicker{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid #e1e8f4;border-radius:999px;background:rgba(255,255,255,.8);letter-spacing:.045em;color:#294f92;box-shadow:0 5px 18px rgba(10,27,58,.04)}
+    #study .section-head .kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:#d02023;box-shadow:0 0 0 4px rgba(208,32,35,.1)}
+    #study .section-head h2{font-size:clamp(2rem,4vw,3.15rem);line-height:1.28;margin:17px 0 12px}
+    #study .section-head p{max-width:680px;margin-inline:auto;line-height:1.9}
+    .service-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 clamp(38px,5vw,62px)}
+    .service-nav a{display:flex;align-items:center;gap:10px;min-width:0;padding:15px 16px;border:1px solid #e0e7f2;border-radius:16px;background:rgba(255,255,255,.86);box-shadow:0 8px 24px rgba(10,27,58,.04);color:#0a1b3a;font-size:.84rem;font-weight:800;transition:transform .2s,border-color .2s,box-shadow .2s}
+    .service-nav a:hover{transform:translateY(-3px);border-color:#bdcdec;box-shadow:0 15px 30px rgba(10,27,58,.08)}
+    .service-nav a span{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:11px;background:#0a1b3a;color:#fff;font-size:.75rem}
+    .service-nav a:nth-child(2) span{background:#d02023}
+    .service-nav a:nth-child(3) span{background:#245ac4}
+    .service-nav a b{margin-left:auto;white-space:nowrap;padding:5px 8px;border-radius:8px;background:#f0f4fb;color:#5b6b85;font-size:.66rem}
+    #study .service-block{margin-top:0;margin-bottom:clamp(44px,6vw,74px);scroll-margin-top:100px}
+    #study .service-block:last-child{margin-bottom:0}
+    #study .block-heading{align-items:center;gap:18px;margin-bottom:19px;padding-bottom:17px;border-bottom:1px solid #e2e8f2}
+    #study .block-heading h3{display:flex;align-items:center;gap:11px;font-size:clamp(1.12rem,2vw,1.48rem);letter-spacing:-.025em}
+    #study .block-heading h3:before{content:"";width:5px;height:29px;flex:0 0 5px;border-radius:9px;background:linear-gradient(180deg,#d02023,#0a1b3a)}
+    #study .block-heading p{max-width:48%;text-align:right;font-size:.78rem}
+    #study .service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+    #study .service-card{position:relative;isolation:isolate;overflow:hidden;min-height:158px;align-items:flex-start;gap:14px;padding:21px 19px 24px;border:1px solid #e3e9f3;border-radius:19px;background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(249,251,255,.96));box-shadow:0 7px 22px rgba(10,27,58,.035);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+    #study .service-card:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(115deg,rgba(37,99,235,.055),transparent 48%,rgba(208,32,35,.035));opacity:0;transition:opacity .24s}
+    #study .service-card:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:3px;background:linear-gradient(90deg,#0a1b3a,#d02023);transition:right .24s}
+    #study .service-card:hover,#study .service-card:focus-visible{transform:translateY(-5px);border-color:#bdcdec;box-shadow:0 20px 42px rgba(10,27,58,.105);outline:none}
+    #study .service-card:hover:before,#study .service-card:focus-visible:before{opacity:1}
+    #study .service-card:hover:after,#study .service-card:focus-visible:after{right:0}
+    #study .service-icon{position:relative;display:grid;place-items:center;flex:0 0 49px;width:49px;height:49px;border:1px solid #e0e8f7;border-radius:15px;background:linear-gradient(145deg,#eef4ff,#e4edff);color:#214fa6;font-size:1.18rem;font-weight:900;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+    #study .service-block:nth-of-type(3) .service-icon{background:linear-gradient(145deg,#fff0f0,#ffe4e5);border-color:#f5dada;color:#b91c28}
+    #study .service-block:nth-of-type(4) .service-icon{background:linear-gradient(145deg,#eaf8f2,#dff5eb);border-color:#d2eee2;color:#08775e}
+    #study .service-copy{padding-top:1px}
+    #study .service-copy h4{font-size:.96rem;line-height:1.5;margin:0 0 7px;letter-spacing:-.01em}
+    #study .service-copy p{font-size:.78rem;line-height:1.8;color:#66748a}
+    #study .service-arrow{right:15px;bottom:12px;display:grid;place-items:center;width:25px;height:25px;border:1px solid #e6ebf4;border-radius:9px;background:#fff;color:#75849c;font-size:.9rem;transition:color .2s,background .2s,transform .2s}
+    #study .service-card:hover .service-arrow{transform:translate(2px,-2px);background:#0a1b3a;color:#fff;border-color:#0a1b3a}
+    #study .service-card:focus-visible{outline:3px solid rgba(37,99,235,.25);outline-offset:3px}
+    @media(min-width:1200px){#study .service-grid{grid-template-columns:repeat(4,minmax(0,1fr))}#study .service-card{min-height:170px;padding:20px 17px 25px}}
+    @media(max-width:900px){.service-nav{grid-template-columns:1fr;gap:9px}.service-nav a{padding:12px 14px}#study .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#study .service-card{min-height:145px}}
+    @media(max-width:540px){#study.content{padding:54px 0}#study .section-head{margin-bottom:24px}#study .section-head h2{font-size:clamp(1.85rem,8.5vw,2.35rem)}#study .block-heading{align-items:flex-start;flex-direction:column;gap:7px}#study .block-heading p{max-width:none;text-align:left}#study .service-grid{grid-template-columns:1fr;gap:11px}#study .service-card{min-height:0;padding:17px 17px 25px;border-radius:16px}#study .service-icon{flex-basis:44px;width:44px;height:44px;border-radius:13px}#study .service-copy p{font-size:.8rem}.service-nav a{font-size:.81rem}.service-nav a b{font-size:.62rem}}
+
   </style>
   <script type="application/ld+json">
   {
@@ -1147,6 +1189,11 @@ h1{animation:hero-copy-in .8s .22s both}
           <p>लोकसेवा तयारीका लागि अध्ययन, अभ्यास, प्रगति समीक्षा र दैनिक उपयोगका डिजिटल सेवाहरू एउटै ठाउँमा।</p>
         </div>
 
+        <nav class="service-nav" aria-label="सेवाका समूहमा जानुहोस्">
+          <a href="#study"> <span>०१</span> अध्ययन र अभ्यास <b>१३ सेवा</b></a>
+          <a href="#daily"> <span>०२</span> दैनिक उपयोग <b>९ सेवा</b></a>
+          <a href="#personal-services"> <span>०३</span> व्यक्तिगत सुविधा <b>७ सेवा</b></a>
+        </nav>
         <div class="service-block">
           <div class="block-heading"><h3>०१ — अध्ययन र परीक्षा अभ्यास</h3><p>पढ्नुहोस् · अभ्यास गर्नुहोस् · आफ्नो अवस्था बुझ्नुहोस्</p></div>
           <div class="service-grid">
@@ -1181,7 +1228,7 @@ h1{animation:hero-copy-in .8s .22s both}
           </div>
         </div>
 
-        <div class="service-block">
+        <div class="service-block" id="personal-services">
           <div class="block-heading"><h3>०३ — व्यक्तिगत सुविधा र समुदाय</h3><p>आफ्नो सामग्री र उपलब्ध सेवा व्यवस्थापन</p></div>
           <div class="service-grid">
             <a class="service-card" href="https://loksewax-student.vercel.app/" target="_blank" rel="noopener noreferrer"><div class="service-icon" aria-hidden="true">⌂</div><div class="service-copy"><h4>सेवा तथा तयारी छनोट</h4><p>आफ्नो लक्ष्यअनुसार सेवा वा तयारी चयन गरी त्यससँग सम्बन्धित सामग्री हेर्ने सुविधा।</p></div><span class="service-arrow" aria-hidden="true">↗</span> </a>
