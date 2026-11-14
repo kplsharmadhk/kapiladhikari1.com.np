@@ -141,12 +141,74 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outl
 }
 @media(max-height:690px) and (min-width:651px){.scene{padding-top:68px;padding-bottom:84px}.intro-mark{width:100px;margin-bottom:18px}.cake-art{transform:scale(.76);margin:-20px auto -20px}.letter{padding:22px 38px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* CINEMATIC PASS — choreographed motion, depth and scene-specific reveals */
+.stage{isolation:isolate}
+.stage:before{content:"";position:absolute;z-index:1;inset:-30%;pointer-events:none;opacity:.28;background:conic-gradient(from 0deg at 50% 50%,transparent 0 28deg,#f1d39a12 38deg,transparent 55deg 145deg,#f0a9bd10 158deg,transparent 178deg 270deg,#f1d39a0d 290deg,transparent 315deg);filter:blur(22px);animation:grandLight 32s linear infinite}
+@keyframes grandLight{to{transform:rotate(360deg)}}
+.cinema-portal{position:absolute;z-index:2;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,transparent 0 7%,#f1d39a55 8%,#f0a9bd22 12%,#080711 70%);transform:scale(1.8);mix-blend-mode:screen}
+.cinema-portal.play{animation:portalPass 1.05s cubic-bezier(.76,0,.18,1) both}
+@keyframes portalPass{0%{opacity:0;transform:scale(1.8)}25%{opacity:.9}100%{opacity:0;transform:scale(.05)}}
+.scene.active .content{animation:cinemaContent 1.15s cubic-bezier(.16,1,.3,1) both}
+@keyframes cinemaContent{0%{opacity:0;transform:translate3d(0,55px,-100px) scale(.91);filter:blur(14px)}55%{opacity:1}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+.scene.active .kicker{animation:kickerReveal .9s .18s both}
+@keyframes kickerReveal{from{opacity:0;letter-spacing:.8em;filter:blur(7px)}to{opacity:1;letter-spacing:.38em;filter:blur(0)}}
+.scene.active .gold-line{animation:lineDraw 1.1s .55s both;transform-origin:center}
+@keyframes lineDraw{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+.scene.active .subtle{animation:softReveal 1.2s .5s both}
+@keyframes softReveal{from{opacity:0;transform:translateY(18px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+.scene.active .cta{animation:buttonArrive .8s .78s both}
+@keyframes buttonArrive{from{opacity:0;transform:translateY(24px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+.scene.active .intro-mark{animation:emblemArrival 1.5s cubic-bezier(.16,1,.3,1) both,markFloat 5s 1.5s ease-in-out infinite}
+@keyframes emblemArrival{0%{opacity:0;transform:translateY(50px) rotateX(70deg) scale(.3);filter:blur(12px)}65%{opacity:1;transform:translateY(-8px) rotateX(-8deg) scale(1.08);filter:blur(0)}100%{transform:translateY(0) rotateX(0) scale(1)}}
+.scene.active .intro-title{animation:titleCinematic 1.25s .28s both}
+@keyframes titleCinematic{from{opacity:0;transform:translateY(35px) scale(.92);letter-spacing:.12em;filter:blur(10px)}to{opacity:1;transform:none;letter-spacing:-.035em;filter:blur(0)}}
+.birthday-scene.active .name-title span{animation:letterMeteor 1.25s cubic-bezier(.12,1.2,.28,1) forwards}
+.name-title span:nth-child(1){animation-delay:.45s}.name-title span:nth-child(2){animation-delay:.62s}.name-title span:nth-child(3){animation-delay:.79s}.name-title span:nth-child(4){animation-delay:.96s}
+@keyframes letterMeteor{0%{opacity:0;transform:translate3d(0,-140px,-260px) rotateX(100deg) rotateZ(-18deg) scale(.2);filter:blur(18px)}55%{opacity:1;transform:translate3d(0,16px,40px) rotateX(-12deg) rotateZ(5deg) scale(1.12);filter:blur(0)}75%{transform:translate3d(0,-7px,0) rotateX(4deg) rotateZ(-2deg) scale(.98)}100%{opacity:1;transform:translate3d(0,0,0) rotateX(0) rotateZ(0) scale(1)}}
+.birthday-scene.active .orbit{animation:orbitArrival 2s cubic-bezier(.16,1,.3,1) both,orbitSpin 36s 2s linear infinite}
+@keyframes orbitArrival{from{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(-100deg)}to{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}}
+.message-scene.active .letter{animation:letterFloatIn 1.3s .2s cubic-bezier(.16,1,.3,1) both,letterBreath 7s 1.6s ease-in-out infinite}
+@keyframes letterFloatIn{0%{opacity:0;transform:rotateX(24deg) rotateY(-14deg) translateY(65px) scale(.86);filter:blur(12px)}100%{opacity:1;transform:rotateX(0) rotateY(0) translateY(0) scale(1);filter:blur(0)}}
+@keyframes letterBreath{50%{transform:translateY(-7px) rotateX(1deg)}}
+.message-scene.active .letter-stamp{animation:stampTurn 1.2s .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes stampTurn{from{opacity:0;transform:rotateY(180deg) scale(.2)}to{opacity:1;transform:rotateY(0) scale(1)}}
+.letter-copy .word{display:inline-block;opacity:0;transform:translateY(9px);animation:wordGlow .55s ease forwards}
+@keyframes wordGlow{to{opacity:1;transform:translateY(0)}}
+.cake-scene.active .cake-art{animation:cakeEntrance 1.2s .22s cubic-bezier(.16,1,.3,1) both,cakeHover 5s 1.5s ease-in-out infinite}
+@keyframes cakeEntrance{0%{opacity:0;transform:translateY(100px) rotateX(35deg) scale(.45);filter:blur(12px)}70%{opacity:1;transform:translateY(-10px) rotateX(-5deg) scale(1.05)}100%{opacity:1;transform:translateY(0) rotateX(0) scale(1)}}
+.cake-scene.active .tier-bottom{animation:tierRise .85s .25s cubic-bezier(.16,1,.3,1) both}
+.cake-scene.active .tier-top{animation:tierRise .8s .58s cubic-bezier(.16,1,.3,1) both}
+.cake-scene.active .plate{animation:plateAppear .7s .05s both}
+.cake-scene.active .candle{animation:candleRise .55s 1.05s both}
+.cake-scene.active .flame{animation:flameIgnite .6s 1.42s both,flameDance .48s 2s ease-in-out infinite alternate}
+@keyframes tierRise{from{opacity:0;transform:translate(-50%,70px) scale(.65)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@keyframes plateAppear{from{opacity:0;transform:translate(-50%,25px) scaleX(.2)}to{opacity:1;transform:translate(-50%,0) scaleX(1)}}
+@keyframes candleRise{from{opacity:0;transform:translateY(40px) scaleY(.2)}to{opacity:1;transform:translateY(0) scaleY(1)}}
+@keyframes flameIgnite{0%{opacity:0;transform:scale(.1)}65%{opacity:1;transform:scale(1.4)}100%{opacity:1;transform:scale(1)}}
+.gift-scene.active .gift-stage{animation:giftArrival 1s .25s cubic-bezier(.16,1,.3,1) both,giftHover 4.5s 1.3s ease-in-out infinite}
+@keyframes giftArrival{from{opacity:0;transform:translateY(90px) rotateY(40deg) scale(.55);filter:blur(10px)}to{opacity:1;transform:translateY(0) rotateY(0) scale(1);filter:drop-shadow(0 25px 28px #0007)}}
+@keyframes giftHover{50%{transform:translateY(-9px) rotateY(-5deg)}}
+.gift-stage.open .gift-base{animation:giftPulse .8s ease-out}
+@keyframes giftPulse{50%{filter:brightness(1.6);transform:scale(1.04)}}
+.gift-stage.open .gift-lid{transform:translate3d(-35px,-115px,65px) rotate(-42deg) scale(1.04);box-shadow:0 0 35px #f1d39a88}
+.gift-stage.open .gift-glow{opacity:1;transform:translate(-50%,-50%) scale(1.8);filter:brightness(1.5)}
+.final-note.show{animation:finalWish 1.2s .25s both}
+@keyframes finalWish{from{opacity:0;transform:translateY(35px) scale(.9);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.scene.active .corner-star{animation:starBurstIn .9s both,starPulse 3s 1s ease-in-out infinite}
+@keyframes starBurstIn{from{opacity:0;transform:scale(0) rotate(-120deg)}to{opacity:.85;transform:scale(1) rotate(0)}}
+.cinema-streak{position:absolute;z-index:2;left:-35%;top:0;width:25%;height:100%;pointer-events:none;opacity:0;transform:skewX(-22deg);background:linear-gradient(90deg,transparent,#f1d39a0a,#fff4e522,#f0a9bd0a,transparent);filter:blur(8px)}
+.cinema-streak.play{animation:streakSweep 1.15s ease-in-out both}
+@keyframes streakSweep{0%{left:-35%;opacity:0}30%{opacity:1}100%{left:120%;opacity:0}}
+@media(max-width:650px){.stage:before{opacity:.16}.scene.active .content{animation-duration:.9s}.cinema-streak{width:42%}}
+@media(prefers-reduced-motion:reduce){.scene.active .content,.scene.active .intro-mark,.scene.active .intro-title,.scene.active .cake-art,.scene.active .gift-stage,.scene.active .letter{animation:none!important}.word{opacity:1!important;transform:none!important}}
+
 </style>
 </head>
 <body>
 <div class="aurora"></div><canvas id="universe" aria-hidden="true"></canvas><div class="vignette"></div><canvas id="fx" aria-hidden="true"></canvas><div class="grain"></div>
 <header class="topbar"><div class="brand"><span class="brand-icon">M</span><span>A PRIVATE LITTLE CELEBRATION</span></div><span class="chapter" id="chapter">01 &nbsp;—&nbsp; 05</span></header>
-<main class="stage" id="stage">
+<main class="stage" id="stage"><div class="cinema-portal" id="cinemaPortal" aria-hidden="true"></div><div class="cinema-streak" id="cinemaStreak" aria-hidden="true"></div>
 <section class="scene active intro-scene" data-scene="0">
  <div class="content intro-content"><div class="intro-mark"><span class="mark-letter">M</span></div><p class="kicker">Some moments deserve their own universe</p><h1 class="intro-title">A little world<br><em>made for you.</em></h1><p class="subtle">Tonight, the stars have a little message.<br>And every little detail is here for one reason — you.</p><button class="cta" data-next>Step into your day &nbsp; ✦</button></div>
  <span class="corner-star cs1">✧</span><span class="corner-star cs2">✦</span><span class="corner-star cs3">✧</span><span class="corner-star cs4">✦</span>
@@ -179,7 +241,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outl
 const scenes=[...document.querySelectorAll('.scene')],dotsHost=document.getElementById('dots'),chapter=document.getElementById('chapter'),previous=document.getElementById('previous'),forward=document.getElementById('forward');
 let current=0,transitioning=false;
 scenes.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.type='button';d.setAttribute('aria-label','Go to scene '+(i+1));d.addEventListener('click',()=>go(i));dotsHost.appendChild(d)});
-function go(n){if(transitioning||n===current||n<0||n>=scenes.length)return;transitioning=true;const old=current;current=n;scenes[old].classList.add('leaving');scenes[old].classList.remove('active');scenes[current].classList.remove('leaving');scenes[current].classList.add('active');[...dotsHost.children].forEach((d,i)=>d.classList.toggle('active',i===current));chapter.innerHTML=String(current+1).padStart(2,'0')+' &nbsp;—&nbsp; '+String(scenes.length).padStart(2,'0');previous.disabled=current===0;forward.disabled=current===scenes.length-1;setTimeout(()=>{scenes[old].classList.remove('leaving');transitioning=false},1050);if(current===1)fireworkShow();if(current===4)petalBurst(38)}
+function go(n){if(transitioning||n===current||n<0||n>=scenes.length)return;transitioning=true;const old=current;current=n;scenes[old].classList.add('leaving');scenes[old].classList.remove('active');scenes[current].classList.remove('leaving');scenes[current].classList.add('active');[...dotsHost.children].forEach((d,i)=>d.classList.toggle('active',i===current));chapter.innerHTML=String(current+1).padStart(2,'0')+' &nbsp;—&nbsp; '+String(scenes.length).padStart(2,'0');previous.disabled=current===0;forward.disabled=current===scenes.length-1;setTimeout(()=>{scenes[old].classList.remove('leaving');transitioning=false},1050);cueScene(current);if(current===1)fireworkShow();if(current===4)petalBurst(38)}
 previous.addEventListener('click',()=>go(current-1));forward.addEventListener('click',()=>go(current+1));document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(current+1)));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(current+1);if(e.key==='ArrowLeft')go(current-1)});
 let touchX=0;document.getElementById('stage').addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});document.getElementById('stage').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>75)go(current+(dx<0?1:-1))},{passive:true});
@@ -187,9 +249,30 @@ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const cake=document.getElementById('cake'),blow=document.getElementById('blow'),cakeNote=document.getElementById('cakeNote');let blown=false;
 blow.addEventListener('click',()=>{if(blown)return;blown=true;cake.classList.add('blown');cakeNote.textContent='Your wish is on its way. May it find you at just the right time.';blow.textContent='Wish released into the universe ✓';fireworkShow();setTimeout(fireworkShow,650);setTimeout(fireworkShow,1300)});
 const gift=document.getElementById('gift'),finalNote=document.getElementById('finalNote');let giftOpened=false;
-function openGift(){if(giftOpened)return;giftOpened=true;gift.classList.add('open');finalNote.classList.add('show');petalBurst(95);setTimeout(fireworkShow,500)}
+function openGift(){if(giftOpened)return;giftOpened=true;gift.classList.add('open');finalNote.classList.add('show');petalBurst(95);setTimeout(()=>petalBurst(55),420);setTimeout(fireworkShow,300);setTimeout(fireworkShow,850)}
 gift.addEventListener('click',openGift);gift.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}});
 document.getElementById('again').addEventListener('click',()=>{giftOpened=false;gift.classList.remove('open');finalNote.classList.remove('show');blown=false;cake.classList.remove('blown');cakeNote.textContent='Then blow out the candles and let the universe do its thing.';blow.textContent='Blow out the candles ✨';go(0)});
+
+// Scene choreography: each arrival is a deliberate camera/light cue, not just a fade.
+const portal=document.getElementById('cinemaPortal'),streak=document.getElementById('cinemaStreak');
+function cueScene(n){
+ if(reduced)return;
+ portal.classList.remove('play');streak.classList.remove('play');
+ void portal.offsetWidth;portal.classList.add('play');streak.classList.add('play');
+ if(n===1){setTimeout(()=>fireworkShow(),380);setTimeout(()=>fireworkShow(),1050)}
+ if(n===2)revealLetter();
+ if(n===3){cake.classList.remove('blown');blown=false;cakeNote.textContent='Then blow out the candles and let the universe do its thing.';blow.textContent='Blow out the candles ✨'}
+ if(n===4&&!giftOpened){setTimeout(()=>petalBurst(28),500)}
+}
+function revealLetter(){
+ const copy=document.querySelector('.letter-copy');
+ if(!copy||copy.dataset.choreographed)return;
+ copy.dataset.choreographed='1';
+ const html=copy.innerHTML;
+ copy.innerHTML=html.replace(/(<[^>]+>)|([^<]+)/g,(m,tag,txt)=>tag||txt.split(/(\s+)/).map(part=>part.trim()?'<span class="word">'+part+'</span>':part).join(''));
+ [...copy.querySelectorAll('.word')].forEach((word,i)=>word.style.animationDelay=(.38+i*.035)+'s');
+}
+
 // High-DPI starfield and drifting dust.
 const sky=document.getElementById('universe'),sctx=sky.getContext('2d');let stars=[],dust=[],w=innerWidth,h=innerHeight,dpr=1;
 function resize(){dpr=Math.min(devicePixelRatio||1,1.7);w=innerWidth;h=innerHeight;[sky,fx].forEach(c=>{c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);c.style.width=w+'px';c.style.height=h+'px'});sctx.setTransform(dpr,0,0,dpr,0,0);fctx.setTransform(dpr,0,0,dpr,0,0);stars=Array.from({length:Math.min(180,Math.floor(w*h/4800))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.35+.2,a:Math.random()*.6+.15,p:Math.random()*6.28}));dust=Array.from({length:32},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.5,v:Math.random()*.22+.06,a:Math.random()*.3+.08}))}
@@ -202,7 +285,7 @@ function petalBurst(count){burst(w*.5,h*.42,count,'petal')}
 function fxLoop(t){const dt=Math.min(2,(t-last)/16.67||1);last=t;fctx.clearRect(0,0,w,h);particles=particles.filter(p=>p.life>0&&p.y<h+40);particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=p.g*dt;p.vx*=.992;p.rot+=p.spin*dt;p.life-=dt;const alpha=Math.min(1,p.life/24);fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.rot);fctx.globalAlpha=alpha;fctx.fillStyle=p.color;if(p.kind==='petal'){fctx.beginPath();fctx.ellipse(0,0,p.size*.65,p.size*1.4,0,0,Math.PI*2);fctx.fill()}else{fctx.beginPath();fctx.arc(0,0,p.size*.48,0,Math.PI*2);fctx.fill()}fctx.restore()});if(particles.length)raf=requestAnimationFrame(fxLoop);else{raf=0;fctx.clearRect(0,0,w,h)}}
 function startFx(){if(!raf&&!reduced)raf=requestAnimationFrame(fxLoop)}
 const originalBurst=burst;burst=(...args)=>{originalBurst(...args);startFx()};
-resize();addEventListener('resize',resize,{passive:true});if(!reduced)requestAnimationFrame(starLoop);
+resize();addEventListener('resize',resize,{passive:true});if(!reduced)requestAnimationFrame(starLoop);cueScene(0);
 })();
 </script>
 </body>
