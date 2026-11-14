@@ -374,9 +374,24 @@
       border-radius: 4px;
     }
 
-    /* Hero Section */
+    /* Hero Section — use the main site's hero image as the full section background */
     .hero {
-      padding: 64px 0 80px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 64px 28px 80px;
+      background-image:
+        linear-gradient(90deg, rgba(6, 6, 8, 0.88) 0%, rgba(6, 6, 8, 0.70) 48%, rgba(6, 6, 8, 0.78) 100%),
+        url("../images/hero.jpg");
+      background-size: cover;
+      background-position: center 38%;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-super-title {
@@ -393,7 +408,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.7fr 1fr;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
       gap: 32px;
       align-items: center;
     }
@@ -458,44 +473,7 @@
       cursor: pointer;
     }
 
-    /* Main website hero image — no secondary portrait or dark avatar backdrop */
-    .avatar-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-width: 0;
-    }
 
-    .hero-visual {
-      width: min(100%, 320px);
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      border: 1px solid rgba(255, 230, 0, 0.7);
-      border-radius: 10px;
-      background: transparent;
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
-    }
-
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .avatar-caption {
-      margin-top: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      background: #14161d;
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 999px;
-      color: var(--yellow);
-    }
 
     /* Currently Building Card */
     .status-card {
@@ -795,6 +773,10 @@
       .projects-grid {
         grid-template-columns: 1fr;
       }
+      .hero {
+        padding: 48px 20px 56px;
+        background-position: 58% center;
+      }
       .stats-row {
         grid-template-columns: 1fr;
       }
@@ -853,14 +835,6 @@
             <a href="#work" class="btn-primary" data-build data-tag="BTN.PRIMARY">See the work →</a>
             <a href="#contact" class="btn-secondary" data-build data-tag="BTN.OUTLINE">Connect with me</a>
           </div>
-        </div>
-
-        <!-- Main website hero image -->
-        <div class="avatar-wrap">
-          <div class="hero-visual" data-build data-tag="IMG.HERO">
-            <img src="../images/hero.jpg" alt="Kapil Sharma Adhikari" loading="eager" />
-          </div>
-          <div class="avatar-caption" data-build data-tag="BADGE.LIVE">● JOURNALISM · TECHNOLOGY</div>
         </div>
 
         <!-- Right Status Card -->
