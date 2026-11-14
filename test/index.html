@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090a0b">
+  <meta name="description" content="The personal portfolio of Kapil Sharma Adhikari — journalist, editor and app developer from Nepal.">
+  <title>Kapil Sharma Adhikari — Independent Mind. Digital Craft.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#090a0b;--panel:#111315;--paper:#f2f0e9;--muted:#a4a59f;--line:rgba(242,240,233,.13);--lime:#d7ff62;--blue:#8caeff;--mono:"DM Mono",monospace;--sans:"DM Sans",sans-serif;--display:"Manrope",sans-serif;--ease:cubic-bezier(.2,.75,.25,1)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}button{font:inherit}
+    ::selection{background:var(--lime);color:#10110d}
+    .progress{position:fixed;z-index:1000;left:0;top:0;height:2px;width:0;background:var(--lime);box-shadow:0 0 12px #d7ff6280}
+    .pointer-glow{position:fixed;z-index:0;width:380px;height:380px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(215,255,98,.075),transparent 68%);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
+    .shell{width:min(1280px,calc(100% - 64px));margin:auto;position:relative;z-index:1}
+    .topbar{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:50}
+    .brand{display:flex;align-items:center;gap:12px;font:500 12px var(--mono);letter-spacing:.04em}
+    .brand-mark{width:34px;height:34px;border:1px solid #d7ff6280;display:grid;place-items:center;color:var(--lime);font:800 17px var(--display);transform:rotate(-8deg)}
+    .nav{display:flex;align-items:center;gap:34px}
+    .nav a{font:11px var(--mono);color:#c2c2bb;letter-spacing:.08em;text-transform:uppercase;transition:color .25s}
+    .nav a:hover{color:var(--lime)}
+    .nav .contact-link{padding:11px 16px;border:1px solid var(--line);color:var(--paper)}
+    .menu-btn{display:none;background:none;color:var(--paper);border:1px solid var(--line);padding:8px 11px}
+    .hero{min-height:calc(100svh - 82px);display:flex;align-items:center;position:relative;padding:100px 0 90px;isolation:isolate}
+    .hero-bg{position:absolute;z-index:-2;inset:0 -32px 0 22%;overflow:hidden}
+    .hero-bg::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(9,10,11,.78) 25%,rgba(9,10,11,.28) 65%,rgba(9,10,11,.72) 100%),linear-gradient(0deg,var(--bg),transparent 42%,rgba(9,10,11,.2));z-index:1}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:.72;filter:saturate(.72);transform:scale(1.08);animation:heroImage 1.8s var(--ease) both}
+    @keyframes heroImage{to{transform:scale(1)}}
+    .hero-content{max-width:900px;position:relative}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--lime);font:11px var(--mono);letter-spacing:.17em;text-transform:uppercase;margin-bottom:30px}
+    .eyebrow::before{content:"";width:34px;height:1px;background:var(--lime)}
+    .hero h1{font:800 clamp(4.4rem,10.6vw,10.4rem)/.88 var(--display);letter-spacing:-.085em;text-transform:uppercase;max-width:1000px}
+    .hero h1 .outline{color:transparent;-webkit-text-stroke:1px rgba(242,240,233,.65)}
+    .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:46px}
+    .hero-intro{max-width:430px;color:#c2c2bb;font-size:16px;line-height:1.8}
+    .hero-intro strong{color:var(--paper);font-weight:600}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:0 19px;border:1px solid var(--line);font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:background .3s,color .3s,border .3s,transform .3s}
+    .btn-primary{background:var(--lime);color:#10110d;border-color:var(--lime)}
+    .btn-primary:hover{background:#edffb2;border-color:#edffb2;transform:translateY(-3px)}
+    .btn-secondary:hover{border-color:var(--lime);color:var(--lime);transform:translateY(-3px)}
+    .hero-index{position:absolute;right:0;bottom:42px;color:#a0a099;font:10px var(--mono);letter-spacing:.13em}
+    .scroll-cue{position:absolute;left:0;bottom:38px;display:flex;align-items:center;gap:12px;color:#858780;font:10px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+    .scroll-cue span{width:42px;height:1px;background:var(--lime);transform-origin:left;animation:cue 2s ease-in-out infinite}
+    @keyframes cue{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
+    .section{padding:145px 0;border-top:1px solid var(--line)}
+    .section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;margin-bottom:66px}
+    .section-kicker{color:var(--lime);font:10px var(--mono);letter-spacing:.17em;text-transform:uppercase;margin-bottom:18px}
+    .section-title{font:700 clamp(2.8rem,6vw,6.2rem)/.98 var(--display);letter-spacing:-.075em;text-transform:uppercase}
+    .section-note{max-width:260px;color:var(--muted);font-size:13px;line-height:1.8;padding-top:28px}
+    .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:10vw;align-items:start}
+    .about-copy{font:500 clamp(1.45rem,2.5vw,2.5rem)/1.4 var(--display);letter-spacing:-.04em;color:#d8d8d1}
+    .about-copy em{color:var(--lime);font-style:normal}
+    .about-detail{max-width:480px;color:var(--muted);font-size:14px;line-height:1.9;margin-top:28px}
+    .facts{margin-top:54px;border-top:1px solid var(--line)}
+    .fact{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:17px 0;border-bottom:1px solid var(--line)}
+    .fact strong{color:var(--lime);font:12px var(--mono)}
+    .fact span{color:#c9c9c2;font-size:13px}
+    .timeline{position:relative;padding-left:34px}
+    .timeline::before{content:"";position:absolute;left:5px;top:5px;bottom:8px;width:1px;background:linear-gradient(var(--lime),rgba(215,255,98,.08));transform:scaleY(var(--line-scale,0));transform-origin:top;transition:transform 1.5s var(--ease)}
+    .timeline.in-view::before{--line-scale:1}
+    .timeline-item{position:relative;padding:0 0 42px 18px;opacity:.4;transition:opacity .6s}
+    .timeline-item:last-child{padding-bottom:0}
+    .timeline-item::before{content:"";position:absolute;left:-34px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:1px solid #71766a;transition:all .4s}
+    .timeline-item.active{opacity:1}
+    .timeline-item.active::before{background:var(--lime);border-color:var(--lime);box-shadow:0 0 0 6px #d7ff621c,0 0 18px #d7ff6280}
+    .timeline-year{font:11px var(--mono);color:var(--lime);letter-spacing:.08em}
+    .timeline-item h3{font:600 19px var(--display);margin:7px 0}
+    .timeline-item p{color:var(--muted);font-size:13px;max-width:390px}
+    .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .work-card{position:relative;min-height:360px;padding:28px;background:var(--panel);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transform-style:preserve-3d;transition:border-color .35s,background .35s;isolation:isolate}
+    .work-card:nth-child(1){grid-column:span 7;min-height:440px}
+    .work-card:nth-child(2){grid-column:span 5}
+    .work-card:nth-child(3){grid-column:span 5;min-height:320px}
+    .work-card:nth-child(4){grid-column:span 7;min-height:320px}
+    .work-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(215,255,98,.12),transparent 42%);opacity:0;transition:opacity .4s}
+    .work-card:hover{border-color:#d7ff6270;background:#151914}
+    .work-card:hover::before{opacity:1}
+    .card-top{display:flex;justify-content:space-between;align-items:center;color:#8e9187;font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+    .card-number{color:var(--lime)}
+    .card-art{position:absolute;inset:65px 24px 78px;z-index:-1;display:grid;place-items:center;opacity:.8;pointer-events:none}
+    .orb{width:min(28vw,230px);aspect-ratio:1;border-radius:50%;border:1px solid #d7ff6250;position:relative;box-shadow:inset 0 0 60px #d7ff620a,0 0 70px #d7ff620c;animation:orbit 18s linear infinite}
+    .orb::before,.orb::after{content:"";position:absolute;inset:13%;border:1px solid #8caeff70;border-radius:50%;transform:rotateX(67deg) rotate(25deg)}
+    .orb::after{inset:27%;border-color:#d7ff6270;transform:rotateY(67deg) rotate(-25deg)}
+    .orb i{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--lime);top:15%;left:18%;box-shadow:0 0 20px var(--lime)}
+    @keyframes orbit{to{transform:rotate(360deg)}}
+    .window-art{width:min(80%,390px);border:1px solid #8caeff65;padding:10px;background:#0a0d12e8;box-shadow:0 20px 80px #0008;transform:perspective(700px) rotateY(-12deg) rotateX(5deg);animation:float 6s ease-in-out infinite}
+    .window-bar{display:flex;gap:5px;padding:5px 4px 12px;border-bottom:1px solid #ffffff18}
+    .window-bar i{width:6px;height:6px;border-radius:50%;background:#7e8a98}
+    .window-lines{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px 4px 4px}
+    .window-lines span{height:28px;border:1px solid #8caeff4a;background:#8caeff0d}
+    .window-lines span:first-child{grid-column:span 2;height:48px;border-color:#d7ff6260}
+    @keyframes float{50%{transform:perspective(700px) rotateY(-8deg) rotateX(2deg) translateY(-9px)}}
+    .card-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+    .card-label{color:var(--lime);font:10px var(--mono);letter-spacing:.13em;text-transform:uppercase}
+    .card-bottom h3{font:700 clamp(1.45rem,2.5vw,2.3rem)/1.05 var(--display);letter-spacing:-.055em;margin-top:9px}
+    .card-bottom p{font-size:12px;color:#a6a79f;margin-top:8px;max-width:360px}
+    .card-arrow{width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:all .3s}
+    .work-card:hover .card-arrow{background:var(--lime);color:#090a0b;border-color:var(--lime);transform:rotate(45deg)}
+    .capabilities{border-top:1px solid var(--line)}
+    .cap-row{display:grid;grid-template-columns:1fr 1.4fr auto;gap:28px;align-items:center;padding:25px 0;border-bottom:1px solid var(--line);transition:padding .35s}
+    .cap-row:hover{padding-left:14px;padding-right:14px}
+    .cap-row h3{font:600 clamp(1.1rem,2vw,1.6rem) var(--display);letter-spacing:-.04em}
+    .cap-row p{font-size:12px;color:var(--muted)}
+    .cap-count{font:11px var(--mono);color:var(--lime)}
+    .contact{padding:150px 0 80px;border-top:1px solid var(--line);position:relative;overflow:hidden}
+    .contact::before{content:"";position:absolute;width:650px;height:650px;right:-230px;top:-220px;border:1px solid #d7ff6218;border-radius:50%;box-shadow:0 0 0 55px #d7ff6206,0 0 0 110px #d7ff6204}
+    .contact-title{font:800 clamp(3.6rem,10vw,10rem)/.88 var(--display);letter-spacing:-.09em;text-transform:uppercase;max-width:900px;position:relative}
+    .contact-title span{color:var(--lime)}
+    .contact-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:56px;position:relative}
+    .contact-bottom p{color:var(--muted);font-size:14px;max-width:360px}
+    .socials{display:flex;gap:10px;flex-wrap:wrap}
+    .footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 34px;border-top:1px solid var(--line);color:#777970;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+    [data-reveal]{opacity:0;transform:translateY(36px);filter:blur(8px);transition:opacity .85s var(--ease),transform .9s var(--ease),filter .85s var(--ease)}
+    [data-reveal].visible{opacity:1;transform:translateY(0);filter:blur(0)}
+    [data-reveal][data-delay="1"]{transition-delay:.12s}[data-reveal][data-delay="2"]{transition-delay:.24s}[data-reveal][data-delay="3"]{transition-delay:.36s}
+    .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:1001;pointer-events:none;border-radius:50%;opacity:0;mix-blend-mode:difference}
+    .cursor-dot{width:5px;height:5px;background:white}
+    .cursor-ring{width:34px;height:34px;border:1px solid #fff;transition:width .25s,height .25s,background .25s}
+    .cursor-ring.hover{width:58px;height:58px;background:#ffffff20}
+    @media(hover:hover) and (pointer:fine){body,a,button{cursor:none}.cursor-dot,.cursor-ring{opacity:1}.pointer-glow{opacity:1}}
+    @media(max-width:800px){.shell{width:min(100% - 40px,680px)}.topbar{height:70px}.nav{display:none;position:absolute;top:69px;left:0;right:0;padding:22px;background:#101214;border:1px solid var(--line);flex-direction:column;align-items:stretch;gap:20px}.nav.open{display:flex}.nav a{padding:8px}.menu-btn{display:block}.hero{min-height:780px;min-height:calc(92svh - 70px);padding:90px 0 110px}.hero-bg{inset:0 -20px 0 0}.hero-bg::before{background:linear-gradient(90deg,rgba(9,10,11,.85),rgba(9,10,11,.38)),linear-gradient(0deg,var(--bg),transparent 55%)}.hero h1{font-size:clamp(4.2rem,16vw,8rem)}.hero-bottom{align-items:flex-start;flex-direction:column;margin-top:34px}.hero-index{bottom:34px}.section{padding:100px 0}.section-head{display:block;margin-bottom:45px}.section-note{padding-top:18px}.about-grid{grid-template-columns:1fr;gap:60px}.work-card:nth-child(n){grid-column:span 12;min-height:330px}.work-card:nth-child(1){min-height:390px}.cap-row{grid-template-columns:1fr auto;gap:10px}.cap-row p{grid-column:1/2}.cap-count{grid-column:2;grid-row:1/3}.contact{padding:100px 0 60px}.contact-bottom{align-items:flex-start;flex-direction:column}.footer{flex-direction:column}.cursor-dot,.cursor-ring,.pointer-glow{display:none}}
+    @media(max-width:430px){.shell{width:calc(100% - 32px)}.brand{font-size:10px}.hero h1{font-size:18vw}.hero-intro{font-size:14px}.hero-actions{width:100%}.btn{flex:1;padding:0 12px;font-size:10px}.hero-index{font-size:9px}.section-title{font-size:2.8rem}.work-card{padding:20px}.card-bottom h3{font-size:1.65rem}.contact-title{font-size:17vw}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}[data-reveal]{opacity:1;transform:none;filter:none}.pointer-glow,.cursor-dot,.cursor-ring{display:none}}
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div><div class="pointer-glow" id="pointerGlow"></div>
+  <div class="cursor-dot" id="cursorDot"></div><div class="cursor-ring" id="cursorRing"></div>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Back to top"><span class="brand-mark">K</span><span>KAPIL SHARMA ADHIKARI</span></a>
+      <nav class="nav" id="nav"><a href="#about">About</a><a href="#journey">Journey</a><a href="#work">Selected Work</a><a href="#expertise">Expertise</a><a class="contact-link" href="#contact">Let’s talk ↗</a></nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">MENU</button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-bg" aria-hidden="true"><img src="../images/hero.jpg" alt="" fetchpriority="high"></div>
+        <div class="hero-content">
+          <div class="eyebrow" data-reveal>Journalism · Digital craft · Nepal</div>
+          <h1 data-reveal data-delay="1">Ideas<br>into <span class="outline">impact.</span></h1>
+          <div class="hero-bottom">
+            <p class="hero-intro" data-reveal data-delay="2"><strong>Journalist, editor and app developer.</strong> I work across stories and software — shaping information into clear communication and useful digital experiences.</p>
+            <div class="hero-actions" data-reveal data-delay="3"><a class="btn btn-primary magnetic" href="#work">Explore my work <span>↘</span></a><a class="btn btn-secondary magnetic" href="#contact">Get in touch <span>↗</span></a></div>
+          </div>
+        </div>
+        <div class="scroll-cue"><span></span>Scroll to explore</div><div class="hero-index">01 / 05 — PERSONAL PORTFOLIO</div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-head"><div><div class="section-kicker" data-reveal>01 — Perspective</div><h2 class="section-title" data-reveal data-delay="1">A curious mind.<br>A practical craft.</h2></div><p class="section-note" data-reveal data-delay="2">Different disciplines. One consistent purpose: make ideas clearer, more useful and more human.</p></div>
+        <div class="about-grid">
+          <div data-reveal><p class="about-copy">My work began with <em>stories</em> — understanding people, asking better questions and finding the signal in the noise.</p><p class="about-detail">Since beginning my professional journey in Nepali journalism in 2016, I have worked across reporting, newsroom editing, news presentation and digital media. Today, I bring that editorial mindset into software and app development.</p></div>
+          <div class="facts" data-reveal data-delay="1"><div class="fact"><strong>2016</strong><span>Professional journey in journalism and media</span></div><div class="fact"><strong>2020</strong><span>Recognised as Good Youth Journalist</span></div><div class="fact"><strong>NOW</strong><span>Exploring software, apps and digital products</span></div></div>
+        </div>
+      </section>
+
+      <section class="section" id="journey">
+        <div class="section-head"><div><div class="section-kicker" data-reveal>02 — The journey</div><h2 class="section-title" data-reveal data-delay="1">Built by<br>experience.</h2></div><p class="section-note" data-reveal data-delay="2">A path shaped by newsroom discipline, curiosity and a growing interest in technology.</p></div>
+        <div class="about-grid">
+          <div data-reveal><p class="about-copy">From the newsroom to the <em>digital canvas.</em></p><p class="about-detail">Each chapter added a different way of thinking: accuracy, structure, storytelling and building things that people can actually use.</p></div>
+          <div class="timeline" id="timeline"><article class="timeline-item"><span class="timeline-year">2016</span><h3>First byline</h3><p>Started my professional journey in journalism and media.</p></article><article class="timeline-item"><span class="timeline-year">2017</span><h3>Inside the newsroom</h3><p>Moved into newsroom and desk-editing responsibilities.</p></article><article class="timeline-item"><span class="timeline-year">2020</span><h3>Recognition</h3><p>Recognised as Good Youth Journalist.</p></article><article class="timeline-item"><span class="timeline-year">NOW</span><h3>Building with technology</h3><p>Continuing in media while focusing on software and app development.</p></article></div>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="section-head"><div><div class="section-kicker" data-reveal>03 — Selected work</div><h2 class="section-title" data-reveal data-delay="1">Ideas made<br>tangible.</h2></div><p class="section-note" data-reveal data-delay="2">A selection of work across education, digital publishing and journalism.</p></div>
+        <div class="work-grid">
+          <article class="work-card" data-reveal><div class="card-top"><span>Education · Product</span><span class="card-number">01 / 04</span></div><div class="card-art"><div class="orb"><i></i></div></div><div class="card-bottom"><div><span class="card-label">Learning platform</span><h3>LokSewaX</h3><p>A Loksewa exam preparation and study platform designed to make learning more accessible, organised and effective.</p></div><span class="card-arrow">↗</span></div></article>
+          <article class="work-card" data-reveal data-delay="1"><div class="card-top"><span>Digital presence</span><span class="card-number">02 / 04</span></div><div class="card-art"><div class="window-art"><div class="window-bar"><i></i><i></i><i></i></div><div class="window-lines"><span></span><span></span><span></span><span></span></div></div></div><div class="card-bottom"><div><span class="card-label">Web · Publishing</span><h3>Personal Website</h3><p>A home for professional profile, journalism, published work and digital projects.</p></div><span class="card-arrow">↗</span></div></article>
+          <article class="work-card" data-reveal><div class="card-top"><span>Media · Editorial</span><span class="card-number">03 / 04</span></div><div class="card-art"><div class="orb" style="width:min(22vw,170px);animation-direction:reverse"><i></i></div></div><div class="card-bottom"><div><span class="card-label">Reporting & newsroom</span><h3>News & Editorial</h3><p>Reporting, news presentation, desk editing and digital media work on public-interest subjects.</p></div><span class="card-arrow">↗</span></div></article>
+          <article class="work-card" data-reveal data-delay="1"><div class="card-top"><span>Exploration · Systems</span><span class="card-number">04 / 04</span></div><div class="card-art"><div class="window-art"><div class="window-bar"><i></i><i></i><i></i></div><div class="window-lines"><span></span><span></span><span></span><span></span></div></div></div><div class="card-bottom"><div><span class="card-label">Experiments in progress</span><h3>Digital Experiences</h3><p>Exploring useful interfaces, interactive systems and ways to turn ideas into working products.</p></div><span class="card-arrow">↗</span></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="expertise">
+        <div class="section-head"><div><div class="section-kicker" data-reveal>04 — What I bring</div><h2 class="section-title" data-reveal data-delay="1">Different tools.<br>One mindset.</h2></div><p class="section-note" data-reveal data-delay="2">A mix of editorial judgement, communication and digital problem-solving.</p></div>
+        <div class="capabilities">
+          <div class="cap-row" data-reveal><h3>Journalism & reporting</h3><p>News reporting · Research · Current affairs</p><span class="cap-count">01</span></div>
+          <div class="cap-row" data-reveal><h3>Editorial & newsroom</h3><p>Desk editing · News presentation · Anchoring</p><span class="cap-count">02</span></div>
+          <div class="cap-row" data-reveal><h3>Digital & technology</h3><p>Digital media · Photo design · Software & apps</p><span class="cap-count">03</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="contact" id="contact">
+      <div class="section-kicker" data-reveal>05 — Start a conversation</div>
+      <h2 class="contact-title" data-reveal data-delay="1">Have an idea?<br><span>Let's build.</span></h2>
+      <div class="contact-bottom"><p data-reveal data-delay="2">For professional enquiries, media collaborations and conversations about technology and digital products.</p><div class="socials" data-reveal data-delay="3"><a class="btn btn-primary magnetic" href="mailto:sharmakapil2060@gmail.com">Email Kapil ↗</a><a class="btn btn-secondary magnetic" href="https://www.facebook.com/kapilsharma.kapilsharma.3304" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a class="btn btn-secondary magnetic" href="https://youtube.com/@kplsharmadhk" target="_blank" rel="noopener noreferrer">YouTube ↗</a></div></div>
+    </footer>
+    <div class="footer"><span>© <span id="year"></span> Kapil Sharma Adhikari</span><span>Designed with intent · Built for the web</span><a href="#top">Back to top ↑</a></div>
+  </div>
+  <script>
+    (() => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const progress = document.getElementById('progress');
+      const glow = document.getElementById('pointerGlow');
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      let px = innerWidth / 2, py = innerHeight / 2, rx = px, ry = py;
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const updateScroll = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+      };
+      addEventListener('scroll', updateScroll, { passive: true }); updateScroll();
+
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+        });
+      }, { threshold: .12, rootMargin: '0px 0px -35px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+      const timeline = document.getElementById('timeline');
+      const timelineObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          timeline.classList.add('in-view');
+          const items = [...timeline.querySelectorAll('.timeline-item')];
+          items.forEach((item, index) => setTimeout(() => item.classList.add('active'), 280 * index));
+          timelineObserver.disconnect();
+        });
+      }, { threshold: .2 });
+      timelineObserver.observe(timeline);
+
+      const menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+      menuBtn.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.textContent = open ? 'CLOSE' : 'MENU';
+      });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'MENU';
+      }));
+
+      if (!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        addEventListener('pointermove', e => {
+          px = e.clientX; py = e.clientY;
+          glow.style.left = px + 'px'; glow.style.top = py + 'px';
+          dot.style.transform = `translate3d(${px - 2.5}px,${py - 2.5}px,0)`;
+        }, { passive: true });
+        const cursorLoop = () => {
+          rx += (px - rx) * .16; ry += (py - ry) * .16;
+          ring.style.transform = `translate3d(${rx - 17}px,${ry - 17}px,0)`;
+          requestAnimationFrame(cursorLoop);
+        };
+        cursorLoop();
+        document.querySelectorAll('a,button,.work-card').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+        });
+        document.querySelectorAll('.work-card').forEach(card => {
+          card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+            card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+            const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+            card.style.transform = `perspective(900px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg) translateY(-3px)`;
+          });
+          card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+        });
+        document.querySelectorAll('.magnetic').forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+            el.style.transform = `translate(${x * .08}px,${y * .12}px)`;
+          });
+          el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
