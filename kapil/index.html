@@ -88,7 +88,7 @@
     }
 
     @keyframes pulse {
-      0%, 10+ { opacity: 1; }
+      0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
     }
 
@@ -130,11 +130,19 @@
        ========================================= */
     [data-build] {
       position: relative;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.55s ease;
+      will-change: opacity, transform, filter;
     }
 
     [data-build].state-hidden {
       opacity: 0;
+      transform: translate3d(0, 26px, 0) scale(0.985);
+      filter: blur(7px);
+    }
+
+    [data-build].state-wireframe {
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
     }
 
     [data-build].state-wireframe {
@@ -173,12 +181,125 @@
 
     @keyframes popRender {
       0% {
-        filter: brightness(1.8);
-        transform: scale(0.99);
+        filter: brightness(1.9);
+        transform: translateY(8px) scale(0.975);
+      }
+      65% {
+        filter: brightness(1.25);
       }
       100% {
         filter: brightness(1);
-        transform: scale(1);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Scroll scenes: deeper reveal for the lower-page content */
+    .scroll-scene {
+      opacity: 0;
+      transform: translate3d(0, 42px, 0) scale(0.985);
+      filter: blur(8px);
+      transition:
+        opacity 0.75s ease,
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.75s ease;
+    }
+
+    .scroll-scene.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
+    }
+
+    .scroll-scene > * {
+      transform: translate3d(0, 24px, 0);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-scene.is-visible > * {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .timeline-item {
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: var(--yellow);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-item.state-built::before {
+      transform: scaleY(1);
+    }
+
+    .timeline-item:hover {
+      border-color: rgba(255, 230, 0, 0.55);
+      background: #111319;
+      transform: translateX(5px);
+    }
+
+    .year-badge {
+      transition: text-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline-item:hover .year-badge {
+      text-shadow: 0 0 18px rgba(255, 230, 0, 0.55);
+      transform: scale(1.06);
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: -80% auto -80% -45%;
+      width: 32%;
+      background: linear-gradient(90deg, transparent, rgba(255, 230, 0, 0.09), transparent);
+      transform: rotate(22deg) translateX(-180%);
+      transition: transform 0.8s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::after {
+      transform: rotate(22deg) translateX(520%);
+    }
+
+    .project-preview svg {
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
+    }
+
+    .project-card:hover .project-preview svg {
+      transform: scale(1.09) rotate(-2deg);
+      filter: drop-shadow(0 0 9px rgba(255, 230, 0, 0.22));
+    }
+
+    .stack-chip {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .stack-chip:hover {
+      transform: translateY(-4px);
+      border-color: var(--yellow);
+      box-shadow: 0 7px 20px rgba(255, 230, 0, 0.12);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-build], .scroll-scene, .scroll-scene > *, .timeline-item,
+      .timeline-item::before, .project-card::after, .project-preview svg, .stack-chip {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
 
@@ -1066,10 +1187,11 @@
 
     const bots = Array.from({ length: 6 }, (_, i) => new BuilderBot(i));
     const buildQueue = [];
-    const builtSet = new WeakSet();
+    let builtSet = new WeakSet();
+    let buildGeneration = 0;
 
     function enqueueElement(el) {
-      if (builtSet.has(el)) return;
+      if (!el || !el.isConnected || builtSet.has(el)) return;
       builtSet.add(el);
       el.classList.remove('state-hidden');
       el.classList.add('state-wireframe');
@@ -1083,17 +1205,21 @@
         statusText.textContent = 'SYSTEM ACTIVE';
       }
 
-      for (let bot of bots) {
+      for (const bot of bots) {
         if (!bot.busy && buildQueue.length > 0) {
           const el = buildQueue.shift();
+          const generationAtStart = buildGeneration;
           bot.busy = true;
           bot.targetEl = el;
 
-          const buildDuration = 250 + Math.random() * 200;
+          const buildDuration = 300 + Math.random() * 260;
           setTimeout(() => {
-            el.classList.remove('state-wireframe');
-            el.classList.add('state-built');
-            playBuildPopSound();
+            if (generationAtStart !== buildGeneration) return;
+            if (el.isConnected) {
+              el.classList.remove('state-wireframe');
+              el.classList.add('state-built');
+              playBuildPopSound();
+            }
             bot.busy = false;
             bot.targetEl = null;
           }, buildDuration);
@@ -1101,40 +1227,85 @@
       }
     }
 
+    /* Each element is built only when it actually enters the viewport. */
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, idx) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => enqueueElement(entry.target), idx * 50);
-        }
+      const visibleEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+      visibleEntries.forEach((entry, idx) => {
+        observer.unobserve(entry.target);
+        setTimeout(() => enqueueElement(entry.target), idx * 85);
       });
-    }, { threshold: 0.1 });
+    }, {
+      threshold: 0.01,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    /* Larger content groups reveal smoothly, then their children build in sequence. */
+    const sceneObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const scene = entry.target;
+        scene.classList.add('is-visible');
+        Array.from(scene.children).forEach((child, index) => {
+          child.style.transitionDelay = `${index * 115}ms`;
+        });
+        sceneObserver.unobserve(scene);
+      });
+    }, {
+      threshold: 0.04,
+      rootMargin: '0px 0px -8% 0px'
+    });
 
     function initBuildSystem() {
-      const elements = document.querySelectorAll('[data-build]');
-      elements.forEach(el => {
+      document.querySelectorAll('[data-build]').forEach(el => {
         el.classList.remove('state-wireframe', 'state-built');
         el.classList.add('state-hidden');
         observer.observe(el);
       });
+
+      document.querySelectorAll('.about-story, .timeline-list, .projects-grid, .stack-rows, .footer-cta-box')
+        .forEach(scene => {
+          scene.classList.add('scroll-scene');
+          scene.classList.remove('is-visible');
+          Array.from(scene.children).forEach(child => {
+            child.style.transitionDelay = '0ms';
+          });
+          sceneObserver.observe(scene);
+        });
     }
 
     function triggerFullRebuild() {
+      buildGeneration += 1;
       buildQueue.length = 0;
+      builtSet = new WeakSet();
+      bots.forEach(bot => {
+        bot.busy = false;
+        bot.targetEl = null;
+      });
       playBeep(440, 0.15, 'square', 0.05);
-      const elements = document.querySelectorAll('[data-build]');
-      elements.forEach(el => {
+
+      document.querySelectorAll('[data-build]').forEach(el => {
         observer.unobserve(el);
         el.classList.remove('state-wireframe', 'state-built');
         el.classList.add('state-hidden');
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(() => {
-        elements.forEach((el, idx) => {
-          el.classList.remove('state-hidden');
-          el.classList.add('state-wireframe');
-          setTimeout(() => buildQueue.push(el), idx * 40);
+
+      document.querySelectorAll('.scroll-scene').forEach(scene => {
+        sceneObserver.unobserve(scene);
+        scene.classList.remove('is-visible');
+        Array.from(scene.children).forEach(child => {
+          child.style.transitionDelay = '0ms';
         });
-      }, 300);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      setTimeout(() => {
+        document.querySelectorAll('[data-build]').forEach(el => observer.observe(el));
+        document.querySelectorAll('.scroll-scene').forEach(scene => sceneObserver.observe(scene));
+      }, 450);
     }
 
     function animateBuilders() {
