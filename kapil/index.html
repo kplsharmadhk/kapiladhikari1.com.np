@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Kapil Adhikari">
+  <link rel="canonical" href="https://kapiladhikari1.com.np/kapil/">
+  <title>Kapil Adhikari</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #080b14;
+      color: #f7f8fc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 50% 48%, rgba(34, 75, 140, .20), transparent 42%),
+        radial-gradient(ellipse at 18% 16%, rgba(115, 56, 176, .13), transparent 34%),
+        radial-gradient(ellipse at 84% 86%, rgba(0, 163, 180, .10), transparent 32%),
+        #080b14;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at center, #000 8%, transparent 78%);
+    }
+
+    main {
+      width: min(100% - 40px, 1200px);
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .name-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 54px 0;
+      animation: arrive 1.15s cubic-bezier(.2,.75,.25,1) both;
+    }
+
+    .name-wrap::before {
+      content: "";
+      position: absolute;
+      width: min(76vw, 680px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(167, 190, 255, .10);
+      border-radius: 50%;
+      box-shadow:
+        0 0 90px rgba(53, 107, 210, .08),
+        inset 0 0 90px rgba(53, 107, 210, .04);
+      pointer-events: none;
+    }
+
+    h1 {
+      position: relative;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(3.5rem, 11.5vw, 9.5rem);
+      line-height: .94;
+      letter-spacing: -.085em;
+      font-weight: 760;
+      white-space: nowrap;
+      color: #f7f8fc;
+      text-shadow: 0 12px 55px rgba(0, 0, 0, .42);
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    h1 span:last-child {
+      margin-top: .08em;
+      background: linear-gradient(105deg, #ffffff 8%, #cbdcff 48%, #8daeff 78%, #d9c5ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(8px); }
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    @media (max-width: 520px) {
+      main { width: min(100% - 28px, 1200px); }
+      h1 { font-size: clamp(3.2rem, 14vw, 5.4rem); }
+      .name-wrap::before { width: 92vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="name-wrap">
+      <h1 aria-label="Kapil Adhikari">
+        <span>Kapil</span>
+        <span>Adhikari</span>
+      </h1>
+    </div>
+  </main>
+</body>
+</html>
