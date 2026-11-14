@@ -203,14 +203,92 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outl
 @media(max-width:650px){.stage:before{opacity:.16}.scene.active .content{animation-duration:.9s}.cinema-streak{width:42%}}
 @media(prefers-reduced-motion:reduce){.scene.active .content,.scene.active .intro-mark,.scene.active .intro-title,.scene.active .cake-art,.scene.active .gift-stage,.scene.active .letter{animation:none!important}.word{opacity:1!important;transform:none!important}}
 
+
+/* MOBILE-FIRST CONTINUOUS STORY — one document, five scroll chapters */
+html{height:auto;min-height:100%;scroll-behavior:smooth;scroll-snap-type:y mandatory;scroll-padding-top:0}
+body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+body::-webkit-scrollbar{display:none}
+.stage{height:auto;min-height:100svh;overflow:visible;perspective:none;width:100%;margin:0 auto}
+.scene,.scene.active,.scene.leaving{
+ position:relative;inset:auto;display:grid;place-items:center;
+ width:100%;min-height:100svh;height:auto;padding:105px 22px 112px;
+ opacity:1;visibility:visible;transform:none;filter:none;
+ transition:none;scroll-snap-align:start;scroll-snap-stop:always;
+ overflow:hidden;isolation:isolate
+}
+.scene:not(.active) .content{opacity:0;transform:translate3d(0,52px,0) scale(.96);filter:blur(10px)}
+.scene.active .content{animation:chapterRise 1.15s cubic-bezier(.16,1,.3,1) both}
+@keyframes chapterRise{0%{opacity:0;transform:translate3d(0,58px,0) scale(.94);filter:blur(12px)}65%{opacity:1}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+.scene:before{content:"";position:absolute;inset:8% -35%;z-index:0;pointer-events:none;opacity:.25;background:radial-gradient(ellipse at 50% 45%,#f0a9bd22,transparent 58%);animation:sceneBreath 8s ease-in-out infinite alternate}
+@keyframes sceneBreath{to{transform:translate3d(4%,-3%,0) scale(1.15);opacity:.5}}
+.scene:nth-of-type(2):after,.scene:nth-of-type(3):after,.scene:nth-of-type(4):after,.scene:nth-of-type(5):after,.scene:nth-of-type(6):after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;opacity:.22;background:repeating-linear-gradient(115deg,transparent 0 42px,#f1d39a09 43px,transparent 45px 90px);mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);animation:curtainDrift 24s linear infinite}
+@keyframes curtainDrift{to{background-position:0 420px}}
+.content{width:min(100%,470px);z-index:3}
+.topbar{position:fixed;top:0;left:50%;width:min(100%,520px);transform:translateX(-50%);padding:calc(env(safe-area-inset-top) + 13px) 18px 12px;background:linear-gradient(#090812dd,transparent);backdrop-filter:blur(2px)}
+.navigation{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 12px);transform:translateX(-50%);gap:14px;padding:7px 12px;background:#17111edb;border-color:#ffffff30;box-shadow:0 8px 34px #0008}
+.signature{display:none}
+.chapter-progress{position:fixed;z-index:27;top:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:2px;background:#ffffff12;pointer-events:none}
+.chapter-progress span{display:block;width:20%;height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));box-shadow:0 0 12px #f1d39a88;transition:width .45s var(--ease)}
+.scroll-hint{display:flex;align-items:center;justify-content:center;gap:9px;margin:25px auto 0;color:#cdb9c8;font-size:9px;letter-spacing:.22em;text-transform:uppercase;animation:hintBreathe 2.2s ease-in-out infinite}
+.scroll-hint i{display:block;width:16px;height:25px;border:1px solid #f1d39a99;border-radius:12px;position:relative}
+.scroll-hint i:after{content:"";position:absolute;left:6px;top:5px;width:2px;height:5px;border-radius:2px;background:var(--gold);animation:hintScroll 1.4s ease-in-out infinite}
+@keyframes hintScroll{to{transform:translateY(8px);opacity:0}}
+@keyframes hintBreathe{50%{opacity:.45;transform:translateY(3px)}}
+.intro-scene .content{padding-top:12px}
+.intro-mark{width:clamp(130px,37vw,175px);margin-bottom:30px}
+.intro-title{font-size:clamp(46px,13vw,66px);line-height:.92}
+.kicker{font-size:9px;letter-spacing:.28em;line-height:1.8}
+.subtle{font-size:14px;line-height:1.85;max-width:340px}
+.cta{min-height:52px;padding:16px 25px;font-size:10px;letter-spacing:.16em;touch-action:manipulation}
+.name-title{font-size:clamp(94px,25vw,145px)}
+.birthday-title{font-size:clamp(36px,10vw,52px)}
+.orbit{width:105vw;max-width:520px}
+.halo{width:90vw;max-width:430px}
+.floating-word{font-size:13px}
+.word-a{left:4%;top:23%}.word-b{right:4%;bottom:19%}
+.letter-wrap{width:100%;max-width:440px}
+.letter{padding:30px 23px}
+.letter-copy{font-size:clamp(17px,4.7vw,20px);line-height:1.68}
+.letter-sign{font-size:22px}
+.cake-title{font-size:clamp(48px,13vw,65px)}
+.cake-art{width:min(88vw,370px);height:255px;margin:14px auto 8px;transform:scale(.95)}
+.cake-wish{font-size:clamp(22px,6vw,28px);line-height:1.2}
+.cake-note{font-size:12px;max-width:300px}
+.scene-actions{gap:5px}
+.gift-stage{width:210px;height:200px;transform:scale(1.08);margin:34px auto 14px}
+.final-note p{font-size:clamp(20px,5.4vw,25px)}
+.corner-star{font-size:20px}
+@media(min-width:600px){
+ body{background:radial-gradient(ellipse at center,#211323 0,#090812 65%)}
+ .stage{max-width:520px;box-shadow:0 0 90px #0008}
+ .scene{padding-left:28px;padding-right:28px}
+ .topbar,.navigation,.chapter-progress{max-width:520px}
+ #universe,#fx{max-width:520px;left:50%;transform:translateX(-50%)}
+ .aurora{inset:-10% calc((100% - 520px)/2)}
+}
+@media(max-height:740px){
+ .scene,.scene.active{padding-top:88px;padding-bottom:100px}
+ .intro-mark{width:112px;margin-bottom:20px}
+ .cake-art{transform:scale(.82);margin:-10px auto -10px}
+ .letter{padding:22px 20px}
+ .letter-copy{font-size:16px;line-height:1.55}
+ .gift-stage{transform:scale(.9);margin:15px auto 0}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .scene.active .content{animation:none!important;opacity:1;transform:none;filter:none}
+ .scene:before,.scene:after,.scroll-hint,.scroll-hint i:after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
 <div class="aurora"></div><canvas id="universe" aria-hidden="true"></canvas><div class="vignette"></div><canvas id="fx" aria-hidden="true"></canvas><div class="grain"></div>
 <header class="topbar"><div class="brand"><span class="brand-icon">M</span><span>A PRIVATE LITTLE CELEBRATION</span></div><span class="chapter" id="chapter">01 &nbsp;—&nbsp; 05</span></header>
+<div class="chapter-progress" aria-hidden="true"><span id="progressFill"></span></div>
 <main class="stage" id="stage"><div class="cinema-portal" id="cinemaPortal" aria-hidden="true"></div><div class="cinema-streak" id="cinemaStreak" aria-hidden="true"></div>
 <section class="scene active intro-scene" data-scene="0">
- <div class="content intro-content"><div class="intro-mark"><span class="mark-letter">M</span></div><p class="kicker">Some moments deserve their own universe</p><h1 class="intro-title">A little world<br><em>made for you.</em></h1><p class="subtle">Tonight, the stars have a little message.<br>And every little detail is here for one reason — you.</p><button class="cta" data-next>Step into your day &nbsp; ✦</button></div>
+ <div class="content intro-content"><div class="intro-mark"><span class="mark-letter">M</span></div><p class="kicker">Some moments deserve their own universe</p><h1 class="intro-title">A little world<br><em>made for you.</em></h1><p class="subtle">Tonight, the stars have a little message.<br>And every little detail is here for one reason — you.</p><button class="cta" data-next>Begin the journey &nbsp; ✦</button><div class="scroll-hint"><i></i><span>Scroll to discover</span></div></div>
  <span class="corner-star cs1">✧</span><span class="corner-star cs2">✦</span><span class="corner-star cs3">✧</span><span class="corner-star cs4">✦</span>
 </section>
 <section class="scene birthday-scene" data-scene="1">
@@ -238,13 +316,33 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outl
 <script>
 (()=>{
 'use strict';
-const scenes=[...document.querySelectorAll('.scene')],dotsHost=document.getElementById('dots'),chapter=document.getElementById('chapter'),previous=document.getElementById('previous'),forward=document.getElementById('forward');
-let current=0,transitioning=false;
-scenes.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.type='button';d.setAttribute('aria-label','Go to scene '+(i+1));d.addEventListener('click',()=>go(i));dotsHost.appendChild(d)});
-function go(n){if(transitioning||n===current||n<0||n>=scenes.length)return;transitioning=true;const old=current;current=n;scenes[old].classList.add('leaving');scenes[old].classList.remove('active');scenes[current].classList.remove('leaving');scenes[current].classList.add('active');[...dotsHost.children].forEach((d,i)=>d.classList.toggle('active',i===current));chapter.innerHTML=String(current+1).padStart(2,'0')+' &nbsp;—&nbsp; '+String(scenes.length).padStart(2,'0');previous.disabled=current===0;forward.disabled=current===scenes.length-1;setTimeout(()=>{scenes[old].classList.remove('leaving');transitioning=false},1050);cueScene(current);if(current===1)fireworkShow();if(current===4)petalBurst(38)}
-previous.addEventListener('click',()=>go(current-1));forward.addEventListener('click',()=>go(current+1));document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(current+1)));
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(current+1);if(e.key==='ArrowLeft')go(current-1)});
-let touchX=0;document.getElementById('stage').addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});document.getElementById('stage').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>75)go(current+(dx<0?1:-1))},{passive:true});
+const scenes=[...document.querySelectorAll('.scene')],dotsHost=document.getElementById('dots'),chapter=document.getElementById('chapter'),previous=document.getElementById('previous'),forward=document.getElementById('forward'),progressFill=document.getElementById('progressFill');
+let current=0,scrollTick=false;
+scenes.forEach((scene,i)=>{scene.id='chapter-'+(i+1);const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.type='button';d.setAttribute('aria-label','Scroll to chapter '+(i+1));d.addEventListener('click',()=>go(i));dotsHost.appendChild(d)});
+function updateChapter(n){
+ current=n;
+ [...dotsHost.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+ chapter.textContent=String(current+1).padStart(2,'0')+' — '+String(scenes.length).padStart(2,'0');
+ previous.disabled=current===0;forward.disabled=current===scenes.length-1;
+ progressFill.style.width=((current+1)/scenes.length*100)+'%';
+}
+function go(n){
+ if(n<0||n>=scenes.length)return;
+ scenes[n].scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+ updateChapter(n);
+}
+previous.addEventListener('click',()=>go(current-1));forward.addEventListener('click',()=>go(current+1));
+document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(current+1)));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();go(current+1)}if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();go(current-1)}});
+const chapterObserver=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{if(entry.isIntersecting&&entry.intersectionRatio>=.35){
+  const n=scenes.indexOf(entry.target);if(n<0)return;
+  if(n!==current){updateChapter(n);cueScene(n)}
+  entry.target.classList.add('active');
+ }else if(!entry.isIntersecting){entry.target.classList.remove('active')}
+ });
+},{threshold:[0,.2,.35,.6],rootMargin:'-8% 0px -8% 0px'});
+scenes.forEach(s=>chapterObserver.observe(s));
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const cake=document.getElementById('cake'),blow=document.getElementById('blow'),cakeNote=document.getElementById('cakeNote');let blown=false;
 blow.addEventListener('click',()=>{if(blown)return;blown=true;cake.classList.add('blown');cakeNote.textContent='Your wish is on its way. May it find you at just the right time.';blow.textContent='Wish released into the universe ✓';fireworkShow();setTimeout(fireworkShow,650);setTimeout(fireworkShow,1300)});
@@ -285,7 +383,7 @@ function petalBurst(count){burst(w*.5,h*.42,count,'petal')}
 function fxLoop(t){const dt=Math.min(2,(t-last)/16.67||1);last=t;fctx.clearRect(0,0,w,h);particles=particles.filter(p=>p.life>0&&p.y<h+40);particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=p.g*dt;p.vx*=.992;p.rot+=p.spin*dt;p.life-=dt;const alpha=Math.min(1,p.life/24);fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.rot);fctx.globalAlpha=alpha;fctx.fillStyle=p.color;if(p.kind==='petal'){fctx.beginPath();fctx.ellipse(0,0,p.size*.65,p.size*1.4,0,0,Math.PI*2);fctx.fill()}else{fctx.beginPath();fctx.arc(0,0,p.size*.48,0,Math.PI*2);fctx.fill()}fctx.restore()});if(particles.length)raf=requestAnimationFrame(fxLoop);else{raf=0;fctx.clearRect(0,0,w,h)}}
 function startFx(){if(!raf&&!reduced)raf=requestAnimationFrame(fxLoop)}
 const originalBurst=burst;burst=(...args)=>{originalBurst(...args);startFx()};
-resize();addEventListener('resize',resize,{passive:true});if(!reduced)requestAnimationFrame(starLoop);cueScene(0);
+resize();addEventListener('resize',resize,{passive:true});if(!reduced)requestAnimationFrame(starLoop);
 })();
 </script>
 </body>
