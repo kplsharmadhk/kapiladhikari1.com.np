@@ -458,32 +458,32 @@
       cursor: pointer;
     }
 
-    /* Avatar Circle */
+    /* Main website hero image — no secondary portrait or dark avatar backdrop */
     .avatar-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      min-width: 0;
     }
 
-    .avatar-ring {
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      border: 3px solid var(--yellow);
-      padding: 8px;
-      position: relative;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle, #1c1f29 0%, #090a0d 100%);
+    .hero-visual {
+      width: min(100%, 320px);
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid rgba(255, 230, 0, 0.7);
+      border-radius: 10px;
+      background: transparent;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
     }
 
-    .avatar-svg {
+    .hero-visual img {
+      display: block;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      overflow: hidden;
       object-fit: cover;
+      object-position: center;
     }
 
     .avatar-caption {
@@ -855,10 +855,10 @@
           </div>
         </div>
 
-        <!-- Center Avatar -->
+        <!-- Main website hero image -->
         <div class="avatar-wrap">
-          <div class="avatar-ring" data-build data-tag="IMG.AVATAR">
-            <img class="avatar-svg" src="../images/profile.jpg" alt="Kapil Sharma Adhikari" loading="eager" />
+          <div class="hero-visual" data-build data-tag="IMG.HERO">
+            <img src="../images/hero.jpg" alt="Kapil Sharma Adhikari" loading="eager" />
           </div>
           <div class="avatar-caption" data-build data-tag="BADGE.LIVE">● JOURNALISM · TECHNOLOGY</div>
         </div>
