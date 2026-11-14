@@ -408,9 +408,14 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
       align-items: center;
+    }
+
+    .hero-copy {
+      width: 100%;
+      max-width: 780px;
     }
 
     .greeting-pill {
@@ -474,40 +479,6 @@
     }
 
 
-
-    /* Currently Building Card */
-    .status-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    .status-card-header {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--yellow);
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .status-item {
-      padding: 10px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .status-item h4 {
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    .status-item p {
-      font-size: 12px;
-      color: var(--muted);
-    }
 
     /* Stats Row */
     .stats-row {
@@ -823,8 +794,8 @@
     <section class="hero" style="border-top: none;">
 
       <div class="hero-grid">
-        <!-- Left Column -->
-        <div>
+        <!-- Hero Introduction -->
+        <div class="hero-copy">
           <span class="greeting-pill" data-build data-tag="SPAN.GREET">Hello, I'm</span>
           <h1 class="hero-name" data-build data-tag="H1.NAME">KAPIL.</h1>
           <p class="hero-bio" data-build data-tag="P.BIO">
@@ -833,25 +804,6 @@
           <div class="hero-actions">
             <a href="#work" class="btn-primary" data-build data-tag="BTN.PRIMARY">See the work →</a>
             <a href="#contact" class="btn-secondary" data-build data-tag="BTN.OUTLINE">Connect with me</a>
-          </div>
-        </div>
-
-        <!-- Right Status Card -->
-        <div class="status-card" data-build data-tag="CARD.STATUS">
-          <div class="status-card-header">
-            <span class="status-dot"></span> CURRENTLY BUILDING
-          </div>
-          <div class="status-item">
-            <h4>Cross-Platform Mobile Suite</h4>
-            <p>Flutter + Firebase real-time architecture</p>
-          </div>
-          <div class="status-item">
-            <h4>Self-Assembling Web UI</h4>
-            <p>HTML5 Canvas autonomous cursor engine</p>
-          </div>
-          <div class="status-item">
-            <h4>Interactive SVG Systems</h4>
-            <p>Zero-dependency micro-animations</p>
           </div>
         </div>
       </div>
