@@ -1339,8 +1339,9 @@
 
       await enableAudio(false);
       if (!audioEnabled) {
-        const unlockOnFirstGesture = async () => {
+        const unlockOnFirstGesture = async (event) => {
           if (audioEnabled || !audioUnlockPending) return;
+          if (event && event.target && event.target.closest && event.target.closest('#audioToggleBtn')) return;
           await enableAudio(true);
           if (audioEnabled) {
             window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
