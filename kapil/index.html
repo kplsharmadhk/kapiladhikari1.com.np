@@ -297,9 +297,26 @@
 
     @media (prefers-reduced-motion: reduce) {
       [data-build], .scroll-scene, .scroll-scene > *, .timeline-item,
-      .timeline-item::before, .project-card::after, .project-preview svg, .project-preview img, .stack-chip {
+      .timeline-item::before, .project-card::after, .project-preview svg, .project-preview img, .stack-chip,
+      .travel-photo-card, .travel-photo-card img, .travel-photo-card::before, .travel-photo-card::after,
+      .travel-photo-caption, .travel-photo-caption strong {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .travel-photo-card {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        filter: none !important;
+      }
+      .travel-photo-card img {
+        transform: none !important;
+        filter: none !important;
+      }
+      .travel-photo-caption {
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
 
@@ -727,16 +744,37 @@
     }
 
     .travel-photo-card {
+      --travel-delay: 0ms;
       position: relative;
       min-width: 0;
       min-height: 0;
       overflow: hidden;
       isolation: isolate;
-      border: 1px solid rgba(255, 255, 255, .09);
-      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 9px;
       background: #101116;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, .22);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .3);
+      opacity: 0;
+      transform: perspective(1100px) translate3d(0, 54px, 0) rotateX(8deg) scale(.94);
+      clip-path: inset(9% 5% 9% 5% round 12px);
+      filter: saturate(.72) brightness(.72);
+      transition:
+        opacity 1s cubic-bezier(.16, 1, .3, 1),
+        transform 1.15s cubic-bezier(.16, 1, .3, 1),
+        clip-path 1.15s cubic-bezier(.16, 1, .3, 1),
+        filter 1s ease,
+        border-color .55s ease,
+        box-shadow .65s ease;
+      transition-delay: var(--travel-delay);
+      will-change: transform, opacity, clip-path;
     }
+
+    .travel-photo-card:nth-child(1) { --travel-delay: 80ms; }
+    .travel-photo-card:nth-child(2) { --travel-delay: 190ms; }
+    .travel-photo-card:nth-child(3) { --travel-delay: 300ms; }
+    .travel-photo-card:nth-child(4) { --travel-delay: 410ms; }
+    .travel-photo-card:nth-child(5) { --travel-delay: 520ms; }
+    .travel-photo-card:nth-child(6) { --travel-delay: 630ms; }
 
     .travel-photo-card.featured {
       grid-column: span 2;
@@ -748,30 +786,92 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.13);
-      filter: brightness(.68) saturate(.82);
+      transform: scale(1.24) translate3d(0, 2%, 0);
+      filter: brightness(.76) saturate(.78);
       transition:
-        transform 1.15s cubic-bezier(.16, 1, .3, 1),
-        filter .9s ease;
+        transform 1.8s cubic-bezier(.16, 1, .3, 1),
+        filter 1.1s ease;
+      will-change: transform, filter;
+    }
+
+    .travel-gallery.is-visible .travel-photo-card {
+      opacity: 1;
+      transform: perspective(1100px) translate3d(0, 0, 0) rotateX(0) scale(1);
+      clip-path: inset(0 0 0 0 round 9px);
+      filter: saturate(1) brightness(1);
     }
 
     .travel-gallery.is-visible .travel-photo-card img {
-      transform: scale(1);
-      filter: brightness(.88) saturate(1);
+      transform: scale(1.015);
+      filter: brightness(.91) saturate(1.04);
     }
 
-    .travel-photo-card:hover img {
-      transform: scale(1.075);
-      filter: brightness(1) saturate(1.08);
+    .travel-photo-card::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: -60% auto -60% -75%;
+      width: 42%;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      transform: rotate(18deg) translateX(-160%);
+      transition: transform 1.15s cubic-bezier(.16, 1, .3, 1), opacity .35s ease;
     }
 
     .travel-photo-card::after {
       content: "";
       position: absolute;
-      inset: 30% 0 0;
+      inset: 25% 0 0;
       z-index: 1;
-      background: linear-gradient(0deg, rgba(0, 0, 0, .82), transparent);
+      background: linear-gradient(0deg, rgba(0, 0, 0, .86) 0%, rgba(0,0,0,.2) 48%, transparent 100%);
       pointer-events: none;
+      opacity: .9;
+      transition: opacity .7s ease;
+    }
+
+    .travel-photo-card:hover {
+      z-index: 3;
+      border-color: rgba(255, 230, 0, .48);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, .48), 0 0 0 1px rgba(255, 230, 0, .08);
+      transform: perspective(1100px) translate3d(0, -9px, 0) rotateX(2deg) scale(1.012);
+    }
+
+    .travel-photo-card:hover img {
+      transform: scale(1.13) translate3d(0, -1%, 0);
+      filter: brightness(1.04) saturate(1.16) contrast(1.035);
+    }
+
+    .travel-photo-card:hover::before {
+      opacity: 1;
+      transform: rotate(18deg) translateX(520%);
+    }
+
+    .travel-photo-card:hover::after {
+      opacity: .68;
+    }
+
+    .travel-photo-caption {
+      transform: translate3d(0, 18px, 0);
+      opacity: 0;
+      transition:
+        transform .8s cubic-bezier(.16, 1, .3, 1),
+        opacity .7s ease;
+      transition-delay: calc(var(--travel-delay) + 180ms);
+    }
+
+    .travel-gallery.is-visible .travel-photo-caption {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+
+    .travel-photo-caption strong {
+      transition: letter-spacing .55s ease, text-shadow .55s ease;
+    }
+
+    .travel-photo-card:hover .travel-photo-caption strong {
+      letter-spacing: .075em;
+      text-shadow: 0 0 22px rgba(255, 230, 0, .25);
     }
 
     .travel-photo-caption {
@@ -1168,21 +1268,93 @@
        ========================================================================= */
     let audioCtx = null;
     let audioEnabled = false;
+    let audioUnlockPending = false;
+    const audioPreferenceKey = 'kapil-page-sound-enabled';
+
+    function updateAudioButton() {
+      const btn = document.getElementById('audioToggleBtn');
+      if (!btn) return;
+      btn.textContent = audioEnabled ? 'SOUND: ON' : (audioUnlockPending ? 'SOUND: TAP TO ENABLE' : 'SOUND: OFF');
+      btn.classList.toggle('active', audioEnabled);
+      btn.setAttribute('aria-pressed', String(audioEnabled));
+      btn.setAttribute('aria-label', audioEnabled ? 'Turn sound off' : 'Turn sound on');
+    }
+
+    function createAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return false;
+        audioCtx = new AudioContextClass();
+      }
+      return true;
+    }
+
+    async function enableAudio(fromUserGesture = false) {
+      if (!createAudioContext()) {
+        audioEnabled = false;
+        audioUnlockPending = false;
+        updateAudioButton();
+        return false;
+      }
+
+      try {
+        if (audioCtx.state === 'suspended') await audioCtx.resume();
+        if (audioCtx.state === 'running') {
+          audioEnabled = true;
+          audioUnlockPending = false;
+          try { localStorage.setItem(audioPreferenceKey, 'on'); } catch (e) {}
+          updateAudioButton();
+          if (fromUserGesture) playBeep(580, 0.08, 'sine');
+          return true;
+        }
+      } catch (e) {}
+
+      audioEnabled = false;
+      audioUnlockPending = true;
+      updateAudioButton();
+      return false;
+    }
 
     function toggleAudio() {
-      audioEnabled = !audioEnabled;
-      const btn = document.getElementById('audioToggleBtn');
-      if (audioEnabled) {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        btn.textContent = 'SOUND: ON';
-        btn.classList.add('active');
-        playBeep(580, 0.08, 'sine');
-      } else {
-        btn.textContent = 'SOUND: OFF';
-        btn.classList.remove('active');
+      if (audioEnabled || audioUnlockPending) {
+        audioEnabled = false;
+        audioUnlockPending = false;
+        try { localStorage.setItem(audioPreferenceKey, 'off'); } catch (e) {}
+        updateAudioButton();
+        return;
+      }
+      enableAudio(true);
+    }
+
+    /* Attempt sound on page load. Browsers may require a user gesture first. */
+    async function initAudio() {
+      let savedPreference = null;
+      try { savedPreference = localStorage.getItem(audioPreferenceKey); } catch (e) {}
+      if (savedPreference === 'off') {
+        audioEnabled = false;
+        audioUnlockPending = false;
+        updateAudioButton();
+        return;
+      }
+
+      await enableAudio(false);
+      if (!audioEnabled) {
+        const unlockOnFirstGesture = async () => {
+          if (audioEnabled || !audioUnlockPending) return;
+          await enableAudio(true);
+          if (audioEnabled) {
+            window.removeEventListener('pointerdown', unlockOnFirstGesture, true);
+            window.removeEventListener('keydown', unlockOnFirstGesture, true);
+            window.removeEventListener('touchstart', unlockOnFirstGesture, true);
+          }
+        };
+        window.addEventListener('pointerdown', unlockOnFirstGesture, true);
+        window.addEventListener('keydown', unlockOnFirstGesture, true);
+        window.addEventListener('touchstart', unlockOnFirstGesture, true);
       }
     }
+
+    initAudio();
 
     function playBeep(freq, duration, type = 'sine', vol = 0.03) {
       if (!audioEnabled || !audioCtx) return;
