@@ -659,6 +659,111 @@
       color: #d1d5db;
     }
 
+    /* Travel Gallery — reuses the main site's original travel photographs */
+    .travel-intro {
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    .travel-kicker {
+      display: inline-block;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      color: var(--yellow);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .travel-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 210px;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .travel-photo-card {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 7px;
+      background: #101116;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .22);
+    }
+
+    .travel-photo-card.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .travel-photo-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.13);
+      filter: brightness(.68) saturate(.82);
+      transition:
+        transform 1.15s cubic-bezier(.16, 1, .3, 1),
+        filter .9s ease;
+    }
+
+    .travel-gallery.is-visible .travel-photo-card img {
+      transform: scale(1);
+      filter: brightness(.88) saturate(1);
+    }
+
+    .travel-photo-card:hover img {
+      transform: scale(1.075);
+      filter: brightness(1) saturate(1.08);
+    }
+
+    .travel-photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 30% 0 0;
+      z-index: 1;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .82), transparent);
+      pointer-events: none;
+    }
+
+    .travel-photo-caption {
+      position: absolute;
+      z-index: 2;
+      right: 18px;
+      bottom: 16px;
+      left: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+    }
+
+    .travel-photo-caption span {
+      color: var(--yellow);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .travel-photo-caption strong {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(1.15rem, 2.3vw, 1.8rem);
+      font-weight: 400;
+      letter-spacing: .035em;
+    }
+
+    .travel-photo-card.featured .travel-photo-caption strong {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+    }
+
     /* Stack Matrix */
     .stack-rows {
       display: flex;
@@ -754,6 +859,13 @@
       .stack-row {
         grid-template-columns: 1fr;
       }
+      .travel-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 190px;
+      }
+      .travel-photo-card.featured {
+        grid-column: span 2;
+      }
       .nav-links a:not(.nav-cta) {
         display: none;
       }
@@ -784,6 +896,7 @@
         <a href="#about" data-build data-tag="LINK">About</a>
         <a href="#work" data-build data-tag="LINK">Work</a>
         <a href="#stack" data-build data-tag="LINK">Stack</a>
+        <a href="#travel" data-build data-tag="LINK">Travel</a>
         <a href="#contact" class="nav-cta" data-build data-tag="CTA.BTN">Get in touch →</a>
       </nav>
     </div>
@@ -924,6 +1037,42 @@
             <span class="tech-pill">REPORTING</span><span class="tech-pill">EDITING</span><span class="tech-pill">NEWS</span>
           </div>
         </article>
+      </div>
+    </section>
+
+    <!-- Travel Photography Section -->
+    <section id="travel">
+      <span class="travel-kicker" data-build data-tag="LABEL.TRAVEL">FIELD NOTES · NEPAL</span>
+      <h2 class="section-title" data-build data-tag="H2.TRAVEL">PLACES THAT STAY WITH ME</h2>
+      <p class="section-sub" data-build data-tag="P.TRAVEL">
+        A few frames from the roads, landscapes and places that make every journey memorable.
+      </p>
+
+      <div class="travel-gallery">
+        <figure class="travel-photo-card featured">
+          <img src="../images/travel-01.jpg" alt="Arghakhanchi, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>01 / NEPAL</span><strong>Arghakhanchi</strong></figcaption>
+        </figure>
+        <figure class="travel-photo-card">
+          <img src="../images/travel-02.jpg" alt="Pokhara, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>02</span><strong>Pokhara</strong></figcaption>
+        </figure>
+        <figure class="travel-photo-card">
+          <img src="../images/travel-03.jpg" alt="Mustang, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>03</span><strong>Mustang</strong></figcaption>
+        </figure>
+        <figure class="travel-photo-card">
+          <img src="../images/travel-04.jpg" alt="Kathmandu, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>04</span><strong>Kathmandu</strong></figcaption>
+        </figure>
+        <figure class="travel-photo-card">
+          <img src="../images/travel-05.jpg" alt="Manang, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>05</span><strong>Manang</strong></figcaption>
+        </figure>
+        <figure class="travel-photo-card">
+          <img src="../images/travel-06.jpg" alt="Rara Lake, Nepal" loading="lazy" decoding="async" />
+          <figcaption class="travel-photo-caption"><span>06</span><strong>Rara Lake</strong></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -1190,7 +1339,7 @@
         observer.observe(el);
       });
 
-      document.querySelectorAll('.about-story, .timeline-list, .projects-grid, .stack-rows, .footer-cta-box')
+      document.querySelectorAll('.about-story, .timeline-list, .projects-grid, .stack-rows, .travel-gallery, .footer-cta-box')
         .forEach(scene => {
           scene.classList.add('scroll-scene');
           scene.classList.remove('is-visible');
