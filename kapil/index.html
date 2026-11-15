@@ -870,6 +870,22 @@
         display: none;
       }
     }
+
+    @media (max-width: 600px) {
+      .travel-gallery {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 240px;
+      }
+      .travel-photo-card.featured {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .travel-photo-caption {
+        right: 14px;
+        bottom: 13px;
+        left: 14px;
+      }
+    }
   </style>
 </head>
 <body>
