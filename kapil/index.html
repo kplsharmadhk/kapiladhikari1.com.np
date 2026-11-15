@@ -1269,7 +1269,6 @@
     let audioCtx = null;
     let audioEnabled = false;
     let audioUnlockPending = false;
-    const audioPreferenceKey = 'kapil-page-sound-enabled';
 
     function updateAudioButton() {
       const btn = document.getElementById('audioToggleBtn');
@@ -1302,7 +1301,6 @@
         if (audioCtx.state === 'running') {
           audioEnabled = true;
           audioUnlockPending = false;
-          try { localStorage.setItem(audioPreferenceKey, 'on'); } catch (e) {}
           updateAudioButton();
           if (fromUserGesture) playBeep(580, 0.08, 'sine');
           return true;
@@ -1319,24 +1317,15 @@
       if (audioEnabled || audioUnlockPending) {
         audioEnabled = false;
         audioUnlockPending = false;
-        try { localStorage.setItem(audioPreferenceKey, 'off'); } catch (e) {}
         updateAudioButton();
         return;
       }
       enableAudio(true);
     }
 
-    /* Attempt sound on page load. Browsers may require a user gesture first. */
+    /* Always attempt sound on every page load. A manual OFF applies to the current visit;
+       browser autoplay policy may still require the visitor's first interaction. */
     async function initAudio() {
-      let savedPreference = null;
-      try { savedPreference = localStorage.getItem(audioPreferenceKey); } catch (e) {}
-      if (savedPreference === 'off') {
-        audioEnabled = false;
-        audioUnlockPending = false;
-        updateAudioButton();
-        return;
-      }
-
       await enableAudio(false);
       if (!audioEnabled) {
         const unlockOnFirstGesture = async (event) => {
