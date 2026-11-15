@@ -1497,7 +1497,7 @@
       function playActivePhotoSound() {
         const slides = getSlides();
         const active = slides[1] || slides[0];
-        const number = Number(active?.querySelector('figcaption span')?.textContent.match(/\\d+/)?.[0] || 1);
+        const number = Number(active?.querySelector('figcaption span')?.textContent.match(/\d+/)?.[0] || 1);
         const photoNotes = {
           1: [523.25, 659.25],
           2: [587.33, 783.99],
