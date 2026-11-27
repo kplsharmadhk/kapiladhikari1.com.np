@@ -129,7 +129,8 @@ const quiz = [
   {q:"महिला प्रजनन प्रणालीमा भ्रूणको विकास सामान्यतः कहाँ हुन्छ?",a:["गर्भाशयमा","अण्डाशयमा","मूत्राशयमा","फलोपियन नलीमा"],correct:0,why:"गर्भाधानपछि भ्रूण गर्भाशयको भित्तामा आरोपित भएर विकास हुन्छ।"}
 ];
 let quizIndex = 0;
-let quizAnswered = false;\nlet quizOrder = [];
+let quizAnswered = false;
+let quizOrder = [];
 let quizScore = 0;
 let quizBest = Number(localStorage.getItem("humanAtlasBest") || 0);
 let quizDone = Number(localStorage.getItem("humanAtlasDone") || 0);
@@ -176,11 +177,12 @@ function showDetail(item) {
   selected = item;
   $("empty").hidden = true;
   $("detail").hidden = false;
-  $("name").textContent = details[item.key]?.[0] || item.label;
+  $("name").textContent = english ? item.label : (details[item.key]?.[0] || item.label);
   $("scientific").textContent = item.label + " · " + item.key;
   $("group").textContent = (english ? item.category : (categoryNepali[item.category] || item.category)).toUpperCase();
-  $("fn").textContent = details[item.key]?.[1] || (english ? "This structure is part of the " + item.category + " system." : "यो संरचना " + (categoryNepali[item.category] || item.category) + " अन्तर्गत पर्छ।");
-  $("location").textContent = details[item.key]?.[2] || (english ? "See the highlighted location on the 3D model." : "३D आकृतिमा हाइलाइट गरिएको स्थान हेर्नुहोस्।");
+  const englishDetails = { heart: "Pumps blood to the lungs and the rest of the body.", lung_l: "Exchanges oxygen and carbon dioxide between air and blood.", lung_r: "Exchanges oxygen and carbon dioxide between air and blood.", liver: "Processes nutrients and produces bile.", stomach: "Stores food and mixes it with acid and digestive enzymes.", brain: "Coordinates thought, sensation, memory and many body functions.", kidney_l: "Filters blood and produces urine.", kidney_r: "Filters blood and produces urine.", uterus: "The organ in which an embryo normally implants and develops.", pancreas: "Produces digestive enzymes and hormones including insulin.", spleen: "Filters blood and supports immune function.", skin: "Protects the body and helps regulate temperature." };
+  $("fn").textContent = english ? (englishDetails[item.key] || "This structure is part of the " + item.category + " system.") : (details[item.key]?.[1] || "यो संरचना " + (categoryNepali[item.category] || item.category) + " अन्तर्गत पर्छ।");
+  $("location").textContent = english ? "See the highlighted location on the 3D reference model." : (details[item.key]?.[2] || "३D आकृतिमा हाइलाइट गरिएको स्थान हेर्नुहोस्।");
   $("facts").textContent = (english ? "Model group: " + item.system + (item.sex ? " · " + item.sex + " reference" : "") : "मोडेल समूह: " + (groupNepali[item.system] || item.system) + (item.sex ? " · " + item.sex + " नमुना" : ""));
   highlightSelected();
 }
@@ -280,7 +282,9 @@ async function loadModel(sex) {
         obj.receiveShadow = false;
         if (obj.material) {
           const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-          obj.material = Array.isArray(obj.material) ? obj.material.map(mat => mat.clone()) : obj.material.clone();\n          const cloned = Array.isArray(obj.material) ? obj.material : [obj.material];\n          cloned.forEach(mat => { if (mat.roughness !== undefined) mat.roughness = Math.max(mat.roughness, .42); });
+          obj.material = Array.isArray(obj.material) ? obj.material.map(mat => mat.clone()) : obj.material.clone();
+          const cloned = Array.isArray(obj.material) ? obj.material : [obj.material];
+          cloned.forEach(mat => { if (mat.roughness !== undefined) mat.roughness = Math.max(mat.roughness, .42); });
         }
       }
     });
@@ -308,7 +312,10 @@ function renderQuiz() {
   $("quizFeedback").textContent = "";
   $("quizNext").hidden = true;
   quizAnswered = false;
-  item.a.forEach((answer, index) => {
+  quizOrder = item.a.map((_, index) => index);
+  for (let i = quizOrder.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [quizOrder[i], quizOrder[j]] = [quizOrder[j], quizOrder[i]]; }
+  quizOrder.forEach(originalIndex => {
+    const answer = item.a[originalIndex];
     const button = document.createElement("button");
     button.type = "button";
     button.className = "quiz-choice";
@@ -316,12 +323,12 @@ function renderQuiz() {
     button.addEventListener("click", () => {
       if (quizAnswered) return;
       quizAnswered = true;
-      const correct = index === item.correct;
+      const correct = originalIndex === item.correct;
       if (correct) quizScore++;
       [...$("quizChoices").children].forEach((choice, i) => {
         choice.disabled = true;
-        if (i === item.correct) choice.classList.add("correct");
-        else if (i === index) choice.classList.add("wrong");
+        if (quizOrder[i] === item.correct) choice.classList.add("correct");
+        else if (quizOrder[i] === originalIndex) choice.classList.add("wrong");
       });
       $("quizFeedback").textContent = (correct ? "✓ सही उत्तर। " : "✕ सही उत्तर: " + item.a[item.correct] + "। ") + item.why;
       $("quizNext").hidden = false;
@@ -393,12 +400,11 @@ $("lang").addEventListener("click", () => {
   renderStructureList($("search").value);
 });
 $("quizNext").addEventListener("click", () => {
-  if (quizIndex >= quiz.length - 1 && quizAnswered) { finishQuiz(); return; }
-  if (quizIndex === 0 && $("quizNext").textContent === "फेरि अभ्यास गर्नुहोस्") {
+  if ($("quizNext").textContent === "फेरि अभ्यास गर्नुहोस्") {
     quizIndex = 0; quizScore = 0; $("quizNext").textContent = "अर्को प्रश्न"; renderQuiz(); return;
   }
+  if (quizIndex >= quiz.length - 1) { finishQuiz(); return; }
   quizIndex++;
-  if (quizIndex >= quiz.length) { finishQuiz(); return; }
   renderQuiz();
 });
 
