@@ -114,6 +114,42 @@ const details = {
   skin: ["छाला", "शरीरलाई बाह्य वातावरणबाट जोगाउँछ र तापक्रम नियन्त्रणमा सहयोग गर्छ।", "सम्पूर्ण शरीरको बाहिरी सतहमा।"]
 };
 
+const systemDescriptions = {
+  "Cardiovascular": { ne:"मुटु, रक्त र रक्तनलीमार्फत अक्सिजन, पोषक तत्त्व, हर्मोन र फोहोर पदार्थ शरीरभरि ओसारपसार गर्छ।", en:"The heart, blood and blood vessels transport oxygen, nutrients, hormones and waste products throughout the body.", whereNe:"मुटु छातीमा हुन्छ; रक्तनलीहरू सम्पूर्ण शरीरमा फैलिएका हुन्छन्।", whereEn:"The heart is in the chest; blood vessels extend throughout the body.", examples:"Heart · Aorta · Arteries · Veins" },
+  "Respiratory": { ne:"हावा फोक्सोसम्म पुर्‍याउँछ र अल्भिओलाईमा अक्सिजन तथा कार्बन डाइअक्साइडको आदानप्रदान गर्छ।", en:"Moves air to the lungs and exchanges oxygen and carbon dioxide at the alveoli.", whereNe:"नाक, घाँटी, श्वासनली र छातीभित्रका फोक्सो।", whereEn:"Nose, throat, trachea and lungs in the chest.", examples:"Lungs · Bronchi · Trachea · Larynx" },
+  "Digestive": { ne:"खानालाई यान्त्रिक तथा रासायनिक रूपमा पचाएर पोषक तत्त्व अवशोषण गर्न र नपचेको पदार्थ बाहिर निकाल्न सहयोग गर्छ।", en:"Breaks down food, absorbs nutrients and moves indigestible material toward elimination.", whereNe:"मुखदेखि अन्ननली, आमाशय, आन्द्रा र सहायक अङ्गसम्म।", whereEn:"From the mouth through the oesophagus, stomach and intestines, with accessory organs.", examples:"Liver · Stomach · Pancreas · Small intestine · Colon" },
+  "Neurological": { ne:"मस्तिष्क, मेरुरज्जु र स्नायुहरूले संवेदना, सोचाइ, गति र शरीरका धेरै क्रियाकलाप समन्वय गर्छन्।", en:"The brain, spinal cord and nerves coordinate sensation, thought, movement and many body functions.", whereNe:"मस्तिष्क खप्परभित्र, मेरुरज्जु मेरुदण्डभित्र र स्नायुहरू शरीरभरि।", whereEn:"Brain in the skull, spinal cord in the vertebral canal and nerves throughout the body.", examples:"Brain · Brainstem · Cerebellum · Spinal cord · Cranial nerves" },
+  "Renal / Urinary": { ne:"मिर्गौलाले रगत छानेर मूत्र बनाउँछ; मूत्रवाहिनी र मूत्राशयले मूत्रलाई सञ्चय तथा निष्कासनमा सहयोग गर्छन्।", en:"Kidneys filter blood to form urine; ureters and bladder transport and store it before elimination.", whereNe:"मिर्गौला पेटको पछाडितर्फ, मूत्राशय श्रोणीभित्र।", whereEn:"Kidneys toward the back of the abdomen; bladder in the pelvis.", examples:"Kidneys · Ureters · Urinary bladder" },
+  "Musculoskeletal": { ne:"हड्डी, मांसपेशी र जोर्नीहरूले शरीरलाई आधार, सुरक्षा र गति प्रदान गर्छन्।", en:"Bones, muscles and joints provide support, protection and movement.", whereNe:"सम्पूर्ण शरीरमा।", whereEn:"Throughout the body.", examples:"Skull · Spine · Femur · Shoulder muscles · Quadriceps" },
+  "Endocrine": { ne:"अन्तःस्रावी ग्रन्थीहरूले हर्मोन उत्पादन गरी वृद्धि, चयापचय, तनाव प्रतिक्रिया र प्रजननजस्ता क्रिया नियमन गर्छन्।", en:"Endocrine glands release hormones that regulate growth, metabolism, stress responses and reproduction.", whereNe:"मस्तिष्क, घाँटी, पेट र अन्य भागका ग्रन्थीहरूमा।", whereEn:"Glands in the brain, neck, abdomen and other regions.", examples:"Pituitary · Adrenal glands · Pancreas" },
+  "Eye / Sensory": { ne:"आँखा तथा अन्य ज्ञानेन्द्रिय संरचनाले प्रकाश, ध्वनि, स्पर्श र अन्य वातावरणीय संकेत ग्रहण गर्न सहयोग गर्छन्।", en:"The eyes and other sensory structures detect light, sound, touch and other environmental signals.", whereNe:"आँखा टाउकोमा; संवेदनशील संरचना शरीरका विभिन्न भागमा।", whereEn:"Eyes in the head; sensory structures in several body regions.", examples:"Eyes · Cranial and eye nerves" },
+  "Reproductive": { ne:"प्रजनन अङ्गहरूले यौन कोष तथा प्रजननसम्बन्धी हर्मोन उत्पादन र प्रजनन प्रक्रियामा सहयोग गर्छन्।", en:"Reproductive organs support production of sex cells and reproductive hormones and enable reproduction.", whereNe:"प्रजनन अङ्गहरू मुख्यतः श्रोणी क्षेत्रमा हुन्छन्।", whereEn:"Most reproductive organs are located in the pelvic region.", examples:"Ovaries · Uterus · Fallopian tubes · Prostate" },
+  "Oral / ENT": { ne:"मुख, जिब्रो, लार ग्रन्थी, घाँटी र स्वरयन्त्रले खाना, निल्ने प्रक्रिया, स्वाद, आवाज र श्वासमार्गमा भूमिका खेल्छन्।", en:"The mouth, tongue, salivary glands, throat and larynx contribute to eating, swallowing, taste, voice and the airway.", whereNe:"टाउको र घाँटी क्षेत्रमा।", whereEn:"In the head and neck.", examples:"Tongue · Salivary glands · Pharynx · Larynx" },
+  "Immune / Lymphatic": { ne:"लसिका प्रणालीले अतिरिक्त ऊतक तरल रक्तप्रवाहमा फर्काउन र प्रतिरक्षा प्रतिक्रियामा सहयोग गर्छ।", en:"The lymphatic system returns excess tissue fluid to the bloodstream and supports immune defence.", whereNe:"लसिका नलीहरू शरीरभरि; प्लीहा पेटको माथिल्लो बायाँ भागमा।", whereEn:"Lymphatic vessels throughout the body; spleen in the upper left abdomen.", examples:"Spleen · Thymus · Lymphatic vessels" },
+  "Skin": { ne:"छालाले बाह्य सुरक्षा, तापक्रम नियमन, स्पर्श संवेदना र पानीको अत्यधिक क्षति रोक्न सहयोग गर्छ।", en:"Skin provides a protective barrier, helps regulate temperature, senses touch and limits water loss.", whereNe:"सम्पूर्ण शरीरको बाहिरी सतहमा।", whereEn:"The external surface of the body.", examples:"Skin" }
+};
+
+function showSystemInfo(category, layer = null) {
+  const info = systemDescriptions[category];
+  if (!info) return;
+  const count = catalog.filter(item => item.category === category && (!item.sex || item.sex === currentSex)).length;
+  const title = layer === "skeleton" ? (english ? "Skeletal system" : "हड्डी प्रणाली") :
+    layer === "muscles" ? (english ? "Muscular system" : "मांसपेशी प्रणाली") :
+    (english ? category : (categoryNepali[category] || category));
+  $("empty").hidden = true;
+  $("detail").hidden = false;
+  $("group").textContent = english ? "SYSTEM OVERVIEW" : "शरीर प्रणालीको परिचय";
+  $("name").textContent = title;
+  $("scientific").textContent = category;
+  $("fn").textContent = english ? info.en : info.ne;
+  $("location").textContent = english ? info.whereEn : info.whereNe;
+  let scope = (english ? "Reference catalog: " : "यस नमुनामा सूचीबद्ध संरचना: ") + count + (english ? " · " : " वटा · ") + info.examples;
+  if (category === "Musculoskeletal") scope += english ? " · The model groups bones and muscles; it does not expose 206 separate bone meshes." : " · सामान्य वयस्कमा २०६ हड्डी हुन्छन्; यो मोडेलले तिनलाई २०६ छुट्टाछुट्टै 3D Mesh का रूपमा देखाउँदैन।";
+  $("facts").textContent = scope;
+  selected = null;
+  highlightSelected();
+}
+
 const quiz = [
   {q:"सामान्य वयस्क मानव शरीरमा कति वटा हड्डी हुन्छन्?",a:["२०६","२०१","२१२","२२०"],correct:0,why:"सामान्य वयस्क मानव कंकालमा २०६ वटा हड्डी मानिन्छन्।"},
   {q:"मुटुको मुख्य काम के हो?",a:["रक्त पम्प गर्नु","पित्त बनाउनु","मूत्र बनाउनु","हर्मोन सञ्चय गर्नु"],correct:0,why:"मुटुले रक्तलाई फोक्सो र शरीरका अन्य भागतर्फ पम्प गर्छ।"},
@@ -229,7 +265,7 @@ function setCategory(category, system = null) {
   document.querySelectorAll("[data-layer]").forEach(b => b.classList.toggle("selected", enabledLayers.has(b.dataset.layer) && enabledLayers.size === 1));
   if (category) {
     const first = catalog.find(item => item.category === category && (!system || item.system === system) && (!item.sex || item.sex === currentSex));
-    if (first) showDetail(first);
+    showSystemInfo(category, system);
   }
 }
 function setLayer(layer, on) {
