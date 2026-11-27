@@ -129,7 +129,7 @@ const quiz = [
   {q:"महिला प्रजनन प्रणालीमा भ्रूणको विकास सामान्यतः कहाँ हुन्छ?",a:["गर्भाशयमा","अण्डाशयमा","मूत्राशयमा","फलोपियन नलीमा"],correct:0,why:"गर्भाधानपछि भ्रूण गर्भाशयको भित्तामा आरोपित भएर विकास हुन्छ।"}
 ];
 let quizIndex = 0;
-let quizAnswered = false;
+let quizAnswered = false;\nlet quizOrder = [];
 let quizScore = 0;
 let quizBest = Number(localStorage.getItem("humanAtlasBest") || 0);
 let quizDone = Number(localStorage.getItem("humanAtlasDone") || 0);
@@ -181,7 +181,7 @@ function showDetail(item) {
   $("group").textContent = (english ? item.category : (categoryNepali[item.category] || item.category)).toUpperCase();
   $("fn").textContent = details[item.key]?.[1] || (english ? "This structure is part of the " + item.category + " system." : "यो संरचना " + (categoryNepali[item.category] || item.category) + " अन्तर्गत पर्छ।");
   $("location").textContent = details[item.key]?.[2] || (english ? "See the highlighted location on the 3D model." : "३D आकृतिमा हाइलाइट गरिएको स्थान हेर्नुहोस्।");
-  $("facts").textContent = (english ? "Model group: " : "मोडेल समूह: ") + (groupNepali[item.system] || item.system) + (item.sex ? (english ? " · " + item.sex + " reference only" : " · " + item.sex + " नमुना") : "");
+  $("facts").textContent = (english ? "Model group: " + item.system + (item.sex ? " · " + item.sex + " reference" : "") : "मोडेल समूह: " + (groupNepali[item.system] || item.system) + (item.sex ? " · " + item.sex + " नमुना" : ""));
   highlightSelected();
 }
 function selectStructure(item) {
@@ -200,7 +200,7 @@ function renderStructureList(query = "") {
   const filtered = catalog.filter(item => (!item.sex || item.sex === currentSex) &&
     (!q || item.label.toLowerCase().includes(q) || item.key.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)));
   list.replaceChildren();
-  filtered.slice(0, 90).forEach(item => {
+  filtered.forEach(item => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "structure-row" + (selected?.key === item.key ? " active" : "");
@@ -226,7 +226,7 @@ function setCategory(category, system = null) {
   applyVisibility();
   document.querySelectorAll("[data-layer]").forEach(b => b.classList.toggle("selected", enabledLayers.has(b.dataset.layer) && enabledLayers.size === 1));
   if (category) {
-    const first = catalog.find(item => item.category === category && (!item.sex || item.sex === currentSex));
+    const first = catalog.find(item => item.category === category && (!system || item.system === system) && (!item.sex || item.sex === currentSex));
     if (first) showDetail(first);
   }
 }
@@ -280,7 +280,7 @@ async function loadModel(sex) {
         obj.receiveShadow = false;
         if (obj.material) {
           const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
-          mats.forEach(mat => { if (mat.roughness !== undefined) mat.roughness = Math.max(mat.roughness, .42); });
+          obj.material = Array.isArray(obj.material) ? obj.material.map(mat => mat.clone()) : obj.material.clone();\n          const cloned = Array.isArray(obj.material) ? obj.material : [obj.material];\n          cloned.forEach(mat => { if (mat.roughness !== undefined) mat.roughness = Math.max(mat.roughness, .42); });
         }
       }
     });
