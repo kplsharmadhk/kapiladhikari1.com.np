@@ -261,6 +261,7 @@ async function loadModel(sex) {
     scene.remove(modelRoot);
     modelRoot.traverse(obj => {
       if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(material => material.dispose());
     });
   }
   modelRoot = null;
@@ -389,7 +390,7 @@ $("reset").addEventListener("click", () => { setView(0, .98, 3.4); controls.auto
 $("animateOrgans").addEventListener("click", () => {
   animateOrgans = !animateOrgans;
   $("animateOrgans").classList.toggle("on", animateOrgans);
-  $("animateOrgans").textContent = animateOrgans ? "♥ मुटु / फोक्सो गति: चालु" : "♥ मुटु / फोक्सो गति: बन्द";
+  $("animateOrgans").textContent = animateOrgans ? "♥ मुटु / फोक्सो गति (सिमुलेसन): चालु" : "♥ मुटु / फोक्सो गति (सिमुलेसन): बन्द";
 });
 $("lang").addEventListener("click", () => {
   english = !english;
