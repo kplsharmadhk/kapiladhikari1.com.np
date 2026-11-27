@@ -132,7 +132,7 @@ const systemDescriptions = {
 function showSystemInfo(category, layer = null) {
   const info = systemDescriptions[category];
   if (!info) return;
-  const count = catalog.filter(item => item.category === category && (!item.sex || item.sex === currentSex)).length;
+  const count = catalog.filter(item => item.category === category && (!layer || item.system === layer) && (!item.sex || item.sex === currentSex)).length;
   const title = layer === "skeleton" ? (english ? "Skeletal system" : "हड्डी प्रणाली") :
     layer === "muscles" ? (english ? "Muscular system" : "मांसपेशी प्रणाली") :
     (english ? category : (categoryNepali[category] || category));
@@ -143,8 +143,10 @@ function showSystemInfo(category, layer = null) {
   $("scientific").textContent = category;
   $("fn").textContent = english ? info.en : info.ne;
   $("location").textContent = english ? info.whereEn : info.whereNe;
-  let scope = (english ? "Reference catalog: " : "यस नमुनामा सूचीबद्ध संरचना: ") + count + (english ? " · " : " वटा · ") + info.examples;
-  if (category === "Musculoskeletal") scope += english ? " · The model groups bones and muscles; it does not expose 206 separate bone meshes." : " · सामान्य वयस्कमा २०६ हड्डी हुन्छन्; यो मोडेलले तिनलाई २०६ छुट्टाछुट्टै 3D Mesh का रूपमा देखाउँदैन।";
+  const examples = layer === "skeleton" ? "Skull · Spine · Femur · Ribs · Pelvis" : layer === "muscles" ? "Deltoid · Quadriceps · Hamstrings · Calf · Back muscles" : info.examples;
+  let scope = (english ? "Reference catalog: " : "यस नमुनामा सूचीबद्ध संरचना: ") + count + (english ? " · " : " वटा · ") + examples;
+  if (category === "Musculoskeletal" && layer === "skeleton") scope += english ? " · Adults usually have 206 bones; this model groups them into 28 selectable structures, not 206 individual bone meshes." : " · सामान्य वयस्कमा २०६ हड्डी हुन्छन्; यस मोडेलमा ती २८ समूहमा छन्, २०६ छुट्टाछुट्टै 3D Mesh छैनन्।";
+  if (category === "Musculoskeletal" && layer === "muscles") scope += english ? " · These are grouped muscle regions, not every individual muscle." : " · यी समूहगत मांसपेशी क्षेत्र हुन्, प्रत्येक मांसपेशीको छुट्टाछुट्टै Mesh होइनन्।";
   $("facts").textContent = scope;
   selected = null;
   highlightSelected();
