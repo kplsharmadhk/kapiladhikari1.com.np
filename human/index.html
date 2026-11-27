@@ -1,7 +1,105 @@
 <!doctype html>
-<html lang="ne"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101820"><meta name="description" content="Interactive 3D Human Anatomy Learning Atlas"><title>Human Anatomy | 3D Learning Atlas</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="./styles.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script></head>
-<body><div class="app"><header class="top"><a class="brand" href="./"><b>H</b><span><strong>HUMAN ANATOMY</strong><small>INTERACTIVE LEARNING ATLAS</small></span></a><div class="lab"><i></i> 3D ANATOMY LAB <em>/</em> FULL BODY</div><nav><button id="lang">ने / EN</button><a href="../">← Main website</a></nav></header>
-<main class="layout"><aside class="panel systems"><div class="heading"><div><small>EXPLORE</small><h1>शरीर प्रणाली</h1></div><label>12</label></div><input id="search" type="search" placeholder="अङ्ग वा प्रणाली खोज्नुहोस्..."><div id="systems">
-<button class="active" data-system="all">◉　सम्पूर्ण शरीर</button><button data-system="skeletal">♧　हड्डी प्रणाली</button><button data-system="muscular">✳　मांसपेशी प्रणाली</button><button data-system="cardiovascular">♥　रक्तसञ्चार प्रणाली</button><button data-system="respiratory">≈　श्वासप्रश्वास प्रणाली</button><button data-system="digestive">⌁　पाचन प्रणाली</button><button data-system="nervous">⌘　स्नायु प्रणाली</button><button data-system="urinary">◒　मूत्र प्रणाली</button><button data-system="lymphatic">✣　लसिका प्रणाली</button><button data-system="endocrine">✧　अन्तःस्रावी प्रणाली</button><button data-system="reproductive">◇　प्रजनन प्रणाली</button><button data-system="integumentary">▤　छाला प्रणाली</button><button data-system="sensory">◎　ज्ञानेन्द्रिय प्रणाली</button></div><footer>● अध्ययन मोड सक्रिय</footer></aside>
-<section class="viewer panel"><div class="heading"><div><small>3D MODEL VIEWER</small><h2 id="modelTitle">सम्पूर्ण मानव शरीर</h2></div><span class="tag">INTERACTIVE 3D · PREVIEW</span></div><div class="canvas" id="canvas"><div id="three"></div><div id="status">◌ 3D दृश्य तयार हुँदैछ...</div><div class="hint">↔ Drag to rotate　·　Scroll to zoom</div><div class="controls"><button id="rotate" class="on">⟳</button><button id="front">F</button><button id="side">S</button><button id="back">B</button><hr><button id="plus">+</button><button id="minus">−</button><button id="reset">⌖</button></div><div class="legend"><span>● Skin</span><span>● Muscle</span><span>● Bone</span><span>● Organs</span></div></div><div class="layers"><div><small>BODY LAYERS</small><p>देखिने संरचना छान्नुहोस्</p></div><div><button class="selected" data-layer="skin">● छाला</button><button data-layer="muscles">● मांसपेशी</button><button data-layer="skeleton">● हड्डी</button><button data-layer="organs">● अङ्गहरू</button></div></div><div class="notice">ⓘ　यो प्रारम्भिक 3D Preview हो। वैज्ञानिक रूपमा प्रमाणित उच्च-विस्तारको Anatomy Model थपेपछि वास्तविक अङ्ग चयन र तहगत दृश्य सक्रिय हुनेछ।</div></section>
-<aside class="panel details"><div class="heading"><div><small>ANATOMY DETAILS</small><h2>अङ्गको विवरण</h2></div><label>i</label></div><div id="empty"><div>◎</div><h3>अङ्ग छान्नुहोस्</h3><p>शरीरको कुनै संरचना छानेपछि यसको वैज्ञानिक नाम, स्थान र काम यहाँ देखिनेछ।</p></div><article id="detail" hidden><small id="group">BODY SYSTEM</small><h2 id="name"></h2><i id="scientific"></i><hr><h4>मुख्य काम</h4><p id="fn"></p><h4>स्थान</h4><p id="location"></p><h4>थप जानकारी</h4><p id="facts"></p></article><div class="tip"><small>STUDY TIP</small><p>प्रणाली छानेर त्यससँग सम्बन्धित अङ्गहरूको नाम र कार्य क्रमशः अध्ययन गर्नुहोस्।</p></div></aside></main><footer class="bottom"><span>HUMAN ANATOMY ATLAS</span><span>Educational use · Scientific content requires expert review</span><span>© 2026</span></footer></div><script type="module" src="./app.js"></script></body></html>
+<html lang="ne">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101820">
+<meta name="description" content="Male and female interactive 3D human anatomy learning atlas with body systems, selectable structures and quizzes.">
+<title>Human Anatomy | Interactive 3D Learning Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <a class="brand" href="./"><b>H</b><span><strong>HUMAN ANATOMY</strong><small>INTERACTIVE LEARNING ATLAS</small></span></a>
+  <div class="lab"><i></i> 3D ANATOMY LAB <em>/</em> REAL ANATOMY DATA</div>
+  <nav><button id="lang">ने / EN</button><a href="../">← Main website</a></nav>
+</header>
+<main class="layout">
+  <aside class="panel systems">
+    <div class="heading"><div><small>EXPLORE</small><h1>शरीर प्रणाली</h1></div><label>12</label></div>
+    <div class="sex-switch" aria-label="शरीरको नमुना">
+      <button id="male" class="active" type="button">♂ पुरुष</button>
+      <button id="female" type="button">♀ महिला</button>
+    </div>
+    <input id="search" type="search" placeholder="अङ्ग वा संरचना खोज्नुहोस्..." aria-label="Search anatomy structures">
+    <div id="systems">
+      <button class="active" data-system="all">◉　सम्पूर्ण शरीर</button>
+      <button data-system="skeletal">♧　हड्डी प्रणाली</button>
+      <button data-system="muscular">✳　मांसपेशी प्रणाली</button>
+      <button data-system="cardiovascular">♥　रक्तसञ्चार प्रणाली</button>
+      <button data-system="respiratory">≈　श्वासप्रश्वास प्रणाली</button>
+      <button data-system="digestive">⌁　पाचन प्रणाली</button>
+      <button data-system="nervous">⌘　स्नायु प्रणाली</button>
+      <button data-system="urinary">◒　मूत्र प्रणाली</button>
+      <button data-system="lymphatic">✣　लसिका प्रणाली</button>
+      <button data-system="endocrine">✧　अन्तःस्रावी प्रणाली</button>
+      <button data-system="reproductive">◇　प्रजनन प्रणाली</button>
+      <button data-system="integumentary">▤　छाला प्रणाली</button>
+      <button data-system="sensory">◎　ज्ञानेन्द्रिय प्रणाली</button>
+      <button data-system="ent">◌　मुख तथा घाँटी</button>
+    </div>
+    <div class="structure-heading"><span>संरचना सूची</span><small id="resultCount">लोड हुँदैछ...</small></div>
+    <div id="structureList" class="structure-list" aria-live="polite"></div>
+    <footer>● अध्ययन मोड सक्रिय</footer>
+  </aside>
+
+  <section class="viewer panel">
+    <div class="heading"><div><small>3D MODEL VIEWER</small><h2 id="modelTitle">सम्पूर्ण मानव शरीर</h2></div><span class="tag">ANATOMICAL MODEL</span></div>
+    <div class="canvas" id="canvas">
+      <div id="three"></div>
+      <div id="status">◌ वास्तविक Anatomy Model लोड हुँदैछ...</div>
+      <div class="hint">↔ Drag to rotate　·　Scroll / Pinch to zoom　·　Tap to inspect</div>
+      <div class="controls">
+        <button id="rotate" class="on" title="Auto rotate">⟳</button>
+        <button id="front" title="Front view">F</button><button id="side" title="Side view">S</button><button id="back" title="Back view">B</button>
+        <hr><button id="plus" title="Zoom in">+</button><button id="minus" title="Zoom out">−</button><button id="reset" title="Reset view">⌖</button>
+      </div>
+      <div class="legend"><span>● Skin</span><span>● Muscle</span><span>● Bone</span><span>● Organs</span><span>● Vessels / Nerves</span></div>
+    </div>
+    <div class="layers">
+      <div><small>ANATOMICAL LAYERS</small><p>आवश्यक संरचना तह खोल्नुहोस् / बन्द गर्नुहोस्</p></div>
+      <div>
+        <button class="selected" data-layer="skin">छाला</button><button class="selected" data-layer="muscles">मांसपेशी</button>
+        <button class="selected" data-layer="skeleton">हड्डी</button><button class="selected" data-layer="organs">अङ्गहरू</button>
+        <button class="selected" data-layer="vessels">रक्तनली</button><button class="selected" data-layer="nerves">स्नायु</button>
+      </div>
+    </div>
+    <button id="animateOrgans" class="animation-toggle on" type="button">♥ मुटु / फोक्सो गति: चालु</button>
+    <div class="notice">यो शैक्षिक 3D सन्दर्भ मोडेल हो। शरीरका संरचना छुट्टाछुट्टै चयन गर्न सकिन्छ। मोडेलका समूहहरूलाई २०६ वटा हड्डीको छुट्टाछुट्टै प्रमाणित सूची भनेर नबुझ्नुहोस्; त्यसका लागि थप विस्तृत bone-by-bone dataset आवश्यक हुन्छ।</div>
+  </section>
+
+  <aside class="panel details">
+    <div class="heading"><div><small>ANATOMY DETAILS</small><h2>अङ्गको विवरण</h2></div><label>i</label></div>
+    <div id="empty"><div>◎</div><h3>अङ्ग छान्नुहोस्</h3><p>३D शरीरमा कुनै संरचनामा ट्याप गर्नुहोस् वा सूचीबाट छान्नुहोस्। यसको नाम, प्रणाली र काम यहाँ देखिनेछ।</p></div>
+    <article id="detail" hidden>
+      <small id="group">BODY SYSTEM</small><h2 id="name"></h2><i id="scientific"></i>
+      <hr><h4>मुख्य काम</h4><p id="fn"></p>
+      <h4>स्थान</h4><p id="location"></p>
+      <h4>मोडेल जानकारी</h4><p id="facts"></p>
+    </article>
+    <div class="tip"><small>STUDY TIP</small><p>पहिले एउटा प्रणाली छान्नुहोस्। त्यसपछि तहहरू खोलेर सम्बन्धित अङ्गहरू छान्दै अध्ययन गर्नुहोस्।</p></div>
+    <div class="progress-card">
+      <small>YOUR LEARNING PROGRESS</small>
+      <div class="progress-stats"><div><strong id="bestScore">0 / 12</strong><span>उत्कृष्ट अंक</span></div><div><strong id="doneCount">0</strong><span>अभ्यास</span></div></div>
+      <p>यो प्रगति यही ब्राउजरमा सुरक्षित हुन्छ।</p>
+    </div>
+  </aside>
+</main>
+
+<section class="study panel">
+  <div class="study-head"><div><small>KNOWLEDGE CHECK</small><h2>आफ्नो ज्ञान जाँच्नुहोस्</h2><p>१२ शरीर प्रणालीसम्बन्धी आधारभूत प्रश्नहरू।</p></div><span id="quizNumber">1 / 12</span></div>
+  <div class="quiz-track"><span id="quizProgress"></span></div>
+  <h3 id="quizQuestion">प्रश्न लोड हुँदैछ...</h3>
+  <div id="quizChoices" class="quiz-choices"></div>
+  <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+  <button id="quizNext" class="quiz-next" type="button" hidden>अर्को प्रश्न</button>
+</section>
+
+<footer class="bottom"><span>HUMAN ANATOMY ATLAS</span><span id="attribution"></span><span>© 2026</span></footer>
+</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
